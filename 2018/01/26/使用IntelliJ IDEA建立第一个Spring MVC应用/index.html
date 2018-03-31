@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="软件版本：IntelliJ IDEA 2017.3.3 x64Spring 4.3.14RELEASETomcat 9.0.4初始的结构目录如下：可以看到此时WEB-INF目录下有三个配置文件，分别为applicationContext.xml，dispatcher-servlet.xml以及web.xml。我们首先对web.xml进行修改然后对dispatcher-servlet.xml进行修改">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用IntelliJ IDEA建立第一个Spring MVC应用">
+<meta property="og:url" content="http://yoursite.com/2018/01/26/使用IntelliJ IDEA建立第一个Spring MVC应用/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="软件版本：IntelliJ IDEA 2017.3.3 x64Spring 4.3.14RELEASETomcat 9.0.4初始的结构目录如下：可以看到此时WEB-INF目录下有三个配置文件，分别为applicationContext.xml，dispatcher-servlet.xml以及web.xml。我们首先对web.xml进行修改然后对dispatcher-servlet.xml进行修改">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxJOu.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hx45N.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxZU9.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxhgA.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxyQO.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hx6cJ.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxCJR.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxe9Y.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxEIr.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxrXd.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxUOi.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxtQl.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxKUy.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hx1nX.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/02/04/hxIiB.png">
+<meta property="og:updated_time" content="2018-02-03T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用IntelliJ IDEA建立第一个Spring MVC应用">
+<meta name="twitter:description" content="软件版本：IntelliJ IDEA 2017.3.3 x64Spring 4.3.14RELEASETomcat 9.0.4初始的结构目录如下：可以看到此时WEB-INF目录下有三个配置文件，分别为applicationContext.xml，dispatcher-servlet.xml以及web.xml。我们首先对web.xml进行修改然后对dispatcher-servlet.xml进行修改">
+<meta name="twitter:image" content="https://s1.ax2x.com/2018/02/04/hxJOu.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/26/使用IntelliJ IDEA建立第一个Spring MVC应用/"/>
+
+
+
+
+
+  <title>使用IntelliJ IDEA建立第一个Spring MVC应用 | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/使用IntelliJ IDEA建立第一个Spring MVC应用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用IntelliJ IDEA建立第一个Spring MVC应用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-26T00:00:00+08:00">
+                2018-01-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-04T00:00:00+08:00">
+                2018-02-04
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>软件版本：<br><code>IntelliJ IDEA 2017.3.3 x64</code><br><code>Spring 4.3.14RELEASE</code><br><code>Tomcat 9.0.4</code><br><img src="https://s1.ax2x.com/2018/02/04/hxJOu.png" alt="hxJOu.png"><br><img src="https://s1.ax2x.com/2018/02/04/hx45N.png" alt="hx45N.png"><br>初始的结构目录如下：<br><img src="https://s1.ax2x.com/2018/02/04/hxZU9.png" alt="hxZU9.png"><br>可以看到此时WEB-INF目录下有三个配置文件，分别为<code>applicationContext.xml</code>，<code>dispatcher-servlet.xml</code>以及<code>web.xml</code>。<br>我们首先对<code>web.xml</code>进行修改<br><img src="https://s1.ax2x.com/2018/02/04/hxhgA.png" alt="hxhgA.png"><br>然后对<code>dispatcher-servlet.xml</code>进行修改<br><img src="https://s1.ax2x.com/2018/02/04/hxyQO.png" alt="hxyQO.png"><br>其中第一个框是为了增加组件的自动扫描，其中base-package的值取决于你在src下需要进行扫描的包名。<br>第二个框指明了解析器如何对你所返回的值进行解析，我们对前缀和后缀进行限定，这样就相当于解析器在对你所返回的值进行解析时自动访问/WEB-INF/jsp/XXX.jsp的文件。</p>
+<p>我们不对<code>applicationContext.xml</code>文件进行处理。<br>以上则是对配置文件的处理。</p>
+<hr>
+<p>以下是对具体业务逻辑的处理。<br><img src="https://s1.ax2x.com/2018/02/04/hx6cJ.png" alt="hx6cJ.png"><br>首先在controller这个包下创建一个java类用于充当控制器。<br>然后如2所示，在类上使用<code>@Controller</code>作为注解，用于告知Spring容器，该类为控制器类，应被当作控制器进行解析。3的<code>@RequestMapping</code>是请求映射，同样是采用注解的形式，4中的/hello是访问时（例如：localhost:8080/hello），当该地址被访问时，会被自动映射到5中的“hello”，这个hello是代表之前在<code>dispatcher-servlet.xml</code>中配置的地址（/WEB-INF/jsp）下的hello.jsp文件。所以此时我们应在jsp目录下创建<code>hello.jsp</code>文件以满足解析需要。<br><img src="https://s1.ax2x.com/2018/02/04/hxCJR.png" alt="hxCJR.png"><br>此msg为之前在<code>helloController</code>中使用modelMap添加的属性值中的msg，此处使用el表达式进行获取。至此，所有的代码准备工作已经完成，后续就是启动服务，此处我们使用<code>Tomcat9.0.4</code><br><img src="https://s1.ax2x.com/2018/02/04/hxe9Y.png" alt="hxe9Y.png"><br><img src="https://s1.ax2x.com/2018/02/04/hxEIr.png" alt="hxEIr.png"><br><img src="https://s1.ax2x.com/2018/02/04/hxrXd.png" alt="hxrXd.png"><br>点击OK即可完成Tomcat的链接。<br>然后启动该项目<br><img src="https://s1.ax2x.com/2018/02/04/hxUOi.png" alt="hxUOi.png"><br>此时会多出一个out文件夹，里面你可以看到被打包出来的文件。不过此时会报错。<br><img src="https://s1.ax2x.com/2018/02/04/hxtQl.png" alt="hxtQl.png"><br>解决方法如下：<br><img src="https://s1.ax2x.com/2018/02/04/hxKUy.png" alt="hxKUy.png"><br><img src="https://s1.ax2x.com/2018/02/04/hx1nX.png" alt="hx1nX.png"><br>注意在lib中添加<code>jstl.jar</code>，<code>servlet-api.jar</code>，<code>standard.jar</code>，否则可能出现报错情况。<br><img src="https://s1.ax2x.com/2018/02/04/hxIiB.png" alt="hxIiB.png"><br>至此完成所有的工作，启动tomcat后在地址栏输入localhost:8080/hello，即可看到hello world。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
