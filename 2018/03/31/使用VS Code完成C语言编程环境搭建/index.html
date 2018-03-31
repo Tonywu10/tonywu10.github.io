@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="软件版本：VS Code背景以及使用方法：由于旧笔记本性能方面的原因，不愿安装庞大的VS，但在学习数据结构时会常用到C语言作为实现的编程语言，故在Windows平台选择使用VS Code作为对C程序进行编写和调试。但是VS Code仅为编辑器，不是IDE，无法完成直接编译的功能，需要配合编译器来使用，故我选择了MinGW作为C编译器。首先是对VS Code（https://code.visuals">
+<meta name="description" content="软件版本：VS Code背景以及使用方法：由于旧笔记本性能方面的原因，不愿安装庞大的VS，但在学习数据结构时会常用到C语言作为实现的编程语言，故在Windows平台选择使用VS Code作为对C程序进行编写和调试。但是VS Code仅为编辑器，不是IDE，无法完成直接编译的功能，需要配合编译器来使用，故我选择了MinGW作为C编译器。首先是对VS Code以及MinGW进行下载，一直下一步完成安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用VS Code完成C语言编程环境搭建">
 <meta property="og:url" content="http://yoursite.com/2018/03/31/使用VS Code完成C语言编程环境搭建/index.html">
 <meta property="og:site_name" content="小吴的程序屋">
-<meta property="og:description" content="软件版本：VS Code背景以及使用方法：由于旧笔记本性能方面的原因，不愿安装庞大的VS，但在学习数据结构时会常用到C语言作为实现的编程语言，故在Windows平台选择使用VS Code作为对C程序进行编写和调试。但是VS Code仅为编辑器，不是IDE，无法完成直接编译的功能，需要配合编译器来使用，故我选择了MinGW作为C编译器。首先是对VS Code（https://code.visuals">
+<meta property="og:description" content="软件版本：VS Code背景以及使用方法：由于旧笔记本性能方面的原因，不愿安装庞大的VS，但在学习数据结构时会常用到C语言作为实现的编程语言，故在Windows平台选择使用VS Code作为对C程序进行编写和调试。但是VS Code仅为编辑器，不是IDE，无法完成直接编译的功能，需要配合编译器来使用，故我选择了MinGW作为C编译器。首先是对VS Code以及MinGW进行下载，一直下一步完成安装">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s1.ax2x.com/2018/03/31/t1ISu.jpg">
 <meta property="og:image" content="https://s1.ax2x.com/2018/03/31/t1kT9.jpg">
@@ -94,10 +94,10 @@
 <meta property="og:image" content="https://s1.ax2x.com/2018/03/31/t1xed.jpg">
 <meta property="og:image" content="https://s1.ax2x.com/2018/03/31/t1iMe.jpg">
 <meta property="og:image" content="https://s1.ax2x.com/2018/03/31/t12RR.jpg">
-<meta property="og:updated_time" content="2018-03-31T05:30:55.203Z">
+<meta property="og:updated_time" content="2018-03-31T05:38:44.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用VS Code完成C语言编程环境搭建">
-<meta name="twitter:description" content="软件版本：VS Code背景以及使用方法：由于旧笔记本性能方面的原因，不愿安装庞大的VS，但在学习数据结构时会常用到C语言作为实现的编程语言，故在Windows平台选择使用VS Code作为对C程序进行编写和调试。但是VS Code仅为编辑器，不是IDE，无法完成直接编译的功能，需要配合编译器来使用，故我选择了MinGW作为C编译器。首先是对VS Code（https://code.visuals">
+<meta name="twitter:description" content="软件版本：VS Code背景以及使用方法：由于旧笔记本性能方面的原因，不愿安装庞大的VS，但在学习数据结构时会常用到C语言作为实现的编程语言，故在Windows平台选择使用VS Code作为对C程序进行编写和调试。但是VS Code仅为编辑器，不是IDE，无法完成直接编译的功能，需要配合编译器来使用，故我选择了MinGW作为C编译器。首先是对VS Code以及MinGW进行下载，一直下一步完成安装">
 <meta name="twitter:image" content="https://s1.ax2x.com/2018/03/31/t1ISu.jpg">
 
 
@@ -296,7 +296,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-31T13:30:55+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-31T13:38:44+08:00">
                 2018-03-31
               </time>
             
@@ -352,7 +352,7 @@
       
 
       
-        <p>软件版本：<br>VS Code<br>背景以及使用方法：<br>由于旧笔记本性能方面的原因，不愿安装庞大的VS，但在学习数据结构时会常用到C语言作为实现的编程语言，故在Windows平台选择使用VS Code作为对C程序进行编写和调试。<br>但是VS Code仅为编辑器，不是IDE，无法完成直接编译的功能，需要配合编译器来使用，故我选择了MinGW作为C编译器。<br>首先是对VS Code（<a href="https://code.visualstudio.com/）以及MinGW（http://www.mingw.org/）进行下载，一直下一步完成安装。" target="_blank" rel="noopener">https://code.visualstudio.com/）以及MinGW（http://www.mingw.org/）进行下载，一直下一步完成安装。</a><br>先对MinGW进行讲解，首先打开MinGW Installation Manage，我们可以看到有一个Basic Setup，由于我们暂时只对C进行编译，故只需选中C相关的g++，再在All Packages中找到gdb相关的文件进行勾选，以方便进行调试。<br><img src="https://s1.ax2x.com/2018/03/31/t1ISu.jpg" alt="t1ISu.jpg"><br><img src="https://s1.ax2x.com/2018/03/31/t1kT9.jpg" alt="t1kT9.jpg"><br>选中之后点击Installation中的Apply进行相关包的安装。<br><img src="https://s1.ax2x.com/2018/03/31/t1l4A.jpg" alt="t1l4A.jpg"><br>安装完成后打开VS Code，按图中所示打开文件夹（如果只是单独写文件，VS Code无法识别，请务必选择打开文件夹进行定位），然后安装C/C++的扩展。<br><img src="https://s1.ax2x.com/2018/03/31/t186O.jpg" alt="t186O.jpg"><br><img src="https://s1.ax2x.com/2018/03/31/t1f3q.jpg" alt="t1f3q.jpg"><br>完成程序的编写<br><img src="https://s1.ax2x.com/2018/03/31/t1xed.jpg" alt="t1xed.jpg"><br>按下F5对程序进行运行，这时编辑器会提示采用哪种编译器，选择C++(GDB/LLDB)即可。<br><img src="https://s1.ax2x.com/2018/03/31/t1iMe.jpg" alt="t1iMe.jpg"><br>然后会跳转到一个launch.json的文件中，这是请直接复制配置文件信息到该json文件中。<br><code>{
+        <p>软件版本：<br>VS Code<br>背景以及使用方法：<br>由于旧笔记本性能方面的原因，不愿安装庞大的VS，但在学习数据结构时会常用到C语言作为实现的编程语言，故在Windows平台选择使用VS Code作为对C程序进行编写和调试。<br>但是VS Code仅为编辑器，不是IDE，无法完成直接编译的功能，需要配合编译器来使用，故我选择了MinGW作为C编译器。<br>首先是对VS Code以及MinGW进行下载，一直下一步完成安装。<br>先对MinGW进行讲解，首先打开MinGW Installation Manage，我们可以看到有一个Basic Setup，由于我们暂时只对C进行编译，故只需选中C相关的g++，再在All Packages中找到gdb相关的文件进行勾选，以方便进行调试。<br><img src="https://s1.ax2x.com/2018/03/31/t1ISu.jpg" alt="t1ISu.jpg"><br><img src="https://s1.ax2x.com/2018/03/31/t1kT9.jpg" alt="t1kT9.jpg"><br>选中之后点击Installation中的Apply进行相关包的安装。<br><img src="https://s1.ax2x.com/2018/03/31/t1l4A.jpg" alt="t1l4A.jpg"><br>安装完成后打开VS Code，按图中所示打开文件夹（如果只是单独写文件，VS Code无法识别，请务必选择打开文件夹进行定位），然后安装C/C++的扩展。<br><img src="https://s1.ax2x.com/2018/03/31/t186O.jpg" alt="t186O.jpg"><br><img src="https://s1.ax2x.com/2018/03/31/t1f3q.jpg" alt="t1f3q.jpg"><br>完成程序的编写<br><img src="https://s1.ax2x.com/2018/03/31/t1xed.jpg" alt="t1xed.jpg"><br>按下F5对程序进行运行，这时编辑器会提示采用哪种编译器，选择C++(GDB/LLDB)即可。<br><img src="https://s1.ax2x.com/2018/03/31/t1iMe.jpg" alt="t1iMe.jpg"><br>然后会跳转到一个launch.json的文件中，这时请直接复制配置文件信息到该json文件中。<br><code>{
     // 使用 IntelliSense 了解相关属性。 
     // 悬停以查看现有属性的描述。
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
