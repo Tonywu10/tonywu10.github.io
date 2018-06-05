@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="小吴的程序屋">
 <meta property="og:description" content="无向图(Java)说起无向图，最常用的两个算法就是深度优先搜索(DFS)和广度优先搜索(BFS)。在介绍这两种搜索方法之前，先给出有关图(Graph)的定义。123456789101112131415161718192021222324252627282930313233343536public class Graph &amp;#123;    private final int V;//顶点数目">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-03T07:08:53.299Z">
+<meta property="og:updated_time" content="2018-06-03T07:13:13.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="无向图(Java)">
 <meta name="twitter:description" content="无向图(Java)说起无向图，最常用的两个算法就是深度优先搜索(DFS)和广度优先搜索(BFS)。在介绍这两种搜索方法之前，先给出有关图(Graph)的定义。123456789101112131415161718192021222324252627282930313233343536public class Graph &amp;#123;    private final int V;//顶点数目">
@@ -287,7 +287,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-03T15:08:53+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-03T15:13:13+08:00">
                 2018-06-03
               </time>
             
@@ -350,7 +350,7 @@
 <p>2、广度优先搜索(BFS)<br>顾名思义，所谓广度优先就是在搜索过某个结点后就以该结点作为起点继续搜索其兄弟结点而不是其孩子结点。</p>
 <p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class BreadthFirstPaths &#123;</span><br><span class="line">    private boolean[] marked;</span><br><span class="line">    private int[] edgeTo;</span><br><span class="line">    private final int s;//起点</span><br><span class="line">    public BreadthFirstPaths(Graph G,int s)&#123;</span><br><span class="line">        marked = new boolean[G.V()];</span><br><span class="line">        edgeTo = new int[G.V()];</span><br><span class="line">        this.s = s;</span><br><span class="line">        bfs(G,s);</span><br><span class="line">    &#125;</span><br><span class="line">    private void bfs(Graph G,int s)&#123;</span><br><span class="line">        Queue&lt;Integer&gt; queue = new Queue&lt;Integer&gt;();</span><br><span class="line">        marked[s] = true;//标为起点</span><br><span class="line">        queue.enqueue(s);//加入队列</span><br><span class="line">        while(!queue.isEmpty())&#123;</span><br><span class="line">            int v = queue.dequeue();//从队列中删去下一顶点</span><br><span class="line">            for(int w:G.adj(v))&#123;</span><br><span class="line">                if(!marked[w])&#123;</span><br><span class="line">                    edgeTo[w] = v;</span><br><span class="line">                    marked[w] = true;</span><br><span class="line">                    queue.enqueue(w);//添加进队列</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>分析：<br>bfs没有采用递归而是采用队列作为中介进行存储，通过对bfs函数进行分析可知，我们以s作为起点，然后通过获得邻接表得到其邻接结点(G.adj(v))，所以当与起点相邻接的结点被访问完之后就开始将第一个邻接点作为起点继续上述操作。</p>
-<p>这其中的缺少的数据结构，比如Queue、Bag可以到<a href="http://algs4.cs.princeton.edu/code" target="_blank" rel="noopener">http://algs4.cs.princeton.edu/code</a> 下载。</p>
+<p>这其中的缺少的数据结构，比如Queue，Bag可以到<a href="http://algs4.cs.princeton.edu/code" target="_blank" rel="noopener">http://algs4.cs.princeton.edu/code</a> 下载。</p>
 
       
     </div>
@@ -384,6 +384,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/05/有向图(Java)/" rel="prev" title="有向图(Java)">
+                有向图(Java) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -455,7 +459,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

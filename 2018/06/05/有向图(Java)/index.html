@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="有向图(Java)相较于无向图，有向图的部分性质使用起来比较麻烦。在介绍之前，先给出有向图(DiGraph)的定义。1234567891011121314151617181920212223242526272829303132333435363738394041424344public class Digraph &amp;#123;    private final int V;    private">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有向图(Java)">
+<meta property="og:url" content="http://yoursite.com/2018/06/05/有向图(Java)/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="有向图(Java)相较于无向图，有向图的部分性质使用起来比较麻烦。在介绍之前，先给出有向图(DiGraph)的定义。1234567891011121314151617181920212223242526272829303132333435363738394041424344public class Digraph &amp;#123;    private final int V;    private">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-05T08:00:32.836Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="有向图(Java)">
+<meta name="twitter:description" content="有向图(Java)相较于无向图，有向图的部分性质使用起来比较麻烦。在介绍之前，先给出有向图(DiGraph)的定义。1234567891011121314151617181920212223242526272829303132333435363738394041424344public class Digraph &amp;#123;    private final int V;    private">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/05/有向图(Java)/"/>
+
+
+
+
+
+  <title>有向图(Java) | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/有向图(Java)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">有向图(Java)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T00:00:00+08:00">
+                2018-06-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-05T16:00:32+08:00">
+                2018-06-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>有向图(Java)<br>相较于无向图，有向图的部分性质使用起来比较麻烦。在介绍之前，先给出有向图(DiGraph)的定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">public class Digraph &#123;</span><br><span class="line">    private final int V;</span><br><span class="line">    private int E;</span><br><span class="line">    private Bag&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    public Digraph(int V)&#123;</span><br><span class="line">        this.V = V;</span><br><span class="line">        this.E = 0;</span><br><span class="line">        adj = (Bag&lt;Integer&gt;[])new Bag[V];</span><br><span class="line">        for(int v=0;v&lt;V;v++)</span><br><span class="line">            adj[v] = new Bag&lt;Integer&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Digraph(In in)&#123;</span><br><span class="line">        this(in.readInt());</span><br><span class="line">        int E = in.readInt();</span><br><span class="line">        for(int i = 0;i&lt;E;i++)&#123;</span><br><span class="line">            int v = in.readInt();</span><br><span class="line">            int w = in.readInt();</span><br><span class="line">            addEdge(v,w);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int V()&#123;</span><br><span class="line">        return V;</span><br><span class="line">    &#125;</span><br><span class="line">    public int E()&#123;</span><br><span class="line">        return E;</span><br><span class="line">    &#125;</span><br><span class="line">    public void addEdge(int v,int w)&#123;</span><br><span class="line">        adj[v].add(w);</span><br><span class="line">        E++;</span><br><span class="line">    &#125;</span><br><span class="line">    public Iterable&lt;Integer&gt; adj(int v)&#123;</span><br><span class="line">        return adj[v];</span><br><span class="line">    &#125;</span><br><span class="line">    public Digraph reverse()&#123;</span><br><span class="line">        Digraph R = new Digraph(V);</span><br><span class="line">        for(int v=0;v&lt;V;v++)</span><br><span class="line">            for (int w:adj(v))</span><br><span class="line">                R.addEdge(w,v);</span><br><span class="line">        return R;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个定义与无向图相比主要是在addEdge方法中有差别，由于有了方向性，所以不能再双向添加。</p>
+<hr>
+<p>有向图中有一个经典问题，那就是有向图的可达性，给点一个或一组点，是否存在从给点的点出发到达终点的路径。<br>解决这类问题用到了深度优先搜索(DFS)。</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class DirectedDFS &#123;</span><br><span class="line">    private boolean[] marked;</span><br><span class="line">    public DirectedDFS(Digraph G,int s)&#123;</span><br><span class="line">        marked = new boolean[G.V()];</span><br><span class="line">        dfs(G,s);</span><br><span class="line">    &#125;</span><br><span class="line">    public DirectedDFS(Digraph G,Iterable&lt;Integer&gt; sources)&#123;</span><br><span class="line">        marked = new boolean[G.V()];</span><br><span class="line">        for(int s:sources)</span><br><span class="line">            if(!marked[s])</span><br><span class="line">                dfs(G,s);</span><br><span class="line">    &#125;</span><br><span class="line">    private void dfs(Digraph G,int v)&#123;</span><br><span class="line">        marked[v] = true;</span><br><span class="line">        for (int w:G.adj(v))</span><br><span class="line">            if(!marked[w])</span><br><span class="line">                dfs(G,w);</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean marked(int v)&#123;</span><br><span class="line">        return marked[v];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Digraph G = new Digraph(new In(args[0]));</span><br><span class="line">        Bag&lt;Integer&gt; sources = new Bag&lt;Integer&gt;();</span><br><span class="line">        for(int i=1;i&lt;args.length;i++)</span><br><span class="line">            sources.add(Integer.parseInt(args[i]));</span><br><span class="line">        DirectedDFS reachable = new DirectedDFS(G,sources);</span><br><span class="line">        for(int v=0;v&lt;G.V();v++)</span><br><span class="line">            if(reachable.marked(v))</span><br><span class="line">                StdOut.print(v+&quot; &quot;);</span><br><span class="line">        StdOut.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>基本上与深度优先搜索一致，都是将当前访问点进行标记，然后进行递归访问。</p>
+<hr>
+<p>在判断有向图是否可达之后还有一个问题值得关注，那就是当前的有向图是否有环。</p>
+<p>有关这个问题我们可以构造一个栈用于存放在深度优先搜索过程中访问过的点，如果在后续访问中出现了v-&gt;w且w已经在栈中的情况，则说明之前w已经被访问过了，而此时又有别的路径访问到w，则可断定出现了环。</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">public class DirectedCycle &#123;</span><br><span class="line">    private boolean[] marked;</span><br><span class="line">    private int[] edgeTo;</span><br><span class="line">    private Stack&lt;Integer&gt; cycle;//有向环中的所有顶点</span><br><span class="line">    private boolean[] onStack;//递归调用的栈上的所有顶点</span><br><span class="line"></span><br><span class="line">    public DirectedCycle(Digraph G)&#123;</span><br><span class="line">        onStack = new boolean[G.V()];</span><br><span class="line">        edgeTo = new int[G.V()];</span><br><span class="line">        marked = new boolean[G.V()];</span><br><span class="line">        for(int v = 0;v&lt;G.V();v++)</span><br><span class="line">            if(!marked[v])</span><br><span class="line">                dfs(G,v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void dfs(Digraph G,int v)&#123;</span><br><span class="line">        onStack[v] = true;</span><br><span class="line">        marked[v] = true;</span><br><span class="line">        for(int w:G.adj(v))&#123;</span><br><span class="line">            if(this.hasCycle())</span><br><span class="line">                return;</span><br><span class="line">            else if(!marked[w])&#123;</span><br><span class="line">                edgeTo[w] = v;</span><br><span class="line">                dfs(G,w);</span><br><span class="line">            &#125;</span><br><span class="line">            else if(onStack[w])&#123;</span><br><span class="line">                cycle = new Stack&lt;Integer&gt;();</span><br><span class="line">                for (int x = v;x!=w;x=edgeTo[x])</span><br><span class="line">                    cycle.push(x);</span><br><span class="line">                cycle.push(w);</span><br><span class="line">                cycle.push(v);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        onStack[v]=false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private boolean hasCycle()&#123;</span><br><span class="line">        return cycle!=null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Iterable&lt;Integer&gt; cycle()&#123;</span><br><span class="line">        return cycle;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>检测有向环主要在dfs方法中。首先，从起点出发，这时就将起点入栈，并将其标记为已访问，随后便进入v的邻接结点，对于没有访问过的结点都进行标记操作并继续dfs，最后得到的结果就是所有被访问过的点都会入栈，此时执行第二个else if，此时如果结点w出现在栈中，则代表之前已经被访问过，也就是出现了环。当从起点出发的结点都被访问过之后，则将其设为false。</p>
+<hr>
+<p>在检测有向图是否有环后就能对有向图进行顶点排序。<br>排序的方式有多种，包括前序、后序和逆后续。</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class DepthFirstOrder &#123;</span><br><span class="line">    private boolean[] marked;</span><br><span class="line">    private Queue&lt;Integer&gt; pre;</span><br><span class="line">    private Queue&lt;Integer&gt; post;</span><br><span class="line">    private Stack&lt;Integer&gt; reversePost;</span><br><span class="line"></span><br><span class="line">    public DepthFirstOrder(Digraph G)&#123;</span><br><span class="line">        pre = new Queue&lt;Integer&gt;();</span><br><span class="line">        post = new Queue&lt;Integer&gt;();</span><br><span class="line">        reversePost = new Stack&lt;Integer&gt;();</span><br><span class="line">        marked = new boolean[G.V()];</span><br><span class="line">        for (int v = 0;v&lt;G.V();v++)</span><br><span class="line">            if(!marked[v])</span><br><span class="line">                dfs(G,v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void dfs(Digraph G,int v)&#123;</span><br><span class="line">        pre.enqueue(v);</span><br><span class="line">        marked[v] = true;</span><br><span class="line">        for(int w:G.adj(v))</span><br><span class="line">            if(!marked[w])</span><br><span class="line">                dfs(G,w);</span><br><span class="line">        post.enqueue(v);</span><br><span class="line">        reversePost.push(v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Iterable&lt;Integer&gt; pre()&#123;</span><br><span class="line">        return pre;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Iterable&lt;Integer&gt; post()&#123;</span><br><span class="line">        return post;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Iterable&lt;Integer&gt; reversePost()&#123;</span><br><span class="line">        return reversePost;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中，前序和后续使用队列进行存储，而逆后续利用栈的性质进行存储。</p>
+<hr>
+<p>接下来谈论的一个排序是拓扑排序，所谓拓扑排序就是对存在前后关系的图进行线性排序，每次输出的数据都是入度为0的结点。这个排序可以用来进行处理任务调度之类的问题。</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class Topological &#123;</span><br><span class="line">    private Iterable&lt;Integer&gt; order;</span><br><span class="line">    </span><br><span class="line">    public Topological(Digraph G)&#123;</span><br><span class="line">        DirectedCycle cyclefinder = new DirectedCycle(G);</span><br><span class="line">        if(!cyclefinder.hasCycle())&#123;</span><br><span class="line">            DepthFirstOrder dfs = new DepthFirstOrder(G);</span><br><span class="line">            order = dfs.reversePost();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public Iterable&lt;Integer&gt; order() &#123;</span><br><span class="line">        return order;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public boolean isDAG()&#123;</span><br><span class="line">        return order!=null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String filename = args[0];</span><br><span class="line">        String separator = args[1];</span><br><span class="line">        SymbolDigraph sg = new SymbolDigraph(filename,separator);</span><br><span class="line">        Topological top = new Topological(sg.G());</span><br><span class="line">        for(int v:top.order)</span><br><span class="line">            StdOut.println(sg.name(v));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于一幅有向无环图的拓扑顺序就是所有顶点的逆后序排序，所以直接调用逆后序排序即可。<br>至于为什么拓扑排序就是逆后序排序，因为对于任意边v-&gt;w，在调用dfs(v)时，一定会出现以下情况。<br>    dfs(w)已经被调用且已经返回；<br>    dfs(w)还没有被调用，这样就会因为被直接或间接调用返回dfs(w)，且dfs(w)会在dfs(v)返回前返回；<br>    dfs(w)已经被调用但还未返回，但是这种情况不会出现，因为在有向无环图中，如果出现被调用却未返回的情况，则代表存在w到v的路径，这样就与无环相冲突。<br>综上所述，dfs(w)都会在dfs(v)之前完成，所以使用逆后序排序的话就能让w排在v之后输出，达到前提条件先被输出的效果。</p>
+<p>这其中的缺少的数据结构，比如Queue、Bag可以到<a href="http://algs4.cs.princeton.edu/code" target="_blank" rel="noopener">http://algs4.cs.princeton.edu/code</a> 下载。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/03/无向图(Java)/" rel="next" title="无向图(Java)">
+                <i class="fa fa-chevron-left"></i> 无向图(Java)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
