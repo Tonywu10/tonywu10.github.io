@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="小吴的程序屋">
 <meta property="og:description" content="有向图(Java)相较于无向图，有向图的部分性质使用起来比较麻烦。在介绍之前，先给出有向图(DiGraph)的定义。1234567891011121314151617181920212223242526272829303132333435363738394041424344public class Digraph &amp;#123;    private final int V;    private">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-05T08:08:15.215Z">
+<meta property="og:updated_time" content="2018-06-05T08:10:41.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="有向图(Java)">
 <meta name="twitter:description" content="有向图(Java)相较于无向图，有向图的部分性质使用起来比较麻烦。在介绍之前，先给出有向图(DiGraph)的定义。1234567891011121314151617181920212223242526272829303132333435363738394041424344public class Digraph &amp;#123;    private final int V;    private">
@@ -287,7 +287,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-05T16:08:15+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-05T16:10:41+08:00">
                 2018-06-05
               </time>
             
@@ -361,8 +361,7 @@
 <hr>
 <p>接下来谈论的一个排序是拓扑排序，所谓拓扑排序就是对存在前后关系的图进行线性排序，每次输出的数据都是入度为0的结点。这个排序可以用来进行处理任务调度之类的问题。</p>
 <p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class Topological &#123;</span><br><span class="line">    private Iterable&lt;Integer&gt; order;</span><br><span class="line">    </span><br><span class="line">    public Topological(Digraph G)&#123;</span><br><span class="line">        DirectedCycle cyclefinder = new DirectedCycle(G);</span><br><span class="line">        if(!cyclefinder.hasCycle())&#123;</span><br><span class="line">            DepthFirstOrder dfs = new DepthFirstOrder(G);</span><br><span class="line">            order = dfs.reversePost();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public Iterable&lt;Integer&gt; order() &#123;</span><br><span class="line">        return order;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public boolean isDAG()&#123;</span><br><span class="line">        return order!=null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String filename = args[0];</span><br><span class="line">        String separator = args[1];</span><br><span class="line">        SymbolDigraph sg = new SymbolDigraph(filename,separator);</span><br><span class="line">        Topological top = new Topological(sg.G());</span><br><span class="line">        for(int v:top.order)</span><br><span class="line">            StdOut.println(sg.name(v));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>由于一幅有向无环图的拓扑顺序就是所有顶点的逆后序排序，所以直接调用逆后序排序即可。<br>至于为什么拓扑排序就是逆后序排序，因为对于任意边v-&gt;w，在调用dfs(v)时，一定会出现以下情况。<br><em>dfs(w)已经被调用且已经返回；
-</em>dfs(w)还没有被调用，这样就会因为被直接或间接调用返回dfs(w)，且dfs(w)会在dfs(v)返回前返回；<br>*dfs(w)已经被调用但还未返回，但是这种情况不会出现，因为在有向无环图中，如果出现被调用却未返回的情况，则代表存在w到v的路径，这样就与无环相冲突。<br>综上所述，dfs(w)都会在dfs(v)之前完成，所以使用逆后序排序的话就能让w排在v之后输出，达到前提条件先被输出的效果。</p>
+<p>由于一幅有向无环图的拓扑顺序就是所有顶点的逆后序排序，所以直接调用逆后序排序即可。<br>至于为什么拓扑排序就是逆后序排序，因为对于任意边v-&gt;w，在调用dfs(v)时，一定会出现以下情况。<br>1.dfs(w)已经被调用且已经返回；<br>2.dfs(w)还没有被调用，这样就会因为被直接或间接调用返回dfs(w)，且dfs(w)会在dfs(v)返回前返回；<br>3.dfs(w)已经被调用但还未返回，但是这种情况不会出现，因为在有向无环图中，如果出现被调用却未返回的情况，则代表存在w到v的路径，这样就与无环相冲突。<br>综上所述，dfs(w)都会在dfs(v)之前完成，所以使用逆后序排序的话就能让w排在v之后输出，达到前提条件先被输出的效果。</p>
 <p>这其中的缺少的数据结构，比如Queue、Bag可以到<a href="http://algs4.cs.princeton.edu/code" target="_blank" rel="noopener">http://algs4.cs.princeton.edu/code</a> 下载。</p>
 
       
