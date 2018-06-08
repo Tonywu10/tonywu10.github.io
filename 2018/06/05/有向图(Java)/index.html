@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="小吴的程序屋">
 <meta property="og:description" content="本文主要介绍有关有向图方面的算法，包括有向图的可达性以及是否有环在内等多种算法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-05T08:32:03.335Z">
+<meta property="og:updated_time" content="2018-06-08T07:56:13.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="有向图(Java)">
 <meta name="twitter:description" content="本文主要介绍有关有向图方面的算法，包括有向图的可达性以及是否有环在内等多种算法。">
@@ -287,8 +287,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-05T16:32:03+08:00">
-                2018-06-05
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-08T15:56:13+08:00">
+                2018-06-08
               </time>
             
           </span>
@@ -347,7 +347,7 @@
       
 
       
-        <p>有向图(Java)<br>相较于无向图，有向图的部分性质使用起来比较麻烦。在介绍之前，先给出有向图(DiGraph)的定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">public class Digraph &#123;</span><br><span class="line">    private final int V;</span><br><span class="line">    private int E;</span><br><span class="line">    private Bag&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    public Digraph(int V)&#123;</span><br><span class="line">        this.V = V;</span><br><span class="line">        this.E = 0;</span><br><span class="line">        adj = (Bag&lt;Integer&gt;[])new Bag[V];</span><br><span class="line">        for(int v=0;v&lt;V;v++)</span><br><span class="line">            adj[v] = new Bag&lt;Integer&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Digraph(In in)&#123;</span><br><span class="line">        this(in.readInt());</span><br><span class="line">        int E = in.readInt();</span><br><span class="line">        for(int i = 0;i&lt;E;i++)&#123;</span><br><span class="line">            int v = in.readInt();</span><br><span class="line">            int w = in.readInt();</span><br><span class="line">            addEdge(v,w);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int V()&#123;</span><br><span class="line">        return V;</span><br><span class="line">    &#125;</span><br><span class="line">    public int E()&#123;</span><br><span class="line">        return E;</span><br><span class="line">    &#125;</span><br><span class="line">    public void addEdge(int v,int w)&#123;</span><br><span class="line">        adj[v].add(w);</span><br><span class="line">        E++;</span><br><span class="line">    &#125;</span><br><span class="line">    public Iterable&lt;Integer&gt; adj(int v)&#123;</span><br><span class="line">        return adj[v];</span><br><span class="line">    &#125;</span><br><span class="line">    public Digraph reverse()&#123;</span><br><span class="line">        Digraph R = new Digraph(V);</span><br><span class="line">        for(int v=0;v&lt;V;v++)</span><br><span class="line">            for (int w:adj(v))</span><br><span class="line">                R.addEdge(w,v);</span><br><span class="line">        return R;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>相较于无向图，有向图的部分性质使用起来比较麻烦。在介绍之前，先给出有向图(DiGraph)的定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">public class Digraph &#123;</span><br><span class="line">    private final int V;</span><br><span class="line">    private int E;</span><br><span class="line">    private Bag&lt;Integer&gt;[] adj;</span><br><span class="line"></span><br><span class="line">    public Digraph(int V)&#123;</span><br><span class="line">        this.V = V;</span><br><span class="line">        this.E = 0;</span><br><span class="line">        adj = (Bag&lt;Integer&gt;[])new Bag[V];</span><br><span class="line">        for(int v=0;v&lt;V;v++)</span><br><span class="line">            adj[v] = new Bag&lt;Integer&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Digraph(In in)&#123;</span><br><span class="line">        this(in.readInt());</span><br><span class="line">        int E = in.readInt();</span><br><span class="line">        for(int i = 0;i&lt;E;i++)&#123;</span><br><span class="line">            int v = in.readInt();</span><br><span class="line">            int w = in.readInt();</span><br><span class="line">            addEdge(v,w);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int V()&#123;</span><br><span class="line">        return V;</span><br><span class="line">    &#125;</span><br><span class="line">    public int E()&#123;</span><br><span class="line">        return E;</span><br><span class="line">    &#125;</span><br><span class="line">    public void addEdge(int v,int w)&#123;</span><br><span class="line">        adj[v].add(w);</span><br><span class="line">        E++;</span><br><span class="line">    &#125;</span><br><span class="line">    public Iterable&lt;Integer&gt; adj(int v)&#123;</span><br><span class="line">        return adj[v];</span><br><span class="line">    &#125;</span><br><span class="line">    public Digraph reverse()&#123;</span><br><span class="line">        Digraph R = new Digraph(V);</span><br><span class="line">        for(int v=0;v&lt;V;v++)</span><br><span class="line">            for (int w:adj(v))</span><br><span class="line">                R.addEdge(w,v);</span><br><span class="line">        return R;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这个定义与无向图相比主要是在addEdge方法中有差别，由于有了方向性，所以不能再双向添加。</p>
 <hr>
 <p>有向图中有一个经典问题，那就是有向图的可达性，给点一个或一组点，是否存在从给点的点出发到达终点的路径。<br>解决这类问题用到了深度优先搜索(DFS)。</p>
@@ -405,6 +405,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/08/最小生成树(Java)/" rel="prev" title="最小生成树(Java)">
+                最小生成树(Java) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -476,7 +480,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
