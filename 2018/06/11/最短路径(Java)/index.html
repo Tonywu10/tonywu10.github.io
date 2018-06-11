@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍最短路径，包括Dijkstra算法、Bellman-Ford算法以及各种图的处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最短路径(Java)">
+<meta property="og:url" content="http://yoursite.com/2018/06/11/最短路径(Java)/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="本文主要介绍最短路径，包括Dijkstra算法、Bellman-Ford算法以及各种图的处理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax2x.com/2018/06/11/gDcah.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/06/11/gDygz.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/06/11/gDa0S.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/06/11/gDrfH.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/06/11/gDETN.png">
+<meta property="og:updated_time" content="2018-06-11T08:36:22.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最短路径(Java)">
+<meta name="twitter:description" content="本文主要介绍最短路径，包括Dijkstra算法、Bellman-Ford算法以及各种图的处理">
+<meta name="twitter:image" content="https://s1.ax2x.com/2018/06/11/gDcah.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/11/最短路径(Java)/"/>
+
+
+
+
+
+  <title>最短路径(Java) | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/最短路径(Java)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">最短路径(Java)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T00:00:00+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-11T16:36:22+08:00">
+                2018-06-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  本文主要介绍最短路径，包括Dijkstra算法、Bellman-Ford算法以及各种图的处理
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>有关最短路径的问题可以归纳为找到一个顶点到达另一个顶点的成本最小的路径。</p>
+<hr>
+<p>1、单点最短路径<br>给定一幅加权有向图和一个起点s，回答从s到给定的目的顶点v是否存在一条有向路径。<br>为解决这个问题先引入如下数据结构<br>加权有向边：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class DirectedEdge &#123;</span><br><span class="line">    private final int v;//边的起点</span><br><span class="line">    private final int w;//边的终点</span><br><span class="line">    private final double weight;//边的权重</span><br><span class="line"></span><br><span class="line">    public DirectedEdge(int v,int w,double weight)&#123;</span><br><span class="line">        this.v = v;</span><br><span class="line">        this.w = w;</span><br><span class="line">        this.weight = weight;</span><br><span class="line">    &#125;</span><br><span class="line">    public double weight()&#123;</span><br><span class="line">        return weight;</span><br><span class="line">    &#125;</span><br><span class="line">    public int from()&#123;</span><br><span class="line">        return v;</span><br><span class="line">    &#125;</span><br><span class="line">    public int to()&#123;</span><br><span class="line">        return w;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return String.format(&quot;%d-&gt;%d %.2f&quot;,v,w,weight);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>加权有向图：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">public class EdgeWeightedDigraph &#123;</span><br><span class="line">    private final int V;                // 顶点总数</span><br><span class="line">    private int E;                      // 边的总数</span><br><span class="line">    private Bag&lt;DirectedEdge&gt;[] adj;    // 邻接表</span><br><span class="line">    private int[] indegree;             // 顶点V的入度</span><br><span class="line"></span><br><span class="line">    public EdgeWeightedDigraph(int V) &#123;</span><br><span class="line">        this.V = V;</span><br><span class="line">        this.E = 0;</span><br><span class="line">        this.indegree = new int[V];</span><br><span class="line">        adj = (Bag&lt;DirectedEdge&gt;[]) new Bag[V];</span><br><span class="line">        for (int v = 0; v &lt; V; v++)</span><br><span class="line">            adj[v] = new Bag&lt;DirectedEdge&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public EdgeWeightedDigraph(int V, int E) &#123;</span><br><span class="line">        this(V);</span><br><span class="line">        for (int i = 0; i &lt; E; i++) &#123;</span><br><span class="line">            int v = StdRandom.uniform(V);</span><br><span class="line">            int w = StdRandom.uniform(V);</span><br><span class="line">            double weight = 0.01 * StdRandom.uniform(100);</span><br><span class="line">            DirectedEdge e = new DirectedEdge(v, w, weight);</span><br><span class="line">            addEdge(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public EdgeWeightedDigraph(In in) &#123;</span><br><span class="line">        this(in.readInt());</span><br><span class="line">        int E = in.readInt();</span><br><span class="line">        for (int i = 0; i &lt; E; i++) &#123;</span><br><span class="line">            int v = in.readInt();</span><br><span class="line">            int w = in.readInt();</span><br><span class="line">            double weight = in.readDouble();</span><br><span class="line">            addEdge(new DirectedEdge(v, w, weight));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public EdgeWeightedDigraph(EdgeWeightedDigraph G) &#123;</span><br><span class="line">        this(G.V());</span><br><span class="line">        this.E = G.E();</span><br><span class="line">        for (int v = 0; v &lt; G.V(); v++)</span><br><span class="line">            this.indegree[v] = G.indegree(v);</span><br><span class="line">        for (int v = 0; v &lt; G.V(); v++) &#123;</span><br><span class="line">            Stack&lt;DirectedEdge&gt; reverse = new Stack&lt;DirectedEdge&gt;();</span><br><span class="line">            for (DirectedEdge e : G.adj[v]) &#123;</span><br><span class="line">                reverse.push(e);</span><br><span class="line">            &#125;</span><br><span class="line">            for (DirectedEdge e : reverse) &#123;</span><br><span class="line">                adj[v].add(e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int V() &#123;</span><br><span class="line">        return V;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int E() &#123;</span><br><span class="line">        return E;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void addEdge(DirectedEdge e) &#123;</span><br><span class="line">        int v = e.from();</span><br><span class="line">        int w = e.to();</span><br><span class="line">        adj[v].add(e);</span><br><span class="line">        indegree[w]++;</span><br><span class="line">        E++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Iterable&lt;DirectedEdge&gt; adj(int v) &#123;</span><br><span class="line">        return adj[v];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int outdegree(int v) &#123;</span><br><span class="line">        return adj[v].size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int indegree(int v) &#123;</span><br><span class="line">        return indegree[v];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Iterable&lt;DirectedEdge&gt; edges() &#123;</span><br><span class="line">        Bag&lt;DirectedEdge&gt; list = new Bag&lt;DirectedEdge&gt;();</span><br><span class="line">        for (int v = 0; v &lt; V; v++) &#123;</span><br><span class="line">            for (DirectedEdge e : adj(v)) &#123;</span><br><span class="line">                list.add(e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>Dijkstra算法<br><img src="https://s1.ax2x.com/2018/06/11/gDcah.png" alt="gDcah.png"><br>以上图为例来简单讲解下Dijkstra算法，我们以v1为起点来研究其到其余各店的最短路径。<br><img src="https://s1.ax2x.com/2018/06/11/gDygz.png" alt="gDygz.png"><br>我们可以看到Dis数组代表了v1到其余各点的距离，无限大表示不可达。<br>此时最短路径中的确定数组为v1和v3，因为v1到v3距离最短并且由于权重非负，所以不可能存在经过第三点到达v3还比v1直接到v3还要短的情况。<br>然后观察v3，发现其与v4相连，此时v1-&gt;v3-&gt;v4为10+50=60，比v1到v4的无穷大要小，则更新Dis数组。<br><img src="https://s1.ax2x.com/2018/06/11/gDa0S.png" alt="gDa0S.png"><br>更新结束之后，我们需要找出dis[0]和dis[2]之外的最小距离，因为dis[0]和dis[2]都已经是确定值，我们发现dis[4]最小，而dis[4]代表v1和v5之间的距离，所以此时我们引入v5，之后就会发现v1-&gt;v5-&gt;v4的距离小于v1-&gt;v4，所以继续更新，同理，v1-&gt;v5-&gt;v6距离也小于v1-&gt;v6。<br><img src="https://s1.ax2x.com/2018/06/11/gDrfH.png" alt="gDrfH.png"><br>重复上述过程，即可的到最终结果<br><img src="https://s1.ax2x.com/2018/06/11/gDETN.png" alt="gDETN.png"><br>以上图片来自<a href="https://blog.csdn.net/qq_35644234/article/details/60870719" target="_blank" rel="noopener">https://blog.csdn.net/qq_35644234/article/details/60870719</a><br>以上就是Dijkstra算法的演示过程。</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">public class DijkstraSP &#123;</span><br><span class="line">    private double[] distTo;          // distTo[v]为从起点到v的距离</span><br><span class="line">    private DirectedEdge[] edgeTo;    // edgeTo[v]为从起点到v的最后一条边</span><br><span class="line">    private IndexMinPQ&lt;Double&gt; pq;    // 优先队列</span><br><span class="line"></span><br><span class="line">    public DijkstraSP(EdgeWeightedDigraph G, int s) &#123;</span><br><span class="line">        for (DirectedEdge e : G.edges()) &#123;</span><br><span class="line">            if (e.weight() &lt; 0)</span><br><span class="line">                throw new IllegalArgumentException(&quot;edge &quot; + e + &quot; has negative weight&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        distTo = new double[G.V()];</span><br><span class="line">        edgeTo = new DirectedEdge[G.V()];</span><br><span class="line">        for (int v = 0; v &lt; G.V(); v++)</span><br><span class="line">            distTo[v] = Double.POSITIVE_INFINITY;</span><br><span class="line">        distTo[s] = 0.0;</span><br><span class="line">        pq = new IndexMinPQ&lt;Double&gt;(G.V());</span><br><span class="line">        pq.insert(s, distTo[s]);</span><br><span class="line">        while (!pq.isEmpty()) &#123;</span><br><span class="line">            int v = pq.delMin();</span><br><span class="line">            for (DirectedEdge e : G.adj(v))</span><br><span class="line">                relax(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void relax(DirectedEdge e) &#123;</span><br><span class="line">        int v = e.from(), w = e.to();</span><br><span class="line">        if (distTo[w] &gt; distTo[v] + e.weight()) &#123;</span><br><span class="line">            distTo[w] = distTo[v] + e.weight();</span><br><span class="line">            edgeTo[w] = e;</span><br><span class="line">            if (pq.contains(w))</span><br><span class="line">                pq.decreaseKey(w, distTo[w]);</span><br><span class="line">            else</span><br><span class="line">                pq.insert(w, distTo[w]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public double distTo(int v) &#123;</span><br><span class="line">        return distTo[v];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private boolean hasPathTo(int v) &#123;</span><br><span class="line">        return distTo[v] &lt; Double.POSITIVE_INFINITY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Iterable&lt;DirectedEdge&gt; pathTo(int v) &#123;</span><br><span class="line">        if (!hasPathTo(v)) return null;</span><br><span class="line">        Stack&lt;DirectedEdge&gt; path = new Stack&lt;DirectedEdge&gt;();</span><br><span class="line">        for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) &#123;</span><br><span class="line">            path.push(e);</span><br><span class="line">        &#125;</span><br><span class="line">        return path;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>上面代码中最重要的部分就在于relax方法，通过遍历距离最近元素(v)的邻接表，找出权重较小的边，如果有则更新数据，相当于“放松”了路径。</p>
+<hr>
+<p>2、无环加权有向图<br>Dijkstra算法可以处理非负权重的有(无)环图，而如果遇到无环<br>加权有向图，则有更加高效的处理办法，它能够处理负权重的边，并且能在线性时间内解决单点最短路径问题。<br>这个算法的核心是拓扑排序，因为在入度为0的元素被选出时，每条边v-&gt;w都只会被放松一次。当v被放松时，得到distTo[w]&lt;=distTo[v]+e.weight()，因为distTo[v]的大小不会改变，之所以不会改变是因为按照拓扑排序，该元素只可能被访问一次，所以distTo[w]只会变小，从而到达效果。<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">public class AcyclicSP &#123;</span><br><span class="line">    private double[] distTo;      </span><br><span class="line">    private edu.princeton.cs.algs4.DirectedEdge[] edgeTo;</span><br><span class="line"></span><br><span class="line">    public AcyclicSP(EdgeWeightedDigraph G, int s) &#123;</span><br><span class="line">        distTo = new double[G.V()];</span><br><span class="line">        edgeTo = new DirectedEdge[G.V()];</span><br><span class="line"></span><br><span class="line">        for (int v = 0; v &lt; G.V(); v++)</span><br><span class="line">            distTo[v] = Double.POSITIVE_INFINITY;</span><br><span class="line">        distTo[s] = 0.0;</span><br><span class="line"></span><br><span class="line">        Topological topological = new Topological(G);</span><br><span class="line">        if (!topological.hasOrder())</span><br><span class="line">            throw new IllegalArgumentException(&quot;Digraph is not acyclic.&quot;);</span><br><span class="line">        for (int v : topological.order()) &#123;</span><br><span class="line">            for (DirectedEdge e : G.adj(v))</span><br><span class="line">                relax(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void relax(DirectedEdge e) &#123;</span><br><span class="line">        int v = e.from(), w = e.to();</span><br><span class="line">        if (distTo[w] &gt; distTo[v] + e.weight()) &#123;</span><br><span class="line">            distTo[w] = distTo[v] + e.weight();</span><br><span class="line">            edgeTo[w] = e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public double distTo(int v) &#123;</span><br><span class="line">        return distTo[v];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean hasPathTo(int v) &#123;</span><br><span class="line">        return distTo[v] &lt; Double.POSITIVE_INFINITY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Iterable&lt;DirectedEdge&gt; pathTo(int v) &#123;</span><br><span class="line">        if (!hasPathTo(v)) return null;</span><br><span class="line">        Stack&lt;DirectedEdge&gt; path = new Stack&lt;DirectedEdge&gt;();</span><br><span class="line">        for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) &#123;</span><br><span class="line">            path.push(e);</span><br><span class="line">        &#125;</span><br><span class="line">        return path;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>3、最长路径<br>在无环加权有向图中的单点最长路径问题中，只需要将distTo[]的初始值变成Double.NEGATIVE_TNFINITY，并将relax方法中的不等式方向更改即可。</p>
+<hr>
+<p>4、并行任务调度<br>在并行任务中涉及到“关键路径”，所谓关键路径就是指在此路径下任何任务的启动延迟都会影响到整个项目的完成时间。</p>
+<hr>
+<p>5、基于队列的Bellman-Ford算法<br>Dijkstra算法无法处理带负权重的图，这时就轮到Bellman-Ford算法来发挥作用。<br>Bellman-Ford算法主要是分两步来进行，第一步也是对最短路径进行求解，第二步也是关键的一步就是判断当前边集中是否存在负权重环，如果存在则表示不存在最短路径，否则边集就是最短路径。<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">public class BellmanFordSP &#123;</span><br><span class="line">    private double[] distTo;//从起点到某个顶点的路径长度</span><br><span class="line">    private DirectedEdge[] edgeTo;//从起点到某个顶点的最后一条边</span><br><span class="line">    private boolean[] onQ;//该顶点是否存在于队列中</span><br><span class="line">    private Queue&lt;Integer&gt; queue;//正在被放松的顶点</span><br><span class="line">    private int cost;//relax()的调用次数</span><br><span class="line">    private Iterable&lt;DirectedEdge&gt; cycle;//edgeTo[]中的是否有负权重环</span><br><span class="line"></span><br><span class="line">    public BellmanFordSP(EdgeWeightedDigraph G,int s)&#123;</span><br><span class="line">        distTo = new double[G.V()];</span><br><span class="line">        edgeTo = new DirectedEdge[G.V()];</span><br><span class="line">        onQ = new boolean[G.V()];</span><br><span class="line">        queue = new Queue&lt;&gt;();</span><br><span class="line">        for(int v = 0;v&lt;G.V();v++)&#123;</span><br><span class="line">            distTo[v] = Double.POSITIVE_INFINITY;</span><br><span class="line">        &#125;</span><br><span class="line">        distTo[s] = 0.0;</span><br><span class="line">        queue.enqueue(s);</span><br><span class="line">        onQ[s] = true;</span><br><span class="line">        while(!queue.isEmpty()&amp;&amp;!hasNegativeCycle())&#123;</span><br><span class="line">            int v = queue.dequeue();</span><br><span class="line">            onQ[v] = false;</span><br><span class="line">            relax(G,v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void relax(EdgeWeightedDigraph G,int v)&#123;</span><br><span class="line">        for(DirectedEdge e:G.adj(v))&#123;</span><br><span class="line">            int w = e.to();</span><br><span class="line">            if(distTo[w]&gt;distTo[v]+e.weight())&#123;</span><br><span class="line">                distTo[w] = distTo[v]+e.weight();</span><br><span class="line">                edgeTo[w] = e;</span><br><span class="line">                if(!onQ[w])&#123;</span><br><span class="line">                    queue.enqueue(w);</span><br><span class="line">                    onQ[w] = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(cost++%G.V()==0)</span><br><span class="line">                findNegativeCycle();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public double distTo(int v) &#123;</span><br><span class="line">        if (hasNegativeCycle())</span><br><span class="line">            throw new UnsupportedOperationException(&quot;Negative cost cycle exists&quot;);</span><br><span class="line">        return distTo[v];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean hasPathTo(int v)&#123;</span><br><span class="line">        return distTo[v] &lt; Double.POSITIVE_INFINITY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void findNegativeCycle()&#123;</span><br><span class="line">        int V = edgeTo.length;</span><br><span class="line">        EdgeWeightedDigraph spt = new EdgeWeightedDigraph(V);</span><br><span class="line">        for (int v = 0; v &lt; V; v++)</span><br><span class="line">            if (edgeTo[v] != null)</span><br><span class="line">                spt.addEdge(edgeTo[v]);</span><br><span class="line">        EdgeWeightedDirectedCycle finder = new EdgeWeightedDirectedCycle(spt);</span><br><span class="line">        cycle = finder.cycle();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean hasNegativeCycle()&#123;</span><br><span class="line">        return cycle != null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Iterable&lt;DirectedEdge&gt; negativeCycle()&#123;</span><br><span class="line">        return cycle;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码的关键在于relax方法和findNegativeCycle方法，relax方法与之前的一致，都是判断路径是否缩短，但是此时如果路径缩短则需要将该结点入队，入队是为了防止出现重复的顶点。</p>
+<p>这其中的缺少的数据结构可以到<a href="http://algs4.cs.princeton.edu/code" target="_blank" rel="noopener">http://algs4.cs.princeton.edu/code</a> 下载。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/08/最小生成树(Java)/" rel="next" title="最小生成树(Java)">
+                <i class="fa fa-chevron-left"></i> 最小生成树(Java)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
