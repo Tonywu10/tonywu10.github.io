@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍字符串排序，包括低位优先、高位优先和三向字符串快速排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串排序(Java)">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/字符串排序(Java)/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="本文主要介绍字符串排序，包括低位优先、高位优先和三向字符串快速排序">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax2x.com/2018/06/13/gJBPp.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/06/13/gJFS3.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/06/13/gJDY6.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/06/13/gJTHK.png">
+<meta property="og:updated_time" content="2018-06-13T13:50:21.842Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="字符串排序(Java)">
+<meta name="twitter:description" content="本文主要介绍字符串排序，包括低位优先、高位优先和三向字符串快速排序">
+<meta name="twitter:image" content="https://s1.ax2x.com/2018/06/13/gJBPp.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/13/字符串排序(Java)/"/>
+
+
+
+
+
+  <title>字符串排序(Java) | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/字符串排序(Java)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">字符串排序(Java)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T00:00:00+08:00">
+                2018-06-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-13T21:50:21+08:00">
+                2018-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  本文主要介绍字符串排序，包括低位优先、高位优先和三向字符串快速排序
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>字符串排序问题在很多行业都有应用，其排序方法也有很多。</p>
+<p>1、低位优先字符串排序(LSD)<br>所谓低位优先就是指以字符串最后字符起为序对字符串进行排序，其原理与基数排序相似。其要求字符串是带排序字符串等长，比如银行卡号、电话号码之类。<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class LSD &#123;</span><br><span class="line">    public static void sort(String[] a,int W)&#123;</span><br><span class="line">        //通过前w个字符将a[]排序</span><br><span class="line">        int N = a.length;</span><br><span class="line">        int R = 256;</span><br><span class="line">        String[] aux = new String[N];</span><br><span class="line"></span><br><span class="line">        for(int d=W-1;d&gt;=0;d--)&#123;</span><br><span class="line">            //根据第d个字符用键索引计数法排序</span><br><span class="line">            int[] count = new int[R+1]; </span><br><span class="line">            for(int i=0;i&lt;N;i++)//计算出现频率</span><br><span class="line">                count[a[i].charAt(d)+1]++;</span><br><span class="line">            for(int r=0;r&lt;R;r++)//将频率转换为索引</span><br><span class="line">                count[r+1]+=count[r];</span><br><span class="line">            for(int i=0;i&lt;N;i++)//将元素分类</span><br><span class="line">                aux[count[a[i].charAt(d)]++]=a[i];</span><br><span class="line">            for(int i=0;i&lt;N;i++)</span><br><span class="line">                a[i] = aux[i];//回写</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>上述代码中R为256是考虑到拓展后的ASCII码最多为256个。<br>aux数组是临时数组，进行排序操作。我们来分析最大的那个for循环，首先生成一个count数组，其大小为R+1，此时进入第一个for循环，这个for循环是用来计算字符出现频率，通过a[i].charAt(d)+1操作，我们就能对出现的元素进行ASCII码定位，至于为什么加1之后再说。循环之后进入第二个for循环，这个循环用于将频率转换为索引，此时就能看到之前加1的作用。<br><img src="https://s1.ax2x.com/2018/06/13/gJBPp.png" alt="gJBPp.png"><br>上图代表了前三个for循环的过程，第二列代表了对频率的计算，第三列将频率转化为索引，count的下标就能代表有多少数小于下标，比如count[1]=3就代表小于1的数据共有3条，与原数据相符。所以如果在第二个循环中不加1的话就无法达到上述效果，之所以要达到这样的效果是因为这样可以保证count[r]总是下一个键为r的元素在aux中的索引位置，比如a[0]中的8就在aux[5]中，a[1]、a[2]、a[3]中的尾数0都可以直接找count[0]的值进行定位(注意由于第三个循环的影响，count[0]的值一直在不断变化)。</p>
+<p>2、高位优先字符串排序(MSD)<br>高位优先是以字符串最初字符起为序对字符串进行排序，此时对字符串并没有等长要求。<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">public class MSD &#123;</span><br><span class="line">    private static int R = 256;//基数</span><br><span class="line">    private static final int M = 15;//小数组的切换阈值</span><br><span class="line">    private static String[] aux;//数据分类的辅助数组</span><br><span class="line">    private static int charAt(String s,int d)&#123;</span><br><span class="line">        if(d&lt;s.length())</span><br><span class="line">            return s.charAt(d);</span><br><span class="line">        else</span><br><span class="line">            return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void sort(String[] a)&#123;</span><br><span class="line">        int N = a.length;</span><br><span class="line">        aux = new String[N];</span><br><span class="line">        sort(a,0,N-1,0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void sort(String[] a,int lo,int hi,int d)&#123;</span><br><span class="line">        if(hi&lt;=lo+M)&#123;</span><br><span class="line">            insertion(a,lo,hi,d);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        int[] count = new int[R+2];</span><br><span class="line">        for(int i=lo;i&lt;=hi;i++)</span><br><span class="line">            count[charAt(a[i],d)+2]++;</span><br><span class="line">        for(int r=0;r&lt;=R+1;r++)</span><br><span class="line">            count[r+1] = count[r];</span><br><span class="line">        for(int i=lo;i&lt;=hi;i++)</span><br><span class="line">            aux[count[charAt(a[i],d)+1]++] = a[i];</span><br><span class="line">        for(int i=lo;i&lt;=hi;i++)</span><br><span class="line">            a[i]=aux[i-lo];</span><br><span class="line">        for(int r=0;r&lt;R;r++)</span><br><span class="line">            sort(a,lo+count[r],lo+count[r+1],d+1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void insertion(String[] a, int lo, int hi, int d) &#123;</span><br><span class="line">        for (int i = lo; i &lt;= hi; i++)</span><br><span class="line">            for (int j = i; j &gt; lo &amp;&amp; less(a[j], a[j-1], d); j--)</span><br><span class="line">                exch(a, j, j-1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void exch(String[] a, int i, int j) &#123;</span><br><span class="line">        String temp = a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static boolean less(String v, String w, int d) &#123;</span><br><span class="line">        for (int i = d; i &lt; Math.min(v.length(), w.length()); i++) &#123;</span><br><span class="line">            if (v.charAt(i) &lt; w.charAt(i)) return true;</span><br><span class="line">            if (v.charAt(i) &gt; w.charAt(i)) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return v.length() &lt; w.length();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br><img src="https://s1.ax2x.com/2018/06/13/gJFS3.png" alt="gJFS3.png"><br>上图详细计算了第一轮排序时，count、aux、a数组的变化情况，这些步骤在LSD中几乎一致。但是不一样的是，在对d=0的情况进行排序之后，还需要以d=1、d=2等情况进行递归排序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for(int r=0;r&lt;R;r++)</span><br><span class="line">    sort(a,lo+count[r],lo+count[r+1],d+1);</span><br></pre></td></tr></table></figure></p>
+<p>此处使用count[r]和count[r+1]就是为了把不同分组区分开，我们先来分析下第一轮结束后count数组的变化。<br><img src="https://s1.ax2x.com/2018/06/13/gJDY6.png" alt="gJDY6.png"><br>我们把上述数据带入递归中进行匹配可以发现，count[0]和count[1]、count[1]和count[2]、count[18]和count[19]以及count[19]和count[20]之间出现了数据上的区别，它们所代表的值就是每一组开始的下标，比如count[0]和count[1]就代表从0开始是a组，count[1]和count[2]就代表从1开始是b组，count[18]和count[19]代表从2开始是s组，count[19]和count[2]代表从12开始是h组。理解这层关系后就能进行递归完成d递增的排序，并最后得到正确排序。</p>
+<p>3、三向字符串快速排序<br>和三向切分快速排序相似，也是采用切分的方法对字符串进行分组，以尽可能使字符串组分散。<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class Quick3String &#123;</span><br><span class="line">    private static int charAt(String s,int d)&#123;</span><br><span class="line">        if(d&lt;s.length())</span><br><span class="line">            return s.charAt(d);</span><br><span class="line">        else</span><br><span class="line">            return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void sort(String[] a,int lo,int hi,int d)&#123;</span><br><span class="line">        if(hi&lt;=lo)</span><br><span class="line">            return;</span><br><span class="line">        int lt=lo,gt=hi;</span><br><span class="line">        int v = charAt(a[lo],d);</span><br><span class="line">        int i = lo+1;</span><br><span class="line">        while(i&lt;=gt)&#123;</span><br><span class="line">            int t = charAt(a[i],d);</span><br><span class="line">            if(t&lt;v)</span><br><span class="line">                exch(a,lt++,i++);</span><br><span class="line">            else if(t&gt;v)</span><br><span class="line">                exch(a,i,gt--);</span><br><span class="line">            else</span><br><span class="line">                i++;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(a,lo,lt-1,d);</span><br><span class="line">        if(v&gt;=0)</span><br><span class="line">            sort(a,lt,gt,d+1);</span><br><span class="line">        sort(a,gt+1,hi,d);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void exch(String[] a, int i, int j) &#123;</span><br><span class="line">        String temp = a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>通过v得到切分字符，然后进行比较，小于、等于、大于该字符的字符串进行分组，先排序，然后递归调用。</p>
+<hr>
+<p>总结<br><img src="https://s1.ax2x.com/2018/06/13/gJTHK.png" alt="gJTHK.png"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/11/最短路径(Java)/" rel="next" title="最短路径(Java)">
+                <i class="fa fa-chevron-left"></i> 最短路径(Java)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
