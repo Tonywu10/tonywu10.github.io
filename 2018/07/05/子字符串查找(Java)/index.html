@@ -94,7 +94,9 @@
 <meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozrCy.png">
 <meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozC2X.png">
 <meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozLzl.png">
-<meta property="og:updated_time" content="2018-07-05T15:30:32.945Z">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/oz1B6.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozevJ.png">
+<meta property="og:updated_time" content="2018-07-05T15:36:59.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="子字符串查找(Java)">
 <meta name="twitter:description" content="本文主要介绍子字符串查找，包括Boyer-Moore和Rabin-Karp算法，而常见的KMP算法暂时未包含在其中，后续可能更新">
@@ -296,7 +298,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-05T23:30:32+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-05T23:36:59+08:00">
                 2018-07-05
               </time>
             
@@ -363,47 +365,13 @@
 <p><center>移位数=好后缀的位置-搜索词中好后缀上一次出现的位置</center><br>这里所指的好后缀的位置是指后缀中最后一个字符所在的位置，比如ABCDEFAB中，AB是好后缀的话，那么位置是7(从0起计数，以B为标准)，而上一次出现的位置是1(从0起计数，以B为标准)。所以后移6位，我们就能把第一个AB移动到和第二个AB重合。如果好后缀未出现在搜索串当中，则位置置为-1。则此时出现了需要注意的问题，那就是如果好后缀有多个的情况下如何处理？例如BABCDAB中我们假定DAB、AB、B都是好后缀，那么该匹配哪个的上一次出现位置。答案是B的，因为这个规则要求，除了最长的那个好后缀外，其余好后缀上一次出现的位置必须在头部。<br>了解了以上规则后，我们继续匹配。<br><img src="https://s1.ax2x.com/2018/07/05/ozcdi.png" alt="ozcdi.png"><br>此时根据坏字符规则本来只应该移动2-(-1)=3位，但是据上图来看其实移动了6位，我们此时就知道它移动的规则是根据好后缀进行的。由此我们可知，其移动距离的选择是坏字符和好后缀之间的较大值。<br><img src="https://s1.ax2x.com/2018/07/05/ozrCy.png" alt="ozrCy.png"><br><img src="https://s1.ax2x.com/2018/07/05/ozC2X.png" alt="ozC2X.png"> </p>
 <p><center>（以上图片来自阮一峰博客<a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html）" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html）</a></center><br>至此匹配结束。</p>
 <p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class BoyerMoore &#123;</span><br><span class="line">    private int[] right;</span><br><span class="line">    private String pat;</span><br><span class="line">    BoyerMoore(String pat)&#123;</span><br><span class="line">        this.pat = pat;</span><br><span class="line">        int M = pat.length();</span><br><span class="line">        int R = 256;</span><br><span class="line">        right = new int[R];</span><br><span class="line">        for(int c=0;c&lt;R;c++)</span><br><span class="line">            right[c]=-1;</span><br><span class="line">        for (int j=0;j&lt;M;j++)</span><br><span class="line">            right[pat.charAt(j)]=j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int search(String txt)&#123;</span><br><span class="line">        int N = txt.length();</span><br><span class="line">        int M = pat.length();</span><br><span class="line">        int skip;</span><br><span class="line">        for (int i=0;i&lt;=N-M;i+=skip)&#123;</span><br><span class="line">            skip = 0;</span><br><span class="line">            for(int j=M-1;j&gt;=0;j--)&#123;</span><br><span class="line">                if(pat.charAt(j)!=txt.charAt(i+j))&#123;</span><br><span class="line">                    skip = j-right[txt.charAt(i+j)];</span><br><span class="line">                    if(skip&lt;1)</span><br><span class="line">                        skip=1;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(skip==0)</span><br><span class="line">                return i;</span><br><span class="line">        &#125;</span><br><span class="line">        return N;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>分析：<br>从上面的代码中我们可以看出，它并没有实现好后缀的部分，而是使用了坏字符的方法进行匹配。<br>在初始化的过程中，首先构造了一个ASCII码极限的大数组用于存放数据，其中使用了两个for循环，第一个for循环将right数组中的所有值都置为-1。第二个for循环是为了标注出pat字符串中的各位的值，表示每个字符出现的最后位置。<br>我们还是以待搜索文本为“HERE IS A SIMPLE EXAMPLE”和搜索文本为”EXAMPLE“进行说明。<br>在初始化过程中，我们对“EXAMPLE“进行right数组的操作。<br><img src="https://s1.ax2x.com/2018/07/05/ozLzl.png" alt="ozLzl.png"><br>此时我们进入search方法进行推演。这个方法里面的skip就是用来决定搜索文本的移动距离，进入第二层for循环时，比较就开始了，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">通过之前的图示我们知道，这一步就是在比较S和E是否相同，结果自然是否定的。既然是否定的，我们就进入了skip的计算，我们知道此时right[txt.charAt(i+j)]为right[S]，而S之前不存在right数组中，所以为-1，结果计算出来就是skip=6-(-1)=7，代表EXAMPLE需要移动7位，和最开始的图推演方式一致。后续的推演过程结合图片的表述应该都能理解。</span><br><span class="line">***</span><br><span class="line">Rabin-Karp算法</span><br><span class="line">Rabin-Karp算法是一种哈希算法，简单来说就是对搜索文本进行哈希运算，得出一个值，再在带搜索文本中计算同等长度字符串的哈希值进行匹配，若匹配成功则表明找到答案。</span><br><span class="line">那么要进行这个哈希运算最重要的一点就是确定哈希函数，我们首先要理解一个计算方法，那就是如何保证能高效的计算固定长度的哈希值。对于起始于位置i的含有M个字符的子字符串对应的数为：</span><br><span class="line">&lt;center&gt;x&lt;sub&gt;i&lt;/sub&gt;=t&lt;sub&gt;i&lt;/sub&gt;R&lt;sup&gt;M-1&lt;/sup&gt;+t&lt;sub&gt;i+1&lt;/sub&gt;R&lt;sup&gt;M-2&lt;/sup&gt;+…+t&lt;sub&gt;i+M-1&lt;/sub&gt;R&lt;sup&gt;0&lt;/sup&gt;&lt;/center&gt;</span><br><span class="line">如果我们右移一位的话就会发现：</span><br><span class="line">&lt;center&gt;x&lt;sub&gt;i+1&lt;/sub&gt;=(x&lt;sub&gt;i&lt;/sub&gt;-t&lt;sub&gt;i&lt;/sub&gt;R&lt;sup&gt;M-1&lt;/sup&gt;)R+t&lt;sub&gt;i+M&lt;/sub&gt;&lt;/center&gt;</span><br><span class="line">这两个式子表明了取余操作的一个基本性质，那就是如果在每次算术操作之后都将结果除以Q并取余，这等价于在完成了所有计算操作之后再将最后的结果除以Q并取余。</span><br><span class="line">我们以26535作为搜索文本，以3141592653589793作为待搜索文本，并且选用997作为散列表的大小。</span><br><span class="line">![oz1B6.png](https://s1.ax2x.com/2018/07/05/oz1B6.png)</span><br><span class="line">我们就得到了26535这个字符串的哈希为613。</span><br><span class="line">![ozevJ.png](https://s1.ax2x.com/2018/07/05/ozevJ.png)</span><br><span class="line">从上图的计算过程中，我们可以清晰的看到计算的步骤。</span><br><span class="line"></span><br><span class="line">代码：</span><br></pre></td></tr></table></figure></p>
-<p>public class RabinKarp {<br>    private long patHash; //模式字符串的散列值<br>    private int M;        //模式字符串的长度<br>    private long Q;       //很大的素数<br>    private int R = 256;  //字母表大小<br>    private long RM;      //R^(M-1)%Q</p>
-<pre><code>public RabinKarp(String pat){
-    this.M = pat.length();
-    Q = longRandomPrime();
-    RM = 1;
-    for (int i=1;i&lt;M-1;i++)
-        RM = (R*RM)%Q;
-    patHash = hash(pat,M);
-}
-
-public boolean check(int i){
-    return true;
-}
-
-private long hash(String key,int M){
-    long h=0;
-    for(int j=0;j&lt;M;j++)
-        h = (R*h+key.charAt(j))%Q;
-    return h;
-}
-
-private static long longRandomPrime() {
-    BigInteger prime = BigInteger.probablePrime(31, new Random());
-    return prime.longValue();
-}
-
-private int search(String txt){
-    int N = txt.length();
-    long txtHash = hash(txt,M);
-    if(patHash==txtHash&amp;&amp;check(0))
-        return 0;
-    for(int i=M;i&lt;N;i++){
-        txtHash = (txtHash+Q-RM*txt.charAt(i-M)%Q)%Q;
-        txtHash = (txtHash*R+txt.charAt(i))%Q;
-        if(patHash==txtHash)
-            return i-M+1;
-    }
-    return N;
-}
-</code></pre><p>}<br><code>`</code></p>
+<p>分析：<br>从上面的代码中我们可以看出，它并没有实现好后缀的部分，而是使用了坏字符的方法进行匹配。<br>在初始化的过程中，首先构造了一个ASCII码极限的大数组用于存放数据，其中使用了两个for循环，第一个for循环将right数组中的所有值都置为-1。第二个for循环是为了标注出pat字符串中的各位的值，表示每个字符出现的最后位置。<br>我们还是以待搜索文本为“HERE IS A SIMPLE EXAMPLE”和搜索文本为”EXAMPLE“进行说明。<br>在初始化过程中，我们对“EXAMPLE“进行right数组的操作。<br><img src="https://s1.ax2x.com/2018/07/05/ozLzl.png" alt="ozLzl.png"><br>此时我们进入search方法进行推演。这个方法里面的skip就是用来决定搜索文本的移动距离，进入第二层for循环时，比较就开始了，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(pat.charAt(j)!=txt.charAt(i+j))</span><br></pre></td></tr></table></figure></p>
+<p>通过之前的图示我们知道，这一步就是在比较S和E是否相同，结果自然是否定的。既然是否定的，我们就进入了skip的计算，我们知道此时right[txt.charAt(i+j)]为right[S]，而S之前不存在right数组中，所以为-1，结果计算出来就是skip=6-(-1)=7，代表EXAMPLE需要移动7位，和最开始的图推演方式一致。后续的推演过程结合图片的表述应该都能理解。</p>
+<hr>
+<p>Rabin-Karp算法<br>Rabin-Karp算法是一种哈希算法，简单来说就是对搜索文本进行哈希运算，得出一个值，再在带搜索文本中计算同等长度字符串的哈希值进行匹配，若匹配成功则表明找到答案。<br>那么要进行这个哈希运算最重要的一点就是确定哈希函数，我们首先要理解一个计算方法，那就是如何保证能高效的计算固定长度的哈希值。对于起始于位置i的含有M个字符的子字符串对应的数为：</p>
+<p><center>x<sub>i</sub>=t<sub>i</sub>R<sup>M-1</sup>+t<sub>i+1</sub>R<sup>M-2</sup>+…+t<sub>i+M-1</sub>R<sup>0</sup></center><br>如果我们右移一位的话就会发现：</p>
+<p><center>x<sub>i+1</sub>=(x<sub>i</sub>-t<sub>i</sub>R<sup>M-1</sup>)R+t<sub>i+M</sub></center><br>这两个式子表明了取余操作的一个基本性质，那就是如果在每次算术操作之后都将结果除以Q并取余，这等价于在完成了所有计算操作之后再将最后的结果除以Q并取余。<br>我们以26535作为搜索文本，以3141592653589793作为待搜索文本，并且选用997作为散列表的大小。<br><img src="https://s1.ax2x.com/2018/07/05/oz1B6.png" alt="oz1B6.png"><br>我们就得到了26535这个字符串的哈希为613。<br><img src="https://s1.ax2x.com/2018/07/05/ozevJ.png" alt="ozevJ.png"><br>从上图的计算过程中，我们可以清晰的看到计算的步骤。</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">public class RabinKarp &#123;</span><br><span class="line">    private long patHash; //模式字符串的散列值</span><br><span class="line">    private int M;        //模式字符串的长度</span><br><span class="line">    private long Q;       //很大的素数</span><br><span class="line">    private int R = 256;  //字母表大小</span><br><span class="line">    private long RM;      //R^(M-1)%Q</span><br><span class="line"></span><br><span class="line">    public RabinKarp(String pat)&#123;</span><br><span class="line">        this.M = pat.length();</span><br><span class="line">        Q = longRandomPrime();</span><br><span class="line">        RM = 1;</span><br><span class="line">        for (int i=1;i&lt;M-1;i++)</span><br><span class="line">            RM = (R*RM)%Q;</span><br><span class="line">        patHash = hash(pat,M);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean check(int i)&#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private long hash(String key,int M)&#123;</span><br><span class="line">        long h=0;</span><br><span class="line">        for(int j=0;j&lt;M;j++)</span><br><span class="line">            h = (R*h+key.charAt(j))%Q;</span><br><span class="line">        return h;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static long longRandomPrime() &#123;</span><br><span class="line">        BigInteger prime = BigInteger.probablePrime(31, new Random());</span><br><span class="line">        return prime.longValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int search(String txt)&#123;</span><br><span class="line">        int N = txt.length();</span><br><span class="line">        long txtHash = hash(txt,M);</span><br><span class="line">        if(patHash==txtHash&amp;&amp;check(0))</span><br><span class="line">            return 0;</span><br><span class="line">        for(int i=M;i&lt;N;i++)&#123;</span><br><span class="line">            txtHash = (txtHash+Q-RM*txt.charAt(i-M)%Q)%Q;</span><br><span class="line">            txtHash = (txtHash*R+txt.charAt(i))%Q;</span><br><span class="line">            if(patHash==txtHash)</span><br><span class="line">                return i-M+1;</span><br><span class="line">        &#125;</span><br><span class="line">        return N;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>上述代码比较清晰，主要部分还是在search方法中有关哈希值的计算，这点个人认为无须多说，看到公式之后就能理解原理了。</p>
 
       
