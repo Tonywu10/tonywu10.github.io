@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍子字符串查找，包括Boyer-Moore和Rabin-Karp算法，而常见的KMP算法暂时未包含在其中，后续可能更新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="子字符串查找(Java)">
+<meta property="og:url" content="http://yoursite.com/2018/07/05/子字符串查找(Java)/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="本文主要介绍子字符串查找，包括Boyer-Moore和Rabin-Karp算法，而常见的KMP算法暂时未包含在其中，后续可能更新">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozy1r.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozhBd.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozvpR.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozPqY.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozcdi.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozrCy.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozC2X.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozLzl.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/oz1B6.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/05/ozevJ.png">
+<meta property="og:updated_time" content="2018-07-05T15:22:05.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="子字符串查找(Java)">
+<meta name="twitter:description" content="本文主要介绍子字符串查找，包括Boyer-Moore和Rabin-Karp算法，而常见的KMP算法暂时未包含在其中，后续可能更新">
+<meta name="twitter:image" content="https://s1.ax2x.com/2018/07/05/ozy1r.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/05/子字符串查找(Java)/"/>
+
+
+
+
+
+  <title>子字符串查找(Java) | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/子字符串查找(Java)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">子字符串查找(Java)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-05T00:00:00+08:00">
+                2018-07-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-05T23:22:05+08:00">
+                2018-07-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  本文主要介绍子字符串查找，包括Boyer-Moore和Rabin-Karp算法，而常见的KMP算法暂时未包含在其中，后续可能更新
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>子字符串查找在计算机中有非常广泛的应用，比如在网页中找到你感兴趣的单词或句子，有关子字符串查找的方法也有很多，一般本科阶段都会教授的算法就是KMP算法，所以本文暂时不对KMP算法进行介绍，而是介绍另外的两种算法——Boyer-Moore算法和Rabin-Karp算法。</p>
+<hr>
+<p>Boyer-Moore算法<br>我们假定需要被搜索的字符串是HERE IS A SIMPLE EXAMPLE，而你需要搜索的信息是EXAMPLE。那么，我们的查找开始。<br><img src="https://s1.ax2x.com/2018/07/05/ozy1r.png" alt="ozy1r.png"><br>从头开始比较两个字符串，从尾部开始比较，此时S和E不匹配，则我们可以直接判断EXAMPLE这个字符串整体上不匹配，我们称不匹配的字符S为坏字符，同时S也不在EXAMPLE中，所以我们直接把EXAMPLE后移到S的下一个位置继续匹配。<br><img src="https://s1.ax2x.com/2018/07/05/ozhBd.png" alt="ozhBd.png"><br>由此我们可以看出P和E不匹配，P成了坏字符，同时P也存在于EXAMPLE中，所以我们不能直接把EXAMPLE直接移动到P之后，而是移动到两个P对齐，也就是把EXAMPLE右移2位。之所以要这样做，是因为这个算法首先以末尾字符进行比较，如果不匹配可能是因为开头出了问题。那么如何知道遇到坏字符时，搜索词如何移动呢？有一个简单的公式：</p>
+<p><center>移位数=坏字符的位置-坏字符在搜索词中上一次出现的位置。</center><br>这里的坏字符的位置是相对EXAMPLE来说的，比如在上面的例子中，P和E不匹配的位置是EXAMPLE的第6位(从0起计数)，所以坏字符的位置是6，而在EXAMPLE中上一次P出现的位置是4(从0起计数)，由公式可得移动距离是2。如果坏字符没有出现在搜索词(EXAMPLE)中，则出现位置置为-1。<br><img src="https://s1.ax2x.com/2018/07/05/ozvpR.png" alt="ozvpR.png"><br>经过从尾部开始的几次比较后，我们发现后缀的MPLE都能匹配成功，所以我们把其称为好后缀，其中MPLE、PLE、LE、E都是好后缀。<br><img src="https://s1.ax2x.com/2018/07/05/ozPqY.png" alt="ozPqY.png"><br>此时的I和A不匹配，触发了坏字符规则，根据计算位2-(-1)=3，则代表EXAMPLE右移3位。但是还有没有更有效率的移动呢。答案是有的。我们此时使用好后缀来解决问题，同样也有一个简单的公式：</p>
+<p><center>移位数=好后缀的位置-搜索词中好后缀上一次出现的位置</center><br>这里所指的好后缀的位置是指后缀中最后一个字符所在的位置，比如ABCDEFAB中，AB是好后缀的话，那么位置是7(从0起计数，以B为标准)，而上一次出现的位置是1(从0起计数，以B为标准)。所以后移6位，我们就能把第一个AB移动到和第二个AB重合。如果好后缀未出现在搜索串当中，则位置置为-1。则此时出现了需要注意的问题，那就是如果好后缀有多个的情况下如何处理？例如BABCDAB中我们假定DAB、AB、B都是好后缀，那么该匹配哪个的上一次出现位置。答案是B的，因为这个规则要求，除了最长的那个好后缀外，其余好后缀上一次出现的位置必须在头部。<br>了解了以上规则后，我们继续匹配。<br><img src="https://s1.ax2x.com/2018/07/05/ozcdi.png" alt="ozcdi.png"><br>此时根据坏字符规则本来只应该移动2-(-1)=3位，但是据上图来看其实移动了6位，我们此时就知道它移动的规则是根据好后缀进行的。由此我们可知，其移动距离的选择是坏字符和好后缀之间的较大值。<br><img src="https://s1.ax2x.com/2018/07/05/ozrCy.png" alt="ozrCy.png"><br><img src="https://s1.ax2x.com/2018/07/05/ozC2X.png" alt="ozC2X.png"> </p>
+<p><center>（以上图片来自阮一峰博客<a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html）" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html）</a></center><br>至此匹配结束。</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class BoyerMoore &#123;</span><br><span class="line">    private int[] right;</span><br><span class="line">    private String pat;</span><br><span class="line">    BoyerMoore(String pat)&#123;</span><br><span class="line">        this.pat = pat;</span><br><span class="line">        int M = pat.length();</span><br><span class="line">        int R = 256;</span><br><span class="line">        right = new int[R];</span><br><span class="line">        for(int c=0;c&lt;R;c++)</span><br><span class="line">            right[c]=-1;</span><br><span class="line">        for (int j=0;j&lt;M;j++)</span><br><span class="line">            right[pat.charAt(j)]=j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int search(String txt)&#123;</span><br><span class="line">        int N = txt.length();</span><br><span class="line">        int M = pat.length();</span><br><span class="line">        int skip;</span><br><span class="line">        for (int i=0;i&lt;=N-M;i+=skip)&#123;</span><br><span class="line">            skip = 0;</span><br><span class="line">            for(int j=M-1;j&gt;=0;j--)&#123;</span><br><span class="line">                if(pat.charAt(j)!=txt.charAt(i+j))&#123;</span><br><span class="line">                    skip = j-right[txt.charAt(i+j)];</span><br><span class="line">                    if(skip&lt;1)</span><br><span class="line">                        skip=1;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(skip==0)</span><br><span class="line">                return i;</span><br><span class="line">        &#125;</span><br><span class="line">        return N;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>从上面的代码中我们可以看出，它并没有实现好后缀的部分，而是使用了坏字符的方法进行匹配。<br>在初始化的过程中，首先构造了一个ASCII码极限的大数组用于存放数据，其中使用了两个for循环，第一个for循环将right数组中的所有值都置为-1。第二个for循环是为了标注出pat字符串中的各位的值，表示每个字符出现的最后位置。<br>我们还是以待搜索文本为“HERE IS A SIMPLE EXAMPLE”和搜索文本为”EXAMPLE“进行说明。<br>在初始化过程中，我们对“EXAMPLE“进行right数组的操作。<br><img src="https://s1.ax2x.com/2018/07/05/ozLzl.png" alt="ozLzl.png"><br>此时我们进入search方法进行推演。这个方法里面的skip就是用来决定搜索文本的移动距离，进入第二层for循环时，比较就开始了，<br>if(pat.charAt(j)!=txt.charAt(i+j))<br>通过之前的图示我们知道，这一步就是在比较S和E是否相同，结果自然是否定的。既然是否定的，我们就进入了skip的计算，我们知道此时right[txt.charAt(i+j)]为right[S]，而S之前不存在right数组中，所以为-1，结果计算出来就是skip=6-(-1)=7，代表EXAMPLE需要移动7位，和最开始的图推演方式一致。后续的推演过程结合图片的表述应该都能理解。</p>
+<hr>
+<p>Rabin-Karp算法<br>Rabin-Karp算法是一种哈希算法，简单来说就是对搜索文本进行哈希运算，得出一个值，再在带搜索文本中计算同等长度字符串的哈希值进行匹配，若匹配成功则表明找到答案。<br>那么要进行这个哈希运算最重要的一点就是确定哈希函数，我们首先要理解一个计算方法，那就是如何保证能高效的计算固定长度的哈希值。对于起始于位置i的含有M个字符的子字符串对应的数为：</p>
+<p><center>x<sub>i</sub>=t<sub>i</sub>R<sup>M-1</sup>+t<sub>i+1</sub>R<sup>M-2</sup>+…+t<sub>i+M-1<sub>R<sup>0</sup></sub></sub></center><br>如果我们右移一位的话就会发现：<br>x<sub>i+1</sub>=(x<sub>i</sub>-t<sub>i</sub>R<sup>M-1</sup>)R+t<sub>i+M</sub><br>这两个式子表明了取余操作的一个基本性质，那就是如果在每次算术操作之后都将结果除以Q并取余，这等价于在完成了所有计算操作之后再将最后的结果除以Q并取余。<br>我们以26535作为搜索文本，以3141592653589793作为待搜索文本，并且选用997作为散列表的大小。<br><img src="https://s1.ax2x.com/2018/07/05/oz1B6.png" alt="oz1B6.png"><br>我们就得到了26535这个字符串的哈希为613。<br><img src="https://s1.ax2x.com/2018/07/05/ozevJ.png" alt="ozevJ.png"><br>从上图的计算过程中，我们可以清晰的看到计算的步骤。</p>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">public class RabinKarp &#123;</span><br><span class="line">    private long patHash; //模式字符串的散列值</span><br><span class="line">    private int M;        //模式字符串的长度</span><br><span class="line">    private long Q;       //很大的素数</span><br><span class="line">    private int R = 256;  //字母表大小</span><br><span class="line">    private long RM;      //R^(M-1)%Q</span><br><span class="line"></span><br><span class="line">    public RabinKarp(String pat)&#123;</span><br><span class="line">        this.M = pat.length();</span><br><span class="line">        Q = longRandomPrime();</span><br><span class="line">        RM = 1;</span><br><span class="line">        for (int i=1;i&lt;M-1;i++)</span><br><span class="line">            RM = (R*RM)%Q;</span><br><span class="line">        patHash = hash(pat,M);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean check(int i)&#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private long hash(String key,int M)&#123;</span><br><span class="line">        long h=0;</span><br><span class="line">        for(int j=0;j&lt;M;j++)</span><br><span class="line">            h = (R*h+key.charAt(j))%Q;</span><br><span class="line">        return h;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static long longRandomPrime() &#123;</span><br><span class="line">        BigInteger prime = BigInteger.probablePrime(31, new Random());</span><br><span class="line">        return prime.longValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int search(String txt)&#123;</span><br><span class="line">        int N = txt.length();</span><br><span class="line">        long txtHash = hash(txt,M);</span><br><span class="line">        if(patHash==txtHash&amp;&amp;check(0))</span><br><span class="line">            return 0;</span><br><span class="line">        for(int i=M;i&lt;N;i++)&#123;</span><br><span class="line">            txtHash = (txtHash+Q-RM*txt.charAt(i-M)%Q)%Q;</span><br><span class="line">            txtHash = (txtHash*R+txt.charAt(i))%Q;</span><br><span class="line">            if(patHash==txtHash)</span><br><span class="line">                return i-M+1;</span><br><span class="line">        &#125;</span><br><span class="line">        return N;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述代码比较清晰，主要部分还是在search方法中有关哈希值的计算，这点个人认为无须多说，看到公式之后就能理解原理了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/13/字符串排序(Java)/" rel="next" title="字符串排序(Java)">
+                <i class="fa fa-chevron-left"></i> 字符串排序(Java)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
