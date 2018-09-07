@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="利用算法解决最大连续子数组问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法问题解决(一)">
+<meta property="og:url" content="http://yoursite.com/2018/09/07/算法问题解决(一)/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="利用算法解决最大连续子数组问题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-07T03:12:26.927Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法问题解决(一)">
+<meta name="twitter:description" content="利用算法解决最大连续子数组问题">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/07/算法问题解决(一)/"/>
+
+
+
+
+
+  <title>算法问题解决(一) | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/07/算法问题解决(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法问题解决(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-07T00:00:00+08:00">
+                2018-09-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-07T11:12:26+08:00">
+                2018-09-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  利用算法解决最大连续子数组问题
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>问题一<br>最大连续子数组</p>
+<p>问题描述：<br>给定一个数组A[0,…,n-1]，求A的连续子数组，使得该子数组的和最大</p>
+<p>问题举例：<br>数组：1，-2，3，10，-4，7，2，-5<br>最大子数组：3，10，-4，7，2</p>
+<p>思路分析：<br>1、暴力法   2、分治法   3、分析法   4、动态规划法</p>
+<p>问题解决：<br>1、该问题使用暴力法进行解决的思路比较简单，就是将整个数组的所有结果进行计算并比较就能得到最大子数组。<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class BiggestSumFromSubArray &#123;</span><br><span class="line">     private int maxSubArray(int[] a)&#123;</span><br><span class="line">        int maxSum = a[0];</span><br><span class="line">        int curSum;</span><br><span class="line">        for(int i=0;i&lt;a.length;i++)&#123;</span><br><span class="line">            for (int j=i;j&lt;a.length;j++)&#123;</span><br><span class="line">                curSum = 0;</span><br><span class="line">                for(int k=i;k&lt;=j;k++)&#123;</span><br><span class="line">                    curSum += a[k];</span><br><span class="line">                &#125;</span><br><span class="line">                if(curSum &gt; maxSum)</span><br><span class="line">                    maxSum = curSum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return maxSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        BiggestSumFromSubArray bsfs = new BiggestSumFromSubArray();</span><br><span class="line">        int[] a = &#123;1,-2,3,10,-4,7,2,-5&#125;;</span><br><span class="line">        System.out.println(bsfs.maxSubArray(a));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>可以看到代码中使用了三层for循环，第一层for循环自然是将整个数组包含进去，第二层的变量j以第一层的i为起点，这样是为了保证不会漏掉结果，比如i=0时，第二层循环就能保证产生从0下标开始的所有结果(比如0，0+1，0+1+2…)，第三层循环是为了在第二层的基础上进行内部比较，比如i=0，j=2时，由于k=i，则k=0，k&lt;=2，在这个基础上可以计算a[0]+a[1]+a[2]的值，由于最开始已经将maxSum的值设定为了a[0]，所以这其实就是比较a[0]+…+a[7]中所有结果的最大值，然后进入第二次的循环，此时i=1开始，计算所有a[1]+…+a[7]的所有可能结果，最终就能计算出最大的子数组，此方法时间复杂度较大，达到了O(n<sup>3</sup>)，不适用于较大规模的运算。</p>
+<p>2、分治法的思想是将待处理的数据进行分组，从而降低计算的复杂度，我们可以将数组以中点为分割点，从而得到左右两个子数组，此时最大的子数组可能位于左边数组、右边数组或者跨左右两个数组，而我们可以分别对这三种情况进行求解，比较得到最大值。<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">public class BiggestSumFromSubArray_DCVer &#123;</span><br><span class="line">    /**</span><br><span class="line">     *</span><br><span class="line">     * @param a 待使用数组</span><br><span class="line">     * @param from 子数组的起始下标</span><br><span class="line">     * @param to 子数组的结尾下标</span><br><span class="line">     * @return 最大子数组的和</span><br><span class="line">     */</span><br><span class="line">    private int maxAddSub(int[] a, int from, int to)&#123;</span><br><span class="line">        if(to==from)</span><br><span class="line">            return a[from];</span><br><span class="line">        int middle = (from+to)/2;</span><br><span class="line">        int m1 = maxAddSub(a,from,middle);</span><br><span class="line">        int m2 = maxAddSub(a,middle+1,to);</span><br><span class="line">        int i;</span><br><span class="line"></span><br><span class="line">        int left = a[middle],now = a[middle];</span><br><span class="line">        for(i = middle-1;i&gt;=from;--i)&#123;</span><br><span class="line">            now += a[i];</span><br><span class="line">            left = max(now,left);</span><br><span class="line">        &#125;</span><br><span class="line">        int right = a[middle+1];</span><br><span class="line">        now = a[middle+1];</span><br><span class="line">        for(i = middle+2;i&lt;=to;++i)&#123;</span><br><span class="line">            now +=a[i];</span><br><span class="line">            right = max(now,right);</span><br><span class="line">        &#125;</span><br><span class="line">        int m3 = left+right;</span><br><span class="line">        return max(m1,m2,m3);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int max(int a, int b)&#123;</span><br><span class="line">        return a&gt;b?a:b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int max(int a, int b, int c)&#123;</span><br><span class="line">        int bothMax = a&gt;b?a:b;</span><br><span class="line">        return c&gt;bothMax?c:bothMax;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        BiggestSumFromSubArray_DCVer bsfs_dc = new BiggestSumFromSubArray_DCVer();</span><br><span class="line">        int a[] = &#123;1,-2,3,10,-4,7,2,-5&#125;;</span><br><span class="line">        System.out.println(bsfs_dc.maxAddSub(a,0,a.length-1));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>从代码中可以看出，m1、m2和m3分别代表了之前提到的左边数组、右边数组和跨数组的情况，以示例中的数组1、-2、3、10、-4、7、2、-5为例进行说明。maxAddSub这个函数一开始就判断首尾有没有重合，若重合则代表没有可相加元素，自然就返回当前的值，然后计算middle值，这是为了进一步缩小范围，第一次计算middle的值为(0+7)/2向下取整为3，则代表接下来的操作都是处理1、-2、3、10这个小数组，然后重复上述过程，最终得到to==from=0这个情况，则返回0下标的值为1，则此时m1的值为1，然后对m2进行计算，第一次计算时middle+1和to的值都是1，则返回a[1]，即m2=-2。计算完m1和m2的值之后就开始计算跨数组的值，这个值的计算方法就是以middle为界，left就从middle开始，逐步下标递减进行相加，找出最大值，right就从middle+1开始，逐步下标递增进行相加，找到最大值，这样能保证跨数组时值是连续的，而不是直接将左右两个数组的最大值相加。这样就能计算出m3的值，最后将m1、m2和m3的值进行比较得出一轮后的最大值。比如第一轮过后m1=1，m2=-2，m3=-1，此时三者最大值自然是1，然后该值被返回，此处要搞清楚一个重要问题，那就是这个1被返回给了哪一层，以及其返回之后的上层数据是什么样子，这是理解递归的重要一步。通过执行顺序我们可以得知maxAddSub函数的值都被返回给了m1，其实我们在第一次进入m1=maxAddSub(a,from,middle)这层递归后就一直被困在内部，所以要记住第一次进入该递归时from=0，middle==to=3(当然，最外层的这个maxAddSub的from是0，to是7)，所以此时就能明白m1的值为比较完m1、m2和m3的最大值，也就是m1=1，然后进入的这个m2就是从middle+1也就是2到to也就是middle的值为3，继续上述比较。<br>分治法的时间复杂度是O(nlogn)。</p>
+<p>3、我们使用分析法首先对问题进行分析，既然是要求最大子数组，那么我们可以先求前缀和，比如a[0]+a[1]+…+a[n-1]，从中统计出最大的子数组，然后记录取得这个最大值时的最后一个下标k，在第二次循环中找出0-k这个范围内的最小值，这个最小值必须小于0，如果不小于0就最后返回0，如果小于0则将其减掉，这样就能得出最大的子数组。<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class BiggestSumFromSubArray_MathVer &#123;</span><br><span class="line">    private int maxAddSub(int[] a)&#123;</span><br><span class="line">        int max = a[0];</span><br><span class="line">        int min = 0;</span><br><span class="line">        int maxTemp = 0;</span><br><span class="line">        int minTemp = 0;</span><br><span class="line">        int index = 0;</span><br><span class="line">        for (int i=0;i&lt;a.length;i++)&#123;</span><br><span class="line">            maxTemp+=a[i];</span><br><span class="line">            if(maxTemp&gt;max)&#123;</span><br><span class="line">                max = maxTemp;</span><br><span class="line">                index = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i=0;i&lt;index;i++)&#123;</span><br><span class="line">            minTemp += a[i];</span><br><span class="line">            if(minTemp&lt;min)&#123;</span><br><span class="line">                min = minTemp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max-min;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        BiggestSumFromSubArray_MathVer bsfs_mv = new BiggestSumFromSubArray_MathVer();</span><br><span class="line">        int a[] = &#123;1,-2,3,10,-4,7,2,-5&#125;;</span><br><span class="line">        System.out.println(bsfs_mv.maxAddSub(a));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>此代码比较简单，基本上就是对上述思路的一个代码表达，并且只使用了两次遍历，导致其时间复杂度仅为O(n)，达到了线性级别，可以说其效率的提升非常明显。</p>
+<p>4、动态规划的思想非常的清晰，就是走一步看一步，根据之前得到的结果不断调整策略，在此问题中，我们先设result和sum是a[0]，然后逐步相加，如果发现sum&gt;0，则代表后面的数对于求得最大值具有积极影响，则加上，否则代表加上后面的数之后反而会使得目前的和变为负数，则跳过此结果，将sum的值置为新的值，重复上述过程。<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class BiggestSumFromSubArray_DPVer &#123;</span><br><span class="line">    private int maxSubArray(int[] a)&#123;</span><br><span class="line">        int result = a[0];</span><br><span class="line">        int sum = a[0];</span><br><span class="line">        for(int i=1;i&lt;a.length;i++)&#123;</span><br><span class="line">            if(sum&gt;0)</span><br><span class="line">                sum+=a[i];</span><br><span class="line">            else</span><br><span class="line">                sum = a[i];</span><br><span class="line">            if(sum&gt;result)</span><br><span class="line">                result = sum;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        BiggestSumFromSubArray_DPVer bsfs_dpv = new BiggestSumFromSubArray_DPVer();</span><br><span class="line">        int[] a = &#123;1,-2,3,10,-4,7,2,-5&#125;;</span><br><span class="line">        System.out.println(bsfs_dpv.maxSubArray(a));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>这段代码也比较简单，只需要注意循环时的舍弃问题，当发现上一次相加之后sum为负值则在本次循环时重新赋值，由于本方法只需要一次遍历，所以时间复杂度同样为O(n)。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/05/子字符串查找(Java)/" rel="next" title="子字符串查找(Java)">
+                <i class="fa fa-chevron-left"></i> 子字符串查找(Java)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
