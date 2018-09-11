@@ -87,7 +87,7 @@
 <meta property="og:description" content="利用算法解决最长递增子序列(Longest Increasing Subsequences)">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s1.ax1x.com/2018/09/11/ikF3eH.png">
-<meta property="og:updated_time" content="2018-09-11T11:29:39.958Z">
+<meta property="og:updated_time" content="2018-09-11T11:30:20.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法问题解决(三)">
 <meta name="twitter:description" content="利用算法解决最长递增子序列(Longest Increasing Subsequences)">
@@ -289,7 +289,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-11T19:29:39+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-11T19:30:20+08:00">
                 2018-09-11
               </time>
             
@@ -349,7 +349,7 @@
       
 
       
-        <p>问题四<br>最长递增子序列(LongestIncreasingSubsequences)</p>
+        <p>问题四<br>最长递增子序列(Longest Increasing Subsequences)</p>
 <p>问题描述：<br>找到最长递增子序列(之一)</p>
 <p>问题举例：<br>数组：35，36，39，3，15，27，6，42<br>最长递增子序列(之一)：35 36 39 42</p>
 <p>思路分析一：<br>这个问题可以使用两种思路进行解决，第一种就是将问题转化为LCS(最长公共子序列)，具体方法就是将待使用的序列进行排序，这样就能将原序列和排序后的序列得到最长公共子序列，这样就能保证子序列是递增的。<br>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class LongestIncreasingSubsequence &#123;</span><br><span class="line">    private void LIS(String s)&#123;</span><br><span class="line">        LongestCommonSubsequence lcs = new LongestCommonSubsequence();</span><br><span class="line">        lcs.LCS(s,sortString(s));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private String sortString(String s)&#123;</span><br><span class="line">        char[] c = s.toCharArray();</span><br><span class="line">        for(int i=0;i&lt;c.length-1;i++)&#123;</span><br><span class="line">            for(int j=0;j&lt;c.length-i-1;j++)&#123;</span><br><span class="line">                if(c[j]&gt;c[j+1])&#123;</span><br><span class="line">                    char temp = c[j];</span><br><span class="line">                    c[j] = c[j+1];</span><br><span class="line">                    c[j+1] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return String.valueOf(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        LongestIncreasingSubsequence lis = new LongestIncreasingSubsequence();</span><br><span class="line">        lis.LIS(&quot;425781&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
