@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="利用算法解决字符串全排列问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法问题解决(五)">
+<meta property="og:url" content="http://yoursite.com/2018/09/15/算法问题解决(五)/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="利用算法解决字符串全排列问题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/15/iVMQN6.png">
+<meta property="og:updated_time" content="2018-09-15T10:04:34.115Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法问题解决(五)">
+<meta name="twitter:description" content="利用算法解决字符串全排列问题">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/09/15/iVMQN6.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/15/算法问题解决(五)/"/>
+
+
+
+
+
+  <title>算法问题解决(五) | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/15/算法问题解决(五)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法问题解决(五)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T00:00:00+08:00">
+                2018-09-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-15T18:04:34+08:00">
+                2018-09-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  利用算法解决字符串全排列问题
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>问题六<br>字符串左(右)移问题</p>
+<p>问题描述：<br>将一个字符串按照要求左移或者右移</p>
+<p>问题举例：<br>将abcdef左移2位的结果就是cdefab，相当于第二位之后的cdef向左边挤过去，把ab向后移动。</p>
+<p>思路分析：<br>这个问题有多种方法，可以采用比较暴力的解法，将需要左移的数据进行存储，并将其他数据依次移动，这个思路比较简单直接，但是空间复杂度比较高，适用于用空间换时间的情景。另外一种方法就是利用技巧进行观察，我们可以发现如下规律，分别将移位点前和移位点后的元素翻转，最后将整体翻转可以达到同样的效果，并且空间复杂度为O(1)。比如abcdef，将其左移两位，我们按照上面的说法进行实验，首先翻转ab变成bacdef，再翻转cdef变成bafedc，此时再对整个字符串进行翻转就能得到cdefab。</p>
+<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class StringLeftShift &#123;</span><br><span class="line">    private String reverse(String s,int from,int to)&#123;</span><br><span class="line">        char[] sArr = s.toCharArray();</span><br><span class="line">        while(from&lt;to)&#123;</span><br><span class="line">            char temp = sArr[from];</span><br><span class="line">            sArr[from++] = sArr[to];</span><br><span class="line">            sArr[to--] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        return String.valueOf(sArr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private String sls(String s,int shift)&#123;</span><br><span class="line">        return reverse(reverse(reverse(s,0,shift-1),shift,s.length()-1),0,s.length()-1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        StringLeftShift SLS = new StringLeftShift();</span><br><span class="line">        System.out.println(SLS.sls(&quot;abcdef&quot;,2));;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码分析：<br>上面的代码主要是根据之前的描述中所提及的思路进行的编写，只包括了一个翻转函数和一个主逻辑函数，其中主逻辑中多次使用了翻转函数。</p>
+<hr>
+<p>问题七<br>字符串的全排列问题(不含有相同字符)</p>
+<p>问题描述：<br>求解给定字符串的全排列</p>
+<p>问题举例：<br>字符串abc的全排列包括bca、acb、abc、cba、bac、cab</p>
+<p>思路分析：<br>这个问题实际上是一个占位的问题，就是a在bc和cb中如何进行插入操作，可以手工演算出abc、bac、bca以及acb、cab和cba，这样其实就已经得到了最终的全部结果。我们把问题规模扩大到4个字符，以abcd为例，首先考虑的还是最小范围内的字符，此处为cd和dc，然后计算的是b插入后的情况，共有6种，bcd、cbd、cdb以及bcd、dbc和dcb，然后继续考虑a插入的情况，共有6个小规模字符，每个字符都有四个位置可以插入，所以共有24种情况。</p>
+<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">public class FullPermutationWithNoSameChar &#123;</span><br><span class="line">    private static Set&lt;String&gt; fullPer(char[] A, int p, int r) &#123;</span><br><span class="line">        if (r - p &lt;= 1) &#123;</span><br><span class="line">            char[] cs = new char[2];</span><br><span class="line">            cs[0] = A[p];</span><br><span class="line">            cs[1] = A[r];</span><br><span class="line">            Set&lt;String&gt; set = new HashSet&lt;&gt;();</span><br><span class="line">            set.add(new String(cs));</span><br><span class="line">            cs[0] = A[r];</span><br><span class="line">            cs[1] = A[p];</span><br><span class="line">            set.add(new String(cs));</span><br><span class="line">            return set;</span><br><span class="line">        &#125;</span><br><span class="line">        return insertChar(A[p], fullPer(A, p + 1, r));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static Set&lt;String&gt; insertChar(char c, Set&lt;String&gt; setIn) &#123;</span><br><span class="line">        Set&lt;String&gt; set = new HashSet&lt;&gt;();</span><br><span class="line">        for (String s : setIn) &#123;</span><br><span class="line">            char[] cs = s.toCharArray();</span><br><span class="line">            int len = cs.length + 1;</span><br><span class="line">            char[] result = new char[len];</span><br><span class="line">            for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">                result[i] = c;</span><br><span class="line">                for (int j = 0, k = 0; k &lt; len - 1; j++, k++) &#123;</span><br><span class="line">                    if (j == i)</span><br><span class="line">                        j++;</span><br><span class="line">                    result[j] = cs[k];</span><br><span class="line">                &#125;</span><br><span class="line">                set.add(new String(result));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return set;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        char[] A = &quot;abc&quot;.toCharArray();</span><br><span class="line">        Set&lt;String&gt; set = fullPer(A, 0, A.length - 1);</span><br><span class="line">        System.out.println(&quot;set:&quot; + set);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码分析：<br>上面的代码分成了两个模块，一个是全排列，一个是插入字符，全排列模块的作用就是当问题规模缩小到两个字符之间的时候就进行简单组合，然后将这个两个长度的字符串抛给插入字符的函数，用于使用剩下的那个字符进行插入操作。在插入字符函数中使用了一个判断，就是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (j == i)</span><br><span class="line">    j++;</span><br></pre></td></tr></table></figure></p>
+<p>因为i代表了插入字符所在的位置，所以如果发生冲突，则将代表新生成字符串的j向后移动，比如以a开始插入，此时i=0，j的初始也是0，此时result[j]如果还是0的话就会把a给覆盖掉，所以j+1以避免这种情况的发生。</p>
+<hr>
+<p>问题八<br>字符串的全排列问题(含有相同字符)</p>
+<p>问题描述：<br>求解含有重复元素的字符串的全排列</p>
+<p>问题举例：<br>字符串abb的全排列包括abb、bab、bba</p>
+<p>思路分析：<br>如果继续按照上面那种不含有重复字符的做法，就会出现两次或者多次重复，因为之前的操作只是单纯插入，没有对带插入的字符串进行识别，比如将第二个b插入ab中，其插入第二个位置和第三个位置在运算中是不同的，但是在结果看来是相同，所以需要进行判断，以免产生重复字符。我们需要保证的是当第i个字符和第j个字符进行交换时，要求[i,j)中没有与第j个字符相等的字符，比如在bab中，如果发现第一个b和第二个b需要交换则跳过，因为两个在数值上相同。</p>
+<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class FullPermutationWithSameChar &#123;</span><br><span class="line">    private boolean isSwap(char[] array,int begin,int end)&#123;</span><br><span class="line">        for (int i=begin;i&lt;end;i++)&#123;</span><br><span class="line">            if(array[i]==array[end])</span><br><span class="line">                return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void perm(char[] array,int i,int n)&#123;</span><br><span class="line">        int j;</span><br><span class="line">        if (i==n)&#123;</span><br><span class="line">            System.out.println(array);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            for (j=i;j&lt;=n;j++)&#123;</span><br><span class="line">                if(isSwap(array,i,j))&#123;</span><br><span class="line">                    System.out.println(&quot;array:&quot;+String.valueOf(array)+&quot;,i1=&quot;+i+&quot;,j1=&quot;+j);</span><br><span class="line">                    swap(array,i,j);</span><br><span class="line">                    perm(array,i+1,n);</span><br><span class="line">                    System.out.println(&quot;array:&quot;+String.valueOf(array)+&quot;,i2=&quot;+i+&quot;,j2=&quot;+j);</span><br><span class="line">                    swap(array,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void swap(char[] array,int i,int j)&#123;</span><br><span class="line">        char temp = array[i];</span><br><span class="line">        array[i] = array[j];</span><br><span class="line">        array[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        FullPermutationWithSameChar fpwsc = new FullPermutationWithSameChar();</span><br><span class="line">        char[] array = &#123;&apos;a&apos;,&apos;b&apos;,&apos;b&apos;&#125;;</span><br><span class="line">        fpwsc.perm(array,0,array.length-1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码分析：<br>在上面的代码中包含了三个函数，一个isSwap函数，它是用于判断在需要进行交换的这个区间内，是否存在与array[end]字符相同的字符，如果存在则跳过此次交换，因为一旦有两个相同字符则交换无意义。一个swap函数，就是进行字符交换。还有一个主逻辑函数，i代表了字符的起始值，也就是0，n代表的是长度-1，当i==n时代表达到了字符串的边界，则输出，否则就进入循环，此处也是这个程序比较复杂的地方，因为它涉及到了递归。有关递归问题的分析，比较好的方法就是将关键数据进行输出然后分析每一步的运行方式。<br><img src="https://s1.ax1x.com/2018/09/15/iVMQN6.png" alt="iVMQN6.png"><br>上图中的i1、j1和i2、j2分别代表了在对perm进行递归前后i和j数据的变化。我们分块进行分析，首先abb输出之前的原始数组是abb，i1=0，j1=0，则在isSwap中无法进入循环，所以return true，然后进行递归，此时i1变成1、j1变成1,在isSwap中依然无法进入循环，所以return true，然后继续递归，此时i1=2，在perm中进行判断的时候i==n，所以直接进行输出，所以输出的第一个字符串是abb。输出abb之后，之前递归进入的第二层perm函数(我们称未进入递归前的函数是顶层函数，进入后的递归函数从第一层开始计算)就自行退出，然后运行至对i2和j2进行计算，此时函数还处在第一层递归中，所以i2=1，j2=1。运行结束后，继续交换array[i]和array[j]。此时第一层的perm函数运行结束，回到了顶层的perm函数，请注意，此时i2和j2的值还是原来顶层的值，也就是恢复到了最开始的0和0，这一点是要注意的细节，然后第一次循环结束。<br>第二轮循环开始，此时变化的只是j的值，j变为1，而i依旧为0。继续按上述的思路分析，当i=0，j=1时，array[0]=a，array[b]=b，两者不同，所以i+1后不小于j，故return true，然后就是对array[0]和array[1]进行交换，也就形成了字符串bab，然后i1+1(此时进入第一层递归)，i1==j1，所以return true，然后由于i==j，所以等效于不交换，继续进入了第二层递归，此时i继续加1，与n相等，故输出了bab，然后跳出第二层递归，所以此时i2=1，j2=1，然后此次循环结束，此时i2的值就是i的值，也就是第三次循环中，i的起始值就是1，而j已经增长至2。所以进入函数就进行交换，这样使得字符串变成bba，然后i就由于加1，在第一层递归中完成了输出bba的操作，之后就是跳出这层递归，输出了i2=1，j2=2，最后跳出的那层递归是第二次循环当中的递归，而不是第三次循环当中的，请注意这一点。(从上面的程序运行过程也能看出进和出的时间)，由于递归的方式与栈类似，所以如果没有完全出栈就代表依旧在栈中。这里就有一个疑问的地方，那就是为什么在递归前和后都要进行swap的操作，在递归前进行swap可以看做是对字符进行排序，然后方便递归时输出，那么递归之后的swap作用在什么地方呢，那个swap的作用在于在退栈的时候还原原来的字符串，比如进去的时候是abb，最后退栈的时候也应该是abb，这样的作用是进行检查，因为最初abb进去的时候i=0，j=0，检测范围较小，但是到了最后能检查的范围成了0-arr.length-1，能够避免错误的发生。</p>
+<hr>
+<p>问题九：<br>字符串的全排列问题(字典顺序,递归以及非递归)</p>
+<p>问题描述：<br>求解给点字符串的全排列，其中全排列的顺序应以字典顺序给出。所谓字典顺序，就是从小到大排列。</p>
+<p>问题举例：<br>abc的下一个序列是acb，之后是bac。</p>
+<p>思路分析：<br>我们以43521作为例子进行说明，43521的下一个序列应该是45123，这种顺序才满足字典序，那么如何得到45123呢。<br>1、    自右向左进行扫描，找出第一个比右边数字小的数字，这里是3。<br>2、    然后在该数字之后的数字中，找出比3大的数中最小的一个数字，这里是5。<br>3、    将5和3进行交换得到45321。<br>4、    然后将从3开始将其以及之后的数字翻转得到45123，结束。</p>
+<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">public class FullPermutationWithDicSort &#123;</span><br><span class="line">    private char[] initialSort(char[] c)&#123;</span><br><span class="line">        for (int i=0;i&lt;c.length;i++)&#123;</span><br><span class="line">            for (int j=0;j&lt;c.length-i-1;j++)&#123;</span><br><span class="line">                if(c[j]&gt;c[j+1])&#123;</span><br><span class="line">                    char temp = c[j];</span><br><span class="line">                    c[j] = c[j+1];</span><br><span class="line">                    c[j+1] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private boolean isDescend(char[] c)&#123;</span><br><span class="line">        boolean flag = true;</span><br><span class="line">        for (int i=0;i&lt;c.length-1;i++)&#123;</span><br><span class="line">            if(c[i]&lt;c[i+1])</span><br><span class="line">                return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return flag;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private char[] findNext(char[] c)&#123;</span><br><span class="line">        System.out.println(c);</span><br><span class="line">        if (isDescend(c))</span><br><span class="line">            return c;</span><br><span class="line">        if (c.length&lt;2)</span><br><span class="line">            return c;</span><br><span class="line">        int lessThanRightIndex = c.length-2;</span><br><span class="line">        int smallestBiggerIndex = 0;</span><br><span class="line">        char base = &apos;z&apos;;</span><br><span class="line">        /*第一步：找到第一个小于右边值的字符，并记录其位置*/</span><br><span class="line">        for (int i=c.length-2;i&gt;=0;i--)&#123;</span><br><span class="line">            if(c[i]&lt;c[i+1])&#123;</span><br><span class="line">                lessThanRightIndex = i;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        /*第二步：找到第一个小于右边值的字符之后的字符中比它大，但是比其余要小的字符*/</span><br><span class="line">        for (int j = lessThanRightIndex;j&lt;c.length;j++)&#123;</span><br><span class="line">            if(c[j]&gt;c[lessThanRightIndex]&amp;&amp;c[j]&lt;=base)&#123;</span><br><span class="line">                smallestBiggerIndex = j;</span><br><span class="line">                base = c[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        /*第三步：交换，第一个小于右边值的字符和之后比它大的最小字符*/</span><br><span class="line">        swap(c,lessThanRightIndex,smallestBiggerIndex);</span><br><span class="line">        /*第四步：翻转第一个小于右边值字符之后的字符*/</span><br><span class="line">        reverse(c,lessThanRightIndex+1,c.length-1);</span><br><span class="line">        return findNext(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void swap(char[] c,int i,int j)&#123;</span><br><span class="line">        char temp = c[i];</span><br><span class="line">        c[i] = c[j];</span><br><span class="line">        c[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private char[] reverse(char[] c,int i,int j)&#123;</span><br><span class="line">        while(i&lt;j)</span><br><span class="line">            swap(c,i++,j--);</span><br><span class="line">        return c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        FullPermutationWithDicSort fpwnr = new FullPermutationWithDicSort();</span><br><span class="line">        char[] c = new char[]&#123;&apos;1&apos;,&apos;2&apos;,&apos;2&apos;,&apos;3&apos;&#125;;</span><br><span class="line">        c = fpwnr.initialSort(c);</span><br><span class="line">        fpwnr.findNext(c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码分析：<br>这次的代码从上到下进行分析，最开始的方法initialSort用来对给入的字符串进行初始化排序，以满足一个升序的要求，因为我们求的是字典顺序，所以如果初始不是升序的话，结果就不会包含最小的那个数据了。接下来的isDescend就是判断当前的这个字符串是否满足了降序排列，因为如果一个字符串满足降序排列，则它就达到了最大，不需要再继续求解其后续了。findNext函数是此次的重点，有关其中每步的步骤我都添加了注解，并且使用到了递归，只有当序列满足降序要求时才会停止递归。</p>
+<p>将该函数改造成非递归形式比较简单，主要针对findNext函数进行修改。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">private boolean findNext(char[] c)&#123;</span><br><span class="line">    if (isDescend(c))</span><br><span class="line">        return false;</span><br><span class="line">    if (c.length&lt;2)</span><br><span class="line">        return false;</span><br><span class="line">    int lessThanRightIndex = c.length-2;</span><br><span class="line">    int smallestBiggerIndex = 0;</span><br><span class="line">    char base = &apos;z&apos;;</span><br><span class="line">    /*第一步：找到第一个小于右边值的字符，并记录其位置*/</span><br><span class="line">    for (int i=c.length-2;i&gt;=0;i--)&#123;</span><br><span class="line">        if(c[i]&lt;c[i+1])&#123;</span><br><span class="line">            lessThanRightIndex = i;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    /*第二步：找到第一个小于右边值的字符之后的字符中比它大，但是比其余要小的字符*/</span><br><span class="line">    for (int j = lessThanRightIndex;j&lt;c.length;j++)&#123;</span><br><span class="line">        if(c[j]&gt;c[lessThanRightIndex]&amp;&amp;c[j]&lt;=base)&#123;</span><br><span class="line">            smallestBiggerIndex = j;</span><br><span class="line">            base = c[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    /*第三步：交换，第一个小于右边值的字符和之后比它大的最小字符*/</span><br><span class="line">    swap(c,lessThanRightIndex,smallestBiggerIndex);</span><br><span class="line">    /*第四步：翻转第一个小于右边值字符之后的字符*/</span><br><span class="line">    reverse(c,lessThanRightIndex+1,c.length-1);</span><br><span class="line">    System.out.println(c);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>主要是将递归中返回数组转换成一个判断，然后在主函数中对其进行循环即可，因为对数组c的改变是永久性的，这样下次运行的时候的c就变成了上一次运行时候的c，这个目的和使用递归是相似的，所以只要保证满足一个结束条件即可不断对其进行循环。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    FullPermutationWithDicSortAndNoRecursion fpwdsanr = new FullPermutationWithDicSortAndNoRecursion();</span><br><span class="line">    char[] c = new char[]&#123;&apos;1&apos;,&apos;2&apos;,&apos;3&apos;,&apos;4&apos;&#125;;</span><br><span class="line">    FullPermutationWithDicSort fpwds = new FullPermutationWithDicSort();</span><br><span class="line">    c = fpwds.initialSort(c);</span><br><span class="line">    System.out.println(c);</span><br><span class="line">    while (fpwdsanr.findNext(c));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上是对主函数的修改。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/12/算法问题解决(四)/" rel="next" title="算法问题解决(四)">
+                <i class="fa fa-chevron-left"></i> 算法问题解决(四)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
