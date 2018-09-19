@@ -79,20 +79,23 @@
 
 
 
-<meta name="description" content="利用算法解决字符串编辑距离问题(Levenshtien Distance)">
+<meta name="description" content="KMP算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法问题解决(四)">
-<meta property="og:url" content="http://yoursite.com/2018/09/12/算法问题解决(四)/index.html">
+<meta property="og:title" content="算法问题解决(六)">
+<meta property="og:url" content="http://yoursite.com/2018/09/19/算法问题解决(六)/index.html">
 <meta property="og:site_name" content="小吴的程序屋">
-<meta property="og:description" content="利用算法解决字符串编辑距离问题(Levenshtien Distance)">
+<meta property="og:description" content="KMP算法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/12/iACcPP.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/12/iACy5t.png">
-<meta property="og:updated_time" content="2018-09-12T12:42:23.737Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/19/ieRFw4.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/19/ieRCOU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/19/ieRplV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/19/ieRimF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/19/ieRSS0.png">
+<meta property="og:updated_time" content="2018-09-19T05:40:37.805Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法问题解决(四)">
-<meta name="twitter:description" content="利用算法解决字符串编辑距离问题(Levenshtien Distance)">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/09/12/iACcPP.png">
+<meta name="twitter:title" content="算法问题解决(六)">
+<meta name="twitter:description" content="KMP算法">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/09/19/ieRFw4.jpg">
 
 
 
@@ -122,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/12/算法问题解决(四)/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/19/算法问题解决(六)/"/>
 
 
 
 
 
-  <title>算法问题解决(四) | 小吴的程序屋</title>
+  <title>算法问题解决(六) | 小吴的程序屋</title>
   
 
 
@@ -245,7 +248,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/算法问题解决(四)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/19/算法问题解决(六)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Wu">
@@ -262,7 +265,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法问题解决(四)</h1>
+          <h1 class="post-title" itemprop="name headline">算法问题解决(六)</h1>
         
 
         <div class="post-meta">
@@ -274,8 +277,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T00:00:00+08:00">
-                2018-09-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-19T00:00:00+08:00">
+                2018-09-19
               </time>
             
 
@@ -290,8 +293,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-12T20:42:23+08:00">
-                2018-09-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-19T13:40:37+08:00">
+                2018-09-19
               </time>
             
           </span>
@@ -333,7 +336,7 @@
 
           
               <div class="post-description">
-                  利用算法解决字符串编辑距离问题(Levenshtien Distance)
+                  KMP算法
               </div>
           
 
@@ -350,12 +353,12 @@
       
 
       
-        <p>问题五<br>字符串编辑距离(Levenshtein Distance)</p>
-<p>问题描述：<br>找到字符串的编辑距离，所谓编辑距离就是指由一个字符串通过几次操作(“修改”、“删除”、“添加”)能够变成另外一个字符串，这个方法可以用来处理搜索时的模糊查询，通过判断两个字符串的相近程度给出推荐。</p>
-<p>问题举例：<br>字符串：abc和def的编辑距离是3，因为每个字符对应修改就行；cafe和coffee的编辑距离也是3，只要a替换o，并且增加一个f和一个e即可完成从cafe到coffee的变化。</p>
-<p>思路分析：<br>我们可以以dp[i,j]代表从字符串a的第i个前缀到字符串b的第j个前缀的编辑距离，比如“abc”到“def”的距离为d[3,3]，则代表d[3,3]的值就是最终的编辑距离。<br>情况一：a的第i位与b的第j位相同，比如“abc”和“dec”，此时d[3,3]=2，而其最后一个字符相同，也就是说不需要转换，则d[i,j]=d[i-1,j-1]。<br>情况二：a的第i位与b的第j位不同，比如由“abc”转化为“def”可以转化成多种方式，比如abc各位进行替换成def，也可以先添加末尾的f使得abc变成abcf，然后再对前面的元素进行删除等操作，所以在abc后面加上f，则相当于a增加了1，即d[i,j]=d[i,j-1]+1。同理，若在b后面增加1，即d[i,j]=d[i-1,j]+1，如果是修改末尾字符，则相当于d[i,j]=d[i-1,j-1]+1，正因为有如此多的修改方式，所以在选取时需要考虑最小的情况，也就是修改所需步骤最短的一条路。<br><a href="https://imgchr.com/i/iACcPP" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/12/iACcPP.png" alt="iACcPP.png"></a><br>由上图可以得到推到公式，所以就由此公式进行方法的实现。</p>
-<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class LevenshteinDistance &#123;</span><br><span class="line">    private void levenshtein(String a,String b)&#123;</span><br><span class="line">        int[][] dp = new int[a.length()+1][b.length()+1];</span><br><span class="line">        for (int i=1;i&lt;=a.length();i++)</span><br><span class="line">            dp[i][0] = i;</span><br><span class="line">        for (int j=1;j&lt;=b.length();j++)</span><br><span class="line">            dp[0][j] = j;</span><br><span class="line">        for (int i=1;i&lt;=a.length();i++)</span><br><span class="line">            for (int j=1;j&lt;=b.length();j++)&#123;</span><br><span class="line">                if(a.charAt(i-1)==b.charAt(j-1))</span><br><span class="line">                    dp[i][j] = min(dp[i-1][j-1],min(dp[i][j-1]+1,dp[i-1][j]+1));</span><br><span class="line">                else</span><br><span class="line">                    dp[i][j] = min(dp[i-1][j-1]+1,min(dp[i][j-1]+1,dp[i-1][j]+1));</span><br><span class="line">            &#125;</span><br><span class="line">        for (int[] d:dp)&#123;</span><br><span class="line">            for (int s:d)&#123;</span><br><span class="line">                System.out.print(s+&quot; &quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int min(int a,int b)&#123;</span><br><span class="line">        return a&gt;b?b:a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        LevenshteinDistance ld = new LevenshteinDistance();</span><br><span class="line">        ld.levenshtein(&quot;cafe&quot;,&quot;coffee&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上述代码实现了之前提到的公式，并且对编辑距离求解的过程表进行了输出便于比较和理解。<br><a href="https://imgchr.com/i/iACy5t" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/12/iACy5t.png" alt="iACy5t.png"></a><br>从上图能够清楚看到每一步的变化以及最后的选择，其中该表右下加的数值即为所求。</p>
+        <p>问题十<br>KMP模式匹配算法</p>
+<p>问题描述：<br>判断模式串是否和待匹配串匹配</p>
+<p>问题举例：<br>待匹配串：abababca<br>模式串：abc<br>返回：4<br>如果模式串不与待匹配串匹配则返回-1。</p>
+<p>思路分析：<br>KMP模式匹配算法是一个非常经典的字符串匹配算法，要理解它主要是理解一个叫做next的数组，这个数组在各类算法讲解中都会出现，在此之前先理解一个叫做部分匹配表(Partial Match Table，PMT)的东西，简单来说这个表里面记录的东西就是字符串的前缀和后缀中重复字符串中最长的长度。<br>以abababca为例，<br>a前缀无，后缀无，pmt[0]=0<br>ab前缀a，后缀b，pmt[1]=0<br>aba前缀a、ab，后缀ba、a，重复的最长字符串为a，所以pmt[2]=1<br>abab前缀a、ab、aba，后缀bab、ab、b，重复最长为ab，所以pmt[3]=2<br>ababa前缀a、ab、aba、abab，后缀baba、aba、ba、a，重复最长为aba，所以pmt[4]=3<br>ababab前缀a、ab、aba、abab、ababa，后缀babab、abab、bab、ab、b，重复最长为abab，所以pmt[5]=4<br>abababc前缀a、ab、aba、abab、ababa、ababab，后缀bababc、ababc、babc、abc、bc、c，无重复字符串，所以pmt[6]=0<br>abababca前缀a、ab、aba、abab、ababa、ababab、abababc，后缀bababca、ababca、babca、abca、bca、ca、a。<br>综上所述<br><a href="https://imgchr.com/i/ieRFw4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/19/ieRFw4.jpg" alt="ieRFw4.jpg"></a><br>那么列出这个数组的意义何在呢，我们在abababca中查找ababca<br><a href="https://imgchr.com/i/ieRCOU" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/19/ieRCOU.png" alt="ieRCOU.png"></a><br>可以看到当待匹配串在第i位、模式串在第j位失去匹配，此时按照传统暴力做法，就是将模式串ababca向右移一位。<br><a href="https://imgchr.com/i/ieRplV" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/19/ieRplV.png" alt="ieRplV.png"></a><br>然后重复进行判断，但是在KMP中就是充分利用已有资源，不回退模式串(暴力算法中算是已经匹配到了i位，但是失配之后却重新从第1位(以0为起始)开始重新匹配)，此时我们看到i前的那位，也就是第二个b处，其pmt值为2，这代表，其前缀前2位和后缀后2位是完全相同的，所以发生失配的时候，我们就知道了主字符串i之前的4位和模式串开头的4位相同的，则说明这部分不再需要比较了。那么如果要求next数组的话，就直接把PMT向右偏移，第0位设置为-1以方便编程的需求。<br>如果需要求next数组的值，则next[0]=-1，next[1]=0，因为这个next数组代表任一位置能匹配的最长长度的值，所以next[1]自然是0，这里的1代表的是第1位的数据，具体在abababca中就是a，由于它没有前后缀，所以为0。next[2]=0，ab的最大值为0。next[3]=1，aba公共部分长度为1…，以后的数组推导同理。<br><a href="https://imgchr.com/i/ieRimF" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/19/ieRimF.png" alt="ieRimF.png"></a></p>
+<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">public class KMP &#123;</span><br><span class="line">    private int kmp(String ts,String ps)&#123;</span><br><span class="line">        int i = 0;</span><br><span class="line">        int j = 0;</span><br><span class="line">        int[] next = getNext(ts);</span><br><span class="line">        while (i&lt;ts.length()&amp;&amp;j&lt;ps.length())&#123;</span><br><span class="line">            if (j==-1||ts.charAt(i)==ps.charAt(j))&#123;</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">                j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        if (j==ps.length())</span><br><span class="line">            return i-j;</span><br><span class="line">        else</span><br><span class="line">            return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int[] getNext(String ts)&#123;</span><br><span class="line">        int[] next = new int[ts.length()];</span><br><span class="line">        next[0] = -1;</span><br><span class="line">        int i=0,j=-1;</span><br><span class="line">        while (i&lt; ts.length()-1)&#123;</span><br><span class="line">            if (j==-1||ts.charAt(i)==ts.charAt(j))&#123;</span><br><span class="line">                ++i;</span><br><span class="line">                ++j;</span><br><span class="line">                next[i] = j;</span><br><span class="line">            &#125;else</span><br><span class="line">                j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        return next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        KMP kmp = new KMP();</span><br><span class="line">        String s1 = &quot;abababca&quot;;</span><br><span class="line">        String s2 = &quot;bc&quot;;</span><br><span class="line">        System.out.println(kmp.kmp(s1,s2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码分析：<br>代码部分的重点主要是next数组的求法，这里求的next是待匹配字符串的next数组。默认next数组的next[0]是-1，然后就进行循环，if中的判断都比较直接，就是比较i和j位的字符是否相同，若相同就给next赋值，如同求解最长前后缀重复字符串一般。else中代表的就是失配的情况。<br><a href="https://imgchr.com/i/ieRSS0" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/19/ieRSS0.png" alt="ieRSS0.png"></a><br>如同上图所示，第一行和第三行匹配时，前面的abab都是匹配的，但是当待匹配串匹配到c，模式串匹配到a时发生了失配，按照传统方法，由于发生失配，则模式串中的指针应该从第三个a处回退到第一个a处，从头开始重新匹配，但是在KMP中是找到next[j]的值，将它赋予j，这样就能给定j“指针”移动的大小，不需要再将之前肯定相等的字符串重新比较一遍。KMP主逻辑中的思想与getNext中的方法基本一致，可以按照以上思路进行分析。</p>
 
       
     </div>
@@ -380,8 +383,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/11/算法问题解决(三)/" rel="next" title="算法问题解决(三)">
-                <i class="fa fa-chevron-left"></i> 算法问题解决(三)
+              <a href="/2018/09/15/算法问题解决(五)/" rel="next" title="算法问题解决(五)">
+                <i class="fa fa-chevron-left"></i> 算法问题解决(五)
               </a>
             
           </div>
@@ -389,10 +392,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/15/算法问题解决(五)/" rel="prev" title="算法问题解决(五)">
-                算法问题解决(五) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
