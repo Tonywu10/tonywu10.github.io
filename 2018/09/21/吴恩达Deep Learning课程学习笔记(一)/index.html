@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/09/21/inWoVO.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/09/21/inWTaD.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/09/21/inW7Ie.png">
-<meta property="og:updated_time" content="2018-09-21T11:44:28.784Z">
+<meta property="og:updated_time" content="2018-09-21T11:46:53.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="吴恩达Deep Learning课程学习笔记(一)">
 <meta name="twitter:description" content="吴恩达Deep Learning课程学习笔记">
@@ -291,7 +291,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-21T19:44:28+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-21T19:46:53+08:00">
                 2018-09-21
               </time>
             
@@ -354,7 +354,7 @@
         <p>最近开始学习深度学习有关的课程，老师给的建议是学习Coursera上吴恩达出品的Deep Learning课程，所以开这篇博文对学习的过程进行整理和记录。<br>第一周</p>
 <ol>
 <li>用神经网络进行监督学习<br>i.    监督学习主要被分为“回归”(Regression)和“分类”(Classfication)问题。在回归问题中主要是将预测的结果连续化，也就是试图把输入的变量转化成某些连续函数。在分类问题中，我们试图将预期的结果离散化。<br>ii.    卷积神经网络(CNN，Convolution Neural Network)主要用于图像识别，而循环神经网络(RNN，Recurrent Neural Network)被用于一维的序列数据，比如中英文翻译。</li>
-<li>为什么深度学习会兴起<br>深度学习之所以在最近会兴起是因为如今的数字化社会为深度学习提供了大量的数据(Data)，同时随着计算机硬件水平的提升，算力(Computation)也在逐步提高，达到了能够进行大量运算的要求，最后就是算法(Algorithms)的改进，使得深度学习的效率得到了提高。之前使用的Sigmoid函数用作激活函数，Sigmoid函数的公式是S(t)=${1\over 1+e^-t}$ ，其图像为<br><img src="https://s1.ax1x.com/2018/09/21/inWoVO.png" alt="inWoVO.png"><br>那么首先什么是激活函数呢？激活函数就是能将非线性特性引入网络中的函数，因为我们之前对数据的处理，比如求和加权等操作都只是把数据进行线性化处理，这个处理过程就比较类似于感知机，也就是说不论网络有多少层，输出的结果都只是输入的线性组合，但是加入了激活函数后，可以使得整个网络变得非线性，那么这个网络就能逼近各种非线性函数，就可以用来处理各种非线性的模型，比如图像识别等部分。<br>那么为什么要选用Sigmoid作为之前的激活函数呢？首先要了解一个事实，那就是在大部分情况下，我们没有办法知道未知事件的概率分布形式，而正态分布是此时最好的选择，因为它是所有可能中最可能出现的表现形式。<br><img src="https://s1.ax1x.com/2018/09/21/inWTaD.png" alt="inWTaD.png"><br>正态分布的密度函数和分布函数分别如上图所示，可以看到其分布函数的形式与sigmoid函数比较相似，并且由于计算正态分布的复杂程度远比sigmoid函数高，所以选用sigmoid作为正态分布的一种替代。但是sigmoid函数有个问题，就是在梯度接近0的区域内，它学习的进度会变得比较慢，参数的变化也变得比较小。所以后来这个激活函数被替换成了ReLU(Rectified Linear Unit)，也就是修正线性单元。<br>ReLU的图像如下所示。<br><img src="https://s1.ax1x.com/2018/09/21/inW7Ie.png" alt="inW7Ie.png"><br>蓝色部分就是ReLU的图像，其表达式为f(x)=x=max(0,x)。</li>
+<li>为什么深度学习会兴起<br>深度学习之所以在最近会兴起是因为如今的数字化社会为深度学习提供了大量的数据(Data)，同时随着计算机硬件水平的提升，算力(Computation)也在逐步提高，达到了能够进行大量运算的要求，最后就是算法(Algorithms)的改进，使得深度学习的效率得到了提高。之前使用的Sigmoid函数用作激活函数，Sigmoid函数的公式是S(t)=$${1\over 1+e^-t}$$ ，其图像为<br><img src="https://s1.ax1x.com/2018/09/21/inWoVO.png" alt="inWoVO.png"><br>那么首先什么是激活函数呢？激活函数就是能将非线性特性引入网络中的函数，因为我们之前对数据的处理，比如求和加权等操作都只是把数据进行线性化处理，这个处理过程就比较类似于感知机，也就是说不论网络有多少层，输出的结果都只是输入的线性组合，但是加入了激活函数后，可以使得整个网络变得非线性，那么这个网络就能逼近各种非线性函数，就可以用来处理各种非线性的模型，比如图像识别等部分。<br>那么为什么要选用Sigmoid作为之前的激活函数呢？首先要了解一个事实，那就是在大部分情况下，我们没有办法知道未知事件的概率分布形式，而正态分布是此时最好的选择，因为它是所有可能中最可能出现的表现形式。<br><img src="https://s1.ax1x.com/2018/09/21/inWTaD.png" alt="inWTaD.png"><br>正态分布的密度函数和分布函数分别如上图所示，可以看到其分布函数的形式与sigmoid函数比较相似，并且由于计算正态分布的复杂程度远比sigmoid函数高，所以选用sigmoid作为正态分布的一种替代。但是sigmoid函数有个问题，就是在梯度接近0的区域内，它学习的进度会变得比较慢，参数的变化也变得比较小。所以后来这个激活函数被替换成了ReLU(Rectified Linear Unit)，也就是修正线性单元。<br>ReLU的图像如下所示。<br><img src="https://s1.ax1x.com/2018/09/21/inW7Ie.png" alt="inW7Ie.png"><br>蓝色部分就是ReLU的图像，其表达式为f(x)=x=max(0,x)。</li>
 </ol>
 
       
