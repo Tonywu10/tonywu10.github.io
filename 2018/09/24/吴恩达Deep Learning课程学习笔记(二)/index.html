@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/09/24/iuxztJ.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/09/24/iuxX0U.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/09/24/iuxj7F.png">
-<meta property="og:updated_time" content="2018-09-24T09:38:15.718Z">
+<meta property="og:updated_time" content="2018-09-24T09:39:42.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="吴恩达Deep Learning课程学习笔记(二)">
 <meta name="twitter:description" content="吴恩达Deep Learning课程学习笔记">
@@ -309,7 +309,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-24T17:38:15+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-24T17:39:42+08:00">
                 2018-09-24
               </time>
             
@@ -369,7 +369,7 @@
       
 
       
-        <p><style type="text/css"><br>.img{<br>    display:inline-block<br>}<br></style><br>第二周</p>
+        <p><style type="text/css"><br>img{<br>    display:inline-block<br>}<br></style><br>第二周</p>
 <ol>
 <li>二元分类(Binary Classification)<br>在计算机中存储彩色图片是分别存储红绿蓝三色矩阵，在进行表示的时候是把数值按照R、G、B的值纵向排列成一列。<br><img src="https://s1.ax1x.com/2018/09/24/iuvvRI.png" alt="iuvvRI.png"><br>在上面的例子中，如果图像大小是64*64，则代表整个矩阵的大小是64*64*3，总共大小为12288，也就是说二元分类的目的就是输入一个以特征向量x所表示的图像，然后推测输出的y的值是0还是1。<br>在进行训练的时候，单个样本用(x,y)来表示，x代表一个n(x)维的特征向量，y代表了结果集0和1。所以训练样本就是x到y的一个结果。为此定义一个矩阵X，这个X是由训练集中的输入x(1)、x(2)…x(m)组成的，在X矩阵中这些输入都是按照列进行排列。<br><img src="https://s1.ax1x.com/2018/09/24/iuvxzt.png" alt="iuvxzt.png"></li>
 <li>逻辑回归(logistic regression)<br>逻辑回归要处理的问题是因变量为分类变量的问题，因为线性模型主要处理连续变量问题，而此时需要将概率限定在0和1之间，所以线性模型不再适用。<br>我们期望的结果是输入一个x，比如之前提到的图片的数据集，返回的结果就是<br><img src="https://s1.ax1x.com/2018/09/24/iuxSQP.jpg" alt="iuxSQP.jpg"><br>也就是求当输入图片的时候，判断这张图片是否是猫的概率。约定逻辑回归的两个参数，一个是w，一个是b，其中w也是一个n(x)维的向量，b代表实数，我们可以考虑<br><img src="https://s1.ax1x.com/2018/09/24/iuxEJs.png" alt="iuxEJs.png"><br>也就是x的线性组合，但是这样处理的话可能导致值超出0到1这个范围，所以此处用到了sigmoid函数<br><img src="https://s1.ax1x.com/2018/09/24/iuxZzq.png" alt="iuxZzq.png"><br>这样就能保证当数据极大时，概率接近1，数据极小时，概率接近0。有关sigmoid函数之前已经有过介绍，不再重复。所以此时的重点就是训练w和b的值，让这些参数能更好的拟合训练数据，以提高测试结果的成功率。</li>
