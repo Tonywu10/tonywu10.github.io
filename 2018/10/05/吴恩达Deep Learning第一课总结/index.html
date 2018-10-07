@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="神经网络和深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吴恩达Deep Learning第一课总结">
+<meta property="og:url" content="http://yoursite.com/2018/10/05/吴恩达Deep Learning第一课总结/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="神经网络和深度学习">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87KCd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87eED.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87VHO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87EDK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87Au6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87M8A.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87QgI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87lvt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i873KP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i878Df.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87Gb8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87YVS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87tUg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/i87N5Q.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmAMR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGeRxA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGeoa8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGesUO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGey5D.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGecPe.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGeg8H.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGe22d.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGe4qP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGefKI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGehrt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGeLxs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGeIVf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGeTIS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGeq2j.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGeHPg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGebGQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmGLt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmMJe.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmnIO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmtdf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmmdK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmKiD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmlzd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmQRH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGm3QA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGm8sI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmNo8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/06/iGmYeP.png">
+<meta property="og:updated_time" content="2018-10-06T15:05:06.224Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="吴恩达Deep Learning第一课总结">
+<meta name="twitter:description" content="神经网络和深度学习">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/06/i87KCd.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/05/吴恩达Deep Learning第一课总结/"/>
+
+
+
+
+
+  <title>吴恩达Deep Learning第一课总结 | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/吴恩达Deep Learning第一课总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">吴恩达Deep Learning第一课总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T00:00:00+08:00">
+                2018-10-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-06T23:05:06+08:00">
+                2018-10-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  神经网络和深度学习
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>吴恩达老师有关Deep Learning的第一课—神经网络和深度学习(Nerual Networks and Deep Learning)已经学习结束，在此需要把这次课中需要补充和总结的部分进行整理。<br>此次的课程一共被分为四周，最开始的一周主要是介绍了神经网络的一些概况，包括有哪些函数以及模型的使用，同时还介绍了简单的使用场景。<br>到了第二周，最开始就是介绍了二分类(Binary Classification)，介绍了逻辑回归(logistic regression)，以及前向传播(forward propagation)和反向传播(backward propagation)。在这里学到的第一个技巧就是将数据集按列排列，而不是把数据集按行排列，这样会让整个的实现过程更加简单。<br><img src="https://s1.ax1x.com/2018/10/06/i87KCd.png" alt="i87KCd.png"><br>此时的数据集X为Nx行以及m列，Y为1行以及m列。<br>对于二分类问题，如果你想鉴别一张图片是不是一只猫，那么这个鉴别的结果称为<br><img src="https://s1.ax1x.com/2018/10/06/i87eED.png" alt="i87eED.png"><br>由于这个符号不易于在博客上表达，以后以yhat作为替代。逻辑回归要做的事情就是得到yhat=w<sup>T</sup>x+b，但由于这个线性组合可能会很大或很小，但是概率只能在0和1之间，所以此时需要一个东西来限制一下范围，我们称之为激活函数(activation function)，最开始介绍的是sigmoid函数，后续还有tanh函数以及ReLU函数，此处不再重复介绍这些函数。介绍完了激活函数接下来对代价函数(cost function)进行了说明，最后学完之后明白了代价函数是在整体上对损失函数(loss function)的表达，所以接下来重点介绍了损失函数。逻辑回归所使用的损失函数是<br><img src="https://s1.ax1x.com/2018/10/06/i87VHO.png" alt="i87VHO.png"><br>其对应的代价函数是<br><img src="https://s1.ax1x.com/2018/10/06/i87EDK.png" alt="i87EDK.png"><br>也就是在总体上对参数进行了评估。<br>为达到代价函数最小的要求，我们采用梯度下降法(Gradient Descent)，梯度下降法可以帮助我们调整参数以达到全局最优，以参数w为例，其参数更新公式为<br><img src="https://s1.ax1x.com/2018/10/06/i87Au6.png" alt="i87Au6.png"><br>其中a代表了学习率，关于这个值的选定第一门课没有做说明，它主要用来控制步长。而dJ(w)/dw就是函数J(w)对w求导，在代码中使用dw作为表示。而同时考察w和b参数的话，需要使用偏导公式。<br><img src="https://s1.ax1x.com/2018/10/06/i87M8A.png" alt="i87M8A.png"><br>由于此处开始使用到了导数或者说偏导数，所以老师开始讲解导数相关的知识，我们跳过此处的说明。<br>之后讨论的问题就是逻辑回归中的梯度下降。课程中例子列举了有两个特征，所以此时需要输入参数为w1、w2和b，而这个训练的过程就是不断优化这三个参数，如何进行优化呢？<br><img src="https://s1.ax1x.com/2018/10/06/i87QgI.png" alt="i87QgI.png"><br><img src="https://s1.ax1x.com/2018/10/06/i87lvt.png" alt="i87lvt.png"><br>从上面两个图可以知道，我们要更新w和b的值的话就需要求dw和db(单个样本层次，J为整体样本)。从第一张图中我们知道dw1=x1<em>dz，dw2=x2</em>dz，db=dz，那么问题就转换成了求dz，这里的dz就是指dL/dz，就相当于L对z求导，这里利用链式求导法则就能解决，dz=a-y。<br>结束了这个问题的讨论之后，我们学到了一种新的技术用于提高效率，那就是向量化(Vectorization)。所谓向量化就是将数据集放入一个矩阵中，这样利于python进行矩阵计算，而不需要使用多次循环，导致效率的下降。<br>第二周的编程作业：<br><img src="https://s1.ax1x.com/2018/10/06/i873KP.png" alt="i873KP.png"><br><img src="https://s1.ax1x.com/2018/10/06/i878Df.png" alt="i878Df.png"><br><img src="https://s1.ax1x.com/2018/10/06/i87Gb8.png" alt="i87Gb8.png"><br><img src="https://s1.ax1x.com/2018/10/06/i87YVS.png" alt="i87YVS.png"><br><img src="https://s1.ax1x.com/2018/10/06/i87tUg.png" alt="i87tUg.png"><br><img src="https://s1.ax1x.com/2018/10/06/i87N5Q.png" alt="i87N5Q.png"><br>上面这些函数展示一个如何从一个个单独功能的小函数，逐步进行整理，最后融合成了一个model过程。整理一下整个过程，首先实现的是sigmoid函数以及参数w的初始化。之后实现的是前向传播和反向传播中各参数的计算工作，包括A、代价函数以及dw和db。随后就是对参数进行优化了，从grads中取出dw和db，之后就利用之前的w和b的优化公式w=w-α<em>dw以及b=b-α</em>db进行迭代。然后就是编写了一个预测函数，用于判断经过sigmoid函数计算后的结果矩阵结果是否大于0.5，最后就是将上面的各个函数进行整个，成为一个大model。<br>结束了第二周的编程工作后，我们就进入了第三周的学习。<br>第三周一开始介绍了神经网络以及它的表现形式，我们将神经网络分为输入层、隐藏层和输出层。一般来说输入层不算在神经网络的层数统计中，也就是说如果是一个只含有一层隐藏层的神经网络，那么它的层数是2(1个隐藏层加上一个输出层)。<br><img src="https://s1.ax1x.com/2018/10/06/iGmAMR.png" alt="iGmAMR.png"><br>上面这个图就展示了神经网络的计算过程，其中括号中标注的都是当前参数的维度，这一点要特别注意。<br><img src="https://s1.ax1x.com/2018/10/06/iGeRxA.png" alt="iGeRxA.png"><br>上面这个例子明确写明了多样本向量化实现的方式，其中X中的样本是列向量，W1属于矩阵。<br>说明完上述的矩阵表达后，老师提到了激活函数，介绍了包括sigmoid、tanh、ReLU以及Leaky ReLU。这里主要总结下他们的导数。<br>Sigmoid：<br><img src="https://s1.ax1x.com/2018/10/06/iGeoa8.png" alt="iGeoa8.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGesUO.png" alt="iGesUO.png"><br>Tanh：<br><img src="https://s1.ax1x.com/2018/10/06/iGey5D.png" alt="iGey5D.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGecPe.png" alt="iGecPe.png"><br>ReLU:<br><img src="https://s1.ax1x.com/2018/10/06/iGeg8H.png" alt="iGeg8H.png"><br>Leaky ReLU:<br><img src="https://s1.ax1x.com/2018/10/06/iGe22d.png" alt="iGe22d.png"><br>在这周的最后，主要提到了神经网络的梯度下降问题，重新说明了有关前反向传播的方法以及有关初始值的选取。这里我把传播方法放在第四周中进行整理，因为那里讲的更详细。有关初始值的选取，这里就不推荐全0的初始值了，因为如果权重初始化为0，那么隐含单元开始计算同一个函数，所有的隐含单元都会对输出单元有同样的影响，如果初始化为0，那么所有的隐含单元都是对称的，这对梯度下降没有帮助。<br><img src="https://s1.ax1x.com/2018/10/06/iGe4qP.png" alt="iGe4qP.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGefKI.png" alt="iGefKI.png"><br>上面两张图展示了本周编程练习所需要的神经网络模型和所涉及到的部分数学公式。<br><img src="https://s1.ax1x.com/2018/10/06/iGehrt.png" alt="iGehrt.png"><br>首先是对该神经网络的结构进行设计，此次设计的是包含4个神经元的隐藏层。<br><img src="https://s1.ax1x.com/2018/10/06/iGeLxs.png" alt="iGeLxs.png"><br>之后就是对需要用到的参数进行设定，包括了系数W以及偏量b。并且由于此次选用了tanh函数，所以w的系数乘上了0.01，并且采用了随机正态分布作为随机初始化变量。<br><img src="https://s1.ax1x.com/2018/10/06/iGeIVf.png" alt="iGeIVf.png"><br>初始化参数之后就开始了前向传播，通过前向传播得到了最后的输出函数。<br><img src="https://s1.ax1x.com/2018/10/06/iGeTIS.png" alt="iGeTIS.png"><br>得到输出函数后，就可以进行损失函数的计算。<br><img src="https://s1.ax1x.com/2018/10/06/iGeq2j.png" alt="iGeq2j.png"><br>完成损失函数后，自然就需要进行反向传播，此处给出了反向传播所需要的公式，后续就是对参数进行更新。<br><img src="https://s1.ax1x.com/2018/10/06/iGeHPg.png" alt="iGeHPg.png"><br>最后就是对所有小模块进行整个，得出此次的模型。<br><img src="https://s1.ax1x.com/2018/10/06/iGebGQ.png" alt="iGebGQ.png"><br>编程练习结束后，我们就进入了第一课最后一周的学习。<br>最后一周主要是讲了深度神经网络的例子，在之前的学习中，我们一般只使用到了隐藏层为1的神经网络，在这一周我们会学到多层神经网络的相关知识。<br><img src="https://s1.ax1x.com/2018/10/06/iGmGLt.png" alt="iGmGLt.png"><br>在这一周的开始，我们依旧是把重点放在了反向传播上，通过上面的公式就能检查第L层的隐藏层计算是否符合要求。再结合下图能够直观理解神经网络的计算过程，包括前向传播和反向传播。<br><img src="https://s1.ax1x.com/2018/10/06/iGmMJe.png" alt="iGmMJe.png"><br>之后提到了维度的检查以及有关参数和超参数的问题，在维度检查时记得使用矩阵之间的关系进行检查，比如如果我们可以知道X和Z的维度，那么就能通过这些维度反推出W和b的维度。而超参数就是指参数的参数，也就是说虽然我们只关注W和b的数值，但是这些数值受到包括但不限于学习率、循环此时、隐藏层等多种因素的影响，所以这些就被称为超参数。<br><img src="https://s1.ax1x.com/2018/10/06/iGmnIO.png" alt="iGmnIO.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGmtdf.png" alt="iGmtdf.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGmmdK.png" alt="iGmmdK.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGmKiD.png" alt="iGmKiD.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGmlzd.png" alt="iGmlzd.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGmQRH.png" alt="iGmQRH.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGm3QA.png" alt="iGm3QA.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGm8sI.png" alt="iGm8sI.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGmNo8.png" alt="iGmNo8.png"><br><img src="https://s1.ax1x.com/2018/10/06/iGmYeP.png" alt="iGmYeP.png"><br>以上的过程已经写过很多遍，只是这次增加了L层，需要使用到循环而已，此时想对整个计算过程做个总结作为这一节课的最后总结。<br>深度神经网络就是首先定义参数，确定矩阵的维度，然后进行前向传播，传播结束后就是计算损失函数，然后开始反向传播，传播结束后就是更新参数，如此循环，完成最后W和b的确定工作。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/吴恩达Deep Learning课程学习笔记(四)/" rel="next" title="吴恩达Deep Learning课程学习笔记(四)">
+                <i class="fa fa-chevron-left"></i> 吴恩达Deep Learning课程学习笔记(四)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/05/算法问题解决(七)/" rel="prev" title="算法问题解决(七)">
+                算法问题解决(七) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
