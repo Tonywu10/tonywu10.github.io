@@ -79,25 +79,28 @@
 
 
 
-<meta name="description" content="吴恩达Deep Learning课程学习笔记">
+<meta name="description" content="线性回归(普通最小二乘法)、岭回归、LASSO回归、Logisitic回归、线性支持向量机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="吴恩达Deep Learning课程学习笔记(四)">
-<meta property="og:url" content="http://yoursite.com/2018/09/28/吴恩达Deep Learning课程学习笔记(四)/index.html">
+<meta property="og:title" content="监督学习(二)">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/监督学习(二) /index.html">
 <meta property="og:site_name" content="小吴的程序屋">
-<meta property="og:description" content="吴恩达Deep Learning课程学习笔记">
+<meta property="og:description" content="线性回归(普通最小二乘法)、岭回归、LASSO回归、Logisitic回归、线性支持向量机">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/28/iQUhVA.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/28/iQUoPP.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/28/iQU55t.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/28/iQUWbd.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/28/iQURDH.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/28/iQU4UI.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/28/iQUT8f.png">
-<meta property="og:updated_time" content="2018-09-28T02:36:53.594Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/19/E9V9nP.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/19/E9ELkD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/19/E9EXfH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/19/E9EbTO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/19/E9EOte.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/19/E9Evpd.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/19/E9VC0f.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/19/E9Ex1A.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/19/E9Ez6I.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/19/E9VSXt.png">
+<meta property="og:updated_time" content="2019-04-19T09:41:30.543Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="吴恩达Deep Learning课程学习笔记(四)">
-<meta name="twitter:description" content="吴恩达Deep Learning课程学习笔记">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/09/28/iQUhVA.png">
+<meta name="twitter:title" content="监督学习(二)">
+<meta name="twitter:description" content="线性回归(普通最小二乘法)、岭回归、LASSO回归、Logisitic回归、线性支持向量机">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/04/19/E9V9nP.jpg">
 
 
 
@@ -127,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/28/吴恩达Deep Learning课程学习笔记(四)/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/19/监督学习(二) /"/>
 
 
 
 
 
-  <title>吴恩达Deep Learning课程学习笔记(四) | 小吴的程序屋</title>
+  <title>监督学习(二) | 小吴的程序屋</title>
   
 
 
@@ -250,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/吴恩达Deep Learning课程学习笔记(四)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/监督学习(二) /">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Wu">
@@ -267,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">吴恩达Deep Learning课程学习笔记(四)</h1>
+          <h1 class="post-title" itemprop="name headline">监督学习(二)</h1>
         
 
         <div class="post-meta">
@@ -279,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T00:00:00+08:00">
-                2018-09-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-19T00:00:00+08:00">
+                2019-04-19
               </time>
             
 
@@ -295,8 +298,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-28T10:36:53+08:00">
-                2018-09-28
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-19T17:41:30+08:00">
+                2019-04-19
               </time>
             
           </span>
@@ -314,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
+                  <a href="/categories/Python机器学习基础教程/" itemprop="url" rel="index">
+                    <span itemprop="name">Python机器学习基础教程</span>
                   </a>
                 </span>
 
@@ -338,7 +341,7 @@
 
           
               <div class="post-description">
-                  吴恩达Deep Learning课程学习笔记
+                  线性回归(普通最小二乘法)、岭回归、LASSO回归、Logisitic回归、线性支持向量机
               </div>
           
 
@@ -355,17 +358,76 @@
       
 
       
-        <p>第四周</p>
-<ol>
-<li><p>深度神经网络<br><img src="https://s1.ax1x.com/2018/09/28/iQUhVA.png" alt="iQUhVA.png"><br>上面这张图清晰的反映了多层神经网络的形态，以及参数的流动，首先是第一个隐藏层，它的输出是A1，同时这个A1又作为了第二个隐藏层的输入，从而达到了不断学习的能力。</p>
-</li>
-<li><p>神经网络的维度<br><img src="https://s1.ax1x.com/2018/09/28/iQUoPP.png" alt="iQUoPP.png"><br><img src="https://s1.ax1x.com/2018/09/28/iQU55t.png" alt="iQU55t.png"><br>在深度神经网络的训练中，非常重要的一点就是保障矩阵的维度处于你所想要的状态，比如在逻辑回归Z=WX+B这个方程中，我们能确定的东西有X，因为它是输入层，所以自然能够知道其维度，再就是Z的维度，因为Z是输出层，我们想要获得一个怎样的输出，这个也是人为设计的，那么在这个例子中，不清楚的维度就是两个需要训练的参数，W和B。我们先来研究W的维度，为了满足矩阵的运算方法(此处为点乘)，我们可以推出W的维度，比如Z为(3,1)，X为(2,1)，那么W的维度自然是(3,2)，如果不是(3,2)则无法进行矩阵操作，然后再通过Z的维度确定B的维度，因为要完成相加操作，所以B的维度应该与Z相同。然后上面的图中给出了如下的快速检查方法，那就是W<sup>[l]</sup>的维度是(n<sup>[l]</sup>,n<sup>[l-1]</sup>)，其中这里的n代表的是深度网络中的第n层的维数，这个数据也在上图中有说明，其他维度也可以参考图上所描述的进行检查。</p>
-</li>
-<li><p>神经网络的前向传播和反向传播<br><img src="https://s1.ax1x.com/2018/09/28/iQUWbd.png" alt="iQUWbd.png"><br><img src="https://s1.ax1x.com/2018/09/28/iQURDH.png" alt="iQURDH.png"><br>上面的两个图总结了神经网络在进行前向传播和反向传播的过程中所运用的数学公式和方法。<br><img src="https://s1.ax1x.com/2018/09/28/iQU4UI.png" alt="iQU4UI.png"><br>这个总结图完整的展示了神经网络的计算过程，从输入X到前向传播以计算出损失函数，然后再反向传播求的参数以达到不断训练的目的。</p>
-</li>
-<li><p>参数和超参数(hyperparameters)<br>在神经网络中，我们经常使用到的参数是w和b。而在整个学习算法中，我们还会使用到学习率α、迭代次数、隐藏层、神经单元以及激活函数等等东西。以上这些因素都会影响到w和b的计算，所以把以上的参数称之为超参数。<br><img src="https://s1.ax1x.com/2018/09/28/iQUT8f.png" alt="iQUT8f.png"></p>
-</li>
-</ol>
+        <p>监督学习(二)<br>线性回归(普通最小二乘法)：<br><img src="https://s2.ax1x.com/2019/04/19/E9V9nP.jpg" alt="E9V9nP.jpg"><br>岭回归：<br>岭回归是一种专用于共线性数据分析的有偏估计回归方法，实质上是一种改良的最小二乘估计法，通过放弃最小二乘法的无偏性，以损失部分信息、降低精度为代价获得回归系数更为符合实际、更可靠的回归方法，对病态数据的拟合要强于最小二乘法。它的引入是为了缓解普通最小二乘法容易造成的过拟合问题。<br>其损失函数为：<br><img src="https://s2.ax1x.com/2019/04/19/E9ELkD.png" alt="E9ELkD.png"><br>其中正则化参数λ&gt;0，通过引入L2范数正则化，能够显著降低过拟合的风险。<br>LASSO回归：<br>其与岭回归的唯一区别是正则化项为L1范数<br><img src="https://s2.ax1x.com/2019/04/19/E9EXfH.png" alt="E9EXfH.png"><br>L1正则化的结果是，使用lasso时某些系数刚好为0，这说明某些特征被模型完全忽略，这可以看作是一种自动化的特正选择。<br>L1范数和L2范数都有助于降低拟合风险，其中L1比L2更易于过的稀疏解。<br>代码实现：<br>‘’’<br>from sklearn.linear_model import LinearRegression<br>from sklearn.linear_model import Ridge<br>from sklearn.model_selection import train_test_split<br>import matplotlib.pyplot as plt<br>from sklearn.linear_model import Lasso<br>from sklearn.linear_model import LogisticRegression<br>from sklearn.svm import LinearSVC<br>from sklearn.datasets import load_breast_cancer<br>from sklearn.datasets import make_blobs<br>import mglearn<br>import numpy as np<br>if <strong>name</strong> == “<strong>main</strong>“:</p>
+<pre><code>#普通最小二乘法
+X,y = mglearn.datasets.make_wave(n_samples=60)
+X_train,X_test,y_train,y_test = train_test_split(X,y,random_state=42)
+lr = LinearRegression().fit(X_train,y_train)
+#下述两个lr的属性结尾的下划线是scikit-learn中总是将训练数据中的得出的值保存在以下划线结尾的属性中
+print(&quot;lr.coef_:{}&quot;.format(lr.coef_))
+print(&quot;lr.intercept_:{}&quot;.format(lr.intercept_))
+#下面的两个结果相近，代表出现了欠拟合，因为训练精度与测试精度接近
+print(&quot;Training set score:{:.2f}&quot;.format(lr.score(X_train,y_train)))
+print(&quot;Test set score:{:.2f}&quot;.format(lr.score(X_test,y_test)))
+X,y = mglearn.datasets.load_extended_boston()
+X_train,X_test,y_train,y_test = train_test_split(X,y,random_state=0)
+lr = LinearRegression().fit(X_train,y_train)
+print(&quot;Training set score:{:.2f}&quot;.format(lr.score(X_train,y_train)))
+print(&quot;Test set score:{:.2f}&quot;.format(lr.score(X_test,y_test)))
+#############################################################
+#岭回归
+ridge = Ridge().fit(X_train,y_train)
+print(&quot;Training set score:{:.2f}&quot;.format(ridge.score(X_train,y_train)))
+print(&quot;Test set score:{:.2f}&quot;.format(ridge.score(X_test,y_test)))
+#alpha为正则化系数
+ridge10 = Ridge(alpha=10).fit(X_train,y_train)
+print(&quot;Training set score:{:.2f}&quot;.format(ridge10.score(X_train,y_train)))
+print(&quot;Test set score:{:.2f}&quot;.format(ridge10.score(X_test,y_test)))
+ridge01 = Ridge(alpha=0.1).fit(X_train,y_train)
+print(&quot;Training set score:{:.2f}&quot;.format(ridge01.score(X_train,y_train)))
+print(&quot;Test set score:{:.2f}&quot;.format(ridge01.score(X_test,y_test)))
+
+plt.plot(ridge.coef_,&quot;s&quot;,label=&quot;Ridge alpha=1&quot;)
+plt.plot(ridge10.coef_,&quot;^&quot;,label=&quot;Ridge alpha=10&quot;)
+plt.plot(ridge01.coef_,&quot;v&quot;,label=&quot;Ridge alpha=0.1&quot;)
+plt.plot(lr.coef_,&apos;o&apos;,label=&quot;LinearRegression&quot;)
+plt.xlabel(&quot;Cofficient index&quot;)
+plt.ylabel(&quot;Cofficient magnitude&quot;)
+plt.hlines(0,0,len(lr.coef_))
+plt.ylim(-25,25)
+plt.legend()
+#plt.show()
+mglearn.plots.plot_ridge_n_samples()
+#plt.show()
+
+#Lasso回归
+lasso = Lasso().fit(X_train,y_train)
+print(&quot;Training set score:{:.2f}&quot;.format(lasso.score(X_train,y_train)))
+print(&quot;Test set score:{:.2f}&quot;.format(lasso.score(X_test,y_test)))
+print(&quot;Number of features used:{}&quot;.format(np.sum(lasso.coef_!=0)))
+#同样调整alpha的值，并增加max_iter的值
+lasso001 = Lasso(alpha=0.01,max_iter=100000).fit(X_train,y_train)
+print(&quot;Training set score:{:.2f}&quot;.format(lasso001.score(X_train,y_train)))
+print(&quot;Test set score:{:.2f}&quot;.format(lasso001.score(X_test,y_test)))
+print(&quot;Number of features used:{}&quot;.format(np.sum(lasso001.coef_!=0)))
+#继续调整参数
+lasso00001 = Lasso(alpha=0.0001,max_iter=100000).fit(X_train,y_train)
+print(&quot;Training set score:{:.2f}&quot;.format(lasso00001.score(X_train,y_train)))
+print(&quot;Test set score:{:.2f}&quot;.format(lasso00001.score(X_test,y_test)))
+print(&quot;Number of features used:{}&quot;.format(np.sum(lasso00001.coef_!=0)))
+
+plt.plot(lasso.coef_,&quot;s&quot;,label=&quot;Lasso alpha=1&quot;)
+plt.plot(lasso001.coef_,&quot;^&quot;,label=&quot;Lasso alpha=0.01&quot;)
+plt.plot(lasso00001.coef_,&quot;v&quot;,label=&quot;Lasso alpha=0.0001&quot;)
+plt.plot(ridge01.coef_,&apos;o&apos;,label=&quot;Ridge alpha=0.1&quot;)
+plt.xlabel(&quot;Cofficient index&quot;)
+plt.ylabel(&quot;Cofficient magnitude&quot;)
+plt.ylim(-25,25)
+plt.legend(ncol=2,loc=(0,1.05))
+#plt.show()
+</code></pre><p>‘’’</p>
+<p>###<br>Logistic回归(logistic regression)<br>Logistic回归的模型公式是：<br><img src="https://s2.ax1x.com/2019/04/19/E9EbTO.png" alt="E9EbTO.png"><br>其主要特点是Y值的变化不随着X叠加的大小线性变化，而是一种平滑的变化。其损失函数参见<a href="https://tonywu10.github.io/2018/09/24/%E5%90%B4%E6%81%A9%E8%BE%BEDeep%20Learning%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C" target="_blank" rel="noopener">这个博客</a>/)</p>
+<p>线性支持向量机(Linear Support Vector Machine,LSVM)：<br>该方法在周志华《机器学习》中被称为软间隔支持向量机<br><img src="https://s2.ax1x.com/2019/04/19/E9EOte.jpg" alt="E9EOte.jpg"><br>先来说一下支持向量机(SVM)，简单来说就是要把正反例分成两部分有很多种划分方法，那么如果选取最好的呢？有一种观点是选取在两类训练样本“正中间”的划分超平面，而位于两类训练样本边界上的向量被称为支持向量。样本空间中任意点x到超平面(w,b)的距离是<br><img src="https://s2.ax1x.com/2019/04/19/E9Evpd.png" alt="E9Evpd.png"><br><img src="https://s2.ax1x.com/2019/04/19/E9VC0f.jpg" alt="E9VC0f.jpg"><br>所以两个异类支持向量到超平面的距离之和为<br><img src="https://s2.ax1x.com/2019/04/19/E9Ex1A.png" alt="E9Ex1A.png"><br>到此时问题就转化为了求r最大值的问题，同时也等价于最小化w范数的平方。<br><img src="https://s2.ax1x.com/2019/04/19/E9Ez6I.png" alt="E9Ez6I.png"><br>再来讨论软间隔支持向量机。之前的讨论都是基于两个样本能够线性可分的情况，但现实情况常常会出现无法线性可分，所以在此处加入“软间隔”，也就是允许一部分错误的样本出现，其损失函数是：<br><img src="https://s2.ax1x.com/2019/04/19/E9VSXt.png" alt="E9VSXt.png"><br>其中C&gt;0是惩罚参数，当C值大时，对误分类项的惩罚增大，C值小时，对误分类的惩罚减小。而ξi是对每个样本都引入的一个松弛变量，使得间隔加上松弛变量大于等于1。</p>
 
       
     </div>
@@ -390,8 +452,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/26/吴恩达Deep Learning课程学习笔记(三)/" rel="next" title="吴恩达Deep Learning课程学习笔记(三)">
-                <i class="fa fa-chevron-left"></i> 吴恩达Deep Learning课程学习笔记(三)
+              <a href="/2019/04/17/监督学习(一)/" rel="next" title="监督学习(一)">
+                <i class="fa fa-chevron-left"></i> 监督学习(一)
               </a>
             
           </div>
@@ -399,10 +461,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/05/吴恩达Deep Learning第一课总结/" rel="prev" title="吴恩达Deep Learning第一课总结">
-                吴恩达Deep Learning第一课总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
