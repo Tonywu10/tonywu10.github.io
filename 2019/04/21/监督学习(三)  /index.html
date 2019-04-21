@@ -79,17 +79,24 @@
 
 
 
-<meta name="description" content="使用scikit-learn中的K近邻(knn)算法对鸢尾花进行分类">
+<meta name="description" content="朴素贝叶斯分类器、决策树、决策树集成(随机森林、梯度提升回归树)、核支持向量机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="鸢尾花分类">
-<meta property="og:url" content="http://yoursite.com/2019/04/16/鸢尾花分类/index.html">
+<meta property="og:title" content="监督学习(三)">
+<meta property="og:url" content="http://yoursite.com/2019/04/21/监督学习(三)  /index.html">
 <meta property="og:site_name" content="小吴的程序屋">
-<meta property="og:description" content="使用scikit-learn中的K近邻(knn)算法对鸢尾花进行分类">
+<meta property="og:description" content="朴素贝叶斯分类器、决策树、决策树集成(随机森林、梯度提升回归树)、核支持向量机">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T01:00:42.942Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/21/EFQwcV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/21/EFQd10.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/21/EFQapq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/21/EFQDnU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/21/EFQNhn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/21/EFQ0XT.png">
+<meta property="og:updated_time" content="2019-04-21T07:53:13.491Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="鸢尾花分类">
-<meta name="twitter:description" content="使用scikit-learn中的K近邻(knn)算法对鸢尾花进行分类">
+<meta name="twitter:title" content="监督学习(三)">
+<meta name="twitter:description" content="朴素贝叶斯分类器、决策树、决策树集成(随机森林、梯度提升回归树)、核支持向量机">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/04/21/EFQwcV.png">
 
 
 
@@ -119,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/16/鸢尾花分类/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/21/监督学习(三)  /"/>
 
 
 
 
 
-  <title>鸢尾花分类 | 小吴的程序屋</title>
+  <title>监督学习(三) | 小吴的程序屋</title>
   
 
 
@@ -242,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/16/鸢尾花分类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/21/监督学习(三)  /">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Wu">
@@ -259,7 +266,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">鸢尾花分类</h1>
+          <h1 class="post-title" itemprop="name headline">监督学习(三)</h1>
         
 
         <div class="post-meta">
@@ -271,8 +278,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-16T00:00:00+08:00">
-                2019-04-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-21T00:00:00+08:00">
+                2019-04-21
               </time>
             
 
@@ -287,8 +294,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T09:00:42+08:00">
-                2019-04-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-21T15:53:13+08:00">
+                2019-04-21
               </time>
             
           </span>
@@ -330,7 +337,7 @@
 
           
               <div class="post-description">
-                  使用scikit-learn中的K近邻(knn)算法对鸢尾花进行分类
+                  朴素贝叶斯分类器、决策树、决策树集成(随机森林、梯度提升回归树)、核支持向量机
               </div>
           
 
@@ -347,27 +354,11 @@
       
 
       
-        <p>前期准备：<br><code>Anaconda</code><br><code>mglearn</code></p>
-<p>使用的机器学习方法：<br><code>K近邻(KNN)</code></p>
-<p>方法讲解：<br>KNN是通过测量不同特征值之间的距离进行分类。它的思路是：如果一个样本在特征空间中的k个最相似(即特征空间中最邻近)的样本中的大多数属于某一个类别，则该样本也属于这个类别，其中K通常是不大于20的整数。KNN算法中，所选择的邻居都是已经正确分类的对象。该方法在定类决策上只依据最邻近的一个或者几个样本的类别来决定待分样本所属的类别。一般使用欧式距离或者曼哈顿距离计算两个对象之间的距离.<br>除算法应用外，该教程中还给出了一个机器学习研究过程的模板。</p>
-<ol>
-<li><p>导入数据集 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris_dataset = load_iris()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将训练集和测试集进行分割，其中X代表数据，y代表标签</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_train,X_test,y_train,y_test = train_test_split(iris_dataset[&apos;data&apos;],iris_dataset[&apos;target&apos;],random_state = 0)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>选定一种机器学习算法(此处使用的是KNN算法)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knn = KNeighborsClassifier(n_neighbors=1)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将算法和数据集进行匹配</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knn.fit(X_train,y_train)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>对算法效果进行评估(包括预测结果以及精度)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">prediction = knn.predict(X_new)</span><br><span class="line">y_pred = knn.predict(X_test)</span><br><span class="line">print(&quot;Test set predictions:\n&#123;&#125;&quot;.format(y_pred))</span><br><span class="line">print(&quot;Test set score:&#123;:.2f&#125;&quot;.format(np.mean(y_pred==y_test)))</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.datasets import load_iris</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line">import pandas as pd</span><br><span class="line">import mglearn</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from sklearn.neighbors import KNeighborsClassifier</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    iris_dataset = load_iris()</span><br><span class="line">    print(&quot;Keys of iris_dataset:\n&#123;&#125;&quot;.format(iris_dataset.keys()))</span><br><span class="line">    print(iris_dataset[&apos;DESCR&apos;][:193]+&quot;\n...&quot;)</span><br><span class="line">    print(&quot;Target names: &#123;&#125;&quot;.format(iris_dataset[&apos;target_names&apos;]))</span><br><span class="line">    print(&quot;Feature names: \n&#123;&#125;&quot;.format(iris_dataset[&apos;feature_names&apos;]))</span><br><span class="line">    print(&quot;Type of data: &#123;&#125;&quot;.format(type(iris_dataset[&apos;data&apos;])))</span><br><span class="line">    print(&quot;Shape of data: &#123;&#125;&quot;.format(iris_dataset[&apos;data&apos;].shape))</span><br><span class="line">    print(&quot;First five rows of data:\n&#123;&#125;&quot;.format(iris_dataset[&apos;data&apos;][:5]))</span><br><span class="line">    print(&quot;Type of target: &#123;&#125;&quot;.format(type(iris_dataset[&apos;target&apos;])))</span><br><span class="line">    print(&quot;Shape of target: &#123;&#125;&quot;.format(iris_dataset[&apos;target&apos;].shape))</span><br><span class="line">    print(&quot;Target:\n&#123;&#125;&quot;.format(iris_dataset[&apos;target&apos;]))</span><br><span class="line">    X_train,X_test,y_train,y_test = train_test_split(iris_dataset[&apos;data&apos;],iris_dataset[&apos;target&apos;],random_state = 0)</span><br><span class="line">    print(&quot;X_train shape: &#123;&#125;&quot;.format(X_train.shape))</span><br><span class="line">    print(&quot;y_train shape: &#123;&#125;&quot;.format(y_train.shape))</span><br><span class="line">    print(&quot;X_test shape: &#123;&#125;&quot;.format(X_test.shape))</span><br><span class="line">    print(&quot;y_test shape: &#123;&#125;&quot;.format(y_test.shape))</span><br><span class="line">    iris_dataframe = pd.DataFrame(X_train,columns=iris_dataset.feature_names)</span><br><span class="line">    grr = pd.scatter_matrix(iris_dataframe,c=y_train,figsize=(15,15),marker=&apos;o&apos;,hist_kwds=&#123;&apos;bins&apos;:20&#125;,s=60,alpha=.8,cmap=mglearn.cm3)</span><br><span class="line">    </span><br><span class="line">    iris_dataframe.plot()</span><br><span class="line">    plt.show()</span><br><span class="line">    </span><br><span class="line">    knn = KNeighborsClassifier(n_neighbors=1)</span><br><span class="line">    knn.fit(X_train,y_train)</span><br><span class="line"></span><br><span class="line">    X_new = np.array([[5,2.9,1,0.2]])</span><br><span class="line">    print(&quot;X_new.shape:&#123;&#125;&quot;.format(X_new.shape))</span><br><span class="line"></span><br><span class="line">    prediction = knn.predict(X_new)</span><br><span class="line">    print(&quot;Prediction:&#123;&#125;&quot;.format(prediction))</span><br><span class="line">    print(&quot;Predicted target name:&#123;&#125;&quot;.format(iris_dataset[&apos;target_names&apos;][prediction]))</span><br><span class="line">    y_pred = knn.predict(X_test)</span><br><span class="line">    print(&quot;Test set predictions:\n&#123;&#125;&quot;.format(y_pred))</span><br><span class="line">    print(&quot;Test set score:&#123;:.2f&#125;&quot;.format(np.mean(y_pred==y_test)))</span><br></pre></td></tr></table></figure></p>
+        <p>朴素贝叶斯分类器：<br>所谓朴素贝叶斯分类器中的“朴素”体现在每个属性独立地对分类结果产生影响，其基本原理是基于贝叶斯公式。如果每个属性在类别之外最多依赖一个其他属性，则其转化为半朴素贝叶斯分类器。此处只讨论朴素贝叶斯分类器，其基本原理基于贝叶斯公式。<br><img src="https://s2.ax1x.com/2019/04/21/EFQwcV.png" alt="EFQwcV.png"><br>其中d为属性数目，Xi为x在第i个属性上的取值。<br>朴素贝叶斯分类器的目标就是<br><img src="https://s2.ax1x.com/2019/04/21/EFQd10.png" alt="EFQd10.png"><br>实例计算转到《机器学习》150页。<br>如果在测试集测试的过程中发现有属性未在训练集中出现过，则使用拉普拉斯修正。令N表示训练集D中可能的类别数，Ni表示第i个属性可能的取值数。<br><img src="https://s2.ax1x.com/2019/04/21/EFQapq.png" alt="EFQapq.png"><br>优点：计算速度快，可解释性好。<br>缺点：仅适用于类别变量；仅能应用于分类问题</p>
+<p>决策树：<br>简单来说决策树就是直观的问答问题，将当前测试用例中的属性和训练集中已经运算出的属性进行匹配，比如身高是否大于180，如果大于则进入右子树，小于进入左子树，最后到达叶节点，成功分类。但是决策树存在为尽可能正确分类训练样本，结点划分过程将不断重复，有时会造成决策树分支过多，这样就导致了过拟合，对于过拟合，决策树采用了“预剪枝”和“后剪枝”。所谓预剪枝就是看当前选择的属性是否能产生更好的效果，而后剪枝就是从叶节点开始移除属性，计算其移除前后的精度变化。</p>
+<p>随机森林:<br>随机森林是Bagging的一种扩展变体，Bagging是并行式集成学习方法中最著名的代表，它采用自助采样法(boostrap sampling)<br><img src="https://s2.ax1x.com/2019/04/21/EFQDnU.png" alt="EFQDnU.png"><br>从上面这个图可以看出右边后两行都采样自左边的最后一行，这就是该方法的特点，自助采样法在数据集较小以及难以有效划分出训练/测试集时很有效果。而在Bagging中采用自助采样法的原因，个人认为在于基学习器数量多，则在数据分配上如果各学习器的数据分配类似则倾向很可能相同，而自主采样会保证有样本从未被选取的几率是36.8%。计算方法：<br><img src="https://s2.ax1x.com/2019/04/21/EFQNhn.png" alt="EFQNhn.png"><br>这样每个基学习器只使用了初始训练集中的越63.2%的数据，剩下的数据可以用于验证集，对集成学习的泛化性能进行“包外估计”。<br>而随机森林就是采用了决策树作为基学习器的Bagging方法，它由众多的决策树组成，对于测试样本来说，它进入每个决策树，然后由每个决策树独立输出自己的预测，最后可以通过平均法、加权平均法或者投票法对每个决策树的结果进行汇总，得出最终的预测。<br>Boosting算法和Adaboost:<br>如果说上面说到的Bagging是并行式集成学习方法，那么Boosting就是个体学习器之间存在强依赖关系、必须串行生成的序列化方法，其中最有代表性的就是Adaboost。众所周知，决策树一般来说会将众多属性集成起来用于决策，但是在Adaboost中的个体基本上都是只使用一个属性，每一个个体被称为stump<br><img src="https://s2.ax1x.com/2019/04/21/EFQ0XT.png" alt="EFQ0XT.png"><br>这样的选择使得个体学习器的构建比较简单，达到“弱学习器”的效果。另外在随机森林中，各个决策树之间是相互不影响的，都会独立的给出自己的预测，并且在默认情况下每个决策树的权重相同，但是在Adaboost方法下，某些决策树的权重大于另外的决策树；最后还有一点每个弱学习器的构建都依赖于前一个学习器，新的学习器会将之前学习器的错误率纳入到考虑范围。以上就是Adaboost算法用在随机森林中时的特点。</p>
+<p>梯度提升回归树（GBDT）：<br>GBDT作为集成学习的一个重要算法，在被提出之初就和SVM一起被认为是泛化能力较强的算法。具体而言，GDBT是一种迭代的决策树算法，它基于集成学习中的boosting思想，每次迭代都在减少残差的梯度方向新建立一颗决策树，迭代多少次就会生成多少颗决策树。对于分类情况，由于样本输出不是连续的值，而是离散的类别，导致我们无法直接从输出类别去拟合类别输出的误差。为了解决这个问题，主要有两个方法，一个是用指数损失函数，此时GBDT退化为Adaboost算法。另一种方法是用类似于逻辑回归的对数似然损失函数的方法。也就是说，我们用的是类别的预测概率值和真实概率值的差来拟合损失。</p>
+<p>核支持向量机：<br>之前有介绍过线性支持向量机，但是现实情况中有很多训练样本并不是线性可分的，对于这样的问题，可将样本从原始空间映射到一个更高维的特征空间中，这样使得样本在该空间中线性可分。但是将样本从本身的空间映射到特征空间后，其内积的计算难度非常高，所以使用一个函数使得样本1和2在特征空间中的内积等于它们在原始样本空间中通过函数计算的结果，这样就省去了在特征空间中计算的问题，这样的函数被称为核函数，这样的支持向量机被称为核支持向量机。</p>
 
       
     </div>
@@ -392,8 +383,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/18/吴恩达Deep Learning第三课总结/" rel="next" title="吴恩达Deep Learning第三课总结">
-                <i class="fa fa-chevron-left"></i> 吴恩达Deep Learning第三课总结
+              <a href="/2019/04/19/监督学习(二) /" rel="next" title="监督学习(二)">
+                <i class="fa fa-chevron-left"></i> 监督学习(二)
               </a>
             
           </div>
@@ -401,10 +392,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/17/监督学习(一)/" rel="prev" title="监督学习(一)">
-                监督学习(一) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
