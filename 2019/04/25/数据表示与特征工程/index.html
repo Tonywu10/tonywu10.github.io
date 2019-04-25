@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="One-Hotb编码、分箱、线性模型与树模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据表示与特征工程">
+<meta property="og:url" content="http://yoursite.com/2019/04/25/数据表示与特征工程/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="One-Hotb编码、分箱、线性模型与树模型">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-25T12:27:23.445Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据表示与特征工程">
+<meta name="twitter:description" content="One-Hotb编码、分箱、线性模型与树模型">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/25/数据表示与特征工程/"/>
+
+
+
+
+
+  <title>数据表示与特征工程 | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/数据表示与特征工程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据表示与特征工程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-25T00:00:00+08:00">
+                2019-04-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-25T20:27:23+08:00">
+                2019-04-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python机器学习基础教程/" itemprop="url" rel="index">
+                    <span itemprop="name">Python机器学习基础教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  One-Hotb编码、分箱、线性模型与树模型
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>One-Hot编码(独热编码)：<br>在机器学习算法中，我们会遇到分类特征，这些特征值并不是连续的，而是离散的，所以我们需要对这些数据进行编码。<br>其主要思想就是利用N位状态寄存器对N个状态进行编码，每个状态都有它独立的寄存器位，并且在任何时候只有一位有效，举例说明：<br>性别分为男和女，由于有两种特征所以编码为01和10<br>国籍有中国、美国、法国，由于有三种特征所以编码100、010、001<br>喜欢的运动有足球、篮球、乒乓球、羽毛球，由于有四种状态所以编码为1000、0100、0010、0001<br>这样当有一个新样本进来的时候，我们就能对其通过上述规则进行编码，从而组成一个高维的稀疏矩阵。</p>
+<p>分箱：<br>分箱就是将连续变量离散化，将多状态的离散变量合并成少状态，这样做会降低模型过拟合的风险。<br>优势：</p>
+<ol>
+<li>离散特征的增加和减少都很容易，易于模型的快速迭代；</li>
+<li>稀疏向量内积乘法运算速度快，计算结果方便存储，容易扩展；</li>
+<li>离散化后的特征对异常数据有很强的鲁棒性：比如一个特征是年龄&gt;30是1，否则0。如果特征没有离散化，一个异常数据“年龄300岁”会给模型造成很大的干扰；</li>
+<li>逻辑回归属于广义线性模型，表达能力受限；单变量离散化为N个后，每个变量有单独的权重，相当于为模型引入了非线性，能够提升模型表达能力，加大拟合；</li>
+<li>离散化后可以进行特征交叉，由M+N个变量变为M*N个变量，进一步引入非线性，提升表达能力；</li>
+<li>特征离散化后，模型会更稳定，比如如果对用户年龄离散化，20-30作为一个区间，不会因为一个用户年龄长了一岁就变成一个完全不同的人。当然处于区间相邻处的样本会刚好相反，所以怎么划分区间是门学问；</li>
+<li>特征离散化以后，起到了简化了逻辑回归模型的作用，降低了模型过拟合的风险。</li>
+<li>可以将缺失作为独立的一类带入模型。</li>
+<li>将所有变量变换到相似的尺度上。</li>
+</ol>
+<p>线性模型与树模型<br>线性模型是所有特征给与权重相加得到一个新的值，而树模型是产生可视化的分类规则，也就相当于分区间的阶梯函数。</p>
+<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import mglearn</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from IPython.display import display</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line">from sklearn.linear_model import LinearRegression</span><br><span class="line">from sklearn.tree import DecisionTreeRegressor</span><br><span class="line">from sklearn.preprocessing import OneHotEncoder</span><br><span class="line">from sklearn.preprocessing import PolynomialFeatures</span><br><span class="line">from sklearn.svm import SVR</span><br><span class="line">from sklearn.datasets import load_boston</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line">from sklearn.preprocessing import MinMaxScaler</span><br><span class="line">from sklearn.linear_model import Ridge</span><br><span class="line">from sklearn.ensemble import RandomForestRegressor</span><br><span class="line">from sklearn.linear_model import Ridge</span><br><span class="line">from sklearn.datasets import load_breast_cancer</span><br><span class="line">from sklearn.feature_selection import SelectPercentile</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">from sklearn.feature_selection import SelectFromModel</span><br><span class="line">from sklearn.ensemble import RandomForestClassifier</span><br><span class="line">from sklearn.ensemble import RandomForestRegressor </span><br><span class="line">from sklearn.feature_selection import RFE</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    #文件中没有包含名称的表头，因此我们传入header=None</span><br><span class="line">    #然后在&apos;names&apos;中显式地提供列名称</span><br><span class="line">    data = pd.read_csv(</span><br><span class="line">        &quot;C:/Users/tonyw/Desktop/adult_income_data.csv&quot;,header=None,index_col=False,</span><br><span class="line">        names=[&apos;age&apos;,&apos;workclass&apos;,&apos;fnlwgt&apos;,&apos;education&apos;,&apos;education-num&apos;,</span><br><span class="line">                &apos;martial-status&apos;,&apos;occupation&apos;,&apos;relationship&apos;,&apos;race&apos;,&apos;gender&apos;,</span><br><span class="line">                &apos;capital-gain&apos;,&apos;capital-loss&apos;,&apos;hours-per-week&apos;,&apos;native-country&apos;,</span><br><span class="line">                &apos;income&apos;]</span><br><span class="line">    )</span><br><span class="line">    #为了便于说明，我们只选了其中几列</span><br><span class="line">    data = data[[&apos;age&apos;,&apos;workclass&apos;,&apos;education&apos;,&apos;gender&apos;,&apos;hours-per-week&apos;,&apos;occupation&apos;,&apos;income&apos;]]</span><br><span class="line">    display(data.head())</span><br><span class="line">    #检查字符串编码的分类数据</span><br><span class="line">    print(data.gender.value_counts())</span><br><span class="line">    print(&quot;Original features:\n&quot;,list(data.columns),&apos;\n&apos;)</span><br><span class="line">    data_dummies = pd.get_dummies(data)</span><br><span class="line">    print(&quot;Features after get_dummies:\n&quot;,list(data_dummies.columns))</span><br><span class="line">    display(data_dummies.head())</span><br><span class="line">    features=data_dummies.ix[:,&apos;age&apos;:&apos;occupation_ Transport-moving&apos;]</span><br><span class="line">    #提取Numpy数组</span><br><span class="line">    X = features.values</span><br><span class="line">    y = data_dummies[&apos;income_ &gt;50K&apos;].values</span><br><span class="line">    print(&quot;X.shape:&#123;&#125; y.shape:&#123;&#125;&quot;.format(X.shape,y.shape))</span><br><span class="line">    X_train,X_test,y_train,y_test=train_test_split(X,y,random_state=0)</span><br><span class="line">    logreg = LogisticRegression()</span><br><span class="line">    logreg.fit(X_train,y_train)</span><br><span class="line">    print(&quot;Test score:&#123;:.2f&#125;&quot;.format(logreg.score(X_test,y_test)))</span><br><span class="line">    #创建一个DataFrame，包含一个整数特征和一个分类字符串特征</span><br><span class="line">    demo_df = pd.DataFrame(&#123;&apos;Integer Feature&apos;:[0,1,2,1],&apos;Categorical Feature&apos;:[&apos;socks&apos;,&apos;fox&apos;,&apos;socks&apos;,&apos;box&apos;]&#125;)</span><br><span class="line">    display(demo_df)</span><br><span class="line">    display(pd.get_dummies(demo_df))</span><br><span class="line">    demo_df[&apos;Integer Feature&apos;]=demo_df[&apos;Integer Feature&apos;].astype(str)</span><br><span class="line">    display(pd.get_dummies(demo_df,columns=[&apos;Integer Feature&apos;,&apos;Categorical Feature&apos;]))</span><br><span class="line">    </span><br><span class="line">    X,y=mglearn.datasets.make_wave(n_samples=100)</span><br><span class="line">    line = np.linspace(-3,3,1000,endpoint=False).reshape(-1,1)</span><br><span class="line">    reg = DecisionTreeRegressor(min_samples_split=3).fit(X,y)</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    plt.plot(line,reg.predict(line),label=&apos;decision tree&apos;)</span><br><span class="line">    reg=LinearRegression().fit(X,y)</span><br><span class="line">    plt.plot(line,reg.predict(line),label=&apos;linear regression&apos;)</span><br><span class="line">    plt.plot(X[:,0],y,&apos;o&apos;,c=&apos;k&apos;)</span><br><span class="line">    plt.ylabel(&quot;Regression output&quot;)</span><br><span class="line">    plt.xlabel(&quot;Input feature&quot;)</span><br><span class="line">    plt.legend(loc=&apos;best&apos;)</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    bins = np.linspace(-3,3,11)</span><br><span class="line">    print(&quot;bins:&#123;&#125;&quot;.format(bins))</span><br><span class="line">    which_bin = np.digitize(X,bins=bins)</span><br><span class="line">    print(&quot;\nData points:\n&quot;,X[:5])</span><br><span class="line">    print(&quot;\nBin menbership for data points:\n&quot;,which_bin[:5])</span><br><span class="line">    #使用OneHotEncoder进行变换</span><br><span class="line">    encoder = OneHotEncoder(sparse=False)</span><br><span class="line">    #encoder.fit找到which_bin中的唯一值</span><br><span class="line">    encoder.fit(which_bin)</span><br><span class="line">    #tranform创建one-hot编码</span><br><span class="line">    X_binned = encoder.transform(which_bin)</span><br><span class="line">    print(X_binned[:5])</span><br><span class="line">    print(&quot;X_binned.shape:&#123;&#125;&quot;.format(X_binned.shape))</span><br><span class="line">    line_binned = encoder.transform(np.digitize(line,bins=bins))</span><br><span class="line">    reg=LinearRegression().fit(X_binned,y)</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    plt.plot(line,reg.predict(line_binned),label=&apos;linear regression binned&apos;)</span><br><span class="line">    reg=DecisionTreeRegressor(min_samples_split=3).fit(X_binned,y)</span><br><span class="line">    plt.plot(line,reg.predict(line_binned),label=&apos;decision tree binned&apos;)</span><br><span class="line">    plt.plot(X[:,0],y,&apos;o&apos;,c=&apos;k&apos;)</span><br><span class="line">    plt.vlines(bins,-3,3,linewidth=1,alpha=.2)</span><br><span class="line">    plt.legend(loc=&quot;best&quot;)</span><br><span class="line">    plt.ylabel(&quot;Regression output&quot;)</span><br><span class="line">    plt.xlabel(&quot;Input feature&quot;)</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    X_combined = np.hstack([X,X_binned])</span><br><span class="line">    print(X_combined.shape)</span><br><span class="line">    reg = LinearRegression().fit(X_combined,y)</span><br><span class="line">    line_combined=np.hstack([line,line_binned])</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    plt.plot(line,reg.predict(line_combined),label=&apos;linear regression combined&apos;)</span><br><span class="line">    for bin in bins:</span><br><span class="line">        plt.plot([bin,bin],[-3,3],&apos;:&apos;,c=&apos;k&apos;)</span><br><span class="line">    plt.legend(loc=&quot;best&quot;)</span><br><span class="line">    plt.ylabel(&quot;Regression output&quot;)</span><br><span class="line">    plt.xlabel(&quot;Input feature&quot;)</span><br><span class="line">    plt.plot(X[:,0],y,&apos;o&apos;,c=&apos;k&apos;)</span><br><span class="line">    X_product = np.hstack([X_binned,X*X_binned])</span><br><span class="line">    print(X_product.shape)</span><br><span class="line">    reg = LinearRegression().fit(X_product,y)</span><br><span class="line">    line_product=np.hstack([line_binned,line*line_binned])</span><br><span class="line">    plt.plot(line,reg.predict(line_product),label=&apos;linear regression product&apos;)</span><br><span class="line">    for bin in bins:</span><br><span class="line">        plt.plot([bin,bin],[-3,3],&apos;:&apos;,c=&apos;k&apos;)</span><br><span class="line">    plt.plot(X[:,0],y,&apos;o&apos;,c=&apos;k&apos;)</span><br><span class="line">    plt.ylabel(&quot;Regression output&quot;)</span><br><span class="line">    plt.xlabel(&quot;Input feature&quot;)</span><br><span class="line">    plt.legend(loc=&quot;best&quot;)</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    #包含直到x**10的多项式：</span><br><span class="line">    #默认的&apos;include_bias=True&apos;添加恒等于1的常数特征</span><br><span class="line">    poly = PolynomialFeatures(degree=10,include_bias=False)</span><br><span class="line">    poly.fit(X)</span><br><span class="line">    X_poly=poly.transform(X)</span><br><span class="line">    print(&quot;X_poly.shape:&#123;&#125;&quot;.format(X_poly.shape))</span><br><span class="line">    print(&quot;Entries of X:\n&#123;&#125;&quot;.format(X[:5]))</span><br><span class="line">    print(&quot;Entries of X_poly:\n&#123;&#125;&quot;.format(X_poly[:5]))</span><br><span class="line">    print(&quot;Polynomial feature names:\n&#123;&#125;&quot;.format(poly.get_feature_names()))</span><br><span class="line">    reg=LinearRegression().fit(X_poly,y)</span><br><span class="line">    line_poly=poly.transform(line)</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    plt.plot(line,reg.predict(line_poly),label=&apos;polynomial linear regression&apos;)</span><br><span class="line">    plt.plot(X[:,0],y,&apos;o&apos;,c=&apos;k&apos;) </span><br><span class="line">    plt.ylabel(&quot;Regression output&quot;)</span><br><span class="line">    plt.xlabel(&quot;Input feature&quot;)</span><br><span class="line">    plt.legend(loc=&quot;best&quot;) </span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    for gamma in [1,10]:</span><br><span class="line">        svr = SVR(gamma=gamma).fit(X,y)</span><br><span class="line">        plt.plot(line,svr.predict(line),label=&apos;SVR gamma=&#123;&#125;&apos;.format(gamma))</span><br><span class="line">    plt.plot(X[:,0],y,&apos;o&apos;,c=&apos;k&apos;)</span><br><span class="line">    plt.ylabel(&quot;Regession output&quot;)</span><br><span class="line">    plt.xlabel(&quot;Input feature&quot;)</span><br><span class="line">    plt.legend(loc=&quot;best&quot;)</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    boston = load_boston()</span><br><span class="line">    X_train,X_test,y_train,y_test=train_test_split(boston.data,boston.target,random_state=0)</span><br><span class="line">    #缩放数据</span><br><span class="line">    scaler = MinMaxScaler()</span><br><span class="line">    X_train_scaled=scaler.fit_transform(X_train)</span><br><span class="line">    X_test_scaled=scaler.transform(X_test)</span><br><span class="line">    poly = PolynomialFeatures(degree=2).fit(X_train_scaled)</span><br><span class="line">    X_train_poly = poly.transform(X_train_scaled)</span><br><span class="line">    X_test_poly=poly.transform(X_test_scaled)</span><br><span class="line">    print(&quot;X_train.shape:&#123;&#125;&quot;.format(X_train.shape))</span><br><span class="line">    print(&quot;X_train_poly.shape:&#123;&#125;&quot;.format(X_train_poly.shape))</span><br><span class="line"></span><br><span class="line">    ridge = Ridge().fit(X_train_scaled,y_train)</span><br><span class="line">    print(&quot;Score without interaction:&#123;:.3f&#125;&quot;.format(ridge.score(X_test_scaled,y_test)))</span><br><span class="line">    ridge = Ridge().fit(X_train_poly,y_train)</span><br><span class="line">    print(&quot;Score with interactions:&#123;:.3f&#125;&quot;.format(ridge.score(X_test_poly,y_test)))</span><br><span class="line"></span><br><span class="line">    rf = RandomForestRegressor(n_estimators=100).fit(X_train_scaled,y_train)</span><br><span class="line">    print(&quot;Score without interactions:&#123;:.3f&#125;&quot;.format(rf.score(X_test_scaled,y_test)))</span><br><span class="line">    rf = RandomForestRegressor(n_estimators=100).fit(X_train_poly,y_train)</span><br><span class="line">    print(&quot;Score with intercations:&#123;:.3f&#125;&quot;.format(rf.score(X_test_poly,y_test)))</span><br><span class="line">    </span><br><span class="line">    X_train,X_test,y_train,y_test=train_test_split(X,y,random_state=0)</span><br><span class="line">    score=Ridge().fit(X_train,y_train).score(X_test,y_test)</span><br><span class="line">    print(&quot;Test score:&#123;:3f&#125;&quot;.format(score))</span><br><span class="line">    #单变量统计</span><br><span class="line">    cancer = load_breast_cancer()</span><br><span class="line">    #获得确定性的随机数</span><br><span class="line">    rng = np.random.RandomState(42)</span><br><span class="line">    noise = rng.normal(size=(len(cancer.data),50))</span><br><span class="line">    #向数据中添加噪声特征</span><br><span class="line">    #前30个特征来自数据集，后50个是噪声</span><br><span class="line">    X_w_noise=np.hstack([cancer.data,noise])</span><br><span class="line">    X_train,X_test,y_train,y_test=train_test_split(X_w_noise,cancer.target,random_state=0,test_size=.5)</span><br><span class="line">    #使用f_classif(默认值)和SelectPercentile来选择50%的特征</span><br><span class="line">    select = SelectPercentile(percentile=50)</span><br><span class="line">    select.fit(X_train,y_train)</span><br><span class="line">    #对训练集进行变换</span><br><span class="line">    X_train_selected=select.transform(X_train)</span><br><span class="line"></span><br><span class="line">    print(&quot;X_train.shape:&#123;&#125;&quot;.format(X_train.shape))</span><br><span class="line">    print(&quot;X_train_select.shape:&#123;&#125;&quot;.format(X_train_selected.shape))</span><br><span class="line">    mask=select.get_support()</span><br><span class="line">    print(mask)</span><br><span class="line">    #将遮罩可视化--黑色为True，白色为False</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    plt.matshow(mask.reshape(1,-1),cmap=&apos;gray_r&apos;)</span><br><span class="line">    plt.xlabel(&quot;Sample index&quot;)</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    #对测试数据进行变换</span><br><span class="line">    X_test_selected = select.transform(X_test)</span><br><span class="line">    lr = LogisticRegression()</span><br><span class="line">    lr.fit(X_train,y_train)</span><br><span class="line">    print(&quot;Score with all features:&#123;:.3f&#125;&quot;.format(lr.score(X_test,y_test)))</span><br><span class="line">    lr.fit(X_train_selected,y_train)</span><br><span class="line">    print(&quot;Score with only selected features:&#123;:.3f&#125;&quot;.format(lr.score(X_test_selected,y_test)))</span><br><span class="line">    #基于模型的特征选择</span><br><span class="line">    select = SelectFromModel(RandomForestClassifier(n_estimators=100,random_state=42),threshold=&quot;median&quot;)</span><br><span class="line">    select.fit(X_train,y_train)</span><br><span class="line">    X_train_l1 = select.transform(X_train)</span><br><span class="line">    print(&quot;X_train.shape:&#123;&#125;&quot;.format(X_train.shape))</span><br><span class="line">    print(&quot;X_train_l1.shape:&#123;&#125;&quot;.format(X_train_l1.shape))</span><br><span class="line">    X_test_l1=select.transform(X_test)</span><br><span class="line">    score=LogisticRegression().fit(X_train_l1,y_train).score(X_test_l1,y_test)</span><br><span class="line">    print(&quot;Test score:&#123;:.3f&#125;&quot;.format(score))</span><br><span class="line">    #迭代特征选择</span><br><span class="line">    select = RFE(RandomForestClassifier(n_estimators=100,random_state=42),n_features_to_select=40)</span><br><span class="line">    select.fit(X_train,y_train)</span><br><span class="line"></span><br><span class="line">    X_train_rfe=select.transform(X_train)</span><br><span class="line">    X_test_rfe = select.transform(X_test)</span><br><span class="line">    score=LogisticRegression().fit(X_train_rfe,y_train).score(X_test_rfe,y_test)</span><br><span class="line">    print(&quot;Test score:&#123;:.3f&#125;&quot;.format(score))</span><br><span class="line">    print(&quot;Test score:&#123;:.3f&#125;&quot;.format(select.score(X_test,y_test)))</span><br><span class="line">    #专家系统</span><br><span class="line">    #由于X=citibike.index.strftime(&quot;%s&quot;).astype(&quot;int&quot;).reshape(-1,1)</span><br><span class="line">    #出现问题，测试无法顺利进行</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/23/无监督学习(二)/" rel="next" title="无监督学习(二)">
+                <i class="fa fa-chevron-left"></i> 无监督学习(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
