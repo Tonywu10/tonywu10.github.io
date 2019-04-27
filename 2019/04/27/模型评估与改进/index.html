@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="交叉验证、网格搜索、评估指标与评分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模型评估与改进">
+<meta property="og:url" content="http://yoursite.com/2019/04/27/模型评估与改进/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="交叉验证、网格搜索、评估指标与评分">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/27/EKnRpD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/27/EKnctK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/27/EKn6k6.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/27/EKngfO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/27/EKnr01.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/27/EKnf6H.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/27/EKnI0I.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/27/EKnW1e.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/27/EKn5nA.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/27/EKnhXd.png">
+<meta property="og:updated_time" content="2019-04-27T07:05:58.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模型评估与改进">
+<meta name="twitter:description" content="交叉验证、网格搜索、评估指标与评分">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/04/27/EKnRpD.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/27/模型评估与改进/"/>
+
+
+
+
+
+  <title>模型评估与改进 | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/27/模型评估与改进/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">模型评估与改进</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-27T00:00:00+08:00">
+                2019-04-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-27T15:05:58+08:00">
+                2019-04-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python机器学习基础教程/" itemprop="url" rel="index">
+                    <span itemprop="name">Python机器学习基础教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  交叉验证、网格搜索、评估指标与评分
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>交叉验证：<br>k折交叉验证<br>k折交叉验证就是将整个数据集划分为k个大小相似、分布一致的子集，将其中k-1个子集作为训练集，剩下的1个子集作为测试集，最终返回这k个测试结果的均值。<br><img src="https://s2.ax1x.com/2019/04/27/EKnRpD.png" alt="EKnRpD.png"></p>
+<p>分层K折交叉验证<br>在K折交叉验证中存在一个问题，也就是数据分布可能不均匀，比如刚好每K个数据都一致，这样会导致在测试集测试时没法泛化。所以使用分层K折交叉验证，它使用每K个数据中取不同的数据。<br><img src="https://s2.ax1x.com/2019/04/27/EKnctK.png" alt="EKnctK.png"></p>
+<p>留一法<br>留一法算是K折交叉验证的特例，它将整个数据集都作为训练集，只留出一个样本作为测试集，这样会使得留一法中被实际评估的模型与期望评估的用D训练出的模型很相似，不过在训练大数据集时会导致训练成本很高。<br>网格搜索<br>网格搜索其实是一种穷举搜索，在所有候选的参数选择中，通过循环遍历，尝试每一种可能性，表现最好的参数就是最终的结果。其原理就像是在数组里找最大值。比如有两个参数需要测试，这样把每个组合值都尝试一遍，选出精度最好的那种组合就是网格搜索。<br>评估指标与评分<br>准确率(查准率,precision)：真正例在所有正例(不论真假)中所占的比例<br>召回率(查全率,recall)：真正例在所有正例(真正例+假反例)中所占的比例<br>F-分数：准确率和召回率的调和平均(其倒数为两率各自倒数相加取平均)<br>ROC(Receiver Operating Characteristic：受试者工作特征)：ROC曲线的纵轴是“真正例率(True Positive Rate)”(在所有实际为阳性的样本里，被正确地判断为阳性)，横轴是“假正例率(False Positive Rate)” (在所有实际为阴性的样本里，被正确地判断为阴性)。<br>AUC(Area Under ROC Curve)：被ROC曲线所围的面积，其计算公式为<br><img src="https://s2.ax1x.com/2019/04/27/EKn6k6.png" alt="EKn6k6.png"><br><img src="https://s2.ax1x.com/2019/04/27/EKngfO.png" alt="EKngfO.png"></p>
+<p>有关ROC曲线的画法及损失定义：<br>设共有m+n个例子进行判断，其中m个正例，n个反例，特例有10个例子，其中<br>5个正例概率为(0.9,0.8,0.5,0.4,0.3)<br>5个反例概率为(0.7,0.6,0.2,0.1,0.01)<br>则将上述所有概率从大到小排序为<br>[正、正、反、反、正、正、正、反、反、反]<br>坐标(0,0)处标记一个点然后，将分类阈值依次设为每个样例的预测值，即依次将每个样例划分为正例.设前一个标记点坐标为(x,y)，若当前样例为正例，则其对应坐标为<br><img src="https://s2.ax1x.com/2019/04/27/EKnr01.png" alt="EKnr01.png"><br>其中m+代表样例中正例的个数，若当前样例为反例，则其对应坐标为<br><img src="https://s2.ax1x.com/2019/04/27/EKnf6H.png" alt="EKnf6H.png"><br>其中m-代表样例中反例的个数。<br><img src="https://s2.ax1x.com/2019/04/27/EKnI0I.jpg" alt="EKnI0I.jpg"><br>上图就是示例中对应的ROC，图中每个小块的大小为1/(正例<em>反例)，且由图可知反例比正例共大6块格子，故损失为6/(正例</em>反例)，但实际上当值为0.5的时候，其可正可反，故取1/2，即<br><img src="https://s2.ax1x.com/2019/04/27/EKnW1e.png" alt="EKnW1e.png"><br>故AUC的损失函数为<br><img src="https://s2.ax1x.com/2019/04/27/EKn5nA.png" alt="EKn5nA.png"><br>则<br><img src="https://s2.ax1x.com/2019/04/27/EKnhXd.png" alt="EKnhXd.png"></p>
+<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.datasets import make_blobs</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line">import mglearn</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from sklearn.model_selection import cross_val_score</span><br><span class="line">from sklearn.datasets import load_iris</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">from sklearn.model_selection import KFold</span><br><span class="line">from sklearn.model_selection import LeaveOneOut</span><br><span class="line">from sklearn.model_selection import ShuffleSplit</span><br><span class="line">from sklearn.model_selection import GroupKFold</span><br><span class="line">from sklearn.svm import SVC</span><br><span class="line">import numpy as np</span><br><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">import pandas as pd</span><br><span class="line">from IPython.display import display</span><br><span class="line">from sklearn.model_selection import ParameterGrid,StratifiedKFold</span><br><span class="line">from sklearn.datasets import load_digits</span><br><span class="line">from sklearn.dummy import DummyClassifier</span><br><span class="line">from sklearn.tree import DecisionTreeClassifier</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">from sklearn.metrics import confusion_matrix</span><br><span class="line">from sklearn.metrics import f1_score</span><br><span class="line">from sklearn.metrics import classification_report</span><br><span class="line">from sklearn.datasets import make_blobs</span><br><span class="line"></span><br><span class="line">#嵌套交叉验证展开</span><br><span class="line">def nested_cv(X,y,inner_cv,outer_cv,Classifier,paramter_grid):</span><br><span class="line">    outer_scores=[]</span><br><span class="line">    #对于外层交叉验证的每次数据划分，split方法返回索引值</span><br><span class="line">    for training_samples,test_samples in outer_cv.split(X,y):</span><br><span class="line">        #利用内层交叉验证找到最佳参数</span><br><span class="line">        best_params=&#123;&#125;</span><br><span class="line">        best_score=-np.inf</span><br><span class="line">        #遍历参数</span><br><span class="line">        for parameters in paramter_grid:</span><br><span class="line">            #在内层划分中累加分数</span><br><span class="line">            cv_scores=[]</span><br><span class="line">            #遍历内层交叉验证</span><br><span class="line">            for inner_train,inner_test in inner_cv.split(X[training_samples],y[training_samples]):</span><br><span class="line">                #对于给定的参数和训练树来构建分类器</span><br><span class="line">                clf = Classifier(**parameters)</span><br><span class="line">                clf.fit(X[inner_train],y[inner_train])</span><br><span class="line">                #在内层测试集上进行评估</span><br><span class="line">                score = clf.score(X[inner_test],y[inner_test])</span><br><span class="line">                cv_scores.append(score)</span><br><span class="line">            #计算内层交叉验证的平均分数</span><br><span class="line">            mean_score = np.mean(cv_scores)</span><br><span class="line">            if mean_score&gt;best_score:</span><br><span class="line">                #如果比前面的模型都要好，则保存其参数</span><br><span class="line">                best_score = mean_score</span><br><span class="line">                best_params=parameters</span><br><span class="line">        #利用好外层训练集和最佳参数来构建模型</span><br><span class="line">        clf = Classifier(**best_params)</span><br><span class="line">        clf.fit(X[training_samples],y[training_samples])</span><br><span class="line">        #评估模型</span><br><span class="line">        outer_scores.append(clf.score(X[test_samples],y[test_samples]))</span><br><span class="line">    return np.array(outer_scores)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    #创建一个虚拟数据集</span><br><span class="line">    X,y = make_blobs(random_state=0)</span><br><span class="line">    #将数据和标签划分为训练集和测试集</span><br><span class="line">    X_train,X_test,y_train,y_test=train_test_split(X,y,random_state=0)</span><br><span class="line">    #讲模型实例化，并用它来拟合训练集</span><br><span class="line">    logreg = LogisticRegression().fit(X_train,y_train)</span><br><span class="line">    #在测试集上评估该模型</span><br><span class="line">    print(&quot;Test set score:&#123;:.2f&#125;&quot;.format(logreg.score(X_test,y_test)))</span><br><span class="line">    #交叉验证</span><br><span class="line">    #k折交叉验证</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.plots.plot_cross_validation()</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    iris = load_iris()</span><br><span class="line">    logreg = LogisticRegression()</span><br><span class="line">    scores = cross_val_score(logreg,iris.data,iris.target,cv=5)</span><br><span class="line">    print(&quot;Cross-validation scores:&#123;&#125;&quot;.format(scores))</span><br><span class="line">    #分层k折交叉验证和其他策略</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.plots.plot_stratified_cross_validation()</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    kfold = KFold(n_splits=5)</span><br><span class="line">    print(&quot;Cross-validation score:\n&#123;&#125;&quot;.format(cross_val_score(logreg,iris.data,iris.target,cv=kfold)))</span><br><span class="line">    kflod = KFold(n_splits=3,shuffle=True,random_state=0)</span><br><span class="line">    print(&quot;Cross-validation scores:\n&#123;&#125;&quot;.format(cross_val_score(logreg,iris.data,iris.target,cv=kflod)))</span><br><span class="line">    #留一法</span><br><span class="line">    loo = LeaveOneOut()</span><br><span class="line">    scores = cross_val_score(logreg,iris.data,iris.target,cv=loo)</span><br><span class="line">    print(&quot;Number of cv iterations:&quot;,len(scores))</span><br><span class="line">    print(&quot;Mean accuracy:&#123;:2f&#125;&quot;.format(scores.mean()))</span><br><span class="line">    #打乱划分交叉验证</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.plots.plot_shuffle_split()</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    shuffle_split = ShuffleSplit(test_size=.5,train_size=.5,n_splits=10)</span><br><span class="line">    scores=cross_val_score(logreg,iris.data,iris.target,cv=shuffle_split)</span><br><span class="line">    print(&quot;Cross-validation scores:\n&#123;&#125;&quot;.format(scores))</span><br><span class="line">    #分组交叉验证</span><br><span class="line">    #创建模拟数据集</span><br><span class="line">    X,y=make_blobs(n_samples=12,random_state=0)</span><br><span class="line">    #假设前3个样本属于同一组，接下来的4个属于同一组，以此类推</span><br><span class="line">    groups=[0,0,0,1,1,1,1,2,2,3,3,3]</span><br><span class="line">    scores = cross_val_score(logreg,X,y,groups,cv=GroupKFold(n_splits=3))</span><br><span class="line">    print(&quot;Cross-validation scores:\n&#123;&#125;&quot;.format(scores))</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.plots.plot_group_kfold()</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    ##########################################################</span><br><span class="line">    #简单的网格搜索实现</span><br><span class="line">    X_train,X_test,y_train,y_test = train_test_split(iris.data,iris.target,random_state=0)</span><br><span class="line">    print(&quot;Size of training set:&#123;&#125; size of test set:&#123;&#125;&quot;.format(X_train.shape[0],X_test.shape[0]))</span><br><span class="line">    best_score = 0</span><br><span class="line">    for gamma in [0.001,0.01,0.1,1,10,100]:</span><br><span class="line">        for C in [0.001,0.01,0.1,1,10,100]:</span><br><span class="line">            #对每种参数组合都训练一个SVC</span><br><span class="line">            svm = SVC(gamma=gamma,C=C)</span><br><span class="line">            svm.fit(X_train,y_train)</span><br><span class="line">            #在测试集上评估SVC</span><br><span class="line">            score=svm.score(X_test,y_test)</span><br><span class="line">            #如果我们得到了更高的分数，则保存该分数和对应的参数</span><br><span class="line">            if score&gt;best_score:</span><br><span class="line">                best_score=score</span><br><span class="line">                best_parameters=&#123;&apos;C&apos;:C,&apos;gamma&apos;:gamma&#125;</span><br><span class="line">    print(&quot;Best score:&#123;:.2f&#125;&quot;.format(best_score))</span><br><span class="line">    print(&quot;Best parameters:&#123;&#125;&quot;.format(best_parameters))</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.plots.plot_threefold_split()</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    #将数据划分为训练+验证集与测试集</span><br><span class="line">    X_trainval,X_test,y_trainval,y_test = train_test_split(iris.data,iris.target,random_state=0)</span><br><span class="line">    #将数据划分为训练+验证集与验证集</span><br><span class="line">    X_train,X_valid,y_train,y_valid = train_test_split(X_trainval,y_trainval,random_state=1)</span><br><span class="line">    print(&quot;Size of training set:&#123;&#125; size of validation set:&#123;&#125; size of test set:&#123;&#125;\n&quot;.format(X_train.shape[0],X_valid.shape[0],X_test.shape[0]))</span><br><span class="line">    best_score = 0</span><br><span class="line">    for gamma in [0.001,0.01,0.1,1,10,100]:</span><br><span class="line">        for C in [0.001,0.01,0.1,1,10,100]:</span><br><span class="line">            #对每种参数组合都训练一个SVC</span><br><span class="line">            svm = SVC(gamma=gamma,C=C)</span><br><span class="line">            svm.fit(X_train,y_train)</span><br><span class="line">            #在验证集上评估SVC</span><br><span class="line">            score = svm.score(X_valid,y_valid)</span><br><span class="line">            #如果我们得到了更高的分数，则保存该分数和对应的参数</span><br><span class="line">            if score&gt;best_score:</span><br><span class="line">                best_score = score</span><br><span class="line">                best_parameters = &#123;&apos;C&apos;:C,&apos;gamma&apos;:gamma&#125;</span><br><span class="line">    #在训练+验证集上重新构建一个模型，并在测试集上进行评估</span><br><span class="line">    svm = SVC(**best_parameters)</span><br><span class="line">    svm.fit(X_trainval,y_trainval)</span><br><span class="line">    test_score = svm.score(X_test,y_test)</span><br><span class="line">    print(&quot;Best score on validation set:&#123;:.2f&#125;&quot;.format(best_score))</span><br><span class="line">    print(&quot;Best parameters:&quot;,best_parameters)</span><br><span class="line">    print(&quot;Test set score with best parameters:&#123;:.2f&#125;&quot;.format(test_score))</span><br><span class="line">    ######################################################################</span><br><span class="line">    #带交叉验证的网格搜索</span><br><span class="line">    for gamma in [0.001,0.01,0.1,1,10,100]:</span><br><span class="line">        for C in [0.001,0.01,0.1,1,10,100]:</span><br><span class="line">            #对于每种参数组合都训练一个SVC</span><br><span class="line">            svm = SVC(gamma=gamma,C=C)</span><br><span class="line">            #执行交叉验证</span><br><span class="line">            score = cross_val_score(svm,X_trainval,y_trainval,cv=5)</span><br><span class="line">            #计算交叉验证平均精度</span><br><span class="line">            score = np.mean(scores)</span><br><span class="line">            #如果我们得到了更高的分数，则保存该分数和对应的参数</span><br><span class="line">            if score &gt; best_score:</span><br><span class="line">                best_score = score</span><br><span class="line">                best_parameters=&#123;&apos;C&apos;:C,&apos;gamma&apos;:gamma&#125;</span><br><span class="line">    #在训练+验证集上重新构建一个模型</span><br><span class="line">    svm = SVC(**best_parameters)</span><br><span class="line">    svm.fit(X_trainval,y_trainval)</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.plots.plot_cross_val_selection()</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.plots.plot_grid_search_overview()</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    param_grid = &#123;&apos;C&apos;:[0.001,0.01,0.1,1,10,100],&apos;gamma&apos;:[0.001,0.01,0.1,1,10,100]&#125;</span><br><span class="line">    print(&quot;Parameter grid:\n&#123;&#125;&quot;.format(param_grid))</span><br><span class="line">    grid_search = GridSearchCV(SVC(),param_grid,cv=5)</span><br><span class="line">    X_train,X_test,y_train,y_test = train_test_split(iris.data,iris.target,random_state = 0)</span><br><span class="line">    grid_search.fit(X_train,y_train)</span><br><span class="line">    print(&quot;Test set score:&#123;:.2f&#125;&quot;.format(grid_search.score(X_test,y_test)))</span><br><span class="line">    print(&quot;Best parameters:&#123;&#125;&quot;.format(grid_search.best_params_))</span><br><span class="line">    print(&quot;Best cross-validation score:&#123;:.2f&#125;&quot;.format(grid_search.best_score_))</span><br><span class="line">    print(&quot;Best estimator:\n&#123;&#125;&quot;.format(grid_search.best_estimator_))</span><br><span class="line">    #分析交叉验证的结果</span><br><span class="line">    #转换为DataFrame(数据框)</span><br><span class="line">    results = pd.DataFrame(grid_search.cv_results_)</span><br><span class="line">    #显示前5行</span><br><span class="line">    display(results.head())</span><br><span class="line">    scores = np.array(results.mean_test_score).reshape(6,6)</span><br><span class="line">    #对交叉验证平均分数作图</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.tools.heatmap(scores,xlabel=&apos;gamma&apos;,xticklabels=param_grid[&apos;gamma&apos;],ylabel=&apos;C&apos;,yticklabels=param_grid[&apos;C&apos;],cmap=&apos;viridis&apos;)</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    param_grid = [&#123;&apos;kernel&apos;:[&apos;rbf&apos;],&apos;C&apos;:[0.001,0.01,0.1,1,10,100],&apos;gamma&apos;:[0.001,0.01,0.1,1,10,100]&#125;,&#123;&apos;kernel&apos;:[&apos;linear&apos;],&apos;C&apos;:[0.001,0.01,0.1,1,10,100]&#125;]</span><br><span class="line">    print(&quot;List of grids:\n&#123;&#125;&quot;.format(param_grid))</span><br><span class="line">    grid_search=GridSearchCV(SVC(),param_grid,cv=5)</span><br><span class="line">    grid_search.fit(X_train,y_train)</span><br><span class="line">    print(&quot;Best parameters:&#123;&#125;&quot;.format(grid_search.best_params_))</span><br><span class="line">    print(&quot;Best cross-validation score:&#123;:.2f&#125;&quot;.format(grid_search.best_score_))</span><br><span class="line">    result=pd.DataFrame(grid_search.cv_results_)</span><br><span class="line">    display(result.T)</span><br><span class="line">    #嵌套交叉验证</span><br><span class="line">    scores = cross_val_score(GridSearchCV(SVC(),param_grid,cv=5),iris.data,iris.target,cv=5)</span><br><span class="line">    print(&quot;Cross-validation scores:&quot;,scores)</span><br><span class="line">    print(&quot;Mean cross-validation score:&quot;,scores.mean())</span><br><span class="line">    #利用自定义nested_cv在iris上测试</span><br><span class="line">    scores = nested_cv(iris.data,iris.target,StratifiedKFold(5),StratifiedKFold(5),SVC,ParameterGrid(param_grid))</span><br><span class="line">    print(&quot;Cross-validation scores: &#123;&#125;&quot;.format(scores))</span><br><span class="line">    #构造不平衡数据集</span><br><span class="line">    digits=load_digits()</span><br><span class="line">    y=digits.target==9</span><br><span class="line">    X_train,X_test,y_train,y_test = train_test_split(digits.data,y,random_state=0)</span><br><span class="line">    dummy_majority = DummyClassifier(strategy=&apos;most_frequent&apos;).fit(X_train,y_train)</span><br><span class="line">    pred_most_frequent = dummy_majority.predict(X_test)</span><br><span class="line">    print(&quot;Unique predicted labels:&#123;&#125;&quot;.format(np.unique(pred_most_frequent)))</span><br><span class="line">    print(&quot;Test score:&#123;:.2f&#125;&quot;.format(dummy_majority.score(X_test,y_test)))</span><br><span class="line">    #利用决策树</span><br><span class="line">    tree = DecisionTreeClassifier(max_depth=2).fit(X_train,y_train)</span><br><span class="line">    pred_tree = tree.predict(X_test)</span><br><span class="line">    print(&quot;Test score:&#123;:.2f&#125;&quot;.format(tree.score(X_test,y_test)))</span><br><span class="line">    dummy = DummyClassifier().fit(X_train,y_train)</span><br><span class="line">    pred_dummy = dummy.predict(X_test)</span><br><span class="line">    print(&quot;dummy score:&#123;:.2f&#125;&quot;.format(dummy.score(X_test,y_test)))</span><br><span class="line">    logreg = LogisticRegression(C=0.1).fit(X_train,y_train)</span><br><span class="line">    pred_logreg = logreg.predict(X_test)</span><br><span class="line">    print(&quot;logreg score:&#123;:.2f&#125;&quot;.format(logreg.score(X_test,y_test)))</span><br><span class="line">    #混淆矩阵</span><br><span class="line">    confusion = confusion_matrix(y_test,pred_logreg)</span><br><span class="line">    print(&quot;Confusion matrix:\n&#123;&#125;&quot;.format(confusion))</span><br><span class="line">    print(&quot;Most frequent class:&quot;)</span><br><span class="line">    print(confusion_matrix(y_test,pred_most_frequent))</span><br><span class="line">    print(&quot;\nDummy model:&quot;)</span><br><span class="line">    print(confusion_matrix(y_test,pred_dummy))</span><br><span class="line">    print(&quot;\nDecision tree:&quot;)</span><br><span class="line">    print(confusion_matrix(y_test,pred_tree))</span><br><span class="line">    print(&quot;\nLogistic Regression&quot;)</span><br><span class="line">    print(confusion_matrix(y_test,pred_logreg))</span><br><span class="line">    #F1分数</span><br><span class="line">    print(&quot;f1 score most frequent:&#123;:.2f&#125;&quot;.format(f1_score(y_test,pred_most_frequent)))</span><br><span class="line">    print(&quot;f1 score dummy:&#123;:.2f&#125;&quot;.format(f1_score(y_test,pred_dummy)))</span><br><span class="line">    print(&quot;f1 score tree:&#123;:.2f&#125;&quot;.format(f1_score(y_test,pred_tree)))</span><br><span class="line">    print(&quot;f1 score logistic regression:&#123;:.2f&#125;&quot;.format(f1_score(y_test,pred_logreg)))</span><br><span class="line">    print(classification_report(y_test,pred_most_frequent,target_names=[&apos;not nine&apos;,&apos;nine&apos;]))</span><br><span class="line">    print(classification_report(y_test,pred_dummy,target_names=[&quot;not nine&quot;,&apos;nine&apos;]))</span><br><span class="line">    print(classification_report(y_test,pred_logreg,target_names=[&quot;not nine&quot;,&quot;nine&quot;]))</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/25/数据表示与特征工程/" rel="next" title="数据表示与特征工程">
+                <i class="fa fa-chevron-left"></i> 数据表示与特征工程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
