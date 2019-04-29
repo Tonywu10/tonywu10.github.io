@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="词袋、词向量(补充)、tf-idf、n-gram、隐含迪利克雷分布(Latent Dirichlet Allocation,LDA)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="处理文本数据">
+<meta property="og:url" content="http://yoursite.com/2019/04/29/处理文本数据/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="词袋、词向量(补充)、tf-idf、n-gram、隐含迪利克雷分布(Latent Dirichlet Allocation,LDA)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/29/E1qkQO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/29/E1qEOe.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/29/E1qAyD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/29/E1qPW6.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/29/E1qFSK.png">
+<meta property="og:updated_time" content="2019-04-29T09:00:56.077Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="处理文本数据">
+<meta name="twitter:description" content="词袋、词向量(补充)、tf-idf、n-gram、隐含迪利克雷分布(Latent Dirichlet Allocation,LDA)">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/04/29/E1qkQO.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/29/处理文本数据/"/>
+
+
+
+
+
+  <title>处理文本数据 | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/处理文本数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">处理文本数据</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-29T00:00:00+08:00">
+                2019-04-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-29T17:00:56+08:00">
+                2019-04-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python机器学习基础教程/" itemprop="url" rel="index">
+                    <span itemprop="name">Python机器学习基础教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  词袋、词向量(补充)、tf-idf、n-gram、隐含迪利克雷分布(Latent Dirichlet Allocation,LDA)
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>词袋：<br>简单来说就是将一句话进行分词处理后，统计每个单词在该句话中出现的次数，上述操作会使得词与词之间的顺序关系丢失。</p>
+<p>词向量：<br>在计算机中要将语言编码，我们可以使用one-hot编码，但是这种方式首先会产生大量稀疏向量，造成维数灾难，其次是无法表示两个词之间的相似度，因为任意两个向量都是正交的。所以采用词向量的方式进行编码更加实际，在此使用<br><img src="https://s2.ax1x.com/2019/04/29/E1qkQO.png" alt="E1qkQO.png"><br>构成一个词向量矩阵，然后计算<br><img src="https://s2.ax1x.com/2019/04/29/E1qEOe.png" alt="E1qEOe.png"><br>根据矩阵乘法原则，左边矩阵的每一行都要与右边的列向量相乘，这样得出的数据正是两个向量的相似度，所以通过这个计算就能得出每个词与第一个词的关系。</p>
+<p>TF-IDF：<br>这个算法主要是计算词在文本中的权重，因为不同的词在文本中的重要性存在差异，比如专业名词在文本中出现的绝对数量一般较少，但其重要程度较高。每个词的重要程度可以通过以下公式进行计算，它的计算包括两部分，一个是tf部分，一个是idf部分<br><img src="https://s2.ax1x.com/2019/04/29/E1qAyD.png" alt="E1qAyD.png"><br>其中分子是该词在文件中出现的次数，分母是文件中所有字词出现次数之和<br><img src="https://s2.ax1x.com/2019/04/29/E1qPW6.png" alt="E1qPW6.png"><br>其中N是训练集中的文档数量，Nw是训练集中出现单词w的文档数量。</p>
+<p>n-gram：<br>n-gram的特点是基于一个词的出现依赖于其他若干词的思想，如果我们获得足够多的相近词特征，就可以推测出当前的词是什么，类似于猜词游戏，给你条件，猜测正确的词。该模型是一种语言模型，是一个基于概率的判别模型，输入一句话，输出的是这句话的概率，可以选取概率高的句子作为预测正确的句子。一般在实际使用中N取2或者3，这样处理起来比较简单，因为如果选择过大会产生稀疏问题。</p>
+<p>隐含迪利克雷分布(Latent Dirichlet Allocation,LDA)：<br>LDA一般用于主题提取，其自动分析每个文档，统计文档中的词语，根据统计的信息来断定当前文档含有哪些主题，以及每个主题所占的比例是多少。其对应的概率模型如下<br><img src="https://s2.ax1x.com/2019/04/29/E1qFSK.png" alt="E1qFSK.png"><br>K是主题个数，M是文档总数，Nm是第m个文档的单词总数。α是每个文档下主题的多项分布的迪利克雷先验参数，β是每个主题下词的多项分布的迪利克雷先验参数，Zmn是第m个文档下第n个词的主题，Wmn是第m个文档中的第n个词，两个隐含变量θ和φ分别表示第m个文档下的主题分布和第k个主题下的词分布，前者为k维向量，后者为v维向量。</p>
+<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.datasets import load_files</span><br><span class="line">import numpy as np</span><br><span class="line">from sklearn.feature_extraction.text import CountVectorizer</span><br><span class="line">from sklearn.model_selection import cross_val_score</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS</span><br><span class="line">from sklearn.feature_extraction.text import TfidfVectorizer</span><br><span class="line">from sklearn.pipeline import make_pipeline</span><br><span class="line">import mglearn</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from sklearn.decomposition import LatentDirichletAllocation</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    reviews_train = load_files(&quot;C:/Users/tonyw/Desktop/aclImdb/train/&quot;)</span><br><span class="line">    #load_files返回一个Bunch对象，其中包含训练文本和训练标签</span><br><span class="line">    text_train,y_train=reviews_train.data,reviews_train.target</span><br><span class="line">    print(&quot;type of text_train:&#123;&#125;&quot;.format(type(text_train)))</span><br><span class="line">    print(&quot;length of text_train:&#123;&#125;&quot;.format(len(text_train)))</span><br><span class="line">    print(&quot;text_train[1]:\n&#123;&#125;&quot;.format(text_train[1]))</span><br><span class="line">    #处理html换行符</span><br><span class="line">    text_train = [doc.replace(b&quot;&lt;br /&gt;&quot;,b&quot; &quot;) for doc in text_train]</span><br><span class="line">    print(&quot;Samples per class (training):&#123;&#125;&quot;.format(np.bincount(y_train)))</span><br><span class="line">    reviews_test = load_files(&quot;C:/Users/tonyw/Desktop/aclImdb/test&quot;)</span><br><span class="line">    text_test,y_test = reviews_test.data,reviews_test.target</span><br><span class="line">    print(&quot;Number of documents in test data:&#123;&#125;&quot;.format(len(text_test)))</span><br><span class="line">    print(&quot;Samples per class(test):&#123;&#125;&quot;.format(np.bincount(y_test)))</span><br><span class="line">    text_test = [doc.replace(b&quot;&lt;br /&gt;&quot;,b&quot; &quot;) for doc in text_test]</span><br><span class="line">    #词袋模型</span><br><span class="line">    bards_words=[&quot;The fool doth think he is wise,&quot;,&quot;but the wise man knows himself to be a fool&quot;]</span><br><span class="line">    vect = CountVectorizer()</span><br><span class="line">    vect.fit(bards_words)</span><br><span class="line">    print(&quot;Vocabulary size:&#123;&#125;&quot;.format(len(vect.vocabulary_)))</span><br><span class="line">    print(&quot;Vocabulary content:\n&#123;&#125;&quot;.format(vect.vocabulary_))</span><br><span class="line">    bag_of_words = vect.transform(bards_words)</span><br><span class="line">    print(&quot;bag_of_words:&#123;&#125;&quot;.format(repr(bag_of_words)))</span><br><span class="line">    print(&quot;Dense representation of bag_of_word:\n&#123;&#125;&quot;.format(bag_of_words.toarray()))</span><br><span class="line">    #将词袋应用于电影评论</span><br><span class="line">    vect = CountVectorizer().fit(text_train)</span><br><span class="line">    X_train = vect.transform(text_train)</span><br><span class="line">    print(&quot;X_train:\n&#123;&#125;&quot;.format(repr(X_train)))</span><br><span class="line">    feature_names = vect.get_feature_names()</span><br><span class="line">    print(&quot;Number of features:&#123;&#125;&quot;.format(len(feature_names)))</span><br><span class="line">    print(&quot;First 20 features:\n&#123;&#125;&quot;.format(feature_names[:20]))</span><br><span class="line">    print(&quot;Features 20010 to 20030:\n&#123;&#125;&quot;.format(feature_names[20010:20030]))</span><br><span class="line">    print(&quot;Every 2000th feature:\n&#123;&#125;&quot;.format(feature_names[::2000]))</span><br><span class="line">    scores = cross_val_score(LogisticRegression(),X_train,y_train,cv=5)</span><br><span class="line">    print(&quot;Mean cross-validation accuracy:&#123;:.2f&#125;&quot;.format(np.mean(scores)))</span><br><span class="line">    param_grid = &#123;&apos;C&apos;:[0.001,0.01,0.1,1,10]&#125;</span><br><span class="line">    grid = GridSearchCV(LogisticRegression(),param_grid,cv=5)</span><br><span class="line">    grid.fit(X_train,y_train)</span><br><span class="line">    print(&quot;Best cross-validation score:&#123;:.2f&#125;&quot;.format(grid.best_score_))</span><br><span class="line">    print(&quot;Best parameters: &quot;,grid.best_params_)</span><br><span class="line">    X_test = vect.transform(text_test)</span><br><span class="line">    print(&quot;&#123;:.2f&#125;&quot;.format(grid.score(X_test,y_test)))</span><br><span class="line">    vect = CountVectorizer(min_df=5).fit(text_train)</span><br><span class="line">    X_train = vect.transform(text_train)</span><br><span class="line">    print(&quot;X_train with min_df:&#123;&#125;&quot;.format(repr(X_train)))</span><br><span class="line">    feature_names = vect.get_feature_names()</span><br><span class="line">    print(&quot;First 50 features:\n&#123;&#125;&quot;.format(feature_names[:50]))</span><br><span class="line">    print(&quot;Features 20010 to 20030:\n&#123;&#125;&quot;.format(feature_names[20010:20030]))</span><br><span class="line">    print(&quot;Every 700th feature:\n&#123;&#125;&quot;.format(feature_names[::700]))</span><br><span class="line">    grid = GridSearchCV(LogisticRegression(),param_grid,cv=5)</span><br><span class="line">    grid.fit(X_train,y_train)</span><br><span class="line">    print(&quot;Best cross-validation score:&#123;:.2f&#125;&quot;.format(grid.best_score_))</span><br><span class="line">    #停用词</span><br><span class="line">    print(&quot;Numbers of stop words:&#123;&#125;&quot;.format(len(ENGLISH_STOP_WORDS)))</span><br><span class="line">    print(&quot;Every 10th stopword:\n&#123;&#125;&quot;.format(list(ENGLISH_STOP_WORDS)[::10]))</span><br><span class="line">    vect = CountVectorizer(min_df=5,stop_words=&quot;english&quot;).fit(text_train)</span><br><span class="line">    X_train =vect.transform(text_train)</span><br><span class="line">    print(&quot;X_train with stop words:\n&#123;&#125;&quot;.format(repr(X_train)))</span><br><span class="line">    grid = GridSearchCV(LogisticRegression(),param_grid,cv=5)</span><br><span class="line">    grid.fit(X_train,y_train)</span><br><span class="line">    print(&quot;Best cross-validation score:&#123;:.2f&#125;&quot;.format(grid.best_score_))</span><br><span class="line">    #tf-idf</span><br><span class="line">    pipe = make_pipeline(TfidfVectorizer(min_df=5),LogisticRegression())</span><br><span class="line">    param_grid = &#123;&apos;logisticregression__C&apos;:[0.001,0.01,0.1,1,10]&#125;</span><br><span class="line">    grid = GridSearchCV(pipe,param_grid,cv=5)</span><br><span class="line">    grid.fit(text_train,y_train)</span><br><span class="line">    print(&quot;Best cross-validation score:&#123;:.2f&#125;&quot;.format(grid.best_score_))</span><br><span class="line">    vectorizer = grid.best_estimator_.named_steps[&quot;tfidfvectorizer&quot;]</span><br><span class="line">    #变换训练数据集</span><br><span class="line">    X_train = vectorizer.transform(text_train)</span><br><span class="line">    #找到数据集中每个特征的最大值</span><br><span class="line">    max_value = X_train.max(axis=0).toarray().ravel()</span><br><span class="line">    sorted_by_tfidf = max_value.argsort()</span><br><span class="line">    #获取特征名称</span><br><span class="line">    feature_names = np.array(vectorizer.get_feature_names())</span><br><span class="line">    print(&quot;Features with lowest tfidf:\n&#123;&#125;&quot;.format(feature_names[sorted_by_tfidf[:20]]))</span><br><span class="line">    print(&quot;Features with highest tfidf:\n&#123;&#125;&quot;.format(feature_names[sorted_by_tfidf[-20:]]))</span><br><span class="line">    sorted_by_idf = np.argsort(vectorizer.idf_)</span><br><span class="line">    print(&quot;Featues with lowest idf:\n&#123;&#125;&quot;.format(feature_names[sorted_by_idf[:100]]))</span><br><span class="line">    mglearn.tools.visualize_coefficients(grid.best_estimator_.named_steps[&quot;logisticregression&quot;].coef_,feature_names,n_top_features=40)</span><br><span class="line">    plt.show()</span><br><span class="line">    #bard_words示例</span><br><span class="line">    print(&quot;bards_words:\n&#123;&#125;&quot;.format(bards_words))</span><br><span class="line">    #一元分词</span><br><span class="line">    cv = CountVectorizer(ngram_range=(1,1)).fit(bards_words)</span><br><span class="line">    print(&quot;Vocabulary size:&#123;&#125;&quot;.format(len(cv.vocabulary_)))</span><br><span class="line">    print(&quot;Vocabulary:\n&#123;&#125;&quot;.format(cv.get_feature_names()))</span><br><span class="line">    #二元分词</span><br><span class="line">    cv = CountVectorizer(ngram_range=(2,2)).fit(bards_words)</span><br><span class="line">    print(&quot;Vocabulary size:&#123;&#125;&quot;.format(len(cv.vocabulary_)))</span><br><span class="line">    print(&quot;Vocabulary:\n&#123;&#125;&quot;.format(cv.get_feature_names()))</span><br><span class="line">    print(&quot;Transformed data(dense):\n&#123;&#125;&quot;.format(cv.transform(bards_words).toarray()))</span><br><span class="line">    #在bards_words上使用一元分词、二元分词和三元分词</span><br><span class="line">    cv = CountVectorizer(ngram_range=(1,3)).fit(bards_words)</span><br><span class="line">    print(&quot;Vocabulary size:&#123;&#125;&quot;.format(len(cv.vocabulary_)))</span><br><span class="line">    print(&quot;Vocabulary:\n&#123;&#125;&quot;.format(cv.get_feature_names()))</span><br><span class="line">    #利用网格找出n元分词的最佳设置</span><br><span class="line">    pipe = make_pipeline(TfidfVectorizer(min_df=5),LogisticRegression())</span><br><span class="line">    #运行网格搜索需要时间长，因为网格较大，且包含三元分词</span><br><span class="line">    param_grid = &#123;&quot;logisticregression__C&quot;:[0.001,0.01,0.1,1,10,100],</span><br><span class="line">                    &quot;tfidfvectorizer_ngram_range&quot;:[(1,1),(1,2),(1,3)]&#125;</span><br><span class="line">    grid = GridSearchCV(pipe,param_grid,cv=5)</span><br><span class="line">    grid.fit(text_train,y_train)</span><br><span class="line">    print(&quot;Best cross-validation score:&#123;:.2f&#125;&quot;.format(grid.best_score_))</span><br><span class="line">    print(&quot;Best parameters:\n&#123;&#125;&quot;.format(grid.best_params_))</span><br><span class="line">    #从网格搜索中提取分数</span><br><span class="line">    scores = grid.cv_results_[&apos;mean_test_score&apos;].reshape(-1,3)</span><br><span class="line">    #热图可视化</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    heatmap = mglearn.tools.heatmap(</span><br><span class="line">        scores,xlabel=&quot;C&quot;,ylabel=&quot;ngram_range&quot;,cmap=&quot;viridis&quot;,fmt=&quot;%.3f&quot;,</span><br><span class="line">        xticklabels = param_grid[&quot;logisticregression__C&quot;],</span><br><span class="line">        yticklabels = param_grid[&quot;tfidfvectorizer__ngram_range&quot;]</span><br><span class="line">    )</span><br><span class="line">    plt.colorbar(heatmap)</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    #提取特征名称与系数</span><br><span class="line">    vect = grid.best_estimator_.named_steps[&apos;tfidfvectorizer&apos;]</span><br><span class="line">    feature_names = np.array(vect.get_feature_name())</span><br><span class="line">    coef = grid.best_estimator_.named_steps[&apos;logisticregression&apos;].coef_</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.tools.visualize_coefficients(coef,feature_names,n_top_features=40)</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    #找到三元分词特征</span><br><span class="line">    mask=np.array([len(feature.split(&quot; &quot;)) for feature in feature_names])==3</span><br><span class="line">    #仅将三元分词特征可视化</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.tools.visualize_coefficients(coef.ravel()[mask],feature_names[mask],n_top_features=40)</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    #使用LDA(隐含狄利克雷分布)</span><br><span class="line">    vect = CountVectorizer(max_features=10000,max_df=.15)</span><br><span class="line">    X = vect.fit_transform(text_train)</span><br><span class="line">    lda = LatentDirichletAllocation(n_topics=10,learning_method=&quot;batch&quot;,max_iter=25,random_state=0)</span><br><span class="line">    #我们在一个步骤中构建模型并变换数据</span><br><span class="line">    #计算变换需要花点时间，二者同时及逆行可以节省时间</span><br><span class="line">    document_topics = lda.fit_transform(X)</span><br><span class="line">    print(lda.components_.shape)</span><br><span class="line">    #对于每个主题(components_的一行)，将特征排序(升序)</span><br><span class="line">    #用[:,::-1]将行反转，将排序变为降序</span><br><span class="line">    sorting = np.argsort(lda.components_,axis=1)[:,::-1]</span><br><span class="line">    #从向量器中获取特征名称</span><br><span class="line">    feature_names = np.array(vect.get_feature_names())</span><br><span class="line">    #打印出前10个主题</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.tools.print_topics(topics=range(10),feature_names=feature_names,sorting=sorting,topics_per_chunk=5,n_words=10)</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    lda100 = LatentDirichletAllocation(n_topics=100,learning_method=&quot;batch&quot;,max_iter=25,random_state=0)</span><br><span class="line">    document_topics100 = lda100.fit_transform(X)</span><br><span class="line">    topics = np.array([7,16,24,25,28,36,37,45,51,53,54,63,89,97])</span><br><span class="line">    sorting = np.argsort(lda100.components_,axis=1)[:,::-1]</span><br><span class="line">    feature_names = np.array(vect.get_feature_names())</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    mglearn.tools.print_topics(topics=topics,feature_names=feature_names,sorting=sorting,topics_per_chunk=7,n_words=20)</span><br><span class="line">    plt.show()</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    music = np.argsort(document_topics100[:,45])[::-1]</span><br><span class="line">    #打印出这个主题最重要的前5个文档</span><br><span class="line">    for i in music[:10]:</span><br><span class="line">        #显示前两个句子</span><br><span class="line">        print(b&quot;.&quot;.join(text_train[i].split(b&quot;.&quot;)[:2])+b&quot;.\n&quot;)</span><br><span class="line">    #LDA学到的主题</span><br><span class="line">    fig,ax = plt.subplots(1,2,figsize=(10,10))</span><br><span class="line">    topic_names = [&quot;&#123;:&gt;2&#125;&quot;.format(i)+&quot; &quot;.join(words) for i,words in enumerate(feature_names[sorting[:,:2]])]</span><br><span class="line">    #两列的条形图</span><br><span class="line">    for col in [0,1]:</span><br><span class="line">        start = col*50</span><br><span class="line">        end = (col+1)*50</span><br><span class="line">        ax[col].barh(np.arange(50),np.sum(document_topics100,axis=0)[start:end])</span><br><span class="line">        ax[col].set_yticks(np.arange(50))</span><br><span class="line">        ax[col].set_yticklabels(topic_names[start:end],ha=&quot;left&quot;,va=&quot;top&quot;)</span><br><span class="line">        ax[col].invert_yaxis()</span><br><span class="line">        ax[col].set_xlim(0,2000)</span><br><span class="line">        yax = ax[col].get_yaxis()</span><br><span class="line">        yax.set_tick_params(pad=130)</span><br><span class="line">    plt.tight_layout()</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/27/模型评估与改进/" rel="next" title="模型评估与改进">
+                <i class="fa fa-chevron-left"></i> 模型评估与改进
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
