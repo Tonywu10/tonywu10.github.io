@@ -79,20 +79,22 @@
 
 
 
-<meta name="description" content="Problem 108 Convert Sorted Array to Binary Search Tree/Problem 110 Balanced Binary Tree">
+<meta name="description" content="Problem 447 Number of Boomerangs/Problem 453 Minimum Moves to Equal Array Elements/Problem 459 Repeated Substring Pattern/Problem 475 Heaters">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode刷题记录(Java)">
-<meta property="og:url" content="http://yoursite.com/2019/09/14/Leetcode刷题记录(Java) _09_14/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/09/19/Leetcode刷题记录(Java) _09_18&09_19/index.html">
 <meta property="og:site_name" content="小吴的程序屋">
-<meta property="og:description" content="Problem 108 Convert Sorted Array to Binary Search Tree/Problem 110 Balanced Binary Tree">
+<meta property="og:description" content="Problem 447 Number of Boomerangs/Problem 453 Minimum Moves to Equal Array Elements/Problem 459 Repeated Substring Pattern/Problem 475 Heaters">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/15/ncsWTI.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/15/ncyBHs.png">
-<meta property="og:updated_time" content="2019-09-15T03:14:39.940Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/19/nLtwl9.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/19/nL0Zoq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/19/nLrrm4.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/19/nLsgbQ.png">
+<meta property="og:updated_time" content="2019-09-19T10:46:53.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode刷题记录(Java)">
-<meta name="twitter:description" content="Problem 108 Convert Sorted Array to Binary Search Tree/Problem 110 Balanced Binary Tree">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/15/ncsWTI.png">
+<meta name="twitter:description" content="Problem 447 Number of Boomerangs/Problem 453 Minimum Moves to Equal Array Elements/Problem 459 Repeated Substring Pattern/Problem 475 Heaters">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/19/nLtwl9.png">
 
 
 
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/14/Leetcode刷题记录(Java) _09_14/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/09/19/Leetcode刷题记录(Java) _09_18&09_19/"/>
 
 
 
@@ -245,7 +247,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/14/Leetcode刷题记录(Java) _09_14/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/Leetcode刷题记录(Java) _09_18&09_19/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Wu">
@@ -274,8 +276,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T00:00:00+08:00">
-                2019-09-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-19T00:00:00+08:00">
+                2019-09-19
               </time>
             
 
@@ -290,8 +292,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T11:14:39+08:00">
-                2019-09-15
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-19T18:46:53+08:00">
+                2019-09-19
               </time>
             
           </span>
@@ -333,7 +335,7 @@
 
           
               <div class="post-description">
-                  Problem 108 Convert Sorted Array to Binary Search Tree/Problem 110 Balanced Binary Tree
+                  Problem 447 Number of Boomerangs/Problem 453 Minimum Moves to Equal Array Elements/Problem 459 Repeated Substring Pattern/Problem 475 Heaters
               </div>
           
 
@@ -350,28 +352,30 @@
       
 
       
-        <p>Problem 108 Convert Sorted Array to Binary Search Tree<br><img src="https://s2.ax1x.com/2019/09/15/ncsWTI.png" alt="ncsWTI.png"><br>该问题属于构建树问题,只不过构建的是二叉搜索树,需要满足二叉搜索树的相关条件</p>
+        <p>Problem 447 Number of Boomerangs<br><img src="https://s2.ax1x.com/2019/09/19/nLtwl9.png" alt="nLtwl9.png"><br>该问题给了我们一个二维数组,数组中每个元素是一个点,其拥有x和y的坐标.要求找出所有满足条件的三元组,而条件是三元组中第一个元素到第二个元素和第一个元素到第三个元素的距离相同.</p>
 <hr>
-<p>主要思路:<br>题目给出一个已经排好序的int数组用于组建二叉搜索树,根据二叉搜索树的原则,根结点左子树的值都小于根结点,而右子树的值都大于根结点.由于数组已经排序,所以根结点只需要选择中间位置的元素即可.之后递归地构建每个结点的左右子树即可.<br>该问题的核心在于定界,注意对start和end位置进行重新赋值.</p>
+<p>主要思路:<br>以第一个点为中心点进行遍历,利用hashMap存储距离到达中心点相同的点的个数,最后由于两个点之间的位置可以互换,所以需要对计数器*2</p>
 <hr>
-<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode sortedArrayToBST(int[] nums) &#123;</span><br><span class="line">        TreeNode root = subSortedArrayToBST(nums,0,nums.length-1);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">    public TreeNode subSortedArrayToBST(int[] nums,int start,int end)&#123;</span><br><span class="line">        if(start&gt;end)&#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        int middle = (int) Math.ceil((end+start)/2.0);</span><br><span class="line">        TreeNode root = new TreeNode(nums[middle]);</span><br><span class="line">        root.left = subSortedArrayToBST(nums,start,middle-1);</span><br><span class="line">        root.right = subSortedArrayToBST(nums,middle+1,end);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int numberOfBoomerangs(int[][] points) &#123;</span><br><span class="line">        if(points.length&lt;3)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int count = 0;</span><br><span class="line">        Map&lt;Integer,Integer&gt; hashMap = new HashMap&lt;&gt;();</span><br><span class="line">        for (int i = 0;i &lt; points.length;i++)&#123;</span><br><span class="line">            hashMap.clear();</span><br><span class="line">            for (int j = 0;j &lt; points.length;j++)&#123;</span><br><span class="line">                if (i == j)&#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int distance = (points[j][0]-points[i][0])*(points[j][0]-points[i][0]) + (points[j][1]-points[i][1]) * (points[j][1]-points[i][1]);</span><br><span class="line">                count += hashMap.getOrDefault(distance,0) * 2;</span><br><span class="line">                hashMap.put(distance,hashMap.getOrDefault(distance,0) + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
-<p>⭐Problem 110 Balanced Binary Tree<br><img src="https://s2.ax1x.com/2019/09/15/ncyBHs.png" alt="ncyBHs.png"><br>该问题比较经典,要求判断一棵树是否是平衡二叉树,而平衡二叉树的条件是该树中所有结点的左右子树深度之差的绝对值都不大于1.</p>
+<p>代码说明:<br>这里的count之所以每次执行hashMap.getOrDefault(distance,0)*2的操作是为了模拟组合操作,新的距离产生的时候其map中对应的值为0,因为此时只有1个元素,所以count=0*2,之后该距离填入map,当有第二个相同距离的元素进来时,count+=1*2=2,map中该距离的值变为2,继续以上操作,你会发现count的变化规律是0+2+4+6+8+10+…,刚好对应的是Cn取2的模式(除第一次外),也就是对应有多少种情况.</p>
 <hr>
-<p>主要思路:<br>知道平衡二叉树的定义之后,解决该问题只需要分两步走.</p>
-<ul>
-<li>获得每个结点左右子树深度</li>
-<li>递归访问所有结点,如遇到有任何结点不满足平衡二叉树条件的,则整棵树不是平衡二叉树.</li>
-</ul>
+<p>Problem 453 Minimum Moves to Equal Array Elements<br><img src="https://s2.ax1x.com/2019/09/19/nL0Zoq.png" alt="nL0Zoq.png"><br>该问题要求判断数组里的每个元素是否相同,而每次的变化规律是除某一元素外,其余所有元素都加1,求出满足所有元素相同要求的最小的移动步数.<br>主要思路:<br>该问题最正常的思路就是每次找出最大值,然后将其他所有值加上1,判断是否满足条件并重复上述过程.这样自然是在逻辑上没问题,但会出现超时问题.所以需要一点技巧,换个角度思考,其它所有值+1相当于未选中的值-1,这样只需要累加各个值和最小值的差异即可.</p>
 <hr>
-<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isBalanced(TreeNode root) &#123;</span><br><span class="line">        if(root==null)&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return Math.abs(deep(root.left)-deep(root.right))&lt;=1&amp;&amp;isBalanced(root.left)&amp;&amp;isBalanced(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">    public int deep(TreeNode root)&#123;</span><br><span class="line">        if(root==null)</span><br><span class="line">            return 0;</span><br><span class="line">        return 1+Math.max(deep(root.left),deep(root.right));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int minMoves(int[] nums) &#123;</span><br><span class="line">        int min = Integer.MAX_VALUE, count = 0;</span><br><span class="line">        for(int n : nums) &#123;</span><br><span class="line">            min = Math.min(min, n);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int n : nums) &#123;</span><br><span class="line">            count += n - min;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
-<p>代码说明:<br>该代码主要包括两个点:</p>
-<ul>
-<li>求深度</li>
-<li>递归</li>
-</ul>
-<p>对于第一点在deep函数中已经清晰展现,而对于第二点,需要注意的是在判断时始终把我判断条件是以当前结点作为考虑,只考虑当前的情况,否则很容易陷入死循环,就该题来说就是先判断结点的左右子树深度差,之后再递归左子树和右子树.</p>
+<p>Problem 459 Repeated Substring Pattern<br><img src="https://s2.ax1x.com/2019/09/19/nLrrm4.png" alt="nLrrm4.png"><br>判断一个字符串能不能通过它的子串的重复累加得到</p>
+<hr>
+<p>主要思路:<br>如果通过获取所有子串判断的话会出现超时问题,所以需要通过巧妙的判断解决,那就是将字符串叠加一次成两倍,然后掐头去尾,如果原字符串在修改中的字符串中则返回true.<br>简单举例来说,如果字符串只有1位,其子串必为空,自然返回false.如有2位,两倍后掐头去尾,如果原字符串满足条件,那么两倍化之后的字符串中自然包含原来的字符串,比如abab,两倍化之后为abababab,去掉首尾的a和b变为bababa,其原串abab包含其中,返回true.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean repeatedSubstringPattern(String s) &#123;</span><br><span class="line">        String ss = s + s;</span><br><span class="line">        return ss.substring(1, ss.length()-1).contains(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>Problem 475 Heaters<br><img src="https://s2.ax1x.com/2019/09/19/nLsgbQ.png" alt="nLsgbQ.png"><br>该题简单来说就是有一堆房子,其中有一些是取暖房,要求求出取暖房辐射的半径,这个半径要保证所有的房子不被冻死.</p>
+<hr>
+<p>主要思路:<br>这个题目需要用到排序和查找,排序是为了找出房子和取暖房的顺序,方便遍历.而查找是用于查找房子位于哪两个取暖房的中间,或者位于取暖房的左边(房子编号为第一个时),或者位于取暖房的右边(房子编号为最后一个时),如果在房子在两个取暖房中间的话,只需要求出房子到两边的最小值即可,当求完所有半径值之后取其中最大值作为半径.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int findRadius(int[] houses, int[] heaters) &#123;</span><br><span class="line">        Arrays.sort(houses);</span><br><span class="line">        Arrays.sort(heaters);</span><br><span class="line">        int radius = 0;</span><br><span class="line">        int i = 0;</span><br><span class="line">        for (int house:houses)&#123;</span><br><span class="line">            while(i&lt;heaters.length-1&amp;&amp;house&gt;heaters[i])</span><br><span class="line">                i++;</span><br><span class="line">            if (i!=0)</span><br><span class="line">                radius = Math.max(radius,Math.min(Math.abs(house-heaters[i-1]),Math.abs(house-heaters[i])));</span><br><span class="line">            else</span><br><span class="line">                radius = Math.max(Math.abs(house-heaters[0]),radius);</span><br><span class="line">        &#125;</span><br><span class="line">        return radius;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码说明:<br>主要是while循环,其中包含两个条件,第一个条件时为了保证i不越界,第二个条件是为了保证取暖房的值会大于当前房子的值(除非取暖房已经遍历到了最后一个,即剩下所有房子编号都比取暖房最后一个编号要大).</p>
 
       
     </div>
@@ -396,7 +400,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/12/Leetcode刷题记录(Java) _09_12/" rel="next" title="Leetcode刷题记录(Java)">
+              <a href="/2019/09/17/Leetcode刷题记录(Java) _09_17/" rel="next" title="Leetcode刷题记录(Java)">
                 <i class="fa fa-chevron-left"></i> Leetcode刷题记录(Java)
               </a>
             
@@ -406,7 +410,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/15/Leetcode刷题记录(Java) _09_15/" rel="prev" title="Leetcode刷题记录(Java)">
+              <a href="/2019/09/20/Leetcode刷题记录(Java) _09_20/" rel="prev" title="Leetcode刷题记录(Java)">
                 Leetcode刷题记录(Java) <i class="fa fa-chevron-right"></i>
               </a>
             
