@@ -79,19 +79,21 @@
 
 
 
-<meta name="description" content="Problem 437 Path Sum III">
+<meta name="description" content="Problem 700 Search in a Binary Search Tree/Problem 703 Kth Largest Element in a Stream/Problem 746 Min Cost Climbing Stairs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode刷题记录(Java)">
-<meta property="og:url" content="http://yoursite.com/2019/09/17/Leetcode刷题记录(Java) _09_17/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/09/24/Leetcode刷题记录(Java) _09_24/index.html">
 <meta property="og:site_name" content="小吴的程序屋">
-<meta property="og:description" content="Problem 437 Path Sum III">
+<meta property="og:description" content="Problem 700 Search in a Binary Search Tree/Problem 703 Kth Largest Element in a Stream/Problem 746 Min Cost Climbing Stairs">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/17/nIwmo4.png">
-<meta property="og:updated_time" content="2019-09-17T13:18:47.201Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uEtxbR.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uEUpLj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uEd1xO.png">
+<meta property="og:updated_time" content="2019-09-24T15:21:28.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode刷题记录(Java)">
-<meta name="twitter:description" content="Problem 437 Path Sum III">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/17/nIwmo4.png">
+<meta name="twitter:description" content="Problem 700 Search in a Binary Search Tree/Problem 703 Kth Largest Element in a Stream/Problem 746 Min Cost Climbing Stairs">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/24/uEtxbR.png">
 
 
 
@@ -121,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/17/Leetcode刷题记录(Java) _09_17/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/09/24/Leetcode刷题记录(Java) _09_24/"/>
 
 
 
@@ -244,7 +246,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/Leetcode刷题记录(Java) _09_17/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/Leetcode刷题记录(Java) _09_24/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Wu">
@@ -273,8 +275,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-17T00:00:00+08:00">
-                2019-09-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-24T00:00:00+08:00">
+                2019-09-24
               </time>
             
 
@@ -289,8 +291,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-17T21:18:47+08:00">
-                2019-09-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-24T23:21:28+08:00">
+                2019-09-24
               </time>
             
           </span>
@@ -332,7 +334,7 @@
 
           
               <div class="post-description">
-                  Problem 437 Path Sum III
+                  Problem 700 Search in a Binary Search Tree/Problem 703 Kth Largest Element in a Stream/Problem 746 Min Cost Climbing Stairs
               </div>
           
 
@@ -349,12 +351,25 @@
       
 
       
-        <p>Problem 437 Path Sum III<br><img src="https://s2.ax1x.com/2019/09/17/nIwmo4.png" alt="nIwmo4.png"><br>该问题属于二叉树问题,要求求出路径和满足给定值的路径数量,不同之处在于以往的求路径问题都是从根结点出发,而该题可以从任意结点出发.</p>
+        <p>Problem 700 Search in a Binary Search Tree<br><img src="https://s2.ax1x.com/2019/09/24/uEtxbR.png" alt="uEtxbR.png"><br>在二叉树中找到满足值要求的子树,若找不到则返回null</p>
 <hr>
-<p>主要思路:<br>由于任意结点都能成为路径中的根结点,所以相当于增加了遍历这个操作,可以采用任意的方式进行遍历,我采用了队列的形式对结点进行入队操作.当有了根结点后就以它为出发点对其下属的所有路径进行遍历,遍历过程中要注意在递归结束时对值的操作,比如在对叶子结点的值进行累加后,判断它与预设值是否相同,之后需要将其减去,完成类似回退的操作.</p>
+<p>主要思路:<br>该题的思路比较直接,就是找到与值相等的结点即可,而对于二叉搜索树,自然是比值大往左走,比值小往右走,不过这里特别要注意的是,该题只需要返回结点即可,不需要重建树,所以在返回位置的选择上需要特别注意.遇到符合要求的结点直接返回</p>
 <hr>
-<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">    int pathSum = 0;</span><br><span class="line">    int paths = 0;</span><br><span class="line">    int result = 0;</span><br><span class="line">    public int pathSum(TreeNode root, int sum) &#123;</span><br><span class="line">        queue = makeQueue(root);</span><br><span class="line">        while (!queue.isEmpty())&#123;</span><br><span class="line">            TreeNode node = queue.poll();</span><br><span class="line">            result += pathSumFromOneNode(node,sum);</span><br><span class="line">            paths = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    public int pathSumFromOneNode(TreeNode root,int sum)&#123;</span><br><span class="line">        if (root==null)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;if (root.left==null&amp;&amp;root.right==null)&#123;</span><br><span class="line">            pathSum += root.val;</span><br><span class="line">            if (pathSum==sum)</span><br><span class="line">                paths += 1;</span><br><span class="line">            pathSum -= root.val;</span><br><span class="line">            return paths;</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            pathSum += root.val;</span><br><span class="line">            if (pathSum==sum)</span><br><span class="line">                paths += 1;</span><br><span class="line">            pathSumFromOneNode(root.left,sum);</span><br><span class="line">            pathSumFromOneNode(root.right,sum);</span><br><span class="line">            pathSum -= root.val;</span><br><span class="line">        &#125;</span><br><span class="line">        return paths;</span><br><span class="line">    &#125;</span><br><span class="line">    public Queue&lt;TreeNode&gt; makeQueue(TreeNode root)&#123;</span><br><span class="line">        if (root==null)&#123;</span><br><span class="line">            return queue;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            queue.offer(root);</span><br><span class="line">            makeQueue(root.left);</span><br><span class="line">            makeQueue(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">        return queue;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode searchBST(TreeNode root, int val) &#123;</span><br><span class="line">        if (root==null)</span><br><span class="line">            return null;</span><br><span class="line">        else &#123;</span><br><span class="line">            if (root.val==val)&#123;</span><br><span class="line">                return root;</span><br><span class="line">            &#125;else if (root.val&lt;val)&#123;</span><br><span class="line">                return searchBST(root.right,val);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                return searchBST(root.left,val);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
+<p>⭐Problem 703 Kth Largest Element in a Stream<br><img src="https://s2.ax1x.com/2019/09/24/uEUpLj.png" alt="uEUpLj.png"><br>找出数组中第K大的数字,该数组为乱序且容量不断增加,每次都要返回其第K大的值.</p>
+<hr>
+<p>主要思路:<br>提到第K大的值一般会想到堆排序,在Java中的实现为PriorityQueue,只需要不断添加数字,当queue大小超过K的时候出队列,最后返回队头元素即可</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class KthLargest &#123;</span><br><span class="line">    private Queue&lt;Integer&gt; pq;</span><br><span class="line">    private int k;</span><br><span class="line"></span><br><span class="line">    public KthLargest(int k, int[] nums) &#123;</span><br><span class="line">        pq = new PriorityQueue&lt;&gt;(k);</span><br><span class="line">        this.k = k;</span><br><span class="line">        for (int num : nums) &#123;</span><br><span class="line">            add(num);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int add(int val) &#123;</span><br><span class="line">        pq.add(val);</span><br><span class="line">        if (pq.size() == k + 1) &#123;</span><br><span class="line">            pq.remove();</span><br><span class="line">        &#125;</span><br><span class="line">        return pq.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Your KthLargest object will be instantiated and called as such:</span><br><span class="line"> * KthLargest obj = new KthLargest(k, nums);</span><br><span class="line"> * int param_1 = obj.add(val);</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>⭐Problem 746 Min Cost Climbing Stairs<br><img src="https://s2.ax1x.com/2019/09/24/uEd1xO.png" alt="uEd1xO.png"><br>找出登上楼顶的最小代价,你可以选择每次跳一步或者两步,起点可以为第一个台阶或者第二个台阶.</p>
+<hr>
+<p>主要思路:<br>这就是一个跳台阶问题,最原始的跳台阶问题是求总共的选择,采用斐波拉契数列求得.此处增加了val,但是总体思想还是DP问题,也就是从第三个台阶开始比较min,是第i-<br>1个台阶加上当前台阶的值小,还是i-2个台阶加上当前台阶的值小,之后循环得到结果.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int minCostClimbingStairs(int[] cost) &#123;</span><br><span class="line">        for (int i = 2; i &lt; cost.length; i++)&#123;</span><br><span class="line">            cost[i] = Math.min(cost[i-1] + cost[i], cost[i-2] + cost[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int arrLength = cost.length;</span><br><span class="line">        return Math.min(cost[arrLength - 1], cost[arrLength - 2]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>代码说明:<br>由于不管当前是最后一位还是倒数第二位,累加值的工作都已结束,只需要比较两者,取较小的那个即可.</p>
 
       
     </div>
@@ -379,7 +394,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/16/Leetcode刷题记录(Java) _09_16/" rel="next" title="Leetcode刷题记录(Java)">
+              <a href="/2019/09/23/Leetcode刷题记录(Java) _09_22&09_23/" rel="next" title="Leetcode刷题记录(Java)">
                 <i class="fa fa-chevron-left"></i> Leetcode刷题记录(Java)
               </a>
             
@@ -389,7 +404,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/19/Leetcode刷题记录(Java) _09_18&09_19/" rel="prev" title="Leetcode刷题记录(Java)">
+              <a href="/2019/09/26/Leetcode刷题记录(Java) _09_25&09_26/" rel="prev" title="Leetcode刷题记录(Java)">
                 Leetcode刷题记录(Java) <i class="fa fa-chevron-right"></i>
               </a>
             

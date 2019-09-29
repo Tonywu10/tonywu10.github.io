@@ -79,19 +79,20 @@
 
 
 
-<meta name="description" content="Problem 437 Path Sum III">
+<meta name="description" content="Problem 754 Reach a Number/Problem 784 Letter Case Permutation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode刷题记录(Java)">
-<meta property="og:url" content="http://yoursite.com/2019/09/17/Leetcode刷题记录(Java) _09_17/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/09/26/Leetcode刷题记录(Java) _09_25&09_26/index.html">
 <meta property="og:site_name" content="小吴的程序屋">
-<meta property="og:description" content="Problem 437 Path Sum III">
+<meta property="og:description" content="Problem 754 Reach a Number/Problem 784 Letter Case Permutation">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/17/nIwmo4.png">
-<meta property="og:updated_time" content="2019-09-17T13:18:47.201Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/26/unI2GR.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/26/unq1rq.png">
+<meta property="og:updated_time" content="2019-09-27T03:13:07.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode刷题记录(Java)">
-<meta name="twitter:description" content="Problem 437 Path Sum III">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/17/nIwmo4.png">
+<meta name="twitter:description" content="Problem 754 Reach a Number/Problem 784 Letter Case Permutation">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/26/unI2GR.png">
 
 
 
@@ -121,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/17/Leetcode刷题记录(Java) _09_17/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/09/26/Leetcode刷题记录(Java) _09_25&09_26/"/>
 
 
 
@@ -244,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/Leetcode刷题记录(Java) _09_17/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/Leetcode刷题记录(Java) _09_25&09_26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Wu">
@@ -273,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-17T00:00:00+08:00">
-                2019-09-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-26T00:00:00+08:00">
+                2019-09-26
               </time>
             
 
@@ -289,8 +290,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-17T21:18:47+08:00">
-                2019-09-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-27T11:13:07+08:00">
+                2019-09-27
               </time>
             
           </span>
@@ -332,7 +333,7 @@
 
           
               <div class="post-description">
-                  Problem 437 Path Sum III
+                  Problem 754 Reach a Number/Problem 784 Letter Case Permutation
               </div>
           
 
@@ -349,12 +350,17 @@
       
 
       
-        <p>Problem 437 Path Sum III<br><img src="https://s2.ax1x.com/2019/09/17/nIwmo4.png" alt="nIwmo4.png"><br>该问题属于二叉树问题,要求求出路径和满足给定值的路径数量,不同之处在于以往的求路径问题都是从根结点出发,而该题可以从任意结点出发.</p>
+        <p>Problem 754 Reach a Number<br><img src="https://s2.ax1x.com/2019/09/26/unI2GR.png" alt="unI2GR.png"><br>从原点出发,需要经过多少步可以到达指定值,步数大小可正可负且每次步数大小递增1,也就是第一次可以走1步(无论左右),第二次走2步(无论左右)…</p>
 <hr>
-<p>主要思路:<br>由于任意结点都能成为路径中的根结点,所以相当于增加了遍历这个操作,可以采用任意的方式进行遍历,我采用了队列的形式对结点进行入队操作.当有了根结点后就以它为出发点对其下属的所有路径进行遍历,遍历过程中要注意在递归结束时对值的操作,比如在对叶子结点的值进行累加后,判断它与预设值是否相同,之后需要将其减去,完成类似回退的操作.</p>
+<p>主要思路:<br>这个题目考的是数学思想,我本来开始只想着一直向目标值靠近,但是超过了就退回当前值的做法,这种做法会造成靠近目标值时步数的极具增加,因为每次步数只能增加1了.比如为了接近18,我先让1+2+3+4+5+6,当加6时已经超过18,所以我变成1+2+3+4+5-6之后+7-8+9的形式.后来看到别人的正确解法明白了这个题目的关键在于理解距离,同样采取一直向目标值接近的办法,只是在超过目标值之后比较当前累加值和目标值的差,如果差值为偶数的话就能返回累加步数-1了,比如要达到30,我们首先1+2+3+4+5+6+7+8=36&gt;30,36-30=6为偶数,而这个6其实可以通过将3转为-3即可.</p>
 <hr>
-<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">    int pathSum = 0;</span><br><span class="line">    int paths = 0;</span><br><span class="line">    int result = 0;</span><br><span class="line">    public int pathSum(TreeNode root, int sum) &#123;</span><br><span class="line">        queue = makeQueue(root);</span><br><span class="line">        while (!queue.isEmpty())&#123;</span><br><span class="line">            TreeNode node = queue.poll();</span><br><span class="line">            result += pathSumFromOneNode(node,sum);</span><br><span class="line">            paths = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    public int pathSumFromOneNode(TreeNode root,int sum)&#123;</span><br><span class="line">        if (root==null)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;if (root.left==null&amp;&amp;root.right==null)&#123;</span><br><span class="line">            pathSum += root.val;</span><br><span class="line">            if (pathSum==sum)</span><br><span class="line">                paths += 1;</span><br><span class="line">            pathSum -= root.val;</span><br><span class="line">            return paths;</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            pathSum += root.val;</span><br><span class="line">            if (pathSum==sum)</span><br><span class="line">                paths += 1;</span><br><span class="line">            pathSumFromOneNode(root.left,sum);</span><br><span class="line">            pathSumFromOneNode(root.right,sum);</span><br><span class="line">            pathSum -= root.val;</span><br><span class="line">        &#125;</span><br><span class="line">        return paths;</span><br><span class="line">    &#125;</span><br><span class="line">    public Queue&lt;TreeNode&gt; makeQueue(TreeNode root)&#123;</span><br><span class="line">        if (root==null)&#123;</span><br><span class="line">            return queue;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            queue.offer(root);</span><br><span class="line">            makeQueue(root.left);</span><br><span class="line">            makeQueue(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">        return queue;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int reachNumber(int target) &#123;</span><br><span class="line">        int newTarget = Math.abs(target);</span><br><span class="line">        int step = 0, sum = 0;</span><br><span class="line">        while (sum &lt; newTarget || (sum - newTarget) % 2 == 1) &#123;</span><br><span class="line">            sum += step;</span><br><span class="line">            step++;</span><br><span class="line">        &#125;</span><br><span class="line">        return step - 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
+<p>Problem 784 Letter Case Permutation<br><img src="https://s2.ax1x.com/2019/09/26/unq1rq.png" alt="unq1rq.png"><br>小写字母的全排列问题</p>
+<hr>
+<p>主要思路:<br>当检测到字母的时候就进入递归,下标增加,当下标达到字符串长度时就加入list.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; letterCasePermutation(String S) &#123;</span><br><span class="line">        List&lt;String&gt; strings = new ArrayList&lt;&gt;();</span><br><span class="line">        letterCasePermutation(S, S.toCharArray(), strings, 0);</span><br><span class="line">        return strings;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void letterCasePermutation(String s, char[] chars, List&lt;String&gt; strings, int position) &#123;</span><br><span class="line">        if (position == s.length()) &#123;</span><br><span class="line">            strings.add(new String(chars));</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        char ch = s.charAt(position);</span><br><span class="line">        if (Character.isLetter(ch)) &#123;</span><br><span class="line">            chars[position] = Character.toLowerCase(ch);</span><br><span class="line">            letterCasePermutation(s, chars, strings, position+1);</span><br><span class="line">            chars[position] = Character.toUpperCase(ch);</span><br><span class="line">        &#125;</span><br><span class="line">        letterCasePermutation(s, chars, strings, position+1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -379,7 +385,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/16/Leetcode刷题记录(Java) _09_16/" rel="next" title="Leetcode刷题记录(Java)">
+              <a href="/2019/09/24/Leetcode刷题记录(Java) _09_24/" rel="next" title="Leetcode刷题记录(Java)">
                 <i class="fa fa-chevron-left"></i> Leetcode刷题记录(Java)
               </a>
             
@@ -389,7 +395,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/19/Leetcode刷题记录(Java) _09_18&09_19/" rel="prev" title="Leetcode刷题记录(Java)">
+              <a href="/2019/09/27/Leetcode刷题记录(Java) _09_27/" rel="prev" title="Leetcode刷题记录(Java)">
                 Leetcode刷题记录(Java) <i class="fa fa-chevron-right"></i>
               </a>
             
