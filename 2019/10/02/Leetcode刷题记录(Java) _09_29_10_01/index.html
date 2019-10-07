@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Problem 989 Add to Array-Form of Integer/Problem 1002 Find Common Characters/Problem 1005 Maximize Sum Of Array After K Negations/Problem 1009 Complement of Base 10 Integer/Problem 1013 Partition Arra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode刷题记录(Java)">
+<meta property="og:url" content="http://yoursite.com/2019/10/02/Leetcode刷题记录(Java) _09_29_10_01/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="Problem 989 Add to Array-Form of Integer/Problem 1002 Find Common Characters/Problem 1005 Maximize Sum Of Array After K Negations/Problem 1009 Complement of Base 10 Integer/Problem 1013 Partition Arra">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/02/uarzh8.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/02/udYonK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/02/uwSUOS.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/02/uwpSfI.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/02/uw9nVe.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/02/uwPWg1.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/02/uwi4Rs.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/03/uw8vM6.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/03/uwJSlq.png">
+<meta property="og:updated_time" content="2019-10-07T11:35:10.857Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode刷题记录(Java)">
+<meta name="twitter:description" content="Problem 989 Add to Array-Form of Integer/Problem 1002 Find Common Characters/Problem 1005 Maximize Sum Of Array After K Negations/Problem 1009 Complement of Base 10 Integer/Problem 1013 Partition Arra">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/10/02/uarzh8.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/02/Leetcode刷题记录(Java) _09_29_10_01/"/>
+
+
+
+
+
+  <title>Leetcode刷题记录(Java) | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/02/Leetcode刷题记录(Java) _09_29_10_01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Leetcode刷题记录(Java)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-02T00:00:00+08:00">
+                2019-10-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-07T19:35:10+08:00">
+                2019-10-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Problem 989 Add to Array-Form of Integer/Problem 1002 Find Common Characters/Problem 1005 Maximize Sum Of Array After K Negations/Problem 1009 Complement of Base 10 Integer/Problem 1013 Partition Array Into Three Parts With Equal Sum/Problem 1029 Two City Scheduling/Problem 1033 Moving Stones Until Consecutive/Problem 1042 Flower Planting With No Adjacent/Problem 1175 Prime Arrangements
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Problem 989 Add to Array-Form of Integer<br><img src="https://s2.ax1x.com/2019/10/02/uarzh8.png" alt="uarzh8.png"><br>将一个数组组成的数和给定的数相加,返回list</p>
+<hr>
+<p>主要思路:<br>这个题目属于大数相加的类型,要是采用数组转化成数字的形式必然会出现溢出的问题,所以还是得采用逐位变化的方式求解.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; addToArrayForm(int[] A, int K) &#123;</span><br><span class="line">        LinkedList&lt;Integer&gt; ret=new LinkedList&lt;&gt;();</span><br><span class="line">        int i=A.length-1;</span><br><span class="line">        while(K!=0 || i&gt;=0)</span><br><span class="line">        &#123;</span><br><span class="line">            int p=i&gt;=0?A[i]:0;</span><br><span class="line">            ret.add(0,(K+p)%10);</span><br><span class="line">            K=(K+p)/10;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>代码说明:<br>以[2,1,5]+806为例,进入循环后首先将i&gt;=0?的结果赋值给p,这里是为了防止数组的最高位相加后依然要进位的情况,因为如果不判断是否大于0的话会因为K!=0而使得i=-1发生越界.<br>此时p=5,ret链表在头部插入(K+p)%10==1,K=81,i=1;p=1,ret头部插入(K+p)%10==2,K=8,i=0;p=2,ret头部插入(K+p)%10==0,K=1,i=-1.p=-1取0,ret插入1,K=0,i=-2结束.</p>
+<hr>
+<p>Problem 1002 Find Common Characters<br><img src="https://s2.ax1x.com/2019/10/02/udYonK.png" alt="udYonK.png"><br>寻找字符串数组中共有的字符,允许出现共有重复字符.</p>
+<hr>
+<p>主要思路:<br>这种类型的题目都可以使用开辟新的数组,通过数据统计方式解决.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; commonChars(String[] A) &#123;</span><br><span class="line">        int n = A.length;</span><br><span class="line">        int[][] cc = new int[n][26];</span><br><span class="line">        </span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            for (char c : A[i].toCharArray()) &#123;</span><br><span class="line">                cc[i][c - &apos;a&apos;]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;String&gt; result = new ArrayList&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; 26; i++) &#123;</span><br><span class="line">            int minCount = 100;</span><br><span class="line">            for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                minCount = Math.min(minCount, cc[j][i]);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            for (int j = 0; j &lt; minCount; j++) &#123;</span><br><span class="line">                result.add(String.valueOf((char) (i + &apos;a&apos;)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>代码说明:<br>首先遍历数组,统计每个字符串中各个字符的数量多少.之后按照字符数量对字符串进行检查,比如要是所有的字符串中都出现了两次m,则m的minCount就是2,如果出现某个字符未出现则其必定为0,所以可以统计出结果.</p>
+<hr>
+<p>Problem 1005 Maximize Sum Of Array After K Negations<br><img src="https://s2.ax1x.com/2019/10/02/uwSUOS.png" alt="uwSUOS.png"><br>将数组中的K个数字取反后求数组最大和</p>
+<hr>
+<p>主要思路:<br>每次取排序数组后的最小值,将其取反,这样必然会求出最大值,但是如果每次都排序的话性能较差,可以采用堆排序的方式和取前K小的思路.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int largestSumAfterKNegations(int[] A, int K) &#123;</span><br><span class="line">        PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;Integer&gt;();</span><br><span class="line">        for(int x: A) </span><br><span class="line">            pq.add(x);</span><br><span class="line">        while( K--&gt; 0) </span><br><span class="line">            pq.add(-pq.poll());</span><br><span class="line">        int sum  = 0;</span><br><span class="line">        for(int i = 0; i &lt; A.length; i++)&#123;</span><br><span class="line">            sum += pq.poll();</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>Problem 1009 Complement of Base 10 Integer<br><img src="https://s2.ax1x.com/2019/10/02/uwpSfI.png" alt="uwpSfI.png"><br>先将十进制转成二进制,之后将1转成0,从0转成1,得出结果.</p>
+<hr>
+<p>主要思路:<br>传统来说就是按照题目意思转二进制再逐位取反,但是可以使用位操作的方式进行.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int bitwiseComplement(int N) &#123;</span><br><span class="line">        if (N == 0)</span><br><span class="line">            return 1;</span><br><span class="line">        int bit_count = 0, x = N;</span><br><span class="line">        while ( x != 0) &#123;</span><br><span class="line">            x /= 2;</span><br><span class="line">            bit_count++;</span><br><span class="line">        &#125;</span><br><span class="line">        return ((1 &lt;&lt; bit_count) - 1) ^ N; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码说明:<br>主要是最后一句,&lt;&lt;是左移运算符,移动过程中符号位不变,高位溢出并舍弃,低位补0.数字a进行左移by运算结果等于a*2<sub>b</sub>,以10为例,其bit_count=4,1左移4位变成16,16-1=15,之后15和10按位异或,1111^1010=0101求得翻转后的二进制.这里主要是利用了异或的性质,1^1=0,0^0=0,所以先统计需要求解的数字有多少位,将其减1后可以得出全1的二进制,和原数取异或即可完成翻转.</p>
+<hr>
+<p>Problem 1013 Partition Array Into Three Parts With Equal Sum<br><img src="https://s2.ax1x.com/2019/10/02/uw9nVe.png" alt="uw9nVe.png"><br>判断一个数组的是否存在三个子数组的和相同.</p>
+<hr>
+<p>主要思路:<br>这个题目看起来很复杂,需要判断多个连续子数组的和的相等情况,但其实这个题目挺简单的.因为题目限定了三个子数组,那么如果和不能被3整除则必然不满足条件.第二个就是将数组顺序累加,每次达到sum/3则重置累加器,遍历结束后判断此时累加器是不是等于0.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean canThreePartsEqualSum(int[] A) &#123;</span><br><span class="line">        int sum = IntStream.of(A).sum();</span><br><span class="line">        if (sum % 3 != 0)</span><br><span class="line">            return false;</span><br><span class="line"></span><br><span class="line">        int target = IntStream.of(A).sum() / 3;</span><br><span class="line">        int currentSum = 0;</span><br><span class="line">        for (int i = 0; i &lt; A.length; i++) &#123;</span><br><span class="line">            currentSum += A[i];</span><br><span class="line">            if (currentSum == target)&#123;</span><br><span class="line">                currentSum = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return currentSum == 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>Problem 1029 Two City Scheduling<br><img src="https://s2.ax1x.com/2019/10/02/uwPWg1.png" alt="uwPWg1.png"><br>公司总共需要安排2N的人进行面试,其中一半的人要去A,另一半的人要去B,给定每个人去城市A和城市B的费用,要求求出最小的总费用安排.</p>
+<hr>
+<p>主要思路:<br>首先计算出每个候选人去A和B城市的费用差值,比如第一位候选人去A花费90,去B花费100,则差值为-10,这样我们就知道他去A城费用更低,这样据此进行排序,并取前一半的人去A城,剩下的去B城.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int twoCitySchedCost(int[][] costs) &#123;</span><br><span class="line">        Arrays.sort(costs, new Comparator&lt;int[]&gt;() &#123;</span><br><span class="line">            public int compare(int[] a, int[] b) &#123;</span><br><span class="line">                return (a[0] - a[1]) - (b[0] - b[1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        int sum = 0;</span><br><span class="line">        for (int i = 0; i &lt; costs.length; ++i) &#123;</span><br><span class="line">            if (i &lt; costs.length / 2) &#123;</span><br><span class="line">                sum += costs[i][0];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                sum += costs[i][1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>Problem 1033 Moving Stones Until Consecutive<br><img src="https://s2.ax1x.com/2019/10/02/uwi4Rs.png" alt="uwi4Rs.png"><br>给定三块石子的位置,移动石子直到三个石子顺序相邻,求出使得三个石子顺序相邻的最小移动步数和最大移动步数.</p>
+<hr>
+<p>主要思路:<br>最小步数最多不超过2步:</p>
+<ul>
+<li>0步:三个石子已经顺序排列</li>
+<li>1步:三个石子中两个已经顺序排列或者两个石子隔一个位置,将剩下的的这个插到中间即可.</li>
+<li>2步:把非中间位的两个石子移动到中间位的两边.<br>最大步数为最大值-最小值-2:</li>
+<li>以7 10 14为例,7-&gt;9花费2步,14-&gt;11花费3步,故为max-min-2</li>
+</ul>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] numMovesStones(int a, int b, int c) &#123;</span><br><span class="line">        int max = Math.max(a, Math.max(b, c));</span><br><span class="line">        int min = Math.min(a, Math.min(b, c));</span><br><span class="line">        int mid = a + b + c - max - min;</span><br><span class="line">        int min_moves = Math.min(1, mid-min-1) +Math.min(1, max-mid-1);</span><br><span class="line">        if (mid-min == 2 || max-mid == 2) &#123;</span><br><span class="line">            min_moves = 1;</span><br><span class="line">        &#125;</span><br><span class="line">        int max_moves = max - min - 2;</span><br><span class="line">        return new int[]&#123;min_moves, max_moves&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Problem 1042 Flower Planting With No Adjacent<br><img src="https://s2.ax1x.com/2019/10/03/uw8vM6.png" alt="uw8vM6.png"><br>类似于地图着色问题,相连接的两朵花园的花的种类不能相同.</p>
+<hr>
+<p>主要思路:<br>首先构建图,知道每个花园的入度和出度,然后遍历花园,给当前花园放置与其连接的花园不相同的花.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] gardenNoAdj(int N, int[][] paths) &#123;</span><br><span class="line">        List&lt;Integer&gt;[] graph = new List[N+1];</span><br><span class="line">        for(int[] path : paths)&#123;</span><br><span class="line">            if(graph[path[0]] == null)</span><br><span class="line">                graph[path[0]] = new LinkedList&lt;Integer&gt;();</span><br><span class="line">            graph[path[0]].add(path[1]);</span><br><span class="line">            if(graph[path[1]] == null)</span><br><span class="line">                graph[path[1]] = new LinkedList&lt;Integer&gt;();</span><br><span class="line">            graph[path[1]].add(path[0]);</span><br><span class="line">        &#125;</span><br><span class="line">        int[] cols = new int[N];</span><br><span class="line">        Set&lt;Integer&gt; set = new HashSet();</span><br><span class="line">        for(int i = 1 ; i &lt;= N;i++)&#123;</span><br><span class="line">            if(graph[i] == null || cols[i-1]!=0)</span><br><span class="line">                continue;</span><br><span class="line">            set.clear();</span><br><span class="line">            for(int nNode:graph[i])&#123;</span><br><span class="line">                if(cols[nNode-1]!=0)</span><br><span class="line">                    set.add(cols[nNode-1]);</span><br><span class="line">            &#125;</span><br><span class="line">            for(int index = 1;index &lt;= 4 &amp;&amp; cols[i-1] == 0 ;index++)</span><br><span class="line">                if(!set.contains(index))&#123;</span><br><span class="line">                    cols[i-1] = index;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0 ; i&lt;N;i++)</span><br><span class="line">            if(cols[i] == 0)</span><br><span class="line">                cols[i] =1;</span><br><span class="line">        return cols;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>Problem 1175 Prime Arrangements<br><img src="https://s2.ax1x.com/2019/10/03/uwJSlq.png" alt="uwJSlq.png"><br>给定正整数n,返回从1到n之间质数在质数位置的全部数组的个数.</p>
+<hr>
+<p>主要思路:<br>这题看似很复杂,题目中提到了排列问题,但其实这个问题是一个很简单的排列组合问题.首先列出题目范围内的质数,求出n之内有多少质数,这些质数如果是X个,则占据X位,共有X!种排法,剩下的非质数自然有(n-X)!种排法,所以总共有两者乘积个数组满足题目条件.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int numPrimeArrangements(int n) &#123;</span><br><span class="line">        int mod = 1000000007;</span><br><span class="line">        int primeNums = countPrime(n);</span><br><span class="line">        int nonPrimeNums = n - primeNums;</span><br><span class="line">        long result = 1;</span><br><span class="line">        for (int i=2; i&lt;=primeNums; i++) &#123;</span><br><span class="line">            result = (result*i)%mod;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int j=2; j&lt;=nonPrimeNums; j++) &#123;</span><br><span class="line">            result = (result*j)%mod;</span><br><span class="line">        &#125;</span><br><span class="line">        return (int)result;</span><br><span class="line">    &#125;</span><br><span class="line">    public int countPrime(int n) &#123;</span><br><span class="line">        if (n &lt;= 1) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">            boolean flag = true;</span><br><span class="line">            for (int j = 2; j &lt;= Math.sqrt(i); j++) &#123;</span><br><span class="line">                if (i % j == 0) &#123;</span><br><span class="line">                    flag = false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (flag) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/27/Leetcode刷题记录(Java) _09_27/" rel="next" title="Leetcode刷题记录(Java)">
+                <i class="fa fa-chevron-left"></i> Leetcode刷题记录(Java)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
