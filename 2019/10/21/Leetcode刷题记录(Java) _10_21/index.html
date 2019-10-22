@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Problem 2 Add Two Numbers/Problem 3 Longest Substring Without Repeating Characters/Problem 5 Longest Palindromic Substring/Problem 15 3Sum/Problem 22 Generate Parentheses/Problem 24 Swap Nodes in Pair">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode刷题记录(Java)">
+<meta property="og:url" content="http://yoursite.com/2019/10/21/Leetcode刷题记录(Java) _10_21/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="Problem 2 Add Two Numbers/Problem 3 Longest Substring Without Repeating Characters/Problem 5 Longest Palindromic Substring/Problem 15 3Sum/Problem 22 Generate Parentheses/Problem 24 Swap Nodes in Pair">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/KlwH1A.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/KlslGD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/KlWsht.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/K1FkM6.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/K1VFte.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/K1ZiD0.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/K1Nxcq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/K1dklR.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/K1ghdA.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/K1obQI.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/K17SHK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/21/K1bQ6s.png">
+<meta property="og:updated_time" content="2019-10-22T01:27:46.813Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode刷题记录(Java)">
+<meta name="twitter:description" content="Problem 2 Add Two Numbers/Problem 3 Longest Substring Without Repeating Characters/Problem 5 Longest Palindromic Substring/Problem 15 3Sum/Problem 22 Generate Parentheses/Problem 24 Swap Nodes in Pair">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/10/21/KlwH1A.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/21/Leetcode刷题记录(Java) _10_21/"/>
+
+
+
+
+
+  <title>Leetcode刷题记录(Java) | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/Leetcode刷题记录(Java) _10_21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Leetcode刷题记录(Java)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-21T00:00:00+08:00">
+                2019-10-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-22T09:27:46+08:00">
+                2019-10-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Problem 2 Add Two Numbers/Problem 3 Longest Substring Without Repeating Characters/Problem 5 Longest Palindromic Substring/Problem 15 3Sum/Problem 22 Generate Parentheses/Problem 24 Swap Nodes in Pairs/Problem 29 Divide Two Integers/Problem 31 Next Permutation/Problem 39 Combination Sum/Problem 40 Combination Sum II/Problem 46 Permutations
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Problem 2 Add Two Numbers<br><img src="https://s2.ax1x.com/2019/10/21/KlwH1A.png" alt="KlwH1A.png"><br>求两个由链表组成的数的和</p>
+<hr>
+<p>主要思路:<br>两数相加问题自然是每位相加,如果出现进位问题则带入下一位计算.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        ListNode dummy = new ListNode(0);</span><br><span class="line">        ListNode p1 = l1,p2=l2;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        ListNode cur = dummy;</span><br><span class="line">        while (p1!=null||p2!=null)&#123;</span><br><span class="line">            if (p1!=null)&#123;</span><br><span class="line">                sum+=p1.val;</span><br><span class="line">                p1 = p1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            if (p2!=null)&#123;</span><br><span class="line">                sum+=p2.val;</span><br><span class="line">                p2 = p2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            cur.next = new ListNode(sum%10);</span><br><span class="line">            sum /= 10;</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if (sum==1)&#123;</span><br><span class="line">            cur.next = new ListNode(1);</span><br><span class="line">        &#125;</span><br><span class="line">        return dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>代码说明:<br>该题思路非常清晰,主要是一些处理做法需要注意:</p>
+<ul>
+<li>在遇到需要新创建链表的问题时可以先创建一个dummy结点用作头结点,最后返回的时候返回dummy.next</li>
+<li>在求两数相加问题时,各位数相加取模,进位取除</li>
+</ul>
+<hr>
+<p>Problem 3 Longest Substring Without Repeating Characters<br><img src="https://s2.ax1x.com/2019/10/21/KlslGD.png" alt="KlslGD.png"><br>找寻字符串中不含有不相同字符的最长字串</p>
+<hr>
+<p>主要思路:<br>这个题目可以采用滑动窗口的做法,创建一个Hashset,如果当前字符不在set内就添加进去,如果当前字符已经在set中,则滑动窗口的前半部分不断缩小,直到将之前存在的相同字符移除</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int lengthOfLongestSubstring(String s) &#123;</span><br><span class="line">        if (s.length() == 0)</span><br><span class="line">            return 0;</span><br><span class="line">        int start = 0;</span><br><span class="line">        int end = 0;</span><br><span class="line">        int max = 0;</span><br><span class="line">        HashSet&lt;Character&gt; set = new HashSet&lt;&gt;();</span><br><span class="line">        while (start&lt;s.length()&amp;&amp;end&lt;s.length())&#123;</span><br><span class="line">            if (!set.contains(s.charAt(end)))&#123;</span><br><span class="line">                set.add(s.charAt(end));</span><br><span class="line">                max = Math.max(max,end-start+1);</span><br><span class="line">                end++;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                set.remove(s.charAt(start));</span><br><span class="line">                start++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>代码说明:<br>以abcdcef为例,开始start和end都是0,start用于控制窗口的左边界,end用于控制窗口的右边界,set分别添加a,b,c,d.end从0增加至4,max也从0增加至4,而start一直为0.此时碰上了相同的字符c,则窗口开始缩小,start从0开始将set中的字符去除,直到c被移除,此时start为3,由于此时set中已经不存在c了,所以第二个c被添加进set,继续循环.</p>
+<hr>
+<p>Problem 5 Longest Palindromic Substring<br><img src="https://s2.ax1x.com/2019/10/21/KlWsht.png" alt="KlWsht.png"><br>寻找最长的回文子串</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String longestPalindrome(String s) &#123;</span><br><span class="line">        if (s==null||s.length()==0)</span><br><span class="line">            return s;</span><br><span class="line">        String res = &quot;&quot;;</span><br><span class="line">        boolean[][] dp = new boolean[s.length()][s.length()];</span><br><span class="line">        int max = 0;</span><br><span class="line">        for (int j=0;j&lt;s.length();j++)&#123;</span><br><span class="line">            for (int i=0;i&lt;=j;i++)&#123;</span><br><span class="line">                dp[i][j] = s.charAt(i)==s.charAt(j)&amp;&amp;((j-i&lt;=2)||dp[i+1][j-1]);</span><br><span class="line">                if (dp[i][j])&#123;</span><br><span class="line">                    if (j-i+1&gt;max)&#123;</span><br><span class="line">                        max = j-i+1;</span><br><span class="line">                        res = s.substring(i,j+1);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>代码说明:<br>以babad为例,j在此处代表的含义是最远的距离,而i代表开始的点.<br>主要对dp二维数组进行分析,以j=4为例,i=0,如果此时s.charAt(j)==s.charAt(i)则需要判断他们中间的字符串是不是回文,也就是[1,3]是不是回文,也就是条件中判断dp[i+1][j-1]的条件,而j-i&lt;=2,是因为如果两个字符相差距离不到2的话则最多只有3个字符,只要首位两个相同,中间字符可以为任意字符,所以在字符相同的情况下如果两者下标距离小于2,则必然能组成回文.</p>
+<hr>
+<p>⭐Problem 15 3Sum<br><img src="https://s2.ax1x.com/2019/10/21/K1FkM6.png" alt="K1FkM6.png"><br>寻找三元组的和与target相等的所有三元组</p>
+<hr>
+<p>主要思路:<br>3Sum和2Sum思路相类似,就是先排序,固定住一个值,然后利用两个指针分别从头部和尾部逼近,利用二分搜索原理,如果和比target小则移动头部,比target大则移动尾部.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        for (int i=0;i&lt;nums.length-2;i++)&#123;</span><br><span class="line">            if (i&gt;0&amp;&amp;nums[i]==nums[i-1])</span><br><span class="line">                continue;</span><br><span class="line">            int low = i+1,high = nums.length-1,sum = 0-nums[i];</span><br><span class="line">            while (low&lt;high)&#123;</span><br><span class="line">                if (nums[low]+nums[high]==sum)&#123;</span><br><span class="line">                    res.add(Arrays.asList(nums[i],nums[low],nums[high]));</span><br><span class="line">                    while (low&lt;high&amp;&amp;nums[low]==nums[low+1])</span><br><span class="line">                        low++;</span><br><span class="line">                    while (low&lt;high&amp;&amp;nums[high]==nums[high-1])</span><br><span class="line">                        high--;</span><br><span class="line">                    low++;</span><br><span class="line">                    high--;</span><br><span class="line">                &#125;else if (nums[low]+nums[high]&lt;sum)</span><br><span class="line">                    low++;</span><br><span class="line">                else </span><br><span class="line">                    high--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>代码说明:<br>代码本身思路比较清晰,但是有些细节需要注意:</p>
+<ul>
+<li>i&gt;0&amp;&amp;nums[i]==nums[i-1]这个判断条件用于判断新的头部是否和之前的头部相同,例如1,1,2,3中如果第一个1已经当作固定值的话,第二个1就是无意义的固定值,所以需要跳过,这点在循环中同理,需要判断</li>
+</ul>
+<hr>
+<p>Problem 22 Generate Parentheses<br><img src="https://s2.ax1x.com/2019/10/21/K1VFte.png" alt="K1VFte.png"><br>生成一对括号</p>
+<hr>
+<p>主要思路:<br>利用DFS进行解答,遵循几个原则</p>
+<ul>
+<li>如果左右括号剩余数量都是0则添加</li>
+<li>如果左括号数大于右括号数则不符合条件</li>
+<li>如果剩余还有左括号则添加(</li>
+<li>如果剩余还有右括号则添加)</li>
+</ul>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; generateParenthesis(int n) &#123;</span><br><span class="line">        List&lt;String&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">        DFS(n,n,&quot;&quot;,list);</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br><span class="line">    public void DFS(int left,int right,String temp,List&lt;String&gt; list)&#123;</span><br><span class="line">        if (left&gt;right)</span><br><span class="line">            return;</span><br><span class="line">        if (left==0&amp;&amp;right==0)</span><br><span class="line">            list.add(temp.toString());</span><br><span class="line">        else &#123;</span><br><span class="line">            if (left&gt;0)</span><br><span class="line">                DFS(left-1,right,temp+&quot;(&quot;,list);</span><br><span class="line">            if (right&gt;0)</span><br><span class="line">                DFS(left,right-1,temp+&quot;)&quot;,list);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>Problem 24 Swap Nodes in Pairs<br><img src="https://s2.ax1x.com/2019/10/21/K1ZiD0.png" alt="K1ZiD0.png"><br>以一对为单位交换结点顺序</p>
+<hr>
+<p>主要思路:<br>根据题意可知至少需要一个指针指向头结点的下两个结点,这题的关键就在于组织好指针关系.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode next;</span><br><span class="line"> *     ListNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode swapPairs(ListNode head) &#123;</span><br><span class="line">        if (head==null||head.next==null)</span><br><span class="line">            return head;</span><br><span class="line">        ListNode dummy = new ListNode(0);</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        ListNode l1 = dummy;</span><br><span class="line">        ListNode l2 = head;</span><br><span class="line">        while (l2!=null&amp;&amp;l2.next!=null)&#123;</span><br><span class="line">            ListNode nextStar = l2.next.next;</span><br><span class="line">            l1.next = l2.next;</span><br><span class="line">            l2.next.next = l2;</span><br><span class="line">            l2.next = nextStar;</span><br><span class="line">            l1 = l2;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码说明:</p>
+<ul>
+<li>dummy.next = head;                  dummy:0-&gt;1-&gt;2-&gt;3-&gt;4 </li>
+<li>ListNode l1 = dummy;                dummy:0-&gt;1-&gt;2-&gt;3-&gt;4  l1:0-&gt;1-&gt;2-&gt;3-&gt;4</li>
+<li>ListNode l2 = head;                 dummy:0-&gt;1-&gt;2-&gt;3-&gt;4  l1:0-&gt;1-&gt;2-&gt;3-&gt;4 l2:1-&gt;2-&gt;3-&gt;4</li>
+<li>ListNode nextStar = l2.next.next;   dummy:0-&gt;1-&gt;2-&gt;3-&gt;4  l1:0-&gt;1-&gt;2-&gt;3-&gt;4 l2:1-&gt;2-&gt;3-&gt;4</li>
+<li>l1.next = l2.next;                  dummy:0-&gt;2-&gt;3-&gt;4     l1:0-&gt;2-&gt;3-&gt;4    l2:1-&gt;2-&gt;3-&gt;4</li>
+<li>l2.next.next = l2;                  dummy:0-&gt;2-&gt;1-&gt;2-&gt;1  l1:0-&gt;2-&gt;1-&gt;2    l2:1-&gt;2-&gt;1-&gt;2</li>
+<li>l2.next = nextStar;                 dummy:0-&gt;2-&gt;1-&gt;3-&gt;4  l1:0-&gt;2-&gt;1-&gt;3    l2:1-&gt;3-&gt;4</li>
+<li>l1 = l2;                            dummy:0-&gt;2-&gt;1-&gt;3-&gt;4  l1:1-&gt;3-&gt;4       l2:1-&gt;3-&gt;4</li>
+<li>l2 = l2.next;                       dummy:0-&gt;2-&gt;1-&gt;3-&gt;4  l1:1-&gt;3-&gt;4       l2:3-&gt;4<br>l1=l2这行相当于把l1重新置为头结点,而l2=l2.next相当于将l2重新置为新的配对结点中的第一个结点.</li>
+</ul>
+<hr>
+<p>Problem 29 Divide Two Integers<br><img src="https://s2.ax1x.com/2019/10/21/K1Nxcq.png" alt="K1Nxcq.png"><br>实现两数相除操作,同时需要处理溢出情况</p>
+<hr>
+<p>主要思路:<br>相除但不能使用内置实现的话自然考虑被除数减去除数,但是不能用传统直接循环相减的方法,这样遇到一个大数除以1的情况会出现超时.</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int divide(int dividend, int divisor) &#123;</span><br><span class="line">        if (dividend==0)</span><br><span class="line">            return 0;</span><br><span class="line">        boolean flag = dividend &gt; 0 &amp;&amp; divisor &gt; 0 || dividend &lt; 0 &amp;&amp; divisor &lt; 0;</span><br><span class="line">        long ldividend = Math.abs((long)dividend);</span><br><span class="line">        long ldivisor = Math.abs((long)divisor);</span><br><span class="line">        long lres = divide(ldividend,ldivisor);</span><br><span class="line">        int res = 0;</span><br><span class="line">        if (lres&gt;Integer.MAX_VALUE)&#123;</span><br><span class="line">            res = flag?Integer.MAX_VALUE:Integer.MIN_VALUE;</span><br><span class="line">        &#125;else</span><br><span class="line">            res = flag?(int)lres:-(int)lres;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public long divide(long ldividend,long ldivisor)&#123;</span><br><span class="line">        if (ldividend&lt;ldivisor)</span><br><span class="line">            return 0;</span><br><span class="line">        long sum = ldivisor;</span><br><span class="line">        long multiple = 1;</span><br><span class="line">        while ((sum+sum)&lt;=ldividend)&#123;</span><br><span class="line">            sum+=sum;</span><br><span class="line">            multiple+=multiple;</span><br><span class="line">        &#125;</span><br><span class="line">        return multiple+divide(ldividend-sum,ldivisor);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码说明:<br>上面的代码使用了递归操作,其核心部分在于循环,使用sum+sum的方法使得除数快速逼近被除数.而multiple也是翻倍递增.当被除数已经没有2倍除数大的情况下就进入递归,递归的被除数就是剩下的数.以9/3<br>为例,最初是3+3&lt;9,此时multiple=2,之后进入递归(9-6,3),3+3&gt;3,multiple=1,之后进入递归(0,3),满足退出递归条件.所以结果是multiple之和为3.</p>
+<hr>
+<p>⭐Problem 31 Next Permutation<br><img src="https://s2.ax1x.com/2019/10/21/K1dklR.png" alt="K1dklR.png"><br>求全排列的下一个字符串</p>
+<hr>
+<p>主要思路:<br>以127431为例,其全排列输出的下一个字符串为131247,其逻辑为先找到升序状态下的倒数第二个数,也就是说如果一个字符串序列为全降序排列,其必然是该全排列的最大值,按照题意将其整体翻转即可.在127这个升序序列中倒数第二个数为2,之后就是以2为起点,寻找比其大的数中最小的数,与2交换,在例子中就是3和2交换,形成137421,最后以3之后的数为起点翻转得到结果.总结起来为:</p>
+<ul>
+<li>找到升序序列中倒数第二个数</li>
+<li>找到上数后比其大的最小数</li>
+<li>交换两数</li>
+<li>从交换之后+1为起点翻转</li>
+</ul>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void nextPermutation(int[] nums) &#123;</span><br><span class="line">        if (nums.length!=0)&#123;</span><br><span class="line">            int secondBiggestInAsc = -1;</span><br><span class="line">            for (int i=nums.length-2;i&gt;=0;i--)&#123;</span><br><span class="line">                if (nums[i]&lt;nums[i+1])&#123;</span><br><span class="line">                    secondBiggestInAsc = i;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            int biggerIndex = 0;</span><br><span class="line">            if (secondBiggestInAsc==-1)&#123;</span><br><span class="line">                reverse(nums,0,nums.length-1);</span><br><span class="line">                return;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                int max = Integer.MAX_VALUE;</span><br><span class="line">                for (int i=secondBiggestInAsc;i&lt;nums.length;i++)&#123;</span><br><span class="line">                    if (nums[i]&gt;nums[secondBiggestInAsc]&amp;&amp;nums[i]&lt;=max)&#123;</span><br><span class="line">                        max = nums[i];</span><br><span class="line">                        biggerIndex = i;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            int temp = nums[secondBiggestInAsc];</span><br><span class="line">            nums[secondBiggestInAsc] = nums[biggerIndex];</span><br><span class="line">            nums[biggerIndex] = temp;</span><br><span class="line">            reverse(nums,secondBiggestInAsc+1,nums.length-1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public void reverse(int[] nums,int start,int end)&#123;</span><br><span class="line">        while (start&lt;end)&#123;</span><br><span class="line">            int temp = nums[start];</span><br><span class="line">            nums[start] = nums[end];</span><br><span class="line">            nums[end] = temp;</span><br><span class="line">            start++;</span><br><span class="line">            end--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>Problem 39 Combination Sum<br><img src="https://s2.ax1x.com/2019/10/21/K1ghdA.png" alt="K1ghdA.png"><br>找出所有属于候选值中的数据之和与给定值相等的数组</p>
+<hr>
+<p>主要思路:<br>该题使用回溯法解决,回溯法的关键是状态的更新和状态的取消.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; combinationSum(int[] candidates, int target) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        if (candidates==null||candidates.length==0)</span><br><span class="line">            return res;</span><br><span class="line">        helper(res,new ArrayList&lt;&gt;(),candidates,target,0);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public void helper(List&lt;List&lt;Integer&gt;&gt; res,List&lt;Integer&gt; list,int[] candidates,int target,int start)&#123;</span><br><span class="line">        if (target&lt;0)</span><br><span class="line">            return;</span><br><span class="line">        if (target==0)&#123;</span><br><span class="line">            res.add(new ArrayList&lt;&gt;(list));</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i=start;i&lt;candidates.length;i++)&#123;</span><br><span class="line">            list.add(candidates[i]);</span><br><span class="line">            helper(res,list,candidates,target-candidates[i],i);</span><br><span class="line">            list.remove(list.size()-1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码说明:<br>以题例中的candidates=[2,3,6,7],以及target=7为例,由于题目中说明可以单个元素重复使用,所以从index=0处开始</p>
+<ul>
+<li>list:2</li>
+<li>list:2,2</li>
+<li>list:2,2,2</li>
+<li>list:2,2,2,2 此时target&lt;0,故退出,同时list变成2,2,2,循环进入第二轮,此时3被加入</li>
+<li>list:2,2,2,3 此时target&lt;0,故退出,同时list变成2,2,2,循环进入第三轮,此时6被加入</li>
+<li>list:2,2,2,6 此时target&lt;0,故退出,同时list变成2,2,2,循环进入第四轮,此时7被加入</li>
+<li>list:2,2,2,7 此时target&lt;0,故退出,同时list变成2,2,2,循环结束,递归退出之后list继续remove最后一个元素,list变为2,2</li>
+<li>list:2,2,3   </li>
+<li>list:2,2,3,3 …</li>
+</ul>
+<hr>
+<p>Problem 40 Combination Sum II<br><img src="https://s2.ax1x.com/2019/10/21/K1obQI.png" alt="K1obQI.png"><br>条件与上一题相同,只是每个元素只能使用一次.</p>
+<hr>
+<p>主要思路:<br>凡是涉及到元素只能使用一次的场合均要使用排序加上去重.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; combinationSum2(int[] candidates, int target) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        Arrays.sort(candidates);</span><br><span class="line">        if (candidates==null||candidates.length==0)</span><br><span class="line">            return res;</span><br><span class="line">        helper(res,new ArrayList&lt;&gt;(),candidates,target,0);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public void helper(List&lt;List&lt;Integer&gt;&gt; res,List&lt;Integer&gt; list,int[] candidates,int target,int start)&#123;</span><br><span class="line">        if (target&lt;0)</span><br><span class="line">            return;</span><br><span class="line">        if (target==0)&#123;</span><br><span class="line">            res.add(new ArrayList&lt;&gt;(list));</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i=start;i&lt;candidates.length;i++)&#123;</span><br><span class="line">            if(i!=start&amp;&amp;candidates[i]==candidates[i-1])</span><br><span class="line">                continue;</span><br><span class="line">            list.add(candidates[i]);</span><br><span class="line">            helper(res,list,candidates,target-candidates[i],i+1);</span><br><span class="line">            list.remove(list.size()-1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>⭐Problem 46 Permutations<br><img src="https://s2.ax1x.com/2019/10/21/K17SHK.png" alt="K17SHK.png"><br>全排列问题</p>
+<hr>
+<p>主要思路:<br>全排列问题使用回溯法解决,在使用回溯法时需要注意结束条件,状态更改和状态消除.</p>
+<hr>
+<p>代码实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; permute(int[] nums) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        if (nums==null||nums.length==0)</span><br><span class="line">            return res;</span><br><span class="line">        Integer[] numsInt = new Integer[nums.length];</span><br><span class="line">        for (int i=0;i&lt;nums.length;i++)&#123;</span><br><span class="line">            numsInt[i] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        helper(numsInt,0,res);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public void helper(Integer[] nums,int start,List&lt;List&lt;Integer&gt;&gt; res)&#123;</span><br><span class="line">        if (start==nums.length-1)</span><br><span class="line">            res.add(new ArrayList&lt;&gt;(Arrays.asList(nums)));</span><br><span class="line">        for (int i=start;i&lt;nums.length;i++)&#123;</span><br><span class="line">            int temp = nums[start];</span><br><span class="line">            nums[start] = nums[i];</span><br><span class="line">            nums[i] = temp;</span><br><span class="line">            helper(nums,start+1,res);</span><br><span class="line">            temp = nums[start];</span><br><span class="line">            nums[start] = nums[i];</span><br><span class="line">            nums[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码说明:<br><img src="https://s2.ax1x.com/2019/10/21/K1bQ6s.png" alt="K1bQ6s.png"><br>通过上面这张图就能看出全排列的实现方式,就是固定位置交换.</p>
+<ul>
+<li>1和1交换,进入递归,2和2交换,进入递归,此时满足start==nums.length-1,所以添加123,3和3交换,进入递归,不满足循环,故跳出递归,start=2,i=2,3和3交换,继续不满足循环,跳出递归start=1,i=1,也就是2和2交换,继续循环,此时i++为2,也就是说下一次循环就是2和3交换.</li>
+<li>交换后满足start==nums.length-1,所以添加132,进入循环2和2交换,进入递归,不满足循环,跳出递归,start=2,i=2,2和2交换,继续不满足循环,跳出递归,start=1,i=2,所以2和3交换,也就是状态消除的过程.继续循环,由于i++不小于nums.length,所以不满足循环,跳出递归,start=0,i=0,继续循环,也就是1和2的交换,形成213.</li>
+<li>…</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/02/Leetcode刷题记录(Java) _09_29_10_01/" rel="next" title="Leetcode刷题记录(Java)">
+                <i class="fa fa-chevron-left"></i> Leetcode刷题记录(Java)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
