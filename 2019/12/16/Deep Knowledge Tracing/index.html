@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/17/QIKRCn.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/17/QIllj0.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/17/QI8ljI.png">
-<meta property="og:updated_time" content="2019-12-17T03:58:18.981Z">
+<meta property="og:updated_time" content="2019-12-17T04:02:58.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deep Knowledge Tracing">
 <meta name="twitter:description" content="深度知识追踪(2015)">
@@ -296,7 +296,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-17T11:58:18+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-17T12:02:58+08:00">
                 2019-12-17
               </time>
             
@@ -416,7 +416,7 @@
 </ol>
 <h2 id="输入和输出时间序列-Input-and-Output-Time-Series"><a href="#输入和输出时间序列-Input-and-Output-Time-Series" class="headerlink" title="输入和输出时间序列(Input and Output Time Series)"></a>输入和输出时间序列(Input and Output Time Series)</h2><ol>
 <li>为训练 RNN 或者 LSTM，我们需要将学生答题情况转换为固定长度的输入向量 x<sub>t</sub></li>
-<li>对于数据量较小的数据集，我们需要将学生的作答情况转换成定长的输入向量 x<sub>t</sub>，这些向量将被转换为学生交互元组 h<sub>t</sub>={q<sub>t&lt;/sub,a<sub>t</sub>&gt;}的独热编码形式，这个元组代表了习题的回答与否以及正确与否，所以 x<sub>t</sub>∈{0,1}<sup>2M</sup>(因为独热编码的表示方式，前 M 为是否回答习题，后 M 为正确与否)</sub></li>
+<li>对于数据量较小的数据集，我们需要将学生的作答情况转换成定长的输入向量 x<sub>t</sub>，这些向量将被转换为学生交互元组 h<sub>t</sub>={q<sub>t</sub>,a<sub>t</sub>&gt;}的独热编码形式，这个元组代表了习题的回答与否以及正确与否，所以 x<sub>t</sub>∈{0,1}<sup>2M</sup>(因为独热编码的表示方式，前 M 为是否回答习题，后 M 为正确与否)</li>
 <li>对于数据量较大的数据集，独热编码会变得无法使用，所以采用压缩感知算法将高维稀疏的输入数据压缩到低维空间</li>
 </ol>
 <h2 id="优化-Optimization"><a href="#优化-Optimization" class="headerlink" title="优化(Optimization)"></a>优化(Optimization)</h2><ol>
@@ -443,7 +443,7 @@
 <li>未来的研究可以加入更多特征，比如加入提示、空间重复、学生遗忘等因素</li>
 </ol>
 <hr>
-<h1 id="Deep-Knowledge-Tracing"><a href="#Deep-Knowledge-Tracing" class="headerlink" title="Deep Knowledge Tracing"></a>Deep Knowledge Tracing</h1><p>论文链接:<a href="https://stanford.edu/~cpiech/bio/papers/deepKnowledgeTracing.pdf" target="_blank" rel="noopener">https://stanford.edu/~cpiech/bio/papers/deepKnowledgeTracing.pdf</a></p>
+<h1 id="Deep-Knowledge-Tracing"><a href="#Deep-Knowledge-Tracing" class="headerlink" title="Deep Knowledge Tracing"></a>Deep Knowledge Tracing</h1><p>论文链接:<br><a href="https://stanford.edu/~cpiech/bio/papers/deepKnowledgeTracing.pdf" target="_blank" rel="noopener">https://stanford.edu/~cpiech/bio/papers/deepKnowledgeTracing.pdf</a></p>
 <h2 id="这篇论文描述了使用-RNN-对学生掌握知识的情况进行追踪，比如构建二元组使用独特编码对学生输入进行表示，并且使用多种方法对数据进行建模，最后在三个数据集上进行验证，均取得了远超传统方法的成绩"><a href="#这篇论文描述了使用-RNN-对学生掌握知识的情况进行追踪，比如构建二元组使用独特编码对学生输入进行表示，并且使用多种方法对数据进行建模，最后在三个数据集上进行验证，均取得了远超传统方法的成绩" class="headerlink" title="这篇论文描述了使用 RNN 对学生掌握知识的情况进行追踪，比如构建二元组使用独特编码对学生输入进行表示，并且使用多种方法对数据进行建模，最后在三个数据集上进行验证，均取得了远超传统方法的成绩"></a>这篇论文描述了使用 RNN 对学生掌握知识的情况进行追踪，比如构建二元组使用独特编码对学生输入进行表示，并且使用多种方法对数据进行建模，最后在三个数据集上进行验证，均取得了远超传统方法的成绩</h2>
       
     </div>
