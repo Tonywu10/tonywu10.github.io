@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="深度知识追踪(2015)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Knowledge Tracing">
+<meta property="og:url" content="http://yoursite.com/2019/12/16/Deep Knowledge Tracing/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="深度知识追踪(2015)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/16/Q4fWm6.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/17/QIAP4f.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/17/QIAAgg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/17/QIE1ot.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/17/QIuBTJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/17/QIKRCn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/17/QIllj0.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/17/QI8ljI.png">
+<meta property="og:updated_time" content="2019-12-17T03:58:18.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Deep Knowledge Tracing">
+<meta name="twitter:description" content="深度知识追踪(2015)">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/16/Q4fWm6.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/16/Deep Knowledge Tracing/"/>
+
+
+
+
+
+  <title>Deep Knowledge Tracing | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/16/Deep Knowledge Tracing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Deep Knowledge Tracing</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-16T00:00:00+08:00">
+                2019-12-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-17T11:58:18+08:00">
+                2019-12-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/论文笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">论文笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  深度知识追踪(2015)
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="摘要-Abstract"><a href="#摘要-Abstract" class="headerlink" title="摘要(Abstract)"></a>摘要(Abstract)</h1><p>知识追踪是一种基于计算机的给学生知识掌握情况进行建模的方法，这篇文章中使用了<strong>RNN</strong>进行建模。使用 RNN 主要是因为这类网络不需要对领域知识进行明确编码，并且能够捕捉到更多信息。<br>从模型中学到的信息可以帮助进行教学设计、帮助改进学生作业的结构。</p>
+<h1 id="简介-Introduction"><a href="#简介-Introduction" class="headerlink" title="简介(Introduction)"></a>简介(Introduction)</h1><ol>
+<li>使用可汗学院、Coursera 和 EdX 的数据</li>
+<li>知识追踪可以准确预测学生在未来的表现，对模型进行改进意味着能够根据学生自身的需求对其需要学习的资源进行推荐，过易过难的内容都可以先跳过</li>
+<li>一对一的教师指导可以帮助学生相较一般学生来说提高 2 个标准差的分数(two-sigma problem*)，而机器学习方法能够将这样的教学惠及所有学习者</li>
+<li>之前的绝大部份工作是基于<strong>一阶马尔可夫模型</strong></li>
+<li>本文提出了名为深度知识追踪(Deep Knowledge Tracing,DKT)的方法，这种基于 RNN 的方法可以表示随时间变化的隐含知识状态，通过使用大规模的神经元，使得网络能够从数据中学到表示学生知识的隐变量，而不需要人工进行硬编码</li>
+<li>本研究的主要贡献在于:<ul>
+<li>提出一种将学生交互作为 RNN 输入的全新方法</li>
+<li>在 AUC 上取得了比之前最好基准要好 25%的结果</li>
+<li>证明了模型不需要领域专家进行注解</li>
+<li>发现了练习带来的影响，并且能够对教学带来改进</li>
+</ul>
+</li>
+<li><p>知识追踪的任务可以总结为以下几个步骤:</p>
+<ul>
+<li>将学生具体的作业作为观测变量标记为 X<sub>0</sub>~X<sub>t</sub>，并对下一个作业进行结果预测</li>
+<li>X<sub>t</sub>一般被组织为{q<sub>t</sub>,a<sub>t</sub>}的形式，其中 q<sub>t</sub>代表第 t 个题目有没有回答，而 a<sub>t</sub>代表该题是否回答正确</li>
+<li>在进行预测时，模型提供需要回答的题目编号，而预测的就是该题是否能够被回答正确</li>
+<li>图片展示了一个学生在八年级数学上的表现，结果是以同类型题目作为一组进行展示的</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://s2.ax1x.com/2019/12/16/Q4fWm6.png" alt="Q4fWm6.png"></p>
+<p>* Bloom found that the average student tutored one-to-one using mastery learning techniques performed two standard deviations better than students who learn via conventional instructional methods</p>
+<h1 id="相关工作-Related-Work"><a href="#相关工作-Related-Work" class="headerlink" title="相关工作(Related Work)"></a>相关工作(Related Work)</h1><ol>
+<li>人类如何进行学习这个问题已经在教育、心理学、神经科学和认知科学领域被广泛讨论，从宏观层面来讲包括影响、动机甚至认同感，如今这些影响因素都被放入到微观层面进行讨论</li>
+<li>在认知科学领域有两个因素和人类的思维以及学习过程相关，一个是递归(recursive)，另一个是推理(analogy)</li>
+</ol>
+<h2 id="贝叶斯知识追踪-Bayesian-Knowledge-Tracing-BKT"><a href="#贝叶斯知识追踪-Bayesian-Knowledge-Tracing-BKT" class="headerlink" title="贝叶斯知识追踪(Bayesian Knowledge Tracing,BKT)"></a>贝叶斯知识追踪(Bayesian Knowledge Tracing,BKT)</h2><ol>
+<li>贝叶斯知识追踪是对学生学习进行时序建模方法中最流行的一种。</li>
+<li>BKT 将学习者隐性的知识掌握状态表示成一组二元变量,代表每个单独知识点的掌握情况。根据学习者回答问题的正确情况，使用隐马尔科夫模型(HMM)对这些二元变量的概率进行更新</li>
+<li>最初的研究没有考虑学习的遗忘率问题，最近的研究加入了猜测概率、先验知识概率以及问题难度概率。</li>
+<li>知识追踪本身存在一些难点:<strong>1、学生的答案正确与否可能和他是否真的掌握知识点有出入；2、题目可能包含多个知识点，这与模型所预期的每个题目单个知识点的设计相违背；3、满足模型要求的题目种类有限</strong></li>
+</ol>
+<h2 id="其他的动态概率模型"><a href="#其他的动态概率模型" class="headerlink" title="其他的动态概率模型"></a>其他的动态概率模型</h2><ol>
+<li>研究者使用部分可观察马尔可夫决策过程(Partially Observable Markov Decision Processes,POMDPs)对学习者行为进行建模</li>
+<li>使用 POMDPs 可能造成状态空间呈指数式增长</li>
+<li>最近一些研究对状态空间进行了限制，但是这又造成练习方式上的局限</li>
+<li>表现因子分析*(Performance Factors Analysis,PFA)和学习因子分析**(Learning Factors Analysis,LFA)在预测能力上都表现出了和 BKT 相媲美的水准</li>
+<li>为在预测结果上取得比单一系统更好的效果，很多方法都采用了将 BKT 和 PFA 进行整合的策略.使用 AdaBoost、随机森林、线性回归、逻辑回归以及前馈神经网络的模型都表现出了相较 BKT 和 PFA 更佳的性能。不过由此也带来了需要给具体概念打标签的问题</li>
+<li>有人在最近的工作中加入了项目反应理论(Item Response Theory,IRT)，但是这个方法相较之前的方法来说限制更多，成本也更高</li>
+</ol>
+<p>* Performance Factors Analysis models and predicts student performance using a logistic regression equation that models changes in performance in terms of the number of student successes and failures that have occurred for each skill.<br>** LFA has three components: a statistical model that quantifies the skills, the difficulty factors that may affect student performance in the tutor curriculum, and a combinatorial search that does model selection.</p>
+<h2 id="循环神经网络-Recurrent-Neural-Networks"><a href="#循环神经网络-Recurrent-Neural-Networks" class="headerlink" title="循环神经网络( Recurrent Neural Networks)"></a>循环神经网络( Recurrent Neural Networks)</h2><ol>
+<li>RNN 依靠系统输入以及前置的状态共同影响，RNN 对隐状态有更高维度、连续以及特征表示的形式</li>
+</ol>
+<h1 id="深度知识追踪-Deep-Knowledge-Tracing-DKT"><a href="#深度知识追踪-Deep-Knowledge-Tracing-DKT" class="headerlink" title="深度知识追踪(Deep Knowledge Tracing,DKT)"></a>深度知识追踪(Deep Knowledge Tracing,DKT)</h1><ol>
+<li>使用了两种 RNN 模型:(1)、使用 sigmoid 的传统 RNN；(2)、使用 LSTM</li>
+</ol>
+<h2 id="模型-Model"><a href="#模型-Model" class="headerlink" title="模型(Model)"></a>模型(Model)</h2><ol>
+<li>传统的 RNN 建立了从输入序列(x<sub>1</sub>,…,x<sub>T</sub>)到输出序列(y<sub>1</sub>,y<sub>T</sub>)的映射，要完成这样的转换需要计算一系列的隐状态(h<sub>1</sub>,…,h<sub>T</sub>)，它们可以被看作是在之前的观测中对相关联信息的连续编码，并且它们对预测也大有帮助</li>
+<li><img src="https://s2.ax1x.com/2019/12/17/QIAP4f.png" alt="QIAP4f.png"></li>
+<li><img src="https://s2.ax1x.com/2019/12/17/QIAAgg.png" alt="QIAAgg.png"></li>
+<li>变量说明:W<sub>h</sub><sub>x</sub>是输入权重矩阵，W<sub>h</sub><sub>h</sub>是递归权重矩阵，h<sub>0</sub>为初始状态，W<sub>y</sub><sub>h</sub>为输出权重矩阵，b<sub>h</sub>和 b<sub>y</sub>分别为隐变量和输出单元的偏差</li>
+<li>LSTM 相较普通 RNN 更加复杂，在 LSTM 的隐变量单元中的信息都将被保留，直到遗忘门(forget gate)被打开</li>
+<li><img src="https://s2.ax1x.com/2019/12/17/QIE1ot.png" alt="QIE1ot.png"></li>
+</ol>
+<h2 id="输入和输出时间序列-Input-and-Output-Time-Series"><a href="#输入和输出时间序列-Input-and-Output-Time-Series" class="headerlink" title="输入和输出时间序列(Input and Output Time Series)"></a>输入和输出时间序列(Input and Output Time Series)</h2><ol>
+<li>为训练 RNN 或者 LSTM，我们需要将学生答题情况转换为固定长度的输入向量 x<sub>t</sub></li>
+<li>对于数据量较小的数据集，我们需要将学生的作答情况转换成定长的输入向量 x<sub>t</sub>，这些向量将被转换为学生交互元组 h<sub>t</sub>={q<sub>t&lt;/sub,a<sub>t</sub>&gt;}的独热编码形式，这个元组代表了习题的回答与否以及正确与否，所以 x<sub>t</sub>∈{0,1}<sup>2M</sup>(因为独热编码的表示方式，前 M 为是否回答习题，后 M 为正确与否)</sub></li>
+<li>对于数据量较大的数据集，独热编码会变得无法使用，所以采用压缩感知算法将高维稀疏的输入数据压缩到低维空间</li>
+</ol>
+<h2 id="优化-Optimization"><a href="#优化-Optimization" class="headerlink" title="优化(Optimization)"></a>优化(Optimization)</h2><ol>
+<li>模型使用了负对数似然函数对观测到的数据进行训练，δ(q<sub>t+1</sub>)代表了在 t+1 时间习题是否回答的独热编码，l 代表了二元交叉熵，损失函数为 l(y<sup>T</sup>δ(q<sub>t+1</sub>),a<sub>t+1</sub>),那么对于单个学生的损失函数为<br><img src="https://s2.ax1x.com/2019/12/17/QIuBTJ.png" alt="QIuBTJ.png"></li>
+<li>模型使用了小批量(minibatch)的随机梯度下降(stochastic gradient descent)，为防止训练过程中的过拟合，我们对 h<sub>t</sub>使用了 dropout，但是在计算下个隐状态 h<sub>t+1</sub>的时候并未使用</li>
+<li>本文中使用的所有模型都是使用了 200 维的隐变量以及大小为 100 的 mini-batch</li>
+</ol>
+<h1 id="教育应用-Educational-Applications"><a href="#教育应用-Educational-Applications" class="headerlink" title="教育应用(Educational Applications)"></a>教育应用(Educational Applications)</h1><h2 id="改进教学-Improving-Curricula"><a href="#改进教学-Improving-Curricula" class="headerlink" title="改进教学(Improving Curricula)"></a>改进教学(Improving Curricula)</h2><h2 id="发现习题之间的关系-Discovering-Exercise-Relationships"><a href="#发现习题之间的关系-Discovering-Exercise-Relationships" class="headerlink" title="发现习题之间的关系( Discovering Exercise Relationships)"></a>发现习题之间的关系( Discovering Exercise Relationships)</h2><h1 id="数据集-Datasets"><a href="#数据集-Datasets" class="headerlink" title="数据集(Datasets)"></a>数据集(Datasets)</h1><ol>
+<li>共有三种数据集：模拟数据集、可汗学院数据集以及 Assistments 基准数据集</li>
+<li>对每种数据集都做了 AUC 计算，对于非模拟数据集还做了 5 折交叉验证，并且在所有情况下都计算了超参数，并且最后与 BKT 进行了比较<br><img src="https://s2.ax1x.com/2019/12/17/QIKRCn.png" alt="QIKRCn.png"></li>
+<li>模拟数据集:我们模拟了虚拟学生对虚拟概念进行学习，并且在条件可控的情况下测试预测的结果。所有的学生都被安排了序列相同的 50 个题目作为测试，每个题目都有单独的概念以及它的难度值。根据项目反应理论(Item Response Theory,IRT)，在学生掌握 α 概念且题目难度为 β 的情况下，学生答对题目的概率为<img src="https://s2.ax1x.com/2019/12/17/QIllj0.png" alt="QIllj0.png">，其中 c 代表的猜对的概率(设定为 0.25)，学生通过不断学习他们已答过的题目来提升概念的掌握水平。为理解不同模型对未标记数据的整合情况，我们<strong>没有</strong>提供隐含的概念，而只是简单提供练习的序号并且这题是否回答正确的数据。</li>
+<li>可汗学院数据:在匿名条件下收集了 69 个不同练习类型，总共 47495 名学生的 140 万份练习数据</li>
+<li>基准数据集:这是目前公开的最大规模的知识追踪数据集</li>
+</ol>
+<h1 id="结果-Results"><a href="#结果-Results" class="headerlink" title="结果(Results)"></a>结果(Results)</h1><ol>
+<li>在三个数据集上，DKT 相较之前的方法都取得了非常明显的进步，比如使用了 LSTM 对可汗学院数据集进行建模，取得了 0.85 的 AUC，这比采用 BKT 的 0.63 要好上不少。在 Assistments 数据集上也提升了 25%<br><img src="https://s2.ax1x.com/2019/12/17/QI8ljI.png" alt="QI8ljI.png"></li>
+<li>对于隐概念，DKT 模型在每轮学习后都能提升概念的掌握情况，但是 BKT 模型就对这类未标记概念完全没有处理</li>
+<li>对于人工数据的预测精准度意味着使用 DKT 模型对数据集中的隐含结构进行提取成为了可能，比如我们就使用模型对五种隐概念进行了聚类</li>
+<li>对于两个相同类型的题目，就算他们在题目顺序上相隔很远，但是最终也能发现它们之间具有强烈的相关性</li>
+<li>比较了两种概率，一种是学生刚回答完 A 之后回答 B 的转移概率，另一个是在不使用 DKT 模型的情况下，学生在回答正确 A 之后回答正确 B 的概率</li>
+</ol>
+<h1 id="讨论-Discussion"><a href="#讨论-Discussion" class="headerlink" title="讨论(Discussion)"></a>讨论(Discussion)</h1><ol>
+<li>新模型的好处在于不需要领域专家的标注，因为模型能够自行对相匹配的概念进行学习，同时模型能够对所有能被向量化的学生输入进行处理。但是它也存在问题，那就是训练所需数据量极大，所以它对在线学习环境下的匹配程度较好，但是可能不适合线下的小型教室教学环境。</li>
+<li>未来的研究可以加入更多特征，比如加入提示、空间重复、学生遗忘等因素</li>
+</ol>
+<hr>
+<h1 id="Deep-Knowledge-Tracing"><a href="#Deep-Knowledge-Tracing" class="headerlink" title="Deep Knowledge Tracing"></a>Deep Knowledge Tracing</h1><p>论文链接:<a href="https://stanford.edu/~cpiech/bio/papers/deepKnowledgeTracing.pdf" target="_blank" rel="noopener">https://stanford.edu/~cpiech/bio/papers/deepKnowledgeTracing.pdf</a></p>
+<h2 id="这篇论文描述了使用-RNN-对学生掌握知识的情况进行追踪，比如构建二元组使用独特编码对学生输入进行表示，并且使用多种方法对数据进行建模，最后在三个数据集上进行验证，均取得了远超传统方法的成绩"><a href="#这篇论文描述了使用-RNN-对学生掌握知识的情况进行追踪，比如构建二元组使用独特编码对学生输入进行表示，并且使用多种方法对数据进行建模，最后在三个数据集上进行验证，均取得了远超传统方法的成绩" class="headerlink" title="这篇论文描述了使用 RNN 对学生掌握知识的情况进行追踪，比如构建二元组使用独特编码对学生输入进行表示，并且使用多种方法对数据进行建模，最后在三个数据集上进行验证，均取得了远超传统方法的成绩"></a>这篇论文描述了使用 RNN 对学生掌握知识的情况进行追踪，比如构建二元组使用独特编码对学生输入进行表示，并且使用多种方法对数据进行建模，最后在三个数据集上进行验证，均取得了远超传统方法的成绩</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/21/Leetcode刷题记录(Java) _10_21/" rel="next" title="Leetcode刷题记录(Java)">
+                <i class="fa fa-chevron-left"></i> Leetcode刷题记录(Java)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要-Abstract"><span class="nav-number">1.</span> <span class="nav-text">摘要(Abstract)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介-Introduction"><span class="nav-number">2.</span> <span class="nav-text">简介(Introduction)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关工作-Related-Work"><span class="nav-number">3.</span> <span class="nav-text">相关工作(Related Work)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯知识追踪-Bayesian-Knowledge-Tracing-BKT"><span class="nav-number">3.1.</span> <span class="nav-text">贝叶斯知识追踪(Bayesian Knowledge Tracing,BKT)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的动态概率模型"><span class="nav-number">3.2.</span> <span class="nav-text">其他的动态概率模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环神经网络-Recurrent-Neural-Networks"><span class="nav-number">3.3.</span> <span class="nav-text">循环神经网络( Recurrent Neural Networks)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深度知识追踪-Deep-Knowledge-Tracing-DKT"><span class="nav-number">4.</span> <span class="nav-text">深度知识追踪(Deep Knowledge Tracing,DKT)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型-Model"><span class="nav-number">4.1.</span> <span class="nav-text">模型(Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入和输出时间序列-Input-and-Output-Time-Series"><span class="nav-number">4.2.</span> <span class="nav-text">输入和输出时间序列(Input and Output Time Series)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化-Optimization"><span class="nav-number">4.3.</span> <span class="nav-text">优化(Optimization)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#教育应用-Educational-Applications"><span class="nav-number">5.</span> <span class="nav-text">教育应用(Educational Applications)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#改进教学-Improving-Curricula"><span class="nav-number">5.1.</span> <span class="nav-text">改进教学(Improving Curricula)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发现习题之间的关系-Discovering-Exercise-Relationships"><span class="nav-number">5.2.</span> <span class="nav-text">发现习题之间的关系( Discovering Exercise Relationships)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据集-Datasets"><span class="nav-number">6.</span> <span class="nav-text">数据集(Datasets)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结果-Results"><span class="nav-number">7.</span> <span class="nav-text">结果(Results)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#讨论-Discussion"><span class="nav-number">8.</span> <span class="nav-text">讨论(Discussion)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-Knowledge-Tracing"><span class="nav-number">9.</span> <span class="nav-text">Deep Knowledge Tracing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#这篇论文描述了使用-RNN-对学生掌握知识的情况进行追踪，比如构建二元组使用独特编码对学生输入进行表示，并且使用多种方法对数据进行建模，最后在三个数据集上进行验证，均取得了远超传统方法的成绩"><span class="nav-number">9.1.</span> <span class="nav-text">这篇论文描述了使用 RNN 对学生掌握知识的情况进行追踪，比如构建二元组使用独特编码对学生输入进行表示，并且使用多种方法对数据进行建模，最后在三个数据集上进行验证，均取得了远超传统方法的成绩</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
