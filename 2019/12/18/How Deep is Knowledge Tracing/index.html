@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="深度知识追踪(2016)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Deep is Knowledge Tracing">
+<meta property="og:url" content="http://yoursite.com/2019/12/18/How Deep is Knowledge Tracing/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="深度知识追踪(2016)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/18/QHTUAJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/19/QqsWUf.png">
+<meta property="og:updated_time" content="2019-12-19T11:46:17.861Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How Deep is Knowledge Tracing">
+<meta name="twitter:description" content="深度知识追踪(2016)">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/18/QHTUAJ.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/18/How Deep is Knowledge Tracing/"/>
+
+
+
+
+
+  <title>How Deep is Knowledge Tracing | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/How Deep is Knowledge Tracing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">How Deep is Knowledge Tracing</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-18T00:00:00+08:00">
+                2019-12-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-19T19:46:17+08:00">
+                2019-12-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/论文笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">论文笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  深度知识追踪(2016)
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="摘要-Abstract"><a href="#摘要-Abstract" class="headerlink" title="摘要(Abstract)"></a>摘要(Abstract)</h1><p>在认知科学领域，有两派观点比较对立，一种是参数都能在心理学领域找到对应解释的高度结构化模型 ，另一种是参数很难解释的极为复杂的模型.前者通常在认知领域更具解释性，而后者常常表现更加.最近在知识挖掘领域，DKT 模型号称能够对学生表现进行预测，并且表现出了对该领域传统方法 BKT 在表现上的碾压态势.我们这篇文章就是想通过统计学上的原理了解 DKT 为什么比 BKT 更有效果.我们假设了四条 BKT 失败的原因:<strong>近因效应(recency effects)、有上下文的习题序列(contextualized trial sequence)、内在知识点的相似度(inter-skill similarity)、个体的能力差异(individual variation in ability)</strong>.我们认为 BKT 要是能够拥有更灵活的模型统计方法，对其进行一定拓展的话，BKT 能够表现出和 DKT 相近的水平.为了回答我们在题目中提出的问题，我们的知识追踪不需要多么的深，类似 BKT 这类浅层模型依然能够带来不错的性能和更好的可解释性.</p>
+<h1 id="简介-Introduction"><a href="#简介-Introduction" class="headerlink" title="简介(Introduction)"></a>简介(Introduction)</h1><ol>
+<li>深度学习中的“深”一般表现在模型输入和输出之间建立了多层特征转换，并且深度学习的参数大多无法解释原因.除此之外，深度学习一般不需要领域知识或者对特征进行刻意的人工设计，那么对于学生应答数据来说，深度学习自然也能发挥作用.</li>
+<li>我们的目标就是探索 DKT 为什么表现比 BKT 要更优异，并且在了解原因之后，我们还将对 BKT 进行拓展，并对拓展后的增强版 BKT 与 DKT 进行对比，看它们之间的差距几何.这个过程不仅对理解 BKT 和 DKT 有效果，还能帮助理解数据源的结构.</li>
+</ol>
+<h2 id="学生学习建模-Modeling-Student-Learning"><a href="#学生学习建模-Modeling-Student-Learning" class="headerlink" title="学生学习建模(Modeling Student Learning)"></a>学生学习建模(Modeling Student Learning)</h2><ol>
+<li>我们所研究的领域是运用认知模型对学生知识掌握情况进行追踪和评估的电子导学系统，通过了解学生的掌握情况，系统可以根据反馈动态的调节教学的深度，提高学习效率.</li>
+<li>通常来说，学生模型被公式化为一个时间序列的预测:给一系列学生曾经学过的习题以及学生的做题正确情况，从而预测学生在未来练习中的正确情况.用数学的方式来说，数据包含一系列表明学生 s 对于习题 t 的回答正确与否的组合，{X<sub>st</sub>}，数据同样包括练习标签{Y<sub>st</sub>}用于表明练习情况，同时一些次要信息通常来说也会被放入模型，比如学生是否利用了提示、回答题目的时长、具体题目的特点以及学生之前是否做过类似题目等.不过虽然这些信息有助于提高预测的效果，但是一般来说研究者还是更专注于学生是否做对了题目，对于次要信息的关注并不多.</li>
+<li>有关练习标签 Y<sub>st</sub>必须是对具体题目(3+4 和 2+6 比较大小)的标记或者提供通用的知识点描述(个位数相加)，随后这些练习就被知识点所整理起来.</li>
+<li>在本文中，我们将两个变量成为<strong>练习索引(exercise indexed)和知识点索引(skill indexed)</strong>.</li>
+</ol>
+<h2 id="知识追踪-Knowledge-Tracing"><a href="#知识追踪-Knowledge-Tracing" class="headerlink" title="知识追踪(Knowledge Tracing)"></a>知识追踪(Knowledge Tracing)</h2><ol>
+<li>BKT 主要是对具体知识点进行了建模，比如针对所有习题都属于同一知识点的情况，每个 BKT 实例都是为了单一知识点服务的，学生的原始习题序列会被分解成具体知识点序列，只保留了相同知识点内的相对顺序而舍弃了不同知识点之间的顺序关系.对于给定的知识点 σ，BKT 使用从每个学生 s 处获取的数据进行训练{X<sub>st</sub>|Y<sub>st</sub>=σ}，其中习题的相对顺序进行了保留.因为它对我们区分同一知识点内绝对习题索引和相对习题索引来说帮助巨大，我们使用 t 来代表之前的题目，使用 i 代表之后的题目.</li>
+<li>BKT 是基于人类学习的全或无原则，这个原则假设学生 s 通过解决第 i 个问题来判断他是否掌握了知识点 K<sub>si</sub>是二元的:1 代表掌握了，而 0 则代表没掌握.</li>
+<li>BKT 使用公式可以表示为一个隐马尔可夫模型，K<sub>si</sub>表示为可观测习题的序列{X<sub>s1</sub>、X<sub>s2</sub>、…X<sub>si</sub>}.</li>
+<li>BKT 通常由四种参数组成:<strong>P(K<sub>s0</sub>=1)，这代表了学生是否之前就掌握了解决第一个问题的能力.P(K<sub>s,i+1</sub>=1|K<sub>si</sub>=0)代表了学生从没掌握该知识点到掌握了该知识点的转移矩阵.P(X<sub>si</sub>=1|K<sub>si</sub>=0)代表学生在没有掌握知识的情况下答对的概率(猜对率).P(X<sub>si</sub>=0|K<sub>si</sub>=1)代表学生掌握该知识的情况下意外答错的情况(手误率)</strong>，BKT 没有考虑遗忘率.</li>
+<li>BKT 是一个高度受限的结构化模型，它对学生表现的状态全部取决于学生的二元知识掌握状态，这对于模型的性能有所限制，而 DKT 比它的表现更好.</li>
+<li>不同于 BKT 为每个知识点单独建模，DKT 模型的输入完全是练习-表现对(exercise-performance pairs)序列:{(X<sub>s1</sub>,Y<sub>s1</sub>)…(X<sub>st</sub>,Y<sub>st</sub>)…(X<sub>sT</sub>,Y<sub>sT</sub>)}，这代表了一次完整的练习.DKT 是 RNN 模型，它将(X<sub>st</sub>,Y<sub>st</sub>)作为输入，同时为每个可能的练习标签预测 X<sub>s,t+1</sub>.模型通过实际和预测的 X<sub>s,t+1</sub>之间的关系进行训练和优化，最终通过 Y<sub>s,t+1</sub>进行验证.该网络在隐含层使用全连接.<br><img src="https://s2.ax1x.com/2019/12/18/QHTUAJ.png" alt="QHTUAJ.png"></li>
+</ol>
+<h2 id="BKT-的短板在哪-Where-Does-BKT-Fall-Short"><a href="#BKT-的短板在哪-Where-Does-BKT-Fall-Short" class="headerlink" title="BKT 的短板在哪?(Where Does BKT Fall Short?)"></a>BKT 的短板在哪?(Where Does BKT Fall Short?)</h2><h3 id="近因效应-Recency-Effects"><a href="#近因效应-Recency-Effects" class="headerlink" title="近因效应(Recency Effects)"></a>近因效应(Recency Effects)</h3><ol>
+<li>人类行为就是典型的近因驱动，比如人们在重复做选择题的过程中，其可能的选择就能通过最近行为经过平均指数衰减的方式得出.在学生答题表现中可以表现为时间跨度.学生之所以在最后测试中表现不佳可能是由于当前表现就不佳.</li>
+<li>RNN 受序列中的临近事件的影响比较远事件更大，所以 DKT 能够对在最近表现上进行预测.而 BKT 则假设知识点一旦掌握则不再遗忘，t 时间的手误率和 t+1 时间的手误率彼此独立.</li>
+</ol>
+<h3 id="有上下文的习题序列-Contextualized-Trial-Sequence"><a href="#有上下文的习题序列-Contextualized-Trial-Sequence" class="headerlink" title="有上下文的习题序列(Contextualized Trial Sequence)"></a>有上下文的习题序列(Contextualized Trial Sequence)</h3><ol>
+<li>有文献指出在包含多个知识点的练习中，习题的顺序能够影响学习和记忆.比如在习题顺序上采用<strong>插入式(interleaved)</strong>(A<sub>1</sub>-B<sub>1</sub>-A<sub>2</sub>-B<sub>2</sub>-A<sub>3</sub>-B<sub>3</sub>)的表现比采用<strong>块式(blocked)</strong>(A<sub>1</sub>-A<sub>2</sub>-A<sub>3</sub>-B<sub>1</sub>-B<sub>2</sub>-B<sub>3</sub>)要好.</li>
+<li>DKT 直接使用和学生做题相同顺序的序列直接进行学习，而 BKT 只保留了单个知识点内题目的相对关系，所以 BKT 的训练数据也就没有考虑习题采用了插入式还是块式的顺序.</li>
+</ol>
+<h3 id="内在知识点的相似性-Inter-Skill-Similarity"><a href="#内在知识点的相似性-Inter-Skill-Similarity" class="headerlink" title="内在知识点的相似性(Inter-Skill Similarity)"></a>内在知识点的相似性(Inter-Skill Similarity)</h3><ol>
+<li>每个呈现给学生的题目都有一个相关联的标签，在 Piech 的论文中，标签用于标记为解决问题所需要掌握的知识点，任何两个知识点 S<sub>1</sub>和 S<sub>2</sub>之间的相关度可能都不同，相关度越高，两个知识点的掌握情况越相近，并且很可能能够同时学习两个知识点.</li>
+<li>DKT 可以对内在知识点相似性进行编码。如果每个隐单元能够表示学生对于具体知识点的掌握状态，那么隐层和隐层之间的连接能够对知识点之间的重合度进行编码.举一个极端例子，如果两个知识点高度相关，那么它们能够通过一个隐知识状态进行建模.相反，BKT 只对单知识点进行建模，这样就无法发现知识点之间的关联性.</li>
+<li>DKT 还能对标签缺失的情况进行处理，如果标签只是针对具体练习给出一个简单索引，那么 DKT 能发现知识点之间的内在关联.相反，BKT 要求所有的练习都要经过知识点标记.</li>
+</ol>
+<h3 id="个体的能力差异-Individual-Variation-in-Ability"><a href="#个体的能力差异-Individual-Variation-in-Ability" class="headerlink" title="个体的能力差异(Individual Variation in Ability)"></a>个体的能力差异(Individual Variation in Ability)</h3><ol>
+<li>学生的个体能力存在差别，我们提出了一个可能的假设:不论需要解决该问题所需要用到的知识点是什么，学生在前期练习中的成绩可以用来预测他未来的表现.</li>
+<li>为对假设进行验证，我们利用 ASSISTments 数据集设计了一个简单的实验.在该数据集上，学生学完一个知识点之后立即学习另外一个.我们计算了前 n 个知识点中所有习题的平均正确率和第 n+1 个知识点平均正确率中的相关性，我们发现不论知识点是什么，在前面知识点表现良好的学生在后期表现也良好.</li>
+<li>DKT 能够对完整的序列进行表征，它能够使用学生在练习 t 中的准确率对学生在练习 t+1 上的准确率进行预测.因为 BKT 对每个知识点单独建模，所以它没法利用这种上下文信息对学生的平均准确率和整体能力进行评估.</li>
+</ol>
+<h1 id="对-BKT-进行扩展-EXTENDING-BKT"><a href="#对-BKT-进行扩展-EXTENDING-BKT" class="headerlink" title="对 BKT 进行扩展(EXTENDING BKT)"></a>对 BKT 进行扩展(EXTENDING BKT)</h1><ol>
+<li>针对上面提出的问题，我们决定对 BKT 进行扩展以达到 DKT 的水准.</li>
+</ol>
+<h2 id="遗忘率-Forgetting"><a href="#遗忘率-Forgetting" class="headerlink" title="遗忘率(Forgetting)"></a>遗忘率(Forgetting)</h2><ol>
+<li>为了更好捕捉近因效应，BKT 被扩展到可以接受知识点遗忘,对于 BKT 来说，遗忘率参数 F=P(K<sub>s,i+1</sub>=0|K<sub>si</sub>=1)，这个概率代表了从掌握知识点到没掌握知识点之间的变化.在标准 BKT 中，F=0.</li>
+<li>加入了遗忘率能够让知识掌握状态不至于一成不变，这能让模型对于最近的习题更加敏感.加入遗忘率不仅让 BKT 模型更加敏感，还让它学会了理解练习序列上下文的能力.以 A<sub>1</sub>-A<sub>2</sub>-B<sub>1</sub>-A<sub>3</sub>-B<sub>2</sub>-B<sub>3</sub>-A<sub>4</sub>为例，这里的标签分别为知识点 A 和知识点 B 的实例.在传统的 BKT 中一般会舍弃一个知识点中两个题目之间的绝对顺序，但加入了遗忘机制后，我们就可以对存在的干扰习题进行统计，并且将它们作为可能发生遗忘的独立事件进行处理.这样 A<sub>1</sub>和 A<sub>2</sub>之间的遗忘率为 F，A<sub>2</sub>和 A<sub>3</sub>之间的遗忘率为 1-(1-F)<sup>2</sup>，A<sub>3</sub>和 A<sub>4</sub>之间的遗忘率是 1-(1-F)<sup>3</sup>，加入遗忘率就使得 BKT 更够对分散的习题更加敏感.</li>
+</ol>
+<h2 id="发掘知识点-Skill-Discovery"><a href="#发掘知识点-Skill-Discovery" class="headerlink" title="发掘知识点(Skill Discovery)"></a>发掘知识点(Skill Discovery)</h2><ol>
+<li>为给知识点之间的关联进行建模，一种可能的假设是每个知识点都在某种程度上为另一个知识点产生了影响，对于独立建模的 BKT 来说要建立这种联系需要使用类似因子隐马尔可夫模型之类的架构，但是它太过复杂了，我们采用了一种更为简单的模式将不同练习标签的题目归类到同一知识点下.</li>
+<li>比如 A<sub>1</sub>-B<sub>1</sub>-A<sub>2</sub>-C<sub>1</sub>-B<sub>2</sub>-C<sub>2</sub>-C<sub>3</sub>，如果知识点 A 和 B 是高度相关或者重合的，这样就很容易将 A 和 B 归类到同一知识点下，然后将 A 和 B 的习题通过相关的 BKT 模型进行训练，这种方法不论习题标签是知识点还是练习都有效.</li>
+<li>我们最近提出了一个方法能够自动对给定的数据集发现其中存在的知识点，这个方法主要做了两件事:(1)、确定要解答每个问题需要的知识点是什么；(2)、对每个知识点建立学生的动态知识掌握模型.</li>
+<li>总的来说，我们的这个方法能够为每个练习标签分配一个隐含的知识点，这样学生就能通过不断练习相同知识点的题目提高做题的准确性.</li>
+<li>相比舍弃由专家定义的知识点，我们选择了将它和一个带权重的中国餐馆过程(Chinese restaurant process)进行结合的方法完成练习-知识点分配.</li>
+</ol>
+<h2 id="将隐含的学生能力进行整合-Incorporating-Latent-Student-Abilities"><a href="#将隐含的学生能力进行整合-Incorporating-Latent-Student-Abilities" class="headerlink" title="将隐含的学生能力进行整合(Incorporating Latent Student-Abilities)"></a>将隐含的学生能力进行整合(Incorporating Latent Student-Abilities)</h2><ol>
+<li>为了将学生个体差异纳入考虑因素，我们将猜对率和手误率整合成了一个隐含的能力(ability)参数，然后将它放入 BKT 中，这是受了项目反应理论的影响(item-response theory).我们假设能力更强的学生，他的手误率要低，猜对率要高.当模型中加入新学生时，我们就分配给他一个初始值，经过不断观测答题情况后，对于学生能力的不确定性减弱，预测精准度提高了.</li>
+</ol>
+<h1 id="模拟-SIMULATIONS"><a href="#模拟-SIMULATIONS" class="headerlink" title="模拟(SIMULATIONS)"></a>模拟(SIMULATIONS)</h1><h2 id="数据集-Data-Sets"><a href="#数据集-Data-Sets" class="headerlink" title="数据集(Data Sets)"></a>数据集(Data Sets)</h2><ol>
+<li>我们使用了 Piech 实验中使用过的两份数据集(ASSISTments 和 Synthetic(模拟数据集))，这里对 Synthetic 数据集进行一下说明.Synthetic 数据集中习题 t 下的练习被假设了一个难度特征 δ<sub>t</sub>和所需的具体知识点 σ<sub>t</sub>，每个题目根据练习本身进行标记，而不依靠底层知识点 σ<sub>t</sub>.学生的能力 α<sub>t</sub>依据漂移-扩散过程(drift-diffusion process)理论会随着时间的推进而不断增长.</li>
+<li>习题 t 的回答准确率是一个单次伯努利试验，它的概率由带有难度参数 δ<sub>t</sub>和能力参数 α<sub>t</sub>的猜对率项目反应理论所决定.</li>
+<li>这个数据集对于 BKT 来说有一定的挑战性，因为没有提供知识点 σ<sub>t</sub>而必须从数据中进行推导.由于没有分配知识点，BKT 要么使用单个知识点相关的所有题目，要么每个题目都和它自己的知识点相关，但是不管哪种假设都会丢失数据中的重要结构，Synthetic 有趣的地方在于它既没有适配 BKT 也没有适配 DKT.</li>
+<li>我们在模拟中加入了两个额外的数据集，一个是西班牙语(Spanish)，它包含了 182 个中学生在经过 15 周的学期学习后对 409 道西班牙题目的回答结果.另一个是 Statics 数据集，它包含了 333 个学生、1223 个有关大学工程学的练习.</li>
+</ol>
+<h2 id="方法-Methods"><a href="#方法-Methods" class="headerlink" title="方法(Methods)"></a>方法(Methods)</h2><ol>
+<li>我们对 BKT 的五个变种进行了评估，每个都是从之前所提到的拓展中结合了原始 BKT 得到的.作为基准，原始的 BKT 就叫<strong>BKT</strong>，包含了遗忘率的 BKT 叫做 <strong>(BKT+F)</strong>，包含了知识点探索的 BKT 叫做 <strong>(BKT+S)</strong>，包含了隐含能力的 BKT 叫做 <strong>(BKT+A)</strong>，最后包含了所有扩展的 BKT 叫做 <strong>(BKT+FSA)</strong>.除此之外，我们还是实现了使用 LSTM 的 DKT 版本，我们在数据集上都进行了测试.</li>
+<li>对于 ASSISTments、Spanish 和 Statics，我们使用了单词训练/测试集划分(a single train/test split)，而在 Synthetic 数据集上，我们采用了由 Piech 等人提供的 20 次模拟集合方案,最后取这 20 次模拟的平均结果.</li>
+<li>每个模型都通过各自的测试集进行了测试，结果使用 ROC 和 AUC 进行量化.</li>
+</ol>
+<h2 id="结果-Results"><a href="#结果-Results" class="headerlink" title="结果(Results)"></a>结果(Results)</h2><p><img src="https://s2.ax1x.com/2019/12/19/QqsWUf.png" alt="QqsWUf.png"></p>
+<ol>
+<li>在 ASSISTments 数据集中，我们发现 BKT+FSA 并没有表现出比 BKT+F 或 BKT+A 高出太多的成绩，这可能是两种因素影响了数据的不同方面，比如学生能力帮助预测从一个知识点到另一个知识点的转移，而遗忘率是在单个知识点内的预测.</li>
+<li>在 Synthetic 数据集中，BKT+F 没有帮上太多忙.</li>
+<li>在 Statics 数据集中，每一种加了拓展的 BKT 都表现出了比原始 BKT 更强的结果.</li>
+<li>在 Spanish 数据集中，BKT 拓展的效果就显得不那么明显了.</li>
+<li>总的来说，经过拓展的 BKT 在四个数据集上都达到了和 DKT 相近的水平.</li>
+</ol>
+<h1 id="讨论-DISCUSSION"><a href="#讨论-DISCUSSION" class="headerlink" title="讨论(DISCUSSION)"></a>讨论(DISCUSSION)</h1><ol>
+<li>这篇文章主要是探究了 DKT 相比 BKT 存在的一些优势，另外我们发现有一些因素使得 BKT 的结果产生了误差，导致它的分数比较差，经过多次重复实验后，我们发现其实在某些状况下 BKT 的性能要比之前研究中所得到的结果好，不过就算对误差进行了修正，DKT 还是表现出了比 BKT 更强的实力.</li>
+<li>对于之前提到过的三种扩展方式，遗忘率和学生能力对于计算来说都是比较廉价的选择，而知识点探索由于加了额外的计算层导致它会比较复杂</li>
+<li>DKT 的精妙之处在于不需要研究者分析领域知识就能找到数据中的结构.相反，为了提高 BKT，我们需要大量领域专家知识、考虑 BKT 受限的原因，并且为每个原因提供解决方案.</li>
+<li>DKT 的最大问题在于它的可解释性，我们有关 BKT 的拓展能够在表现上达到和 DKT 相近的同时还能保持可解释性.</li>
+<li>我们的结果表明对于特征的探索能力并不是 DKT 成功的核心因素，因为我们在对 BKT 加上参数之后也获得了和 DKT 类似的表现，而我们并不要求使用任何特征表示.特征表示更多在图片和语音分类中起作用.</li>
+<li>相比将 DKT 成功的原因归结为特征探索能力，我们更愿意将它归因于 DKT 的灵活性和在输入和输出之间捕捉统计规律的能力.</li>
+<li>DKT 在大规模数据集上效果更佳，BKT 在更小领域内解释性更好.</li>
+</ol>
+<hr>
+<h1 id="How-Deep-is-Knowledge-Tracing"><a href="#How-Deep-is-Knowledge-Tracing" class="headerlink" title="How Deep is Knowledge Tracing"></a>How Deep is Knowledge Tracing</h1><p>论文链接:<a href="http://www.educationaldatamining.org/EDM2016/proceedings/paper_144.pdf" target="_blank" rel="noopener">http://www.educationaldatamining.org/EDM2016/proceedings/paper_144.pdf</a></p>
+<h2 id="这篇文章主要是对-DKT-为什么表现更加进行了分析，并且指出了-BKT-之所以效果不如-DKT-的几点原因，然后就以上原因提出了改进方法，还将改进后的模型和原模型以及-DKT-放在了四个数据集-ASSISTments、Synthetic、Spanish、Statics-上进行了性能比较，得出了结论-最后讨论了-DKT-的强大之处和-BKT-的可取之处"><a href="#这篇文章主要是对-DKT-为什么表现更加进行了分析，并且指出了-BKT-之所以效果不如-DKT-的几点原因，然后就以上原因提出了改进方法，还将改进后的模型和原模型以及-DKT-放在了四个数据集-ASSISTments、Synthetic、Spanish、Statics-上进行了性能比较，得出了结论-最后讨论了-DKT-的强大之处和-BKT-的可取之处" class="headerlink" title="这篇文章主要是对 DKT 为什么表现更加进行了分析，并且指出了 BKT 之所以效果不如 DKT 的几点原因，然后就以上原因提出了改进方法，还将改进后的模型和原模型以及 DKT 放在了四个数据集(ASSISTments、Synthetic、Spanish、Statics)上进行了性能比较，得出了结论.最后讨论了 DKT 的强大之处和 BKT 的可取之处."></a>这篇文章主要是对 DKT 为什么表现更加进行了分析，并且指出了 BKT 之所以效果不如 DKT 的几点原因，然后就以上原因提出了改进方法，还将改进后的模型和原模型以及 DKT 放在了四个数据集(ASSISTments、Synthetic、Spanish、Statics)上进行了性能比较，得出了结论.最后讨论了 DKT 的强大之处和 BKT 的可取之处.</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/17/Going Deeper with Deep Knowledge Tracing /" rel="next" title="Going Deeper with Deep Knowledge Tracing">
+                <i class="fa fa-chevron-left"></i> Going Deeper with Deep Knowledge Tracing
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要-Abstract"><span class="nav-number">1.</span> <span class="nav-text">摘要(Abstract)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介-Introduction"><span class="nav-number">2.</span> <span class="nav-text">简介(Introduction)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#学生学习建模-Modeling-Student-Learning"><span class="nav-number">2.1.</span> <span class="nav-text">学生学习建模(Modeling Student Learning)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识追踪-Knowledge-Tracing"><span class="nav-number">2.2.</span> <span class="nav-text">知识追踪(Knowledge Tracing)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BKT-的短板在哪-Where-Does-BKT-Fall-Short"><span class="nav-number">2.3.</span> <span class="nav-text">BKT 的短板在哪?(Where Does BKT Fall Short?)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#近因效应-Recency-Effects"><span class="nav-number">2.3.1.</span> <span class="nav-text">近因效应(Recency Effects)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有上下文的习题序列-Contextualized-Trial-Sequence"><span class="nav-number">2.3.2.</span> <span class="nav-text">有上下文的习题序列(Contextualized Trial Sequence)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内在知识点的相似性-Inter-Skill-Similarity"><span class="nav-number">2.3.3.</span> <span class="nav-text">内在知识点的相似性(Inter-Skill Similarity)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个体的能力差异-Individual-Variation-in-Ability"><span class="nav-number">2.3.4.</span> <span class="nav-text">个体的能力差异(Individual Variation in Ability)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对-BKT-进行扩展-EXTENDING-BKT"><span class="nav-number">3.</span> <span class="nav-text">对 BKT 进行扩展(EXTENDING BKT)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#遗忘率-Forgetting"><span class="nav-number">3.1.</span> <span class="nav-text">遗忘率(Forgetting)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发掘知识点-Skill-Discovery"><span class="nav-number">3.2.</span> <span class="nav-text">发掘知识点(Skill Discovery)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将隐含的学生能力进行整合-Incorporating-Latent-Student-Abilities"><span class="nav-number">3.3.</span> <span class="nav-text">将隐含的学生能力进行整合(Incorporating Latent Student-Abilities)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模拟-SIMULATIONS"><span class="nav-number">4.</span> <span class="nav-text">模拟(SIMULATIONS)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集-Data-Sets"><span class="nav-number">4.1.</span> <span class="nav-text">数据集(Data Sets)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法-Methods"><span class="nav-number">4.2.</span> <span class="nav-text">方法(Methods)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果-Results"><span class="nav-number">4.3.</span> <span class="nav-text">结果(Results)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#讨论-DISCUSSION"><span class="nav-number">5.</span> <span class="nav-text">讨论(DISCUSSION)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-Deep-is-Knowledge-Tracing"><span class="nav-number">6.</span> <span class="nav-text">How Deep is Knowledge Tracing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#这篇文章主要是对-DKT-为什么表现更加进行了分析，并且指出了-BKT-之所以效果不如-DKT-的几点原因，然后就以上原因提出了改进方法，还将改进后的模型和原模型以及-DKT-放在了四个数据集-ASSISTments、Synthetic、Spanish、Statics-上进行了性能比较，得出了结论-最后讨论了-DKT-的强大之处和-BKT-的可取之处"><span class="nav-number">6.1.</span> <span class="nav-text">这篇文章主要是对 DKT 为什么表现更加进行了分析，并且指出了 BKT 之所以效果不如 DKT 的几点原因，然后就以上原因提出了改进方法，还将改进后的模型和原模型以及 DKT 放在了四个数据集(ASSISTments、Synthetic、Spanish、Statics)上进行了性能比较，得出了结论.最后讨论了 DKT 的强大之处和 BKT 的可取之处.</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
