@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="深度知识追踪(2017)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Incorporating Rich Features into Deep Knowledge Tracing">
+<meta property="og:url" content="http://yoursite.com/2019/12/20/Incorporating Rich Features into Deep Knowledge Tracing/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="深度知识追踪(2017)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/20/QOPZjK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/20/QOiXLT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/20/QOkPAg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/20/QOZBeP.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/20/QOeahF.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/20/QOmdVP.png">
+<meta property="og:updated_time" content="2019-12-20T04:22:55.037Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Incorporating Rich Features into Deep Knowledge Tracing">
+<meta name="twitter:description" content="深度知识追踪(2017)">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/20/QOPZjK.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/20/Incorporating Rich Features into Deep Knowledge Tracing/"/>
+
+
+
+
+
+  <title>Incorporating Rich Features into Deep Knowledge Tracing | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/20/Incorporating Rich Features into Deep Knowledge Tracing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Incorporating Rich Features into Deep Knowledge Tracing</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-20T00:00:00+08:00">
+                2019-12-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-20T12:22:55+08:00">
+                2019-12-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/论文笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">论文笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  深度知识追踪(2017)
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="摘要-Abstract"><a href="#摘要-Abstract" class="headerlink" title="摘要(Abstract)"></a>摘要(Abstract)</h1><ol>
+<li>通过学生当前练习表现对接下来做题情况进行预测的模式被多个模型采纳，其中包括 BKT、PFA 和最近流行起来的 DKT.DKT 在在该领域取得了优异的成绩，但是它忽略了很多在计算机学习环境下存在的特征.</li>
+<li>本研究想在问题层面(problem-level)将更多特征和 DKT 进行整合，从而提高 DKT 的精度.</li>
+<li>本研究在提供更高维输入的同时也为原始版本的 DKT 提供了相匹配的输入，为此我们在原始 DKT 中增加了自编码器(auto-encoder)层用于将输入转换为低维度数据，实验证明，我们对 DKT 模型的改进确实提升了模型的精度</li>
+</ol>
+<h1 id="简介-Introduction"><a href="#简介-Introduction" class="headerlink" title="简介(Introduction)"></a>简介(Introduction)</h1><ol>
+<li>对学生学习过程进行追踪的模型常常将学生的知识掌握程度作为隐变量，当学生面对新的问题时，这些模型就基于回答正确率对参数进行更新，也就是说学生在前项中的表现可以对后项表现产生影响.</li>
+<li>BKT 和 PFA 都采用了这样的思想，BKT 使用贝叶斯网络对每个知识点学习四个参数，而 PFA 则使用逻辑回归对总体表现和每个知识点的表现进行评估.</li>
+<li>深度学习在多个领域都表现出了优异的性能，我们认为要是加入更多的特征就能提高模型预测的准确性，另外我们还探索了其他的深度学习架构，看它们能否帮助将高维度输入降维成低维度</li>
+</ol>
+<h1 id="教育中的深度学习-DEEP-LEARNING-IN-EDUCATION"><a href="#教育中的深度学习-DEEP-LEARNING-IN-EDUCATION" class="headerlink" title="教育中的深度学习(DEEP LEARNING IN EDUCATION)"></a>教育中的深度学习(DEEP LEARNING IN EDUCATION)</h1><ol>
+<li>和 BKT 类似，DKT 在知识点层面(skill level)观测任务中包含了哪些知识点以及在问题层面(problem level)观测每个问题的正确率.DKT 模型的输入层是一个学生的“练习-表现组”(exercise-performance pair).换句话说，在给出知识点的情况下，每个项目的知识点和正确率被用来预测下个项目的正确率.</li>
+<li>我们认为 DKT 的结构还有优化的空间，比如输入只是考虑了知识点和正确率，但其实对于模型来说能认出更多特征，所以我们这个研究就是为 DKT 增加更多特征，并且还利用自编码器完成数据从高维向低维的转换</li>
+</ol>
+<h1 id="利用更多特征改进-DKT-IMPROVING-DKT-WITH-MORE-FEATURES"><a href="#利用更多特征改进-DKT-IMPROVING-DKT-WITH-MORE-FEATURES" class="headerlink" title="利用更多特征改进 DKT(IMPROVING DKT WITH MORE FEATURES)"></a>利用更多特征改进 DKT(IMPROVING DKT WITH MORE FEATURES)</h1><ol>
+<li>ITS 系统收集了大量有关学生学习的数据，其中包括信息对问题的匹配程度、教学方式以及学生在每个题目上所花费的时间等信息.比如学生的反应时间、要求提示和题目尝试的次数等都有助于建立更合理的学生模型.在我们的研究中采纳了学生反应时间(students response time)、尝试次数(attempt number)以及第一反应(first action)作为新加入的参数，因为这些参数在绝大部分学习平台中都有记录，所有的输入数据都会被转换成固定长度的输入向量.</li>
+</ol>
+<h2 id="特征过程-Feature-process"><a href="#特征过程-Feature-process" class="headerlink" title="特征过程(Feature process)"></a>特征过程(Feature process)</h2><ol>
+<li>特征工程在对特征进行有效表征过程中会起到关键作用，它的目的是在对数据进行简化的同时不丢失太多信息.在此我们对本研究中用到的特征进行简要介绍:</li>
+</ol>
+<ul>
+<li><strong>练习标签(Exercise tag)</strong>这个参数在不同的数据集中要么用数字表示，要么用知识点名称表示</li>
+<li><strong>正确率(Correctness)</strong>这个参数要么是 1 代表正确，要么是 0 代表错误</li>
+<li><strong>初次反应时间(First Response Time)</strong>这个参数是将知识点和该知识点相关的正确率进行 z-score 标准化之后的值(z 分数(z-score)，也叫标准分数(standard score)是一个数与平均数的差再除以标准差的过程。在统计学中，标准分数是一个观测或数据点的值高于被观测值或测量值的平均值的标准偏差的符号数。)<br><img src="https://s2.ax1x.com/2019/12/20/QOPZjK.png" alt="QOPZjK.png"></li>
+<li><strong>尝试次数(Attempt count)</strong>这个参数代表了每个项目回答正确所尝试的次数，它在 ASSISTments 数据集中被离散化的表示为[0,1,其他]，在 Open Learning Initiative 数据集中表示为[==1,1&lt;and&lt;=5,&gt;5,其他]</li>
+<li><strong>第一反应(first action)</strong>这个参数代表了学生面对题目时第一反应是尝试解题还是寻求系统帮助</li>
+</ul>
+<ol start="2">
+<li>在将原始数据转化为结构化数据后，特征都被独热编码表示为了一个稀疏矩阵<br><img src="https://s2.ax1x.com/2019/12/20/QOiXLT.png" alt="QOiXLT.png"></li>
+<li>这些数据被整合起来后导致维度急剧增加，所以我们使用自编码器进行降维.</li>
+</ol>
+<h2 id="模型-Model"><a href="#模型-Model" class="headerlink" title="模型(Model)"></a>模型(Model)</h2><ol>
+<li>这个模型的输入是将独立的特征经过独热编码连接后形成的，v<sub>t</sub>代表了每个学生练习的结果输入向量，e<sub>t</sub>代表了当 c<sub>t</sub>正确时的练习标签，t<sub>t</sub>代表时间<br><img src="https://s2.ax1x.com/2019/12/20/QOkPAg.png" alt="QOkPAg.png"></li>
+<li>C()是一个交叉特征，O()采用了独热编码的格式，︵代表了连接.在方程 1 中，加上的 1 是表示没有被包含的练习.v<sub>t</sub><sup>‘</sup>代表了通过方程 3 经过自编码器提取出的特征向量<br><img src="https://s2.ax1x.com/2019/12/20/QOZBeP.png" alt="QOZBeP.png"></li>
+<li>上面的灰色箭头代表了两层之间的权重为常量，这意味着编码器权重是提前分别进行训练的.当 y<sub>t</sub>代表输出层时，h<sub>t</sub>代表了 LSTM 隐结点.我们使用了二元交叉熵作为损失函数，dropout 概率设为 0.4，同时采用了 200 个隐结点的 LSTM 层</li>
+</ol>
+<h1 id="数据集-DATASETS"><a href="#数据集-DATASETS" class="headerlink" title="数据集(DATASETS)"></a>数据集(DATASETS)</h1><p><img src="https://s2.ax1x.com/2019/12/20/QOeahF.png" alt="QOeahF.png"></p>
+<ol>
+<li>我们采用了 ASSISTments09-10 以及 Open Learning Initiative(OLI)作为数据集，因为它们记录了学习过程中的练习和结果</li>
+<li>由于 ASSISTments09-10 数据集中存在的一些问题，我们采用了更新的版本</li>
+<li>OLI Statics F2011 是 OLI 数据集中有关大学工学的课程.练习标签来源于文本描述中数字化的知识点</li>
+<li>由于这是时间序列算法，所以记录中少于两个时间步的数据就不在考虑范围内了</li>
+</ol>
+<h1 id="结果-RESULTS"><a href="#结果-RESULTS" class="headerlink" title="结果(RESULTS)"></a>结果(RESULTS)</h1><p><img src="https://s2.ax1x.com/2019/12/20/QOmdVP.png" alt="QOmdVP.png"></p>
+<ol>
+<li>我们使用了 5 折交叉检验，并且结果经过了 AUC 和皮尔森平方关联系数的检验.</li>
+<li>自编码器在进行多特征融合过程中发挥了重要作用，否则维度会过多</li>
+</ol>
+<h1 id="讨论-DISCUSSION"><a href="#讨论-DISCUSSION" class="headerlink" title="讨论(DISCUSSION)"></a>讨论(DISCUSSION)</h1><ol>
+<li>这个领域未来可以将教室水平(class-level)和学校水平(school-level)的特征加入模型当中，并且定义不同的行为；同时也可以考虑加入不同的降维方法，比如主成分分析(PCA)以及局部线性嵌入算法(LLE)，还可以考虑使用不同的自编码器，比如加入噪声，或者为初始权重使用受限玻尔兹曼机(RBM)</li>
+</ol>
+<hr>
+<h1 id="Incorporating-Rich-Features-into-Deep-Knowledge-Tracing"><a href="#Incorporating-Rich-Features-into-Deep-Knowledge-Tracing" class="headerlink" title="Incorporating Rich Features into Deep Knowledge Tracing"></a>Incorporating Rich Features into Deep Knowledge Tracing</h1><p>论文链接:<a href="http://delivery.acm.org/10.1145/3060000/3053976/p169-zhang.pdf" target="_blank" rel="noopener">http://delivery.acm.org/10.1145/3060000/3053976/p169-zhang.pdf</a></p>
+<h2 id="这篇文章主要是对原-DKT-进行改进，加入了很多新的特征对-DKT-的预测精度进行提升，并且引入了自编码器的形式对增加特征后的输入数据进行降维，保证了数据的可靠性的同时提高了计算效率"><a href="#这篇文章主要是对原-DKT-进行改进，加入了很多新的特征对-DKT-的预测精度进行提升，并且引入了自编码器的形式对增加特征后的输入数据进行降维，保证了数据的可靠性的同时提高了计算效率" class="headerlink" title="这篇文章主要是对原 DKT 进行改进，加入了很多新的特征对 DKT 的预测精度进行提升，并且引入了自编码器的形式对增加特征后的输入数据进行降维，保证了数据的可靠性的同时提高了计算效率."></a>这篇文章主要是对原 DKT 进行改进，加入了很多新的特征对 DKT 的预测精度进行提升，并且引入了自编码器的形式对增加特征后的输入数据进行降维，保证了数据的可靠性的同时提高了计算效率.</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/18/How Deep is Knowledge Tracing/" rel="next" title="How Deep is Knowledge Tracing">
+                <i class="fa fa-chevron-left"></i> How Deep is Knowledge Tracing
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要-Abstract"><span class="nav-number">1.</span> <span class="nav-text">摘要(Abstract)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介-Introduction"><span class="nav-number">2.</span> <span class="nav-text">简介(Introduction)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#教育中的深度学习-DEEP-LEARNING-IN-EDUCATION"><span class="nav-number">3.</span> <span class="nav-text">教育中的深度学习(DEEP LEARNING IN EDUCATION)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用更多特征改进-DKT-IMPROVING-DKT-WITH-MORE-FEATURES"><span class="nav-number">4.</span> <span class="nav-text">利用更多特征改进 DKT(IMPROVING DKT WITH MORE FEATURES)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征过程-Feature-process"><span class="nav-number">4.1.</span> <span class="nav-text">特征过程(Feature process)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型-Model"><span class="nav-number">4.2.</span> <span class="nav-text">模型(Model)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据集-DATASETS"><span class="nav-number">5.</span> <span class="nav-text">数据集(DATASETS)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结果-RESULTS"><span class="nav-number">6.</span> <span class="nav-text">结果(RESULTS)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#讨论-DISCUSSION"><span class="nav-number">7.</span> <span class="nav-text">讨论(DISCUSSION)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Incorporating-Rich-Features-into-Deep-Knowledge-Tracing"><span class="nav-number">8.</span> <span class="nav-text">Incorporating Rich Features into Deep Knowledge Tracing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#这篇文章主要是对原-DKT-进行改进，加入了很多新的特征对-DKT-的预测精度进行提升，并且引入了自编码器的形式对增加特征后的输入数据进行降维，保证了数据的可靠性的同时提高了计算效率"><span class="nav-number">8.1.</span> <span class="nav-text">这篇文章主要是对原 DKT 进行改进，加入了很多新的特征对 DKT 的预测精度进行提升，并且引入了自编码器的形式对增加特征后的输入数据进行降维，保证了数据的可靠性的同时提高了计算效率.</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
