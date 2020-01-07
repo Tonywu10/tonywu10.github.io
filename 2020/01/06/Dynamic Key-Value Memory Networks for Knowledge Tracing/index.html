@@ -88,12 +88,11 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l697Wj.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l6CG0f.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l6CF61.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l6Filj.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/06/lyEp5T.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/06/lyevSU.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l6ZCsH.png">
-<meta property="og:updated_time" content="2020-01-07T03:16:32.614Z">
+<meta property="og:updated_time" content="2020-01-07T03:31:41.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dynamic Key-Value Memory Networks for Knowledge Tracing">
 <meta name="twitter:description" content="深度知识追踪(2017)">
@@ -295,7 +294,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-07T11:16:32+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-07T11:31:41+08:00">
                 2020-01-07
               </time>
             
@@ -388,7 +387,7 @@
 </ol>
 <h2 id="用于知识追踪的记忆增强神经网络-Memory-Augmented-Neural-Network-for-Knowledge-Tracing"><a href="#用于知识追踪的记忆增强神经网络-Memory-Augmented-Neural-Network-for-Knowledge-Tracing" class="headerlink" title="用于知识追踪的记忆增强神经网络(Memory-Augmented Neural Network for Knowledge Tracing)"></a>用于知识追踪的记忆增强神经网络(Memory-Augmented Neural Network for Knowledge Tracing)</h2><ol>
 <li>为解决 KT 问题，MANN 中的额外记忆矩阵被看作一个学生的知识掌握状态。被称为 M<sub>t</sub>的记忆模块是一个 N*M 的矩阵，其中 N 代表记忆地址的数量，而 M 代表每个地址的向量大小。在每个时间步 t 中，MANN 的输入是一个(q<sub>t</sub>,r<sub>t</sub>)的联合嵌入向量 v<sub>t</sub>，这里的 q<sub>t</sub>来自包含无重复的练习标签集合 Q，而 r<sub>t</sub>是一个二元值，代表学生在当前练习中正确与否。这个嵌入向量(embedding vector)v<sub>t</sub>被用于计算读权重 w<sup>r</sup><sub>t</sub>以及计算写权重 w<sup>w</sup><sub>t</sub></li>
-<li>我们采用余弦相似度注意力机制计算 w<sup>r</sup><sub>t</sub>，使用 LRUA(相当于操作系统中的 LRU，最近最少使用)机制计算 w<sup>w</sup><sub>t</sub>。MANN 的机制是当学生对一个已经存储在记忆中的练习给出相同的回答时，v<sub>t</sub>就会被之前使用过的记忆位置所覆盖，，但如果是一道新的练习或者说学生给出了不同的回答，那么 v<sub>t</sub>就会使用 LRU 策略进行写入。而在读的过程中，读取内容 r<sub>t</sub>是读权重 w<sup>r</sup><sub>t</sub>和所有记忆槽的加权和:<br><img src="https://s2.ax1x.com/2020/01/07/l6CF61.png" alt="l6CF61.png"><br>对于输出 p<sub>t</sub>∈R<sup>Q</sup>,它代表了学生在下一个时间步中回答正确每个习题的可能性.</li>
+<li>我们采用余弦相似度注意力机制计算 w<sup>r</sup><sub>t</sub>，使用 LRUA(相当于操作系统中的 LRU，最近最少使用)机制计算 w<sup>w</sup><sub>t</sub>。MANN 的机制是当学生对一个已经存储在记忆中的练习给出相同的回答时，v<sub>t</sub>就会被之前使用过的记忆位置所覆盖，，但如果是一道新的练习或者说学生给出了不同的回答，那么 v<sub>t</sub>就会使用 LRU 策略进行写入。而在读的过程中，读取内容 r<sub>t</sub>是读权重 w<sup>r</sup><sub>t</sub>和所有记忆槽的加权和:r<sub>t</sub>=∑<sup>N</sup><sub>i=1</sub>w<sup>r</sup><sub>t</sub>(i)M<sub>t</sub>(i) 对于输出 p<sub>t</sub>∈R<sup>Q</sup>,它代表了学生在下一个时间步中回答正确每个习题的可能性.</li>
 <li>在写的过程中，我们首先通过使用擦除信号 e<sub>t</sub>和写权重 w<sup>r</sup><sub>t</sub> 擦除掉记忆中的无关内容，然后使用增加信号 a<sub>t</sub>将 v<sub>t</sub>加入到记忆中。MANN 相比 LSTM 使用 N 个记忆槽对学生的知识状态进行编码，这使得它有更大的存储量</li>
 </ol>
 <h2 id="动态键值记忆网络-Dynamic-Key-Value-Memory-Networks"><a href="#动态键值记忆网络-Dynamic-Key-Value-Memory-Networks" class="headerlink" title="动态键值记忆网络(Dynamic Key-Value Memory Networks)"></a>动态键值记忆网络(Dynamic Key-Value Memory Networks)</h2><ol>
