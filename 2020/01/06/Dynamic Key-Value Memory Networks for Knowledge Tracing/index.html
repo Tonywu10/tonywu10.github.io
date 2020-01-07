@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="深度知识追踪(2017)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dynamic Key-Value Memory Networks for Knowledge Tracing">
+<meta property="og:url" content="http://yoursite.com/2020/01/06/Dynamic Key-Value Memory Networks for Knowledge Tracing/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="深度知识追踪(2017)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l697Wj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l6CG0f.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l6CF61.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l6Filj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/06/lyEp5T.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/06/lyevSU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l6ZCsH.png">
+<meta property="og:updated_time" content="2020-01-07T03:16:32.614Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dynamic Key-Value Memory Networks for Knowledge Tracing">
+<meta name="twitter:description" content="深度知识追踪(2017)">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/01/07/l697Wj.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/06/Dynamic Key-Value Memory Networks for Knowledge Tracing/"/>
+
+
+
+
+
+  <title>Dynamic Key-Value Memory Networks for Knowledge Tracing | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/06/Dynamic Key-Value Memory Networks for Knowledge Tracing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Dynamic Key-Value Memory Networks for Knowledge Tracing</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-06T00:00:00+08:00">
+                2020-01-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-07T11:16:32+08:00">
+                2020-01-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/论文笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">论文笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  深度知识追踪(2017)
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="摘要-Abstract"><a href="#摘要-Abstract" class="headerlink" title="摘要(Abstract)"></a>摘要(Abstract)</h1><ol>
+<li>知识追踪中常用的 BKT 或者 DKT 要么对预先定义好的知识点的掌握状态分别建模，要么是没法在知识点级别对学生的掌握情况进行定位.</li>
+<li>本研究提出了一个新的模型，称为 Dynamic Key-Value Memory Networks(DKVMN)，它能够直接研究隐含知识点和学生对每个知识点的掌握水平之间的关系.</li>
+<li>本研究使用了一个静态矩阵(key)，它存储了知识点；使用了一个动态矩阵(value)，它用于存储和更新相应知识点的掌握情况.</li>
+</ol>
+<h1 id="简介-Introduction"><a href="#简介-Introduction" class="headerlink" title="简介(Introduction)"></a>简介(Introduction)</h1><ol>
+<li>通常来说，知识追踪可以被公式化为一个监督序列问题:给定一个学生过去的练习交互 X={x<sub>1</sub>,x<sub>2</sub>,…,x<sub>t-1</sub>}，然后通过这个来预测学生在面对一个新的练习时的准确率 p(r<sub>t</sub>=1|q<sub>t</sub>,X).它的输入是一个元组 x<sub>t</sub>=(q<sub>t</sub>,r<sub>t</sub>)，其中 t 代表当前时间步，q<sub>t</sub>代表练习，r<sub>t</sub>代表学生是否回答正确。我们将可观测变量建模为 X，然后将包含 N 个知识点(C={c<sup>1</sup>,c<sup>2</sup>,…,c<sup>N</sup>})的学生掌握情况 S={s<sub>1</sub>,s<sub>2</sub>,…,s<sub>t-1</sub>} 当作隐过程.</li>
+<li>在 BKT 中，一个学生的知识掌握状态 s<sub>t</sub>被表示成不同的知识点掌握状态{s<sup>i</sup><sub>t</sub>}，然后 BKT 针对它们单独建模.BKT 将知识掌握情况看作一个二元隐变量(知道和不知道)，并且使用隐马尔可夫模型对二元状态的后验分布进行更新。并且，BKT 不能捕捉不同知识点之间的关系，同时为了保持贝叶斯模型的易解释性，BKT 使用了离散随机变量和简单的转换模型描述每个知识点状态的变化，它缺乏对未定义知识点的提取能力和对复杂知识点状态转移的建模能力.<br><img src="https://s2.ax1x.com/2020/01/07/l697Wj.png" alt="l697Wj.png"></li>
+<li>在 BKT 之外，一种基于 LSTM 的 DKT 模型也被提出。LSTM 对隐含知识状态 S 提出了高维度和连续表征的假设。这种非线性的输入到状态(input-to-state)和状态到状态(state-to-state)让 DKT 有了比 BKT 更强的表征能力，此时就不再需要人工进行标注。不过 DKT 将学生对于全部知识点的掌握状态都表示在一个隐状态中，这使得要追踪一个学生对具体知识点的掌握情况变得非常困难.</li>
+<li>我们要介绍的工作是一个被称为动态键值记忆网络(Dynamic Key-Value Memory Networks,DKVMN)的新模型，它结合了两者的优点。我们的模型能够自动学习输入练习和背后知识点之间的联系，并且对每个知识点都能维持一个掌握状态。在每个时间步中，只有相关联的掌握状态会被更新。举例来说，当一个新的练习 q<sub>t</sub>到来时，模型会找到为解决 q<sub>t</sub>所需要的知识点 c<sup>t</sup>和 c<sup>k</sup>，然后我们就能够通过相对应的知识点状态 s<sup>j</sup><sub>t-1</sub>以及 s<sup>k</sup><sub>t-1</sub>对学生是否能够答对当前练习进行预测。在完成练习后，模型将会对这两个知识点状态进行更新。最后所有知识点状态组成了学生的知识掌握状态(knowledge state)S.</li>
+<li>不同于传统的记忆增强神经网络(Memory-Augmented neural network,MANNs)，我们的模型有一个称为键(key)的静态矩阵(static matrix)，它存储了知识点表征；而另外一个称为值(value)的动态矩阵(dynamic matrix)，它负责存储和更新学生对每个知识点的掌握状态。这个动态和静态矩阵主要适用于模拟字典数据结构中的可变和不可变对象。我们的训练过程就是在模拟创建对象，当键创建结束后，它们在整个测试中都是固定的.</li>
+<li>我们的主要贡献在于</li>
+</ol>
+<ul>
+<li>对 MANNs 进行改进，让它更适于模拟学生的学习过程</li>
+<li>提出了一个包含静态键(key)矩阵和动态值(value)矩阵的新型 DKVMN 模型</li>
+<li>模型能够自动发现知识点</li>
+<li>模型在一个模拟数据集和三个真实数据集中的表现比 BKT 以及 DKT 都要好</li>
+</ul>
+<h1 id="相关工作-RELATED-WORKS"><a href="#相关工作-RELATED-WORKS" class="headerlink" title="相关工作(RELATED WORKS)"></a>相关工作(RELATED WORKS)</h1><h2 id="知识追踪-Knowledge-Tracing"><a href="#知识追踪-Knowledge-Tracing" class="headerlink" title="知识追踪(Knowledge Tracing)"></a>知识追踪(Knowledge Tracing)</h2><ol>
+<li>知识追踪的任务是通过学生在解决问题 q<sub>t</sub>过程中正确与否的情况对学生的知识掌握状态进行评估，q<sub>t</sub>是一个练习标签，而 r<sub>t</sub>∈{0,1}代表答对或者答错的状态.</li>
+<li>BKT 是一个高度受限和结构化的模型，因为它要针对具体知识点表现进行建模，比如一个 BKT 实例就是对一个知识点单独建模，并且 BKT 认为知识状态就是一个二元变量.</li>
+<li>DKT 利用 LSTM 打破了知识点分离以及二元状态假设的限制。LSTM 使用隐状态对过去的输入序列进行总结，并且在不同时间步共享相同参数.</li>
+</ol>
+<h2 id="记忆增强神经网络-Memory-Augmented-Neural-Networks"><a href="#记忆增强神经网络-Memory-Augmented-Neural-Networks" class="headerlink" title="记忆增强神经网络(Memory-Augmented Neural Networks)"></a>记忆增强神经网络(Memory-Augmented Neural Networks)</h2><ol>
+<li>受计算机架构启发，一种被称为外部记忆(external memory)的神经网络模块用于提高网络对于捕捉长时间信息的能力，外部记忆包含两个部分，一个记忆矩阵(memory matrix)存储信息，一个控制器用于和外部进行沟通并对记忆进行读写，读写操作由注意力机制完成。在之前的大部分工作中使用类似的方法对读(read)权重进行计算，对于输入 k<sub>t</sub>一般计算它和每个记忆槽(memory slot)M<sub>t</sub>(i)之间的余弦相似度或者内积 K[k<sub>t</sub>,M<sub>t</sub>(i)]，然后使用 softmax 保持权重 w<sup>r</sup><sub>t</sub>:w<sup>r</sup><sub>t</sub>(i)=Softmax(β<sub>t</sub>K[k<sub>t</sub>,M<sub>t</sub>(i)]).而对于写(write)来说，我们使用了注意力机制.</li>
+<li>由于在读写操作中使用了循环，MANN 是一种特殊的 RNN，但是它和 LSTM 那种传统的 RNN 在三个方面存在区别。首先，传统 RNN 使用单个隐状态向量对时序信息进行编码，而 MANN 则使用额外的记忆矩阵提高了存储空间；其次，传统 RNN 的状态-状态(state-to-state)转换是非结构化的和全局的，但是 MANN 使用读写操作进行局部状态转换；最后，传统 RNN 中的参数数量和隐状态大小紧密相关，但是对于 MANN 来说，记忆槽的数量增加不会带来参数的爆炸，而会使它的计算更有效率.</li>
+</ol>
+<h1 id="模型-MODEL"><a href="#模型-MODEL" class="headerlink" title="模型(MODEL)"></a>模型(MODEL)</h1><ol>
+<li>我们首先介绍将 MANN 模型用于解决 KT 问题的方法，然后介绍我们的 DKVMN 模型<br><img src="https://s2.ax1x.com/2020/01/07/l6CG0f.png" alt="l6CG0f.png"></li>
+</ol>
+<h2 id="用于知识追踪的记忆增强神经网络-Memory-Augmented-Neural-Network-for-Knowledge-Tracing"><a href="#用于知识追踪的记忆增强神经网络-Memory-Augmented-Neural-Network-for-Knowledge-Tracing" class="headerlink" title="用于知识追踪的记忆增强神经网络(Memory-Augmented Neural Network for Knowledge Tracing)"></a>用于知识追踪的记忆增强神经网络(Memory-Augmented Neural Network for Knowledge Tracing)</h2><ol>
+<li>为解决 KT 问题，MANN 中的额外记忆矩阵被看作一个学生的知识掌握状态。被称为 M<sub>t</sub>的记忆模块是一个 N*M 的矩阵，其中 N 代表记忆地址的数量，而 M 代表每个地址的向量大小。在每个时间步 t 中，MANN 的输入是一个(q<sub>t</sub>,r<sub>t</sub>)的联合嵌入向量 v<sub>t</sub>，这里的 q<sub>t</sub>来自包含无重复的练习标签集合 Q，而 r<sub>t</sub>是一个二元值，代表学生在当前练习中正确与否。这个嵌入向量(embedding vector)v<sub>t</sub>被用于计算读权重 w<sup>r</sup><sub>t</sub>以及计算写权重 w<sup>w</sup><sub>t</sub></li>
+<li>我们采用余弦相似度注意力机制计算 w<sup>r</sup><sub>t</sub>，使用 LRUA(相当于操作系统中的 LRU，最近最少使用)机制计算 w<sup>w</sup><sub>t</sub>。MANN 的机制是当学生对一个已经存储在记忆中的练习给出相同的回答时，v<sub>t</sub>就会被之前使用过的记忆位置所覆盖，，但如果是一道新的练习或者说学生给出了不同的回答，那么 v<sub>t</sub>就会使用 LRU 策略进行写入。而在读的过程中，读取内容 r<sub>t</sub>是读权重 w<sup>r</sup><sub>t</sub>和所有记忆槽的加权和:<br><img src="https://s2.ax1x.com/2020/01/07/l6CF61.png" alt="l6CF61.png"><br>对于输出 p<sub>t</sub>∈R<sup>Q</sup>,它代表了学生在下一个时间步中回答正确每个习题的可能性.</li>
+<li>在写的过程中，我们首先通过使用擦除信号 e<sub>t</sub>和写权重 w<sup>r</sup><sub>t</sub> 擦除掉记忆中的无关内容，然后使用增加信号 a<sub>t</sub>将 v<sub>t</sub>加入到记忆中。MANN 相比 LSTM 使用 N 个记忆槽对学生的知识状态进行编码，这使得它有更大的存储量</li>
+</ol>
+<h2 id="动态键值记忆网络-Dynamic-Key-Value-Memory-Networks"><a href="#动态键值记忆网络-Dynamic-Key-Value-Memory-Networks" class="headerlink" title="动态键值记忆网络(Dynamic Key-Value Memory Networks)"></a>动态键值记忆网络(Dynamic Key-Value Memory Networks)</h2><ol>
+<li>尽管相比 LSTM 在存储学生过去表现上更有优势，但是在将 MANN 运用到 KT 任务时仍然存在一些不足。比如在 MANN 中，我们的内容读取和内容写入是在同一空间上完成，但是在 KT 任务中，学生收到的练习题和学生的作答是不同类型的数据，在这点上，通过将练习和回答嵌入到键中的方法并不起作用，所以 MANN 不能对输入练习背后的知识点进行准确建模.</li>
+<li>为解决这个问题，我们提出了 DKVMN 模型，它使用键值对而不是使用单个记忆结构矩阵，不同于 MANN 中的读、写放在同一记忆矩阵下的模式，DKVMN 将输入放在键(key)中，它是不可变的，而读和写则放在值(value)中.</li>
+<li>不同于 MANN，在每个时间步中，DKVMN 使用离散的联系标签 q<sub>t</sub>作为输入，输出的是回答正确的概率 p(r<sub>t</sub>|q<sub>t</sub>)，之后更新练习和回答的元组(q<sub>t</sub>,r<sub>t</sub>)，这里的 q<sub>t</sub>同样来自无重复的练习标签集合 Q。我们假设练习背后共有 N 个隐含知识点{c<sup>1</sup>,c<sup>2</sup>,…,c<sup>N</sup>}，这些概念被存储在键(key)矩阵 M<sub>k</sub>(大小为 N*d<sub>k</sub>)，而学生对于每个知识点的掌握情况则存储在值(value)矩阵 M<sup>v</sup><sub>t</sub>(大小为 N*d<sub>v</sub>)，它随着时间而改变.</li>
+<li>DKVMN 通过对值(value)矩阵进行读写操作对学生的知识掌握情况进行追踪，而对值矩阵进行更新又使用到了键矩阵和输入练习的联合权重.</li>
+</ol>
+<h3 id="联合权重-Correlation-Weight"><a href="#联合权重-Correlation-Weight" class="headerlink" title="联合权重(Correlation Weight)"></a>联合权重(Correlation Weight)</h3><ol>
+<li>输入练习 q<sub>t</sub>首先与嵌入矩阵 A(大小为 Q*d<sub>t</sub>)相乘得到一个 d<sub>k</sub>维的连续嵌入向量 k<sub>t</sub>，之后对 k<sub>t</sub>和每个键(key)槽 M<sup>k</sup>(i)进行 Softmax 运算，这样就得到了联合权重 w<sub>t</sub>(i)=Softmax(k<sup>T</sup><sub>t</sub>M<sup>k</sup>(i))，读和写的过程中都会使用到这个权重.</li>
+</ol>
+<h3 id="读过程-Read-process"><a href="#读过程-Read-process" class="headerlink" title="读过程(Read process)"></a>读过程(Read process)</h3><ol>
+<li>当有新的练习 q<sub>t</sub>到来时，读内容 r<sub>t</sub>使用 w<sub>t</sub>和值矩阵中所有记忆槽的加权和进行查找 r<sub>t</sub>=∑<sup>N</sup><sub>i=1</sub>w<sub>t</sub>(i)M<sup>v</sup><sub>t</sub>(i)，r<sub>t</sub>代表了学生对该练习题的掌握情况。由于每个练习都有自己的难度值，我们将读内容 r<sub>t</sub>和输入的练习嵌入成 k<sub>t</sub>，之后将它们通过使用 Tanh 作为激活函数的全连接层，得到最后的向量 f<sub>t</sub>，它包含了学生的掌握水平和题目的难度.f<sub>t</sub>=Tanh(W<sup>T</sup><sub>1</sub>[r<sub>t</sub>,k<sub>t</sub>]+b<sub>1</sub>)，最后将 f<sub>t</sub>再通过另外一个使用了 Sigmoid 激活函数的全连接层用于预测学生的表现，p<sub>t</sub>=Sigmoid(W<sup>T</sup><sub>2</sub>f<sub>t</sub>+b<sub>2</sub>)，p<sub>t</sub>是一个标量，它代表了学生回答正确 q<sub>t</sub>的概率</li>
+</ol>
+<h3 id="写过程-Write-process"><a href="#写过程-Write-process" class="headerlink" title="写过程(Write process)"></a>写过程(Write process)</h3><ol>
+<li>在学生回答问题 q<sub>t</sub>之后，模型会根据学生回答问题的正确与否更新值矩阵，在值矩阵中更新的是(q<sub>t</sub>,r<sub>t</sub>)的联合嵌入，使用的也是读过程中相同的联合权重 w<sub>t</sub>。元组(q<sub>t</sub>,r<sub>t</sub>)被嵌入到一个大小为 2Q*d<sub>v</sub>的嵌入矩阵 B 中，用于存储在学生做完练习后学生的知识增长(knowledge growth)状况 v<sub>t</sub>，在将学生知识增长写入值矩阵的过程中，记忆在新信息添加前就已经被擦出了，这一步是受到了 LSTM 中的输入和遗忘门的启发.</li>
+<li>给定一个写权重(联合权重 w<sub>t</sub>)，我们就能计算出擦除向量 e<sub>t</sub>=Sigmoid(E<sup>T</sup>v<sub>t</sub>+b<sub>e</sub>)，其中变换矩阵 E 的形状外 d<sub>v</sub>*d<sub>v</sub>，e<sub>t</sub>是一个包含 d<sub>v</sub>个值在 0 和 1 之间的元素的列向量。值组件的记忆向量 M<sup>v</sup><sub>t-1</sub>(i)使用以下方式进行更新，M<sup>v</sup><sub>t</sub>(i)=M<sup>v</sup><sub>t-1</sub>(i)[1-w<sub>t</sub>(i)e<sub>t</sub>]，其中 1 是一个全为 1 的行向量。并且，只有当此处的权重和擦除元素都是 0 的时候，记忆位置的元素才被置 0，而当两者有一个不为 0 时，则记忆向量不改变。在擦除之后，我们使用一个长度为 d<sub>v</sub>的加向量(add vector)a<sub>t</sub>用于对每个记忆槽进行更新:a<sub>t</sub>=Tanh(D<sup>T</sup><sub>v<sub>t</sub></sub>+b<sub>a</sub>)<sup>T</sup>，随后，值记忆在每个 t 时间通过 M<sup>v</sup><sub>t</sub>(i)=M<sup>v</sup><sub>t-1</sub>(i)+w<sub>t</sub>(i)a<sub>t</sub>进行更新，这种擦除后相加(erase-followed-by-add)的机制允许对知识点状态进行遗忘和增强.</li>
+</ol>
+<h3 id="训练-Training"><a href="#训练-Training" class="headerlink" title="训练(Training)"></a>训练(Training)</h3><ol>
+<li>训练过程中的嵌入矩阵 A 和 B 以及其他的各种参数都是通过将 p<sub>t</sub>和真实标签 r<sub>t</sub>之间的标准交叉熵最小化而训练出来，L=-∑<sub>t</sub>(r<sub>t</sub>logp<sub>t</sub>+(1-r<sub>t</sub>)log(1-p<sub>t</sub>))</li>
+</ol>
+<h1 id="实验-EXPERIMENS"><a href="#实验-EXPERIMENS" class="headerlink" title="实验(EXPERIMENS)"></a>实验(EXPERIMENS)</h1><ol>
+<li>实验结果：</li>
+</ol>
+<ul>
+<li>DKVMN 比传统 MANN 要强并且在四个数据集上要比目前顶尖水平要高</li>
+<li>DKVMN 与 DKT 相比能够使用更少的参数，带来更好的性能</li>
+<li>DKVMN 不会受到过拟合的困扰</li>
+<li>DKVMN 能够准确发现输入题背后的知识点</li>
+<li>DKVMN 能够描述学生对于单个知识点的掌握状态</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2020/01/07/l6Filj.png" alt="l6Filj.png"></p>
+<h2 id="数据集-Datasets"><a href="#数据集-Datasets" class="headerlink" title="数据集(Datasets)"></a>数据集(Datasets)</h2><ul>
+<li>Synthetic-5:这个数据集模拟了 2000 个学生，每个学生回答了 50 个题目，每个题目都是从 5 个知识点中选取 1 个，并且拥有不同的难度系数。我们将他们当作 ground truth</li>
+<li>ASSISTments2009:我们在预处理当中去除了没有技能名的记录，总共有 4151 名学生回答了 110 个不同练习标签的 32 万 5637 题</li>
+<li>ASSISTments2015:这个数据集包含 100 个技能，在进行预处理后，总共有 1 万 9840 名学生的 68 万 3801 条记录被保存了下来，这个数据集中每个问题都有一个相关的技能</li>
+<li>Statics2011:它包含了 333 名学生完成的包含 1233 个知识点的 18 万 9297 个题目，在我们的实验中，我们将问题名和步骤名的联合用作练习标签</li>
+</ul>
+<h2 id="实现细节-Implementation-Details"><a href="#实现细节-Implementation-Details" class="headerlink" title="实现细节(Implementation Details)"></a>实现细节(Implementation Details)</h2><ol>
+<li>神经网络中的输入使用了独特编码进行标识。具体来说，如果总共出现了 Q 个不同的问题，那么对于练习标签 q<sub>t</sub>来说，键记忆部分是一个长度为 Q 的向量，其中出了第 q<sub>t</sub>个输入是 1 之外，其余的所有位置都是 0。与之类似，对于值矩阵组件来说，联合输入 x<sub>t</sub>=(q<sub>t</sub>,r<sub>t</sub>)是一个长度为 2Q 的向量，其中只有 x<sub>t</sub>=q<sub>t</sub>+r<sub>t</sub>*Q 是 1，我们通过训练对键矩阵和值矩阵进行学习，在测试过程中，每个键记录的槽是知识点嵌入和固定的。与此同时，值记忆的初始值是每个知识点的初始状态，它代表了每个知识点的初始难度.</li>
+<li>对于所有数据集来说，我们都拿出了 30%的序列作为测试数据集(模拟数据集除外，我们使用了相同大小的训练集和测试集)，同时我们还选出了 20%的大小作为验证集，这个大小有助于选择最佳模型和超参.</li>
+<li>参数是由标准差为 0，方差为 σ 的高斯分布随机初始化产生，而学习率依不同情况而变化，因为学生数量、练习标签以及回答与具体数据集相关，但是 γ 会每 20 个 epoch 下降 γ/1.5，直到最后达到 100 个 epoch.</li>
+<li>我们使用 LSTM 实现了 DKT，使用余弦相似度读注意力机制和 LRUA 写注意力机制实现了标准 MANN。我们使用了带动量的随机梯度下降以及梯度裁剪对 DKT,MANN 以及我们的 DKVMN 进行训练。我们将动量设定在 0.9，梯度裁剪的阈值设定在 50.0</li>
+<li>对于不同长度的给定输入，除模拟数据集长度设定为 50 之外，其他的长度都设定为 200，如果序列长度少于 200 则用 null 进行填充.</li>
+<li>在所有的例子中，我们都使用了 5 折交叉检验对超参数进行调参操作，我们使用在 100 个 epoch 中数值最好的一个作为 AUC，另外我们对每次训练使用不同的初始化参数 σ 重复进行 5 次，最后收集带有标准差的平均 AUC 成绩</li>
+</ol>
+<h2 id="学生表现预测-Student-Performance-Prediction"><a href="#学生表现预测-Student-Performance-Prediction" class="headerlink" title="学生表现预测(Student Performance Prediction)"></a>学生表现预测(Student Performance Prediction)</h2><ol>
+<li>AUC 一般用于对每个数据集的预测准确率进行评估</li>
+<li>我们使用 DKVMN 和 MANN 的基准水平，DKT 的最好表现(state-of-the-art)以及标准的 BKT 模型和部分变化了的 BKT 模型进行对比。有趣的是，我们发现我们的 LSTM 实现比原论文的表现还要好，这可能是加入了梯度裁剪和早停止策略带来的好处，它们都帮助改进了 LSTM 存在的过拟合问题，而 BKT 的成绩直接取自于最近的研究.</li>
+<li>简单总结下，我们的模型在各个数据集上表现都比其他的方法好，特别是在 Statics2011 上，因为这个数据集比较大，这说明 DKVMN 能够在数据集较大的情况下保持对学生知识状态建模的能力</li>
+<li>我们使用了更少的参数，但提供了更好的性能<br><img src="https://s2.ax1x.com/2020/01/06/lyEp5T.png" alt="lyEp5T.png"></li>
+</ol>
+<h2 id="知识点发现-Concept-Discovery"><a href="#知识点发现-Concept-Discovery" class="headerlink" title="知识点发现(Concept Discovery)"></a>知识点发现(Concept Discovery)</h2><ol>
+<li>DKVMN 模型有能力通过关联权重 w 发现练习的知识点或者内在关联，而这通常是由专家进行标注的，练习和知识点之间的联合权重代表了它们内在联系的强弱，相比于传统模型需要计算联系之间的依赖关系，之后通过阈值进行聚类的方法相比，我们的模型直接将练习和概念进行分配，不再需要提前设定好阈值，所以我们能够从端到端发现练习题的知识点</li>
+<li>每个练习一般由单个知识点构成，在这种情况下，我们通过最大的关联权重值将练习和知识点进行匹配。在这些实验中，我们发现我们的模型能够智能的学习不同知识点间的权重，并且给出令人信服的结果</li>
+<li>在模拟数据集中，每个练习题都来自一个知识点 c<sup>k</sup>，如下图所示，来自同一个知识点的题被标记成了相同颜色的方块。下图左边展示了 50 个独立试题和 5 个隐含知识点之间的关联权重，每一列代表了当前试题和 5 个隐含知识点之间的关联权重。对每个试题来说，当只有一个值接近 1，而其他都是 0 的时候，此时权重比较稀疏。<br><img src="https://s2.ax1x.com/2020/01/06/lyevSU.png" alt="lyevSU.png"></li>
+</ol>
+<h2 id="知识状态描述-Knowledge-State-Depiction"><a href="#知识状态描述-Knowledge-State-Depiction" class="headerlink" title="知识状态描述(Knowledge State Depiction)"></a>知识状态描述(Knowledge State Depiction)</h2><ol>
+<li>DKVMN 模型也能够用来表示学生知识掌握状态的变化，对知识状态进行表示，特别是单独的知识点，这对于在线学习的用户来说大有帮助</li>
+<li>一个学生的知识掌握变化状态可以通过以下步骤保存在读过程中。首先，值组件中的内容能够直接用作 r<sub>t</sub>=∑<sup>N</sup><sub>i=1</sub>w<sub>t</sub>(i)M<sup>v</sup><sub>t</sub>(i)中的 r<sub>t</sub>，它可以通过将关联权重 w<sub>t</sub>设置成[0,…,w<sub>i</sub>,…0]，其中 c<sup>i</sup>中的权重 w<sub>i</sub>设置为 1 的形式得出</li>
+<li>其次，我们对嵌入在 f<sub>t</sub>=Tanh(W<sup>T</sup><sub>1</sub>[r<sub>t</sub>,k<sub>t</sub>]+b<sub>1</sub>)中的输入内容进行遮盖(mask)，从而忽略掉练习的信息:f<sub>t</sub>=Tanh([W<sup>r</sup><sub>1</sub>,0]<sup>T</sup>[r<sub>t</sub>,m<sub>t</sub>]+b<sub>1</sub>)，我们将 W<sub>1</sub>拆分成两部分 W<sup>r</sup><sub>1</sub>和 W<sup>m</sup><sub>1</sub>，并且让 W<sup>m</sup><sub>1</sub>=0</li>
+<li>最后，我们计算 p<sub>t</sub>=Sigmoid(W<sup>T</sup><sub>2</sub>f<sub>t</sub>+b<sub>2</sub>)中的标量 p 用于预测学生的知识点掌握情况<br><img src="https://s2.ax1x.com/2020/01/07/l6ZCsH.png" alt="l6ZCsH.png"></li>
+<li>上面这张图展示了学生对于五个知识点的掌握情况，第一列代表学生的先验知识，这个依据知识点不同而存在差异。得益于我们模型对于发现练习背后知识点的能力，学生在每次练习之后，其知识点状态都会增强或减弱。比如，学生回答正确前三题之后，知识点二和知识点五都增长了；当学生错误回答第四题之后，知识点三降低了。在经过全部五十题之后，学生掌握了知识点二、三、四，但是没有理解知识点五.</li>
+</ol>
+<h1 id="总结和未来研究-CONCLUSIONS-AND-FUTURE-WORK"><a href="#总结和未来研究-CONCLUSIONS-AND-FUTURE-WORK" class="headerlink" title="总结和未来研究(CONCLUSIONS AND FUTURE WORK)"></a>总结和未来研究(CONCLUSIONS AND FUTURE WORK)</h1><ol>
+<li>DKVMN 模型不仅在性能表现上超越了 DKT，同时最关键的是，它在学生对于每个知识点掌握情况的追踪上也表现出色，而这正是 DKT 的短板，我们未来的工作将聚焦于将内容信息和练习以及知识点整合并嵌入进未来的表征中，我们同样会研究层次键值记忆网络，它将能够对知识点之间的层次关系进行编码</li>
+</ol>
+<h1 id="Dynamic-Key-Value-Memory-Networks-for-Knowledge-Tracing"><a href="#Dynamic-Key-Value-Memory-Networks-for-Knowledge-Tracing" class="headerlink" title="Dynamic Key-Value Memory Networks for Knowledge Tracing"></a>Dynamic Key-Value Memory Networks for Knowledge Tracing</h1><p>论文链接:<a href="https://arxiv.org/pdf/1611.08108.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1611.08108.pdf</a></p>
+<h2 id="这篇论文引入了一个全新的动态键值记忆网络-Dynamic-Key-Value-Memory-Networks-DKVMN-，它不仅在数据集上的表现超过了传统的-DKT-网络，同时还能在单个知识点层面对学生掌握状态进行追踪，而这一点可以说弥补了-DKT-存在的短板。"><a href="#这篇论文引入了一个全新的动态键值记忆网络-Dynamic-Key-Value-Memory-Networks-DKVMN-，它不仅在数据集上的表现超过了传统的-DKT-网络，同时还能在单个知识点层面对学生掌握状态进行追踪，而这一点可以说弥补了-DKT-存在的短板。" class="headerlink" title="这篇论文引入了一个全新的动态键值记忆网络(Dynamic Key-Value Memory Networks,DKVMN)，它不仅在数据集上的表现超过了传统的 DKT 网络，同时还能在单个知识点层面对学生掌握状态进行追踪，而这一点可以说弥补了 DKT 存在的短板。"></a>这篇论文引入了一个全新的动态键值记忆网络(Dynamic Key-Value Memory Networks,DKVMN)，它不仅在数据集上的表现超过了传统的 DKT 网络，同时还能在单个知识点层面对学生掌握状态进行追踪，而这一点可以说弥补了 DKT 存在的短板。</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/22/Leetcode刷题记录(Java) _12_22/" rel="next" title="Leetcode刷题记录(Java)">
+                <i class="fa fa-chevron-left"></i> Leetcode刷题记录(Java)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要-Abstract"><span class="nav-number">1.</span> <span class="nav-text">摘要(Abstract)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介-Introduction"><span class="nav-number">2.</span> <span class="nav-text">简介(Introduction)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关工作-RELATED-WORKS"><span class="nav-number">3.</span> <span class="nav-text">相关工作(RELATED WORKS)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#知识追踪-Knowledge-Tracing"><span class="nav-number">3.1.</span> <span class="nav-text">知识追踪(Knowledge Tracing)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#记忆增强神经网络-Memory-Augmented-Neural-Networks"><span class="nav-number">3.2.</span> <span class="nav-text">记忆增强神经网络(Memory-Augmented Neural Networks)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型-MODEL"><span class="nav-number">4.</span> <span class="nav-text">模型(MODEL)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用于知识追踪的记忆增强神经网络-Memory-Augmented-Neural-Network-for-Knowledge-Tracing"><span class="nav-number">4.1.</span> <span class="nav-text">用于知识追踪的记忆增强神经网络(Memory-Augmented Neural Network for Knowledge Tracing)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态键值记忆网络-Dynamic-Key-Value-Memory-Networks"><span class="nav-number">4.2.</span> <span class="nav-text">动态键值记忆网络(Dynamic Key-Value Memory Networks)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#联合权重-Correlation-Weight"><span class="nav-number">4.2.1.</span> <span class="nav-text">联合权重(Correlation Weight)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读过程-Read-process"><span class="nav-number">4.2.2.</span> <span class="nav-text">读过程(Read process)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写过程-Write-process"><span class="nav-number">4.2.3.</span> <span class="nav-text">写过程(Write process)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练-Training"><span class="nav-number">4.2.4.</span> <span class="nav-text">训练(Training)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验-EXPERIMENS"><span class="nav-number">5.</span> <span class="nav-text">实验(EXPERIMENS)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集-Datasets"><span class="nav-number">5.1.</span> <span class="nav-text">数据集(Datasets)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节-Implementation-Details"><span class="nav-number">5.2.</span> <span class="nav-text">实现细节(Implementation Details)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学生表现预测-Student-Performance-Prediction"><span class="nav-number">5.3.</span> <span class="nav-text">学生表现预测(Student Performance Prediction)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点发现-Concept-Discovery"><span class="nav-number">5.4.</span> <span class="nav-text">知识点发现(Concept Discovery)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识状态描述-Knowledge-State-Depiction"><span class="nav-number">5.5.</span> <span class="nav-text">知识状态描述(Knowledge State Depiction)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结和未来研究-CONCLUSIONS-AND-FUTURE-WORK"><span class="nav-number">6.</span> <span class="nav-text">总结和未来研究(CONCLUSIONS AND FUTURE WORK)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dynamic-Key-Value-Memory-Networks-for-Knowledge-Tracing"><span class="nav-number">7.</span> <span class="nav-text">Dynamic Key-Value Memory Networks for Knowledge Tracing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#这篇论文引入了一个全新的动态键值记忆网络-Dynamic-Key-Value-Memory-Networks-DKVMN-，它不仅在数据集上的表现超过了传统的-DKT-网络，同时还能在单个知识点层面对学生掌握状态进行追踪，而这一点可以说弥补了-DKT-存在的短板。"><span class="nav-number">7.1.</span> <span class="nav-text">这篇论文引入了一个全新的动态键值记忆网络(Dynamic Key-Value Memory Networks,DKVMN)，它不仅在数据集上的表现超过了传统的 DKT 网络，同时还能在单个知识点层面对学生掌握状态进行追踪，而这一点可以说弥补了 DKT 存在的短板。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
