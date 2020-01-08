@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l2Q7kD.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l2luAU.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l23sTf.png">
-<meta property="og:updated_time" content="2020-01-08T09:08:15.668Z">
+<meta property="og:updated_time" content="2020-01-08T09:16:38.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode重点250题思路(Part 1)">
 <meta name="twitter:description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含1、3、4、5、7、8、10、11、12、13题">
@@ -309,7 +309,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-08T17:08:15+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-08T17:16:38+08:00">
                 2020-01-08
               </time>
             
@@ -381,7 +381,7 @@
 <li>HashSet 是为了保证集合中的元素唯一，方便针对重复元素进行移除，若改为 ArrayList 同样可行，不过在 else 中的 list 需要一直 remove 0 号元素，而不是如同 set 中的 remove 当前元素</li>
 <li>在地址安全范围内，如果当前元素不在 set 中说明是个新元素，那么加入 set，并将 end 后移，计算 max；如果当前元素在 set 中说明已存在，那么从 set 中移除，并将 start 后移</li>
 </ul>
-<h1 id="4-Median-of-Two-Sorted-Arrays"><a href="#4-Median-of-Two-Sorted-Arrays" class="headerlink" title="4.Median of Two Sorted Arrays"></a>4.Median of Two Sorted Arrays</h1><p><img src="https://s2.ax1x.com/2020/01/08/lg36UO.png" alt="lg36UO.png"><br><img src="https://s2.ax1x.com/2020/01/08/lg83zd.png" alt="lg83zd.png"> -</p>
+<h1 id="4-Median-of-Two-Sorted-Arrays"><a href="#4-Median-of-Two-Sorted-Arrays" class="headerlink" title="4.Median of Two Sorted Arrays"></a>4.Median of Two Sorted Arrays</h1><p><img src="https://s2.ax1x.com/2020/01/08/lg36UO.png" alt="lg36UO.png"><br><img src="https://s2.ax1x.com/2020/01/08/lg83zd.png" alt="lg83zd.png"></p>
 <ul>
 <li>该题使用二分查找和切分的思想</li>
 <li>在对两个数组的中位数(长度奇数取中间，偶数取中间两数的平均值)进行查找时，最直接的方法是合并数组之后查找，但会超时</li>
@@ -415,7 +415,7 @@
 <h1 id="11-Container-With-Most-Water"><a href="#11-Container-With-Most-Water" class="headerlink" title="11.Container With Most Water"></a>11.Container With Most Water</h1><p><img src="https://s2.ax1x.com/2020/01/08/l2nwVg.png" alt="l2nwVg.png"><br><img src="https://s2.ax1x.com/2020/01/08/l2nRqU.png" alt="l2nRqU.png"></p>
 <ul>
 <li>该题意思是给定一个数组，找出这个数组能够组成的最大面积是多少</li>
-<li>这个通过前后夹击来解决，由于水槽的高度取决于较短的那个边，所以 h=Math.min(l,r)，之后就是移动规则，如果 l&lt;\r，则要使得 l 变大，所以它右移；否则，r 左移。</li>
+<li>这个通过前后夹击来解决，由于水槽的高度取决于较短的那个边，所以 h=Math.min(l,r)，之后就是移动规则，如果 l &lt; r，则要使得 l 变大，所以它右移；否则，r 左移。</li>
 </ul>
 <h1 id="12-Integer-to-Roman"><a href="#12-Integer-to-Roman" class="headerlink" title="12.Integer to Roman"></a>12.Integer to Roman</h1><p><img src="https://s2.ax1x.com/2020/01/08/l2QVoD.png" alt="l2QVoD.png"><br><img src="https://s2.ax1x.com/2020/01/08/l2Q7kD.png" alt="l2Q7kD.png"></p>
 <ul>
