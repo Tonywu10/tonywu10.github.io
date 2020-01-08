@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含1、3、4、5、7、8、10、11、12、13题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode重点250题思路(Part 1)">
+<meta property="og:url" content="http://yoursite.com/2020/01/07/Leetcode重点250题思路(Part 1)/index.html">
+<meta property="og:site_name" content="小吴的程序屋">
+<meta property="og:description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含1、3、4、5、7、8、10、11、12、13题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l6ztcq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/07/l6zr4J.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/07/lcpb0f.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/07/lc9QHK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/lg36UO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/lg83zd.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/lgY0JO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/lgtNcQ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/lgNADs.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/lgBM26.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/lgB3rD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/lgj89s.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/lgzRbV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l2PLNV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l2iabn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l2nwVg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l2nRqU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l2QVoD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l2Q7kD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l2luAU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/08/l23sTf.png">
+<meta property="og:updated_time" content="2020-01-08T09:08:15.668Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode重点250题思路(Part 1)">
+<meta name="twitter:description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含1、3、4、5、7、8、10、11、12、13题">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/01/07/l6ztcq.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/07/Leetcode重点250题思路(Part 1)/"/>
+
+
+
+
+
+  <title>Leetcode重点250题思路(Part 1) | 小吴的程序屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小吴的程序屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">图像、算法、杂谈以及更多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/07/Leetcode重点250题思路(Part 1)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/batman.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小吴的程序屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Leetcode重点250题思路(Part 1)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-07T00:00:00+08:00">
+                2020-01-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-08T17:08:15+08:00">
+                2020-01-08
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含1、3、4、5、7、8、10、11、12、13题
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文的选题依据来自 <a href="https://cspiration.com/leetcodeClassification" target="_blank" rel="noopener">https://cspiration.com/leetcodeClassification</a> 中的划分，下面的序号以 Leetcode 英文版为准</p>
+<h1 id="1-TwoSum"><a href="#1-TwoSum" class="headerlink" title="1.TwoSum"></a>1.TwoSum</h1><p><img src="https://s2.ax1x.com/2020/01/07/l6ztcq.png" alt="l6ztcq.png"><br><img src="https://s2.ax1x.com/2020/01/07/l6zr4J.png" alt="l6zr4J.png"></p>
+<ul>
+<li>不要使用暴力解法，虽然在 LC 上可以 AC，但是已经是极差表现</li>
+<li><strong>使用 HashMap 进行存储，注意存在重复元素的极端情况，需要在 map 中取元素时考虑是不是当前位置元素，比如 target=6 时，[3,3]的情况</strong></li>
+</ul>
+<h1 id="3-Longest-Substring-Without-Repeating-Characters"><a href="#3-Longest-Substring-Without-Repeating-Characters" class="headerlink" title="3.Longest Substring Without Repeating Characters"></a>3.Longest Substring Without Repeating Characters</h1><p><img src="https://s2.ax1x.com/2020/01/07/lcpb0f.png" alt="lcpb0f.png"><br><img src="https://s2.ax1x.com/2020/01/07/lc9QHK.png" alt="lc9QHK.png"></p>
+<ul>
+<li>该题使用 HashSet 和滑动窗口解决</li>
+<li>HashSet 是为了保证集合中的元素唯一，方便针对重复元素进行移除，若改为 ArrayList 同样可行，不过在 else 中的 list 需要一直 remove 0 号元素，而不是如同 set 中的 remove 当前元素</li>
+<li>在地址安全范围内，如果当前元素不在 set 中说明是个新元素，那么加入 set，并将 end 后移，计算 max；如果当前元素在 set 中说明已存在，那么从 set 中移除，并将 start 后移</li>
+</ul>
+<h1 id="4-Median-of-Two-Sorted-Arrays"><a href="#4-Median-of-Two-Sorted-Arrays" class="headerlink" title="4.Median of Two Sorted Arrays"></a>4.Median of Two Sorted Arrays</h1><p><img src="https://s2.ax1x.com/2020/01/08/lg36UO.png" alt="lg36UO.png"><br><img src="https://s2.ax1x.com/2020/01/08/lg83zd.png" alt="lg83zd.png"> -</p>
+<ul>
+<li>该题使用二分查找和切分的思想</li>
+<li>在对两个数组的中位数(长度奇数取中间，偶数取中间两数的平均值)进行查找时，最直接的方法是合并数组之后查找，但会超时</li>
+<li>采用切分的思想，由于两个数组是分别排序好的数组，所以中位数一定出现在两个数组总长度的中间位置，那么我们对数组 1 进行切分，假设数组 1 长度为 4，数组 2 长度为 6，那么当我们将数组 1 切分为长度左 1 右 3 时，数组 2 自然被切分成左 4 右 2，因为只有这样左边和右边才数量相等(总长度为奇数时两边数量差 1)，只有在左右数量相等(差 1)的情况下，中位数才可能在切分点周围的数中产生<br><img src="https://s2.ax1x.com/2020/01/08/lgY0JO.png" alt="lgY0JO.png"></li>
+<li>采用二分法对数组 1 进行切分，会出现三种情况</li>
+<li>L1&gt;R2，这说明需要缩小数组 1 的范围；L2&gt;R1，这说明需要缩小数组 2 的范围；正常情况:L1&lt;=R2&amp;&amp;L2&lt;=R1，此时就根据总长度奇偶情况进行区分，当总长度为偶数时就是左边(L1,L2)中的最大值和右边(R1,R2)中的最小值的平均值；当总长度为奇数时就是右边(R1,R2)中的最小值</li>
+</ul>
+<h1 id="⭐5-Longest-Palindromic-Substring"><a href="#⭐5-Longest-Palindromic-Substring" class="headerlink" title="⭐5.Longest Palindromic Substring"></a>⭐5.Longest Palindromic Substring</h1><p><img src="https://s2.ax1x.com/2020/01/08/lgtNcQ.png" alt="lgtNcQ.png"><br><img src="https://s2.ax1x.com/2020/01/08/lgNADs.png" alt="lgNADs.png"></p>
+<ul>
+<li>该题使用 Manacher 算法应该是最高效的，但是我没看懂，看以后会不会填坑(大概率不会</li>
+<li>使用动态规划的思想解决问题，首先以字符串长度建立二维数组，然后就开始填表，其中 i 代表开始点，j 代表能到达的最远点。因为 j 代表最远端，自然是对它进行长度遍历，而把 i 限制在 j 的范围内，然后就计算 dp[i][j]，它的值为 true 或者 false 和几个因素相关.</li>
+<li>当 i 和 j 位置的元素不相等时自然不能构成回文，直接 false.</li>
+<li>当 i 和 j 位置元素相同时分为两种情况。一种是 i 和 j 的差在 2(也就是 i 和 j 之间最多有 3 个元素，当首尾元素相同时，中间那个元素已经无关紧要了，这个子字符串一定是回文)；另一种是 i 和 j 包裹之内的元素是不是回文，所以判断下 dp[i+1][j-1]的状态，如果它为 true，则当前的子字符串也是回文，就拿它和 max 进行比较，过程结束。</li>
+</ul>
+<h1 id="7-Reverse-Integer"><a href="#7-Reverse-Integer" class="headerlink" title="7.Reverse Integer"></a>7.Reverse Integer</h1><p><img src="https://s2.ax1x.com/2020/01/08/lgBM26.png" alt="lgBM26.png"><br><img src="https://s2.ax1x.com/2020/01/08/lgB3rD.png" alt="lgB3rD.png"></p>
+<ul>
+<li>本题只需要注意溢出问题，其余的都是常规反转数字，x%10 可以每次取数字的最后一位，然后使用 x/=10 减少 x 的大小</li>
+</ul>
+<h1 id="8-String-to-Integer-atoi"><a href="#8-String-to-Integer-atoi" class="headerlink" title="8.String to Integer (atoi)"></a>8.String to Integer (atoi)</h1><p><img src="https://s2.ax1x.com/2020/01/08/lgj89s.png" alt="lgj89s.png"><br><img src="https://s2.ax1x.com/2020/01/08/lgzRbV.png" alt="lgzRbV.png"></p>
+<ul>
+<li>该题属于对边界条件考察，主要是要注意开头是否满足条件、溢出处理</li>
+</ul>
+<h1 id="10-Regular-Expression-Matching"><a href="#10-Regular-Expression-Matching" class="headerlink" title="10.Regular Expression Matching"></a>10.Regular Expression Matching</h1><p><img src="https://s2.ax1x.com/2020/01/08/l2PLNV.png" alt="l2PLNV.png"><br><img src="https://s2.ax1x.com/2020/01/08/l2iabn.png" alt="l2iabn.png"></p>
+<ul>
+<li>该题属于动态规划问题，题目意思是给定一个字符串 s，要求判定给出的匹配 p 能否匹配成功，其中 p 中只能存在小写字母、.(代表可以匹配任意单个字符)、*(代表可以匹配零个或者多个前置字符，这里需要注意零个，这意味着*实质上可以扮演删除的角色)这三种情况</li>
+<li>动态规划的题目还是首先建立二维表，dp[i][j]的意思是 s[0-i]和 p[0-j]是否匹配，这样就存在很多情况</li>
+<li>如果 s[i]==p[j]，那么 dp[i][j] = dp[i-1][j-1]</li>
+<li>如果 p[j]==’.’，那么 dp[i][j] = dp[i-1][j-1] (因为.可以匹配任何单个字母)</li>
+<li>如果 p[j]==’*‘，那么还存在两种情况。一种是 p[j-1]!=s[i]，那么 dp[i][j] = dp[i][j-2] (因为此时*号起到了删除的作用，此时*号前面的字母已经被删除，所以比较的就不是 j-1 而是 j-2)；另一种情况是 p[j-1]==s[i] (此时可以匹配单个或多个相同字母)或者 p[j-1]==’.’，这样的话又分为三种情况 dp[i][j]==dp[i][j-1]，此时可以匹配单个字母；dp[i][j]=dp[i-1][j]，此时可以匹配多个字母；dp[i][j]=dp[i][j-2]，此时匹配空字符。在这三种情况中有一种情况成立即可。</li>
+</ul>
+<h1 id="11-Container-With-Most-Water"><a href="#11-Container-With-Most-Water" class="headerlink" title="11.Container With Most Water"></a>11.Container With Most Water</h1><p><img src="https://s2.ax1x.com/2020/01/08/l2nwVg.png" alt="l2nwVg.png"><br><img src="https://s2.ax1x.com/2020/01/08/l2nRqU.png" alt="l2nRqU.png"></p>
+<ul>
+<li>该题意思是给定一个数组，找出这个数组能够组成的最大面积是多少</li>
+<li>这个通过前后夹击来解决，由于水槽的高度取决于较短的那个边，所以 h=Math.min(l,r)，之后就是移动规则，如果 l&lt;\r，则要使得 l 变大，所以它右移；否则，r 左移。</li>
+</ul>
+<h1 id="12-Integer-to-Roman"><a href="#12-Integer-to-Roman" class="headerlink" title="12.Integer to Roman"></a>12.Integer to Roman</h1><p><img src="https://s2.ax1x.com/2020/01/08/l2QVoD.png" alt="l2QVoD.png"><br><img src="https://s2.ax1x.com/2020/01/08/l2Q7kD.png" alt="l2Q7kD.png"></p>
+<ul>
+<li>该题比较简单，就是将所有的情况列举出来，通过遍历进行添加</li>
+</ul>
+<h1 id="13-Roman-to-Integer"><a href="#13-Roman-to-Integer" class="headerlink" title="13.Roman to Integer"></a>13.Roman to Integer</h1><p><img src="https://s2.ax1x.com/2020/01/08/l2luAU.png" alt="l2luAU.png"><br><img src="https://s2.ax1x.com/2020/01/08/l23sTf.png" alt="l23sTf.png"></p>
+<ul>
+<li>这个题目需要注意的一点就是罗马数字的拼接规律是当左边数字小于右边数字时，它的值等于右边-左边，比如 IV=V-I=5-1=4</li>
+<li>先列举出所有的字母对应数字，然后对每一位进行取值，如果发现当前转化后的数字小于前一个转化后的数字，则用当前数字-2*前一位数字，之所以是 2 倍关系，是因为以…IV 为例，在 V 没有加入讨论之前，这个 I 就已经在上一轮中被加到总和当中去了，但其实它要和 V 组成 IV，所以需要将它减掉之后再计算 IV，也就相当于当前的 V 需要减去两个 I 才是正确数字</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/06/Dynamic Key-Value Memory Networks for Knowledge Tracing/" rel="next" title="Dynamic Key-Value Memory Networks for Knowledge Tracing">
+                <i class="fa fa-chevron-left"></i> Dynamic Key-Value Memory Networks for Knowledge Tracing
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/batman.png"
+                alt="Tony Wu" />
+            
+              <p class="site-author-name" itemprop="name">Tony Wu</p>
+              <p class="site-description motion-element" itemprop="description">一些算法、一些划水</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-TwoSum"><span class="nav-number">1.</span> <span class="nav-text">1.TwoSum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Longest-Substring-Without-Repeating-Characters"><span class="nav-number">2.</span> <span class="nav-text">3.Longest Substring Without Repeating Characters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Median-of-Two-Sorted-Arrays"><span class="nav-number">3.</span> <span class="nav-text">4.Median of Two Sorted Arrays</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⭐5-Longest-Palindromic-Substring"><span class="nav-number">4.</span> <span class="nav-text">⭐5.Longest Palindromic Substring</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Reverse-Integer"><span class="nav-number">5.</span> <span class="nav-text">7.Reverse Integer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-String-to-Integer-atoi"><span class="nav-number">6.</span> <span class="nav-text">8.String to Integer (atoi)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-Regular-Expression-Matching"><span class="nav-number">7.</span> <span class="nav-text">10.Regular Expression Matching</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-Container-With-Most-Water"><span class="nav-number">8.</span> <span class="nav-text">11.Container With Most Water</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-Integer-to-Roman"><span class="nav-number">9.</span> <span class="nav-text">12.Integer to Roman</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-Roman-to-Integer"><span class="nav-number">10.</span> <span class="nav-text">13.Roman to Integer</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-google"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Wu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
