@@ -79,22 +79,31 @@
 
 
 
-<meta name="description" content="吴恩达Deep Learning课程学习笔记">
+<meta name="description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含1、3、4、5、7、8、10、11、12、13题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="吴恩达Deep Learning课程学习笔记(一)">
-<meta property="og:url" content="http://yoursite.com/2018/09/21/吴恩达Deep Learning课程学习笔记(一)/index.html">
+<meta property="og:title" content="Leetcode重点250题思路(Part 2)">
+<meta property="og:url" content="http://yoursite.com/2020/01/09/Leetcode重点250题思路(Part 2)/index.html">
 <meta property="og:site_name" content="小吴的程序屋">
-<meta property="og:description" content="吴恩达Deep Learning课程学习笔记">
+<meta property="og:description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含1、3、4、5、7、8、10、11、12、13题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/21/infDSA.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/21/inWoVO.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/21/inWTaD.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/21/inW7Ie.png">
-<meta property="og:updated_time" content="2018-09-21T12:08:26.641Z">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWl4vd.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lW1E24.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lW8P9U.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lW8sDs.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWGTSS.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWJpSU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWJulD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWY94P.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWYzMF.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWtVxO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWsOvn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWypUU.png">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/9/169ff8cbb36cb6f7?w=939&h=507&f=gif&s=6542126">
+<meta property="og:updated_time" content="2020-01-09T08:39:27.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="吴恩达Deep Learning课程学习笔记(一)">
-<meta name="twitter:description" content="吴恩达Deep Learning课程学习笔记">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/09/21/infDSA.jpg">
+<meta name="twitter:title" content="Leetcode重点250题思路(Part 2)">
+<meta name="twitter:description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含1、3、4、5、7、8、10、11、12、13题">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/01/09/lWl4vd.png">
 
 
 
@@ -124,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/21/吴恩达Deep Learning课程学习笔记(一)/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/01/09/Leetcode重点250题思路(Part 2)/"/>
 
 
 
 
 
-  <title>吴恩达Deep Learning课程学习笔记(一) | 小吴的程序屋</title>
+  <title>Leetcode重点250题思路(Part 2) | 小吴的程序屋</title>
   
 
 
@@ -247,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/21/吴恩达Deep Learning课程学习笔记(一)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/09/Leetcode重点250题思路(Part 2)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Wu">
@@ -264,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">吴恩达Deep Learning课程学习笔记(一)</h1>
+          <h1 class="post-title" itemprop="name headline">Leetcode重点250题思路(Part 2)</h1>
         
 
         <div class="post-meta">
@@ -276,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-21T00:00:00+08:00">
-                2018-09-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-09T00:00:00+08:00">
+                2020-01-09
               </time>
             
 
@@ -292,8 +301,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-21T20:08:26+08:00">
-                2018-09-21
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-09T16:39:27+08:00">
+                2020-01-09
               </time>
             
           </span>
@@ -311,8 +320,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
                   </a>
                 </span>
 
@@ -335,7 +344,7 @@
 
           
               <div class="post-description">
-                  吴恩达Deep Learning课程学习笔记
+                  本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含1、3、4、5、7、8、10、11、12、13题
               </div>
           
 
@@ -352,11 +361,31 @@
       
 
       
-        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>最近开始学习深度学习有关的课程，老师给的建议是学习Coursera上吴恩达出品的Deep Learning课程，所以开这篇博文对学习的过程进行整理和记录。<br>第一周</p>
-<ol>
-<li>用神经网络进行监督学习<br>i.    监督学习主要被分为“回归”(Regression)和“分类”(Classfication)问题。在回归问题中主要是将预测的结果连续化，也就是试图把输入的变量转化成某些连续函数。在分类问题中，我们试图将预期的结果离散化。<br>ii.    卷积神经网络(CNN，Convolution Neural Network)主要用于图像识别，而循环神经网络(RNN，Recurrent Neural Network)被用于一维的序列数据，比如中英文翻译。</li>
-<li>为什么深度学习会兴起<br>深度学习之所以在最近会兴起是因为如今的数字化社会为深度学习提供了大量的数据(Data)，同时随着计算机硬件水平的提升，算力(Computation)也在逐步提高，达到了能够进行大量运算的要求，最后就是算法(Algorithms)的改进，使得深度学习的效率得到了提高。之前使用的Sigmoid函数用作激活函数，Sigmoid函数的公式是<img src="https://s1.ax1x.com/2018/09/21/infDSA.jpg" alt="infDSA.jpg"><br>其图像为<br><img src="https://s1.ax1x.com/2018/09/21/inWoVO.png" alt="inWoVO.png"><br>那么首先什么是激活函数呢？激活函数就是能将非线性特性引入网络中的函数，因为我们之前对数据的处理，比如求和加权等操作都只是把数据进行线性化处理，这个处理过程就比较类似于感知机，也就是说不论网络有多少层，输出的结果都只是输入的线性组合，但是加入了激活函数后，可以使得整个网络变得非线性，那么这个网络就能逼近各种非线性函数，就可以用来处理各种非线性的模型，比如图像识别等部分。<br>那么为什么要选用Sigmoid作为之前的激活函数呢？首先要了解一个事实，那就是在大部分情况下，我们没有办法知道未知事件的概率分布形式，而正态分布是此时最好的选择，因为它是所有可能中最可能出现的表现形式。<br><img src="https://s1.ax1x.com/2018/09/21/inWTaD.png" alt="inWTaD.png"><br>正态分布的密度函数和分布函数分别如上图所示，可以看到其分布函数的形式与sigmoid函数比较相似，并且由于计算正态分布的复杂程度远比sigmoid函数高，所以选用sigmoid作为正态分布的一种替代。但是sigmoid函数有个问题，就是在梯度接近0的区域内，它学习的进度会变得比较慢，参数的变化也变得比较小。所以后来这个激活函数被替换成了ReLU(Rectified Linear Unit)，也就是修正线性单元。<br>ReLU的图像如下所示。<br><img src="https://s1.ax1x.com/2018/09/21/inW7Ie.png" alt="inW7Ie.png"><br>蓝色部分就是ReLU的图像，其表达式为f(x)=x=max(0,x)。</li>
-</ol>
+        <p>本文的选题依据来自 <a href="https://cspiration.com/leetcodeClassification" target="_blank" rel="noopener">https://cspiration.com/leetcodeClassification</a> 中的划分，下面的序号以 Leetcode 英文版为准</p>
+<h1 id="⭐15-3Sum"><a href="#⭐15-3Sum" class="headerlink" title="⭐15.3Sum"></a>⭐15.3Sum</h1><p><img src="https://s2.ax1x.com/2020/01/09/lWl4vd.png" alt="lWl4vd.png"><br><img src="https://s2.ax1x.com/2020/01/09/lW1E24.png" alt="lW1E24.png"></p>
+<ul>
+<li>该题的意思是给定一个数组和一个 target，找出数组中三数相加等于 target 的所有情况</li>
+<li>该题的解法就是固定一个数字，然后找到除该数之外的一对数，看能否满足条件，此时问题退化为 2Sum 问题</li>
+<li>该问题有几个核心:1、排序，这样才能保证在固定数字时不出现重复；2、排除固定重复元素，这里使用了通用方式 if(i&gt;0&amp;&amp;nums[i]==nums[i-1])则 continue;也就是说当数字不是第一个元素的时候，遇到和前面相同的元素则跳过当前元素的查找，这个做法在全排列等问题中也经常使用；3、内循环中如果遇到满足条件的则加入 res 中，但此时仍然要注意排除重复情况，所以依然要判断 nums[low]和 nums[low+1]以及 nums[high]和 nums[high-1]之间的关系，如果遇到两个相同，则做相应处理，否则直接 low++同时 high–；</li>
+</ul>
+<h1 id="17-Letter-Combinations-of-a-Phone-Number"><a href="#17-Letter-Combinations-of-a-Phone-Number" class="headerlink" title="17.Letter Combinations of a Phone Number"></a>17.Letter Combinations of a Phone Number</h1><p><img src="https://s2.ax1x.com/2020/01/09/lW8P9U.png" alt="lW8P9U.png"><br><img src="https://s2.ax1x.com/2020/01/09/lW8sDs.png" alt="lW8sDs.png"></p>
+<ul>
+<li>该题涉及排列组合问题，使用队列解决。首先在 queue 中加入空字符，进入循环，假设输入的数字是 23，则第一次循环是为了加入输入的第一个数字 2，则此时 queue 中加入 abc，index=1；之后加入第二个数字 3，则此时 abc 依次出队，a 出队时加上了 def，则组成了 ad、ae、af，随后 b 出队，组成 bd、be、bf，最后 c 出队，组成 cd、ce、cf，至此两个长度的数字组成完毕，就能进行输出.</li>
+</ul>
+<h1 id="18-4Sum"><a href="#18-4Sum" class="headerlink" title="18.4Sum"></a>18.4Sum</h1><p><img src="https://s2.ax1x.com/2020/01/09/lWGTSS.png" alt="lWGTSS.png"><br><img src="https://s2.ax1x.com/2020/01/09/lWJpSU.png" alt="lWJpSU.png"></p>
+<ul>
+<li>该题和 3Sum 从解法和步骤上来说完全一致，只不过此处需要多使用一个循环对两个变量进行定位，之后再转化为 2Sum 问题，所以存在两个 for 循环，这两个循环都是为了确定固定元素，这两处都需要注意去重问题</li>
+</ul>
+<h1 id="20-Valid-Parentheses"><a href="#20-Valid-Parentheses" class="headerlink" title="20.Valid Parentheses"></a>20.Valid Parentheses</h1><p><img src="https://s2.ax1x.com/2020/01/09/lWJulD.png" alt="lWJulD.png"><br><img src="https://s2.ax1x.com/2020/01/09/lWY94P.png" alt="lWY94P.png"></p>
+<ul>
+<li>该题利用堆栈解决，没什么好说的</li>
+</ul>
+<h1 id="22-Generate-Parentheses"><a href="#22-Generate-Parentheses" class="headerlink" title="22.Generate Parentheses"></a>22.Generate Parentheses</h1><p><img src="https://s2.ax1x.com/2020/01/09/lWYzMF.png" alt="lWYzMF.png"><br><img src="https://s2.ax1x.com/2020/01/09/lWtVxO.png" alt="lWtVxO.png"></p>
+<ul>
+<li>该题使用深度优先遍历解决，利用 DFS 则需要考虑退出情况，这里是两个。一个是左符号的数量超过右符号，不满足条件；一个是左右符号数量同时为 0，此时可以输出一种情况。</li>
+<li>之后就是利用深度优先先把左符号堆满，(((-&gt;((()))，之后一个左符号退出((，这个时候轮到右符号堆满，分别组成(()())和(())()，以此类推</li>
+</ul>
+<h1 id="23-Merge-k-Sorted-Lists"><a href="#23-Merge-k-Sorted-Lists" class="headerlink" title="23.Merge k Sorted Lists"></a>23.Merge k Sorted Lists</h1><p><img src="https://s2.ax1x.com/2020/01/09/lWsOvn.png" alt="lWsOvn.png"><br><img src="https://s2.ax1x.com/2020/01/09/lWypUU.png" alt="lWypUU.png"><br><img src="https://user-gold-cdn.xitu.io/2019/4/9/169ff8cbb36cb6f7?w=939&amp;h=507&amp;f=gif&amp;s=6542126" alt="算法过程演示"></p>
 
       
     </div>
@@ -381,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/19/算法问题解决(六)/" rel="next" title="算法问题解决(六)">
-                <i class="fa fa-chevron-left"></i> 算法问题解决(六)
+              <a href="/2020/01/07/Leetcode重点250题思路(Part 1)/" rel="next" title="Leetcode重点250题思路(Part 1)">
+                <i class="fa fa-chevron-left"></i> Leetcode重点250题思路(Part 1)
               </a>
             
           </div>
@@ -390,10 +419,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/24/吴恩达Deep Learning课程学习笔记(二)/" rel="prev" title="吴恩达Deep Learning课程学习笔记(二)">
-                吴恩达Deep Learning课程学习笔记(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -445,8 +470,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -501,6 +535,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#⭐15-3Sum"><span class="nav-number">1.</span> <span class="nav-text">⭐15.3Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-Letter-Combinations-of-a-Phone-Number"><span class="nav-number">2.</span> <span class="nav-text">17.Letter Combinations of a Phone Number</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-4Sum"><span class="nav-number">3.</span> <span class="nav-text">18.4Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-Valid-Parentheses"><span class="nav-number">4.</span> <span class="nav-text">20.Valid Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-Generate-Parentheses"><span class="nav-number">5.</span> <span class="nav-text">22.Generate Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-Merge-k-Sorted-Lists"><span class="nav-number">6.</span> <span class="nav-text">23.Merge k Sorted Lists</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
