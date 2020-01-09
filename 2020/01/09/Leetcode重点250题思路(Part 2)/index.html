@@ -99,7 +99,15 @@
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWsOvn.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWypUU.png">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/9/169ff8cbb36cb6f7?w=939&h=507&f=gif&s=6542126">
-<meta property="og:updated_time" content="2020-01-09T08:39:27.105Z">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWcq8e.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWRjKJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWfJSO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWfLnJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWhGEn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lW4wJP.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lW42on.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lW4IQU.png">
+<meta property="og:updated_time" content="2020-01-09T10:39:37.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode重点250题思路(Part 2)">
 <meta name="twitter:description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含1、3、4、5、7、8、10、11、12、13题">
@@ -301,7 +309,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-09T16:39:27+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-09T18:39:37+08:00">
                 2020-01-09
               </time>
             
@@ -386,6 +394,27 @@
 <li>之后就是利用深度优先先把左符号堆满，(((-&gt;((()))，之后一个左符号退出((，这个时候轮到右符号堆满，分别组成(()())和(())()，以此类推</li>
 </ul>
 <h1 id="23-Merge-k-Sorted-Lists"><a href="#23-Merge-k-Sorted-Lists" class="headerlink" title="23.Merge k Sorted Lists"></a>23.Merge k Sorted Lists</h1><p><img src="https://s2.ax1x.com/2020/01/09/lWsOvn.png" alt="lWsOvn.png"><br><img src="https://s2.ax1x.com/2020/01/09/lWypUU.png" alt="lWypUU.png"><br><img src="https://user-gold-cdn.xitu.io/2019/4/9/169ff8cbb36cb6f7?w=939&amp;h=507&amp;f=gif&amp;s=6542126" alt="算法过程演示"></p>
+<ul>
+<li>根据上图的演示可以很好理解这个题目的解法，这个题目使用最小堆来解决，由于堆的插入时间复杂度是 logk，所以总的时间复杂度是 nklogk(n 个元素、链表数量为 k)</li>
+<li>这里需要重写 Comparator 方法，把头结点值较小的链表排在开头，然后从最小堆中取值，先取出链表，再从链表中取结点，此时取出的结点肯定是当前待取结点中最小的，取出之后就将该链表重新加入到最小堆中，此时又会重新排序，所以这样就能保证每次取出的都是最小，也就保证了有序</li>
+</ul>
+<h1 id="26-Remove-Duplicates-from-Sorted-Array"><a href="#26-Remove-Duplicates-from-Sorted-Array" class="headerlink" title="26.Remove Duplicates from Sorted Array"></a>26.Remove Duplicates from Sorted Array</h1><p><img src="https://s2.ax1x.com/2020/01/09/lWcq8e.png" alt="lWcq8e.png"><br><img src="https://s2.ax1x.com/2020/01/09/lWRjKJ.png" alt="lWRjKJ.png"></p>
+<ul>
+<li>该题使用“双指针”解决，一个指针遍历全部数组，一个指针记录有多少单独元素，拿当前元素和前一个元素比较，如果相同则不处理，否则 count++并完成赋值</li>
+</ul>
+<h1 id="27-Remove-Element"><a href="#27-Remove-Element" class="headerlink" title="27.Remove Element"></a>27.Remove Element</h1><p><img src="https://s2.ax1x.com/2020/01/09/lWfJSO.png" alt="lWfJSO.png"><br><img src="https://s2.ax1x.com/2020/01/09/lWfLnJ.png" alt="lWfLnJ.png"></p>
+<ul>
+<li>该题和上题一致，只不过把条件转换成和 val 的比较</li>
+</ul>
+<h1 id="28-Implement-strStr"><a href="#28-Implement-strStr" class="headerlink" title="28.Implement strStr()"></a>28.Implement strStr()</h1><p><img src="https://s2.ax1x.com/2020/01/09/lWhGEn.png" alt="lWhGEn.png"><br><img src="https://s2.ax1x.com/2020/01/09/lW4wJP.png" alt="lW4wJP.png"></p>
+<ul>
+<li>该题除非使用 KMP 算法进行匹配，否则其余时间复杂度都是平方级别，所以直接使用 subString 函数解决问题</li>
+</ul>
+<h1 id="29-Divide-Two-Integers"><a href="#29-Divide-Two-Integers" class="headerlink" title="29.Divide Two Integers"></a>29.Divide Two Integers</h1><p><img src="https://s2.ax1x.com/2020/01/09/lW42on.png" alt="lW42on.png"><br><img src="https://s2.ax1x.com/2020/01/09/lW4IQU.png" alt="lW4IQU.png"></p>
+<ul>
+<li>该题主要需要注意异常处理，包括正负号、越界、等于 0(指的 3/5 这种小数情况而不是除数为 0 的情况)，其余就是正常情况</li>
+<li>要模拟除法操作一般就用减法逼近，但是如果逐次递减一般会超时，所以考虑使用乘法快速逼近，这个思想体现在了 divide 函数中。以 9/3 为例，最初 3+3&lt;9，multiple+=multiple=2，之后进入递归(9-6,3)，此时 3+3&gt;3，multiple=1，所以退出递归，multiple 返回 3</li>
+</ul>
 
       
     </div>
@@ -545,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#⭐15-3Sum"><span class="nav-number">1.</span> <span class="nav-text">⭐15.3Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-Letter-Combinations-of-a-Phone-Number"><span class="nav-number">2.</span> <span class="nav-text">17.Letter Combinations of a Phone Number</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-4Sum"><span class="nav-number">3.</span> <span class="nav-text">18.4Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-Valid-Parentheses"><span class="nav-number">4.</span> <span class="nav-text">20.Valid Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-Generate-Parentheses"><span class="nav-number">5.</span> <span class="nav-text">22.Generate Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-Merge-k-Sorted-Lists"><span class="nav-number">6.</span> <span class="nav-text">23.Merge k Sorted Lists</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#⭐15-3Sum"><span class="nav-number">1.</span> <span class="nav-text">⭐15.3Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-Letter-Combinations-of-a-Phone-Number"><span class="nav-number">2.</span> <span class="nav-text">17.Letter Combinations of a Phone Number</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-4Sum"><span class="nav-number">3.</span> <span class="nav-text">18.4Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-Valid-Parentheses"><span class="nav-number">4.</span> <span class="nav-text">20.Valid Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-Generate-Parentheses"><span class="nav-number">5.</span> <span class="nav-text">22.Generate Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-Merge-k-Sorted-Lists"><span class="nav-number">6.</span> <span class="nav-text">23.Merge k Sorted Lists</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#26-Remove-Duplicates-from-Sorted-Array"><span class="nav-number">7.</span> <span class="nav-text">26.Remove Duplicates from Sorted Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-Remove-Element"><span class="nav-number">8.</span> <span class="nav-text">27.Remove Element</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-Implement-strStr"><span class="nav-number">9.</span> <span class="nav-text">28.Implement strStr()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#29-Divide-Two-Integers"><span class="nav-number">10.</span> <span class="nav-text">29.Divide Two Integers</span></a></li></ol></div>
             
 
           </div>
