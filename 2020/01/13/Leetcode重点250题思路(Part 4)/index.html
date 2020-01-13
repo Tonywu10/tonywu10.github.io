@@ -81,36 +81,37 @@
 
 <meta name="description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含31、32、33、34、35、36、37、38、39、40题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode重点250题思路(Part 3)">
-<meta property="og:url" content="http://yoursite.com/2020/01/10/Leetcode重点250题思路(Part 3)/index.html">
+<meta property="og:title" content="Leetcode重点250题思路(Part 4)">
+<meta property="og:url" content="http://yoursite.com/2020/01/13/Leetcode重点250题思路(Part 4)/index.html">
 <meta property="og:site_name" content="小吴的程序屋">
 <meta property="og:description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含31、32、33、34、35、36、37、38、39、40题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lfWqNq.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lffwan.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lfoF10.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lfoe74.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lf7uS1.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lf73wD.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lfHj8s.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lfbiaF.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lfLL5D.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lfOsRH.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lfO5FS.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lfza5V.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lhJ790.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lhY99x.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lhUqi9.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lhUzqO.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lhasQx.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lhaXkQ.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lh0Jyt.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/01/10/lh0yyq.png">
-<meta property="og:updated_time" content="2020-01-10T07:45:45.472Z">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/11/l5fif1.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/11/l5fVOO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/11/l5bWNT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/11/l5qKrn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/lo8fqU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loJ2HU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loYBVO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loa77V.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/lorbA1.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/locXad.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loh2qK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/lo5j3j.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loISuq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loqwaq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loqrGT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loqIJK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loqTzD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/lTtvMn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/12/lTtxrq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/13/l7JeBV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/13/l7Jm7T.png">
+<meta property="og:updated_time" content="2020-01-13T05:28:57.634Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode重点250题思路(Part 3)">
+<meta name="twitter:title" content="Leetcode重点250题思路(Part 4)">
 <meta name="twitter:description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含31、32、33、34、35、36、37、38、39、40题">
-<meta name="twitter:image" content="https://s2.ax1x.com/2020/01/10/lfWqNq.png">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/01/11/l5fif1.png">
 
 
 
@@ -140,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/01/10/Leetcode重点250题思路(Part 3)/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/01/13/Leetcode重点250题思路(Part 4)/"/>
 
 
 
 
 
-  <title>Leetcode重点250题思路(Part 3) | 小吴的程序屋</title>
+  <title>Leetcode重点250题思路(Part 4) | 小吴的程序屋</title>
   
 
 
@@ -263,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/10/Leetcode重点250题思路(Part 3)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/Leetcode重点250题思路(Part 4)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Wu">
@@ -280,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode重点250题思路(Part 3)</h1>
+          <h1 class="post-title" itemprop="name headline">Leetcode重点250题思路(Part 4)</h1>
         
 
         <div class="post-meta">
@@ -292,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-10T00:00:00+08:00">
-                2020-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-13T00:00:00+08:00">
+                2020-01-13
               </time>
             
 
@@ -308,8 +309,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-10T15:45:45+08:00">
-                2020-01-10
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-13T13:28:57+08:00">
+                2020-01-13
               </time>
             
           </span>
@@ -369,49 +370,55 @@
 
       
         <p>本文的选题依据来自 <a href="https://cspiration.com/leetcodeClassification" target="_blank" rel="noopener">https://cspiration.com/leetcodeClassification</a> 中的划分，下面的序号以 Leetcode 英文版为准</p>
-<h1 id="⭐31-Next-Permutation"><a href="#⭐31-Next-Permutation" class="headerlink" title="⭐31.Next Permutation"></a>⭐31.Next Permutation</h1><p><img src="https://s2.ax1x.com/2020/01/10/lfWqNq.png" alt="lfWqNq.png"><br><img src="https://s2.ax1x.com/2020/01/10/lffwan.png" alt="lffwan.png"></p>
+<h1 id="41-First-Missing-Positive"><a href="#41-First-Missing-Positive" class="headerlink" title="41.First Missing Positive"></a>41.First Missing Positive</h1><p><img src="https://s2.ax1x.com/2020/01/11/l5fif1.png" alt="l5fif1.png"><br><img src="https://s2.ax1x.com/2020/01/11/l5fVOO.png" alt="l5fVOO.png"></p>
 <ul>
-<li>以 127431 为例，其全排列的下一个字符是 131247</li>
-<li>先找到升序序列中倒数第二大的数字，再查找比该数大的最小的数，交换两数，以交换位置+1 为起点翻转后续的所有数字</li>
+<li>该题需要求丢失的最小正数</li>
+<li>该题使用桶排序进行数据的组合，for 循环中使用的 while 循环是为了能够让元素对应到自己的位置上，所以在 while 循环中判断数组的数字有没有超过或小于数组长度，以{4,79,84,82}为例，只有第一个 4 在数组长度范围内，所以它在第一轮 for 之后被排到第四号位，其余数字均不动。第二个 for 循环是顺序查找，发现如果有数字不满足当前下标+1 的情况就返回，如果均满足则返回数组长度+1</li>
 </ul>
-<h1 id="32-Longest-Valid-Parentheses"><a href="#32-Longest-Valid-Parentheses" class="headerlink" title="32.Longest Valid Parentheses"></a>32.Longest Valid Parentheses</h1><p><img src="https://s2.ax1x.com/2020/01/10/lfoF10.png" alt="lfoF10.png"><br><img src="https://s2.ax1x.com/2020/01/10/lfoe74.png" alt="lfoe74.png"></p>
+<h1 id="42-Trapping-Rain-Water"><a href="#42-Trapping-Rain-Water" class="headerlink" title="42.Trapping Rain Water"></a>42.Trapping Rain Water</h1><p><img src="https://s2.ax1x.com/2020/01/11/l5bWNT.png" alt="l5bWNT.png"><br><img src="https://s2.ax1x.com/2020/01/11/l5qKrn.png" alt="l5qKrn.png"><br><img src="https://s2.ax1x.com/2020/01/12/lo8fqU.png" alt="lo8fqU.png"></p>
 <ul>
-<li>涉及到括号匹配的问题一般用栈来处理，当遇到左括号时就将其入栈，如果遇到右括号，则先判断栈是否为空，因为如果栈为空则表示没有左括号进来，在没有左括号进来的情况下，出现右括号不符合要求，所以将开始计算的 start 前移；如果栈不为空则将栈内原有的左括号出栈，之后再次判断栈是否为空，如果为空则意味着栈内存在的左括号已经消耗完，那么只需要用当前位置-start 即可得出长度，但是当栈不为空时说明出现了多余的左括号，此时不能减去 start，而是得减去栈顶元素存储的值</li>
+<li>上图中的绿色横线代表从左向右看的最大高度，红色横线代表从右向左看的最大高度，第一个 for 循环就是为了确定左向右数组的高度，以图为例，数组为[0,1,1,2,2,2,2,3,3,3,3,3]；第二个 for 循环为了确定右向左数组的高度，以图为例，数组为[3,3,3,3,3,3,3,3,2,2,2,1]，而水的高度是取两个数组中较小的那个数减去原本位置的高度，以从左向右看第一个存水位为例，min(1,3)=1,而原数组此处高度为 0，所以它存了高度为 1 的水量</li>
 </ul>
-<h1 id="33-Search-in-Rotated-Sorted-Array"><a href="#33-Search-in-Rotated-Sorted-Array" class="headerlink" title="33.Search in Rotated Sorted Array"></a>33.Search in Rotated Sorted Array</h1><p><img src="https://s2.ax1x.com/2020/01/10/lf7uS1.png" alt="lf7uS1.png"><br><img src="https://s2.ax1x.com/2020/01/10/lf73wD.png" alt="lf73wD.png"></p>
+<h1 id="43-Multiply-Strings"><a href="#43-Multiply-Strings" class="headerlink" title="43.Multiply Strings"></a>43.Multiply Strings</h1><p><img src="https://s2.ax1x.com/2020/01/12/loJ2HU.png" alt="loJ2HU.png"><br><img src="https://s2.ax1x.com/2020/01/12/loYBVO.png" alt="loYBVO.png"></p>
 <ul>
-<li>该题需要利用题目给定的升序数组的条件，不管它以那个点进行旋转，一定会形成部分升序的状况，所以只需要稍微修改下二分查找方法</li>
-<li>如果旋转后的数组正好中点和 target 相等则返回，如果 middle 小于 end 值则意味着 middle 所在的这个子数组是升序数组，那么只需要按照常规情况继续二分查找即可；如果 middle 比 end 大，这意味着 middle 前半段才是升序数组</li>
+<li>该题主要是理解 p1 和 p2 代表的意思，以 12*34 为例，digits 长度为 4，下标从 0 到 3，第一轮 p1 在 2，p2 在 3，此时 sum=8+0=8，digits[2]=0，digits[3]=8；第二轮 p1 在 1，p2 在 2，此时 sum=2*3=6，digits[2]=6；第三轮 p1 在 1，p2 在 2，digits[1]=1，digits[2]=0；最后一轮，p1 在 0，p2 在 1，digits[1]=4，结束</li>
 </ul>
-<h1 id="34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><a href="#34-Find-First-and-Last-Position-of-Element-in-Sorted-Array" class="headerlink" title="34.Find First and Last Position of Element in Sorted Array"></a>34.Find First and Last Position of Element in Sorted Array</h1><p><img src="https://s2.ax1x.com/2020/01/10/lfHj8s.png" alt="lfHj8s.png"><br><img src="https://s2.ax1x.com/2020/01/10/lfbiaF.png" alt="lfbiaF.png"></p>
+<h1 id="44-Wildcard-Matching"><a href="#44-Wildcard-Matching" class="headerlink" title="44.Wildcard Matching"></a>44.Wildcard Matching</h1><p><img src="https://s2.ax1x.com/2020/01/12/loa77V.png" alt="loa77V.png"><br><img src="https://s2.ax1x.com/2020/01/12/lorbA1.png" alt="lorbA1.png"></p>
 <ul>
-<li>升序数组查找元素自然使用二分查找，当确定元素之后则以该元素为中心向两边扩散，所以一边 low–，一边 high++，最后赋值。最后需要判断 nums[low]==target 是为了防止出现只有 1 个元素的情况，因为在这种状况下是不会进入循环进行二分查找的</li>
+<li>该题难点在于对*号的判断，因为它具有任意匹配的能力，所以在对 s 进行循环的过程中需要判断几点</li>
+<li>当前字符是否和匹配字符相同或者匹配字符是不是问号，如果匹配上则双方都++</li>
+<li>如果匹配位置是个*，则先记录它的位置，将 s 的位置赋给 match 代表匹配的长度，最后 p++，这是因为有可能后面有非*元素</li>
+<li>如果 star!=-1 则意味着出现了*，那么 p 的位置自然是*+1，之后将 match++，因为*可以和任意字符匹配，然后将 match 赋给 s 代表 s 已经匹配的长度</li>
+<li>以 s=”bbarc”和 p=”*c”为例，变化状况为:star=0,match=0,pp=1,sp=0;star=0,match=1,pp=1,sp=1;star=0,match=2,pp=1,sp=2;star=0,match=3,pp=1,sp=3;star=0,match=4,pp=1,sp=4;star=0,match=4,pp=2,sp=5</li>
+<li>第二个 while 是为了防止 s 循环结束后 p 中出现多个*的情况，因为*可以匹配任意字符，也包括空字符</li>
+<li>最后判断 p 的长度是否和指针移动距离相同</li>
 </ul>
-<h1 id="35-Search-Insert-Position"><a href="#35-Search-Insert-Position" class="headerlink" title="35.Search Insert Position"></a>35.Search Insert Position</h1><p><img src="https://s2.ax1x.com/2020/01/10/lfLL5D.png" alt="lfLL5D.png"><br><img src="https://s2.ax1x.com/2020/01/10/lfOsRH.png" alt="lfOsRH.png"></p>
+<h1 id="45-Jump-Game-II"><a href="#45-Jump-Game-II" class="headerlink" title="45.Jump Game II"></a>45.Jump Game II</h1><p><img src="https://s2.ax1x.com/2020/01/12/locXad.png" alt="locXad.png"><br><img src="https://s2.ax1x.com/2020/01/12/loh2qK.png" alt="loh2qK.png"></p>
 <ul>
-<li>二分查找</li>
+<li>该题考察的是从起点到终点跳的最短次数，题目已经说明一定有从起点到终点的路径</li>
+<li>主要维护了两个变量，一个是当前位置能够到达的最远地方(curMaxArea)，一个是过去出发能够达到的最远地方(maxNext)</li>
+<li>以[2,3,1,1,4]为例，从 2 出发能到达的最远为第一个 1 处，此时满足 i==curMaxArea，maxNext=2，所以 res=1，curMaxArea = maxNext = 2；移动一步到 3，此时 maxNext = 1+3 = 4，但是不满足 i==curMaxArea；移动一步到 1，此时满足 i==curMaxArea，maxNext=4，所以 res=2，curMaxArea = maxNext = 4；最后的 1 不移动，循环结束，res=2</li>
+<li>这里的思想就是如果当前位置达到了之前能达到的最远距离，这时就能对 res++，而 curMaxArea 被重置为 maxNext 是为了应对 1(index)+3(jump) 这种情况，也就是说在当前位置没有达到之前能达到的最远距离之前就有出发点能够跳的更远，那么就对当前能够达到的距离进行更新</li>
 </ul>
-<h1 id="36-Valid-Sudoku"><a href="#36-Valid-Sudoku" class="headerlink" title="36.Valid Sudoku"></a>36.Valid Sudoku</h1><p><img src="https://s2.ax1x.com/2020/01/10/lfO5FS.png" alt="lfO5FS.png"><br><img src="https://s2.ax1x.com/2020/01/10/lfza5V.png" alt="lfza5V.png"></p>
+<h1 id="⭐46-Permutations"><a href="#⭐46-Permutations" class="headerlink" title="⭐46.Permutations"></a>⭐46.Permutations</h1><p><img src="https://s2.ax1x.com/2020/01/12/lo5j3j.png" alt="lo5j3j.png"><br><img src="https://s2.ax1x.com/2020/01/12/loISuq.png" alt="loISuq.png"></p>
 <ul>
-<li>分别检验九宫格的行、列和子九宫格</li>
+<li>这个方法就是不断交换两个数字，交换之后注意还原，典型的回溯法</li>
 </ul>
-<h1 id="37-Sudoku-Solver"><a href="#37-Sudoku-Solver" class="headerlink" title="37.Sudoku Solver"></a>37.Sudoku Solver</h1><p><img src="https://s2.ax1x.com/2020/01/10/lhJ790.png" alt="lhJ790.png"><br><img src="https://s2.ax1x.com/2020/01/10/lhY99x.png" alt="lhY99x.png"></p>
+<h1 id="47-Permutations-II"><a href="#47-Permutations-II" class="headerlink" title="47.Permutations II"></a>47.Permutations II</h1><p><img src="https://s2.ax1x.com/2020/01/12/loqwaq.png" alt="loqwaq.png"><br><img src="https://s2.ax1x.com/2020/01/12/loqrGT.png" alt="loqrGT.png"></p>
 <ul>
-<li>该题使用 DFS 进行暴力求解</li>
-<li>通过两个 for 循环遍历每个空格，之后为每个标记为点的空格填入一个数字，判断它是否满足要求，如果满足则填入，不满足则退出时重新填入点</li>
+<li>包含重复数字的排列问题，都是先排序，再去重</li>
 </ul>
-<h1 id="38-Count-And-Say"><a href="#38-Count-And-Say" class="headerlink" title="38.Count And Say"></a>38.Count And Say</h1><p><img src="https://s2.ax1x.com/2020/01/10/lhUqi9.png" alt="lhUqi9.png"><br><img src="https://s2.ax1x.com/2020/01/10/lhUzqO.png" alt="lhUzqO.png"></p>
+<h1 id="48-Rotate-Image"><a href="#48-Rotate-Image" class="headerlink" title="48.Rotate Image"></a>48.Rotate Image</h1><p><img src="https://s2.ax1x.com/2020/01/12/loqIJK.png" alt="loqIJK.png"><br><img src="https://s2.ax1x.com/2020/01/12/loqTzD.png" alt="loqTzD.png"></p>
 <ul>
-<li>该题使用暴力法解决，从字符串开头进行遍历，当没有到达字符串结尾时，如果遇到不同字符则重置计数变量 count</li>
+<li>先以对角线为轴反转得到转置矩阵，再以中间数轴旋转</li>
 </ul>
-<h1 id="39-Combination-Sum"><a href="#39-Combination-Sum" class="headerlink" title="39.Combination Sum"></a>39.Combination Sum</h1><p><img src="https://s2.ax1x.com/2020/01/10/lhasQx.png" alt="lhasQx.png"><br><img src="https://s2.ax1x.com/2020/01/10/lhaXkQ.png" alt="lhaXkQ.png"></p>
+<h1 id="49-Group-Anagrams"><a href="#49-Group-Anagrams" class="headerlink" title="49.Group Anagrams"></a>49.Group Anagrams</h1><p><img src="https://s2.ax1x.com/2020/01/12/lTtvMn.png" alt="lTtvMn.png"><br><img src="https://s2.ax1x.com/2020/01/12/lTtxrq.png" alt="lTtxrq.png"></p>
 <ul>
-<li>该题使用递归解决。以{2,3,6,7}和 target=7 为例，首先进入循环，则 2 加入 list，此时 target 变成 5，之后 2 再次加入 list，此时 target 变成 3，之后加入 2，target 变成 1，再加入 2，此时 target 变成-1，所以退出递归，此时 list 中有 4 个 2，执行 remove 操作，保留 3 个 2，然后继续 for 循环，循环到 3，则组成{2,2,3}，满足要求，退出递归，变成{2,2}，之后变成{2,2,6},{2,2,7}都不符合，所以循环退出，继续 remove，只剩下一个{2}；按照上述规则继续循环即可得到所有解决</li>
-<li>该题需要注意加入和 remove 的时机，这也是递归题目中常见的操作</li>
+<li>先对字符串进行排序，之后使用 Map 进行判断即可</li>
 </ul>
-<h1 id="40-Combination-Sum-II"><a href="#40-Combination-Sum-II" class="headerlink" title="40.Combination Sum II"></a>40.Combination Sum II</h1><p><img src="https://s2.ax1x.com/2020/01/10/lh0Jyt.png" alt="lh0Jyt.png"><br><img src="https://s2.ax1x.com/2020/01/10/lh0yyq.png" alt="lh0yyq.png"></p>
+<h1 id="50-Pow-x-n"><a href="#50-Pow-x-n" class="headerlink" title="50.Pow(x, n)"></a>50.Pow(x, n)</h1><p><img src="https://s2.ax1x.com/2020/01/13/l7JeBV.png" alt="l7JeBV.png"><br><img src="https://s2.ax1x.com/2020/01/13/l7Jm7T.png" alt="l7Jm7T.png"></p>
 <ul>
-<li>该题和上题的唯一区别就是数组有重复元素，和其他数组重复元素题目类似，直接排序，然后利用 if 过滤重复条件即可</li>
+<li>主要是注意 res*=x 的操作，以 2.1^7 为例，i%2!=0，所以 res*=x=1*2.1=2.1，之后 x*=x，所以 i 可以除以 2 等于 3，此时依旧 i%2!=0，所以 res*x=2.1*4.41=9.261；之后 x*=x=19.4481，i=1，所以 i%2!=0，res*x=9.261*19.4481=180.1088541，最后 i=0，结束。也就是说 x*x 这个操作是为了让指数快速减小，而 res*x 则是为了在指数为奇数时完成数值更新</li>
 </ul>
 
       
@@ -437,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/09/Leetcode重点250题思路(Part 2)/" rel="next" title="Leetcode重点250题思路(Part 2)">
-                <i class="fa fa-chevron-left"></i> Leetcode重点250题思路(Part 2)
+              <a href="/2020/01/10/Leetcode重点250题思路(Part 3)/" rel="next" title="Leetcode重点250题思路(Part 3)">
+                <i class="fa fa-chevron-left"></i> Leetcode重点250题思路(Part 3)
               </a>
             
           </div>
@@ -446,10 +453,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/13/Leetcode重点250题思路(Part 4)/" rel="prev" title="Leetcode重点250题思路(Part 4)">
-                Leetcode重点250题思路(Part 4) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -576,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#⭐31-Next-Permutation"><span class="nav-number">1.</span> <span class="nav-text">⭐31.Next Permutation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#32-Longest-Valid-Parentheses"><span class="nav-number">2.</span> <span class="nav-text">32.Longest Valid Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#33-Search-in-Rotated-Sorted-Array"><span class="nav-number">3.</span> <span class="nav-text">33.Search in Rotated Sorted Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><span class="nav-number">4.</span> <span class="nav-text">34.Find First and Last Position of Element in Sorted Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#35-Search-Insert-Position"><span class="nav-number">5.</span> <span class="nav-text">35.Search Insert Position</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#36-Valid-Sudoku"><span class="nav-number">6.</span> <span class="nav-text">36.Valid Sudoku</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#37-Sudoku-Solver"><span class="nav-number">7.</span> <span class="nav-text">37.Sudoku Solver</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#38-Count-And-Say"><span class="nav-number">8.</span> <span class="nav-text">38.Count And Say</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#39-Combination-Sum"><span class="nav-number">9.</span> <span class="nav-text">39.Combination Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#40-Combination-Sum-II"><span class="nav-number">10.</span> <span class="nav-text">40.Combination Sum II</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#41-First-Missing-Positive"><span class="nav-number">1.</span> <span class="nav-text">41.First Missing Positive</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#42-Trapping-Rain-Water"><span class="nav-number">2.</span> <span class="nav-text">42.Trapping Rain Water</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#43-Multiply-Strings"><span class="nav-number">3.</span> <span class="nav-text">43.Multiply Strings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#44-Wildcard-Matching"><span class="nav-number">4.</span> <span class="nav-text">44.Wildcard Matching</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#45-Jump-Game-II"><span class="nav-number">5.</span> <span class="nav-text">45.Jump Game II</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⭐46-Permutations"><span class="nav-number">6.</span> <span class="nav-text">⭐46.Permutations</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#47-Permutations-II"><span class="nav-number">7.</span> <span class="nav-text">47.Permutations II</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#48-Rotate-Image"><span class="nav-number">8.</span> <span class="nav-text">48.Rotate Image</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#49-Group-Anagrams"><span class="nav-number">9.</span> <span class="nav-text">49.Group Anagrams</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#50-Pow-x-n"><span class="nav-number">10.</span> <span class="nav-text">50.Pow(x, n)</span></a></li></ol></div>
             
 
           </div>
