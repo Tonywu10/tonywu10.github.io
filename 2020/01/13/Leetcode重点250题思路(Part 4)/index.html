@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/12/lTtxrq.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/13/l7JeBV.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/13/l7Jm7T.png">
-<meta property="og:updated_time" content="2020-01-13T05:33:02.688Z">
+<meta property="og:updated_time" content="2020-01-13T05:40:34.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode重点250题思路(Part 4)">
 <meta name="twitter:description" content="本文是为了梳理Leetcode前400题中重点250题的思路而写，可能不是最佳解法，只为让自己能够理解，适合自己的才是最好的。本部分包含41、42、43、44、45、46、47、48、49、50题">
@@ -309,7 +309,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-13T13:33:02+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-13T13:40:34+08:00">
                 2020-01-13
               </time>
             
@@ -389,7 +389,6 @@
 <li>当前字符是否和匹配字符相同或者匹配字符是不是问号，如果匹配上则双方都++</li>
 <li>如果匹配位置是个*，则先记录它的位置，将 s 的位置赋给 match 代表匹配的长度，最后 p++，这是因为有可能后面有非*元素</li>
 <li>如果 star!=-1 则意味着出现了*，那么 p 的位置自然是*+1，之后将 match++，因为*可以和任意字符匹配，然后将 match 赋给 s 代表 s 已经匹配的长度</li>
-<li>以 s=”bbarc”和 p=”*c”为例，变化状况为:star=0,match=0,pp=1,sp=0;star=0,match=1,pp=1,sp=1;star=0,match=2,pp=1,sp=2;star=0,match=3,pp=1,sp=3;star=0,match=4,pp=1,sp=4;star=0,match=4,pp=2,sp=5</li>
 <li>第二个 while 是为了防止 s 循环结束后 p 中出现多个*的情况，因为*可以匹配任意字符，也包括空字符</li>
 <li>最后判断 p 的长度是否和指针移动距离相同</li>
 </ul>
